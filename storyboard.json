@@ -11,7 +11,8 @@
       "effects": {
         "zoom": "in",
         "transition": "fade"
-      }
+      },
+      "durationInSeconds": 4.656
     },
     {
       "id": 2,
@@ -21,7 +22,8 @@
       "effects": {
         "zoom": "out",
         "transition": "fade"
-      }
+      },
+      "durationInSeconds": 4.896
     },
     {
       "id": 3,
@@ -31,7 +33,8 @@
       "effects": {
         "zoom": "in",
         "transition": "fade"
-      }
+      },
+      "durationInSeconds": 4.656
     },
     {
       "id": 4,
@@ -41,7 +44,8 @@
       "effects": {
         "zoom": "out",
         "transition": "fade"
-      }
+      },
+      "durationInSeconds": 6
     }
   ]
 }
