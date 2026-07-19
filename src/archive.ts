@@ -57,6 +57,13 @@ export async function archiveCurrentProject(): Promise<boolean> {
       await fs.unlink(videoPath); // Nettoyer
     }
 
+    // Copier le fichier de métadonnées s'il existe
+    const metadataPath = path.join(process.cwd(), 'metadata.md');
+    if (await fileExists(metadataPath)) {
+      await fs.copyFile(metadataPath, path.join(archivePath, 'metadata.md'));
+      await fs.unlink(metadataPath); // Nettoyer
+    }
+
     // Parcourir les scènes pour copier et nettoyer les fichiers média associés
     for (const scene of storyboard.scenes) {
       // 1. Copier et supprimer l'audio de la scène
