@@ -1,36 +1,35 @@
 import { Composition } from 'remotion';
 import { Main } from './Main';
-import { Storyboard } from '../types';
+import {
+  mainPropsSchema,
+  Storyboard,
+  FPS,
+  getTotalDurationInFrames,
+  getDimensions,
+} from '../types';
 import defaultStoryboard from '../../storyboard.json';
 
 export const RemotionRoot: React.FC = () => {
-  // En production/rendu, Remotion peut recevoir les props depuis l'extérieur (inputProps).
-  // On utilise defaultStoryboard comme fallback.
-  const storyboard = defaultStoryboard as unknown as Storyboard;
-  const fps = 30;
-  
-  const totalDuration = storyboard.scenes.reduce(
-    (acc, scene) => acc + (scene.durationInSeconds || 2), 
-    0
-  );
-  const durationInFrames = Math.max(30, Math.ceil(totalDuration * fps));
-
-  const width = storyboard.ratio === '9:16' ? 1080 : 1920;
-  const height = storyboard.ratio === '9:16' ? 1920 : 1080;
-
   return (
-    <>
-      <Composition
-        id="ContentFactory"
-        component={Main}
-        durationInFrames={durationInFrames}
-        fps={fps}
-        width={width}
-        height={height}
-        defaultProps={{
-          storyboard
-        }}
-      />
-    </>
+    <Composition
+      id="ContentFactory"
+      component={Main}
+      schema={mainPropsSchema}
+      fps={FPS}
+      // Valeurs de secours : recalculées par calculateMetadata à partir du storyboard réel.
+      durationInFrames={FPS}
+      width={1920}
+      height={1080}
+      defaultProps={{ storyboard: defaultStoryboard as Storyboard }}
+      calculateMetadata={({ props }) => {
+        const { storyboard } = props;
+        const { width, height } = getDimensions(storyboard);
+        return {
+          durationInFrames: getTotalDurationInFrames(storyboard, FPS),
+          width,
+          height,
+        };
+      }}
+    />
   );
 };

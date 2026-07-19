@@ -2,7 +2,7 @@ import { bundle } from '@remotion/bundler';
 import { renderMedia, selectComposition } from '@remotion/renderer';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { Storyboard } from './types';
+import { loadStoryboard } from './storyboard';
 
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const ENTRY_POINT = path.join(process.cwd(), 'src/video/index.tsx');
@@ -11,10 +11,9 @@ const OUTPUT_FILE = path.join(OUTPUT_DIR, 'video.mp4');
 
 async function main() {
   try {
-    // 1. Lire le storyboard.json
+    // 1. Lire et valider le storyboard.json
     console.log(`Lecture du storyboard depuis : ${STORYBOARD_PATH}`);
-    const rawData = await fs.readFile(STORYBOARD_PATH, 'utf-8');
-    const storyboard: Storyboard = JSON.parse(rawData);
+    const storyboard = await loadStoryboard(STORYBOARD_PATH);
 
     // S'assurer que le dossier out/ existe
     await fs.mkdir(OUTPUT_DIR, { recursive: true });

@@ -2,17 +2,16 @@ import { EdgeTTS } from 'edge-tts-universal';
 import { parseFile } from 'music-metadata';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { Storyboard } from './types';
+import { loadStoryboard } from './storyboard';
 
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
 
 async function main() {
   try {
-    // 1. Lire le storyboard.json
+    // 1. Lire et valider le storyboard.json
     console.log(`Lecture du storyboard depuis : ${STORYBOARD_PATH}`);
-    const rawData = await fs.readFile(STORYBOARD_PATH, 'utf-8');
-    const storyboard: Storyboard = JSON.parse(rawData);
+    const storyboard = await loadStoryboard(STORYBOARD_PATH);
 
     // 2. Créer le dossier media s'il n'existe pas
     await fs.mkdir(MEDIA_DIR, { recursive: true });
@@ -35,6 +34,17 @@ async function main() {
       const audioBuffer = Buffer.from(await result.audio.arrayBuffer());
       await fs.writeFile(audioFilePath, audioBuffer);
       console.log(`Audio généré et sauvegardé dans : ${audioFilePath}`);
+
+      // Capturer les timings mot-à-mot (WordBoundary) pour le karaoké.
+      // offset/duration sont en unités de 100 ns → conversion en secondes.
+      if (Array.isArray(result.subtitle) && result.subtitle.length > 0) {
+        scene.words = result.subtitle.map((wb) => ({
+          text: wb.text,
+          start: wb.offset / 10_000_000,
+          duration: wb.duration / 10_000_000,
+        }));
+        console.log(`Timings karaoké : ${scene.words.length} mots capturés`);
+      }
 
       // Mesurer la durée exacte du fichier audio
       const metadata = await parseFile(audioFilePath);

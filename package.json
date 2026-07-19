@@ -14,6 +14,7 @@
     "@remotion/bundler": "^4.0.228",
     "@remotion/cli": "^4.0.228",
     "@remotion/renderer": "^4.0.228",
+    "@remotion/transitions": "4.0.491",
     "edge-tts-universal": "^1.1.1",
     "music-metadata": "^7.13.0",
     "react": "^18.2.0",
