@@ -1,821 +1,1617 @@
 {
-  "title": "T'as une idée de pourquoi ton café te rend fatigué (et pas réveillé)",
-  "ratio": "9:16",
+  "title": "La Surcharge Mentale",
+  "ratio": "16:9",
   "voice": "fr-FR-HenriNeural",
+  "useProvidedAudio": false,
+  "subtitles": false,
   "scenes": [
     {
       "id": 1,
-      "narration": "T'as une idée de pourquoi ton café te fatigue au lieu de te réveiller ? Spoiler : ce n'est pas toi, c'est de la chimie.",
-      "mediaPath": "scene_1.mp4",
+      "narration": "Tu as l'esprit plein d'idées. L'envie de tout créer, de tout changer... Et pourtant, tu ne fais rien.",
+      "mediaPath": "scene_1.png",
       "effects": {
         "zoom": "none",
         "transition": "fade"
       },
+      "sounds": [
+        {
+          "src": "sounds/ambient/storm-drain.mp3",
+          "volume": 0.22,
+          "loop": true,
+          "fadeInSeconds": 4
+        }
+      ],
       "words": [
         {
-          "text": "T'as",
+          "text": "Tu",
           "start": 0.1,
-          "duration": 0.175
+          "duration": 0.1875
         },
         {
-          "text": "une",
-          "start": 0.2875,
-          "duration": 0.1
-        },
-        {
-          "text": "idée",
-          "start": 0.4,
-          "duration": 0.1625
-        },
-        {
-          "text": "de",
-          "start": 0.575,
-          "duration": 0.125
-        },
-        {
-          "text": "pourquoi",
-          "start": 0.7125,
-          "duration": 0.325
-        },
-        {
-          "text": "ton",
-          "start": 1.05,
-          "duration": 0.125
-        },
-        {
-          "text": "café",
-          "start": 1.1875,
-          "duration": 0.3
-        },
-        {
-          "text": "te",
-          "start": 1.5,
-          "duration": 0.1375
-        },
-        {
-          "text": "fatigue",
-          "start": 1.65,
-          "duration": 0.3625
-        },
-        {
-          "text": "au",
-          "start": 2.025,
+          "text": "as",
+          "start": 0.3,
           "duration": 0.0375
         },
         {
-          "text": "lieu",
-          "start": 2.075,
+          "text": "l'esprit",
+          "start": 0.35,
+          "duration": 0.35
+        },
+        {
+          "text": "plein",
+          "start": 0.7125,
           "duration": 0.175
         },
         {
+          "text": "d'idées",
+          "start": 0.9,
+          "duration": 0.425
+        },
+        {
+          "text": "L'envie",
+          "start": 2.2,
+          "duration": 0.35
+        },
+        {
           "text": "de",
-          "start": 2.2625,
-          "duration": 0.0875
+          "start": 2.5625,
+          "duration": 0.125
         },
         {
-          "text": "te",
-          "start": 2.3625,
-          "duration": 0.1125
-        },
-        {
-          "text": "réveiller",
-          "start": 2.4875,
-          "duration": 0.5
-        },
-        {
-          "text": "Spoiler",
-          "start": 3.8625,
-          "duration": 0.65
-        },
-        {
-          "text": "ce",
-          "start": 4.7,
-          "duration": 0.1
-        },
-        {
-          "text": "n'est",
-          "start": 4.8125,
-          "duration": 0.1125
-        },
-        {
-          "text": "pas",
-          "start": 4.9375,
+          "text": "tout",
+          "start": 2.7,
           "duration": 0.1375
         },
         {
-          "text": "toi",
-          "start": 5.0875,
-          "duration": 0.2875
-        },
-        {
-          "text": "c'est",
-          "start": 5.65,
-          "duration": 0.1125
+          "text": "créer",
+          "start": 2.85,
+          "duration": 0.3625
         },
         {
           "text": "de",
-          "start": 5.775,
-          "duration": 0.0875
+          "start": 3.5,
+          "duration": 0.125
         },
         {
-          "text": "la",
-          "start": 5.875,
-          "duration": 0.0875
+          "text": "tout",
+          "start": 3.6375,
+          "duration": 0.175
         },
         {
-          "text": "chimie",
-          "start": 5.975,
-          "duration": 0.3875
+          "text": "changer",
+          "start": 3.825,
+          "duration": 0.475
+        },
+        {
+          "text": "Et",
+          "start": 5.175,
+          "duration": 0.15
+        },
+        {
+          "text": "pourtant",
+          "start": 5.3375,
+          "duration": 0.4375
+        },
+        {
+          "text": "tu",
+          "start": 6.075,
+          "duration": 0.1125
+        },
+        {
+          "text": "ne",
+          "start": 6.2,
+          "duration": 0.1125
+        },
+        {
+          "text": "fais",
+          "start": 6.325,
+          "duration": 0.1375
+        },
+        {
+          "text": "rien",
+          "start": 6.475,
+          "duration": 0.3125
         }
       ],
-      "durationInSeconds": 7.224
+      "durationInSeconds": 7.68
     },
     {
       "id": 2,
-      "narration": "Dans ton cerveau, une molécule s'accumule toute la journée : l'adénosine. C'est elle qui te donne envie de dormir. La caféine ne la détruit pas : elle prend juste sa place sur les récepteurs. Tu ne sens plus la fatigue… mais elle, elle continue de s'empiler.",
-      "mediaPath": "scene_2.png",
+      "narration": "Tu restes figé devant cet écran. C'est l'histoire de la surcharge mentale : ce moment précis où ton cerveau simule tellement de perfection... qu'il finit par te paralyser.",
+      "mediaPath": "scene_2.mp4",
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
+      "sounds": [
+        {
+          "src": "sounds/ambient/storm-drain.mp3",
+          "volume": 0.24,
+          "loop": true
+        }
+      ],
       "words": [
         {
-          "text": "Dans",
+          "text": "Tu",
           "start": 0.1,
+          "duration": 0.1625
+        },
+        {
+          "text": "restes",
+          "start": 0.275,
+          "duration": 0.3
+        },
+        {
+          "text": "figé",
+          "start": 0.5875,
+          "duration": 0.3
+        },
+        {
+          "text": "devant",
+          "start": 0.9,
           "duration": 0.2375
         },
         {
+          "text": "cet",
+          "start": 1.15,
+          "duration": 0.225
+        },
+        {
+          "text": "écran",
+          "start": 1.3875,
+          "duration": 0.35
+        },
+        {
+          "text": "C'est",
+          "start": 2.6125,
+          "duration": 0.2125
+        },
+        {
+          "text": "l'histoire",
+          "start": 2.8375,
+          "duration": 0.3875
+        },
+        {
+          "text": "de",
+          "start": 3.2375,
+          "duration": 0.0875
+        },
+        {
+          "text": "la",
+          "start": 3.3375,
+          "duration": 0.1
+        },
+        {
+          "text": "surcharge",
+          "start": 3.45,
+          "duration": 0.475
+        },
+        {
+          "text": "mentale",
+          "start": 3.9375,
+          "duration": 0.5
+        },
+        {
+          "text": "ce",
+          "start": 4.6625,
+          "duration": 0.125
+        },
+        {
+          "text": "moment",
+          "start": 4.8,
+          "duration": 0.2625
+        },
+        {
+          "text": "précis",
+          "start": 5.075,
+          "duration": 0.3875
+        },
+        {
+          "text": "où",
+          "start": 5.475,
+          "duration": 0.075
+        },
+        {
           "text": "ton",
-          "start": 0.35,
+          "start": 5.5625,
           "duration": 0.15
         },
         {
           "text": "cerveau",
-          "start": 0.5125,
-          "duration": 0.4875
+          "start": 5.725,
+          "duration": 0.3375
         },
         {
-          "text": "une",
-          "start": 1.25,
-          "duration": 0.0875
-        },
-        {
-          "text": "molécule",
-          "start": 1.35,
-          "duration": 0.4375
-        },
-        {
-          "text": "s'accumule",
-          "start": 1.8,
-          "duration": 0.475
-        },
-        {
-          "text": "toute",
-          "start": 2.2875,
-          "duration": 0.225
-        },
-        {
-          "text": "la",
-          "start": 2.525,
-          "duration": 0.0875
-        },
-        {
-          "text": "journée",
-          "start": 2.625,
-          "duration": 0.4375
-        },
-        {
-          "text": "l'adénosine",
-          "start": 3.25,
-          "duration": 0.8
-        },
-        {
-          "text": "C'est",
-          "start": 4.9125,
-          "duration": 0.225
-        },
-        {
-          "text": "elle",
-          "start": 5.15,
-          "duration": 0.2125
-        },
-        {
-          "text": "qui",
-          "start": 5.375,
-          "duration": 0.1625
-        },
-        {
-          "text": "te",
-          "start": 5.55,
-          "duration": 0.125
-        },
-        {
-          "text": "donne",
-          "start": 5.6875,
-          "duration": 0.1875
-        },
-        {
-          "text": "envie",
-          "start": 5.8875,
-          "duration": 0.1875
-        },
-        {
-          "text": "de",
-          "start": 6.0875,
-          "duration": 0.1125
-        },
-        {
-          "text": "dormir",
-          "start": 6.2125,
-          "duration": 0.55
-        },
-        {
-          "text": "La",
-          "start": 7.625,
-          "duration": 0.1875
-        },
-        {
-          "text": "caféine",
-          "start": 7.825,
-          "duration": 0.4
-        },
-        {
-          "text": "ne",
-          "start": 8.2375,
-          "duration": 0.0875
-        },
-        {
-          "text": "la",
-          "start": 8.3375,
-          "duration": 0.0875
-        },
-        {
-          "text": "détruit",
-          "start": 8.4375,
+          "text": "simule",
+          "start": 6.075,
           "duration": 0.325
         },
         {
-          "text": "pas",
-          "start": 8.775,
-          "duration": 0.2375
-        },
-        {
-          "text": "elle",
-          "start": 9.25,
-          "duration": 0.1125
-        },
-        {
-          "text": "prend",
-          "start": 9.375,
-          "duration": 0.1625
-        },
-        {
-          "text": "juste",
-          "start": 9.55,
-          "duration": 0.3125
-        },
-        {
-          "text": "sa",
-          "start": 9.875,
-          "duration": 0.125
-        },
-        {
-          "text": "place",
-          "start": 10.0125,
-          "duration": 0.2625
-        },
-        {
-          "text": "sur",
-          "start": 10.2875,
-          "duration": 0.15
-        },
-        {
-          "text": "les",
-          "start": 10.45,
-          "duration": 0.075
-        },
-        {
-          "text": "récepteurs",
-          "start": 10.5375,
-          "duration": 0.75
-        },
-        {
-          "text": "Tu",
-          "start": 12.1625,
-          "duration": 0.15
-        },
-        {
-          "text": "ne",
-          "start": 12.325,
-          "duration": 0.1125
-        },
-        {
-          "text": "sens",
-          "start": 12.45,
-          "duration": 0.1625
-        },
-        {
-          "text": "plus",
-          "start": 12.625,
-          "duration": 0.1375
-        },
-        {
-          "text": "la",
-          "start": 12.775,
-          "duration": 0.1
-        },
-        {
-          "text": "fatigue",
-          "start": 12.8875,
-          "duration": 0.425
-        },
-        {
-          "text": "mais",
-          "start": 13.5125,
-          "duration": 0.125
-        },
-        {
-          "text": "elle",
-          "start": 13.65,
-          "duration": 0.2875
-        },
-        {
-          "text": "elle",
-          "start": 14.2875,
-          "duration": 0.1125
-        },
-        {
-          "text": "continue",
-          "start": 14.4125,
-          "duration": 0.4
+          "text": "tellement",
+          "start": 6.4125,
+          "duration": 0.3
         },
         {
           "text": "de",
-          "start": 14.825,
-          "duration": 0.125
+          "start": 6.725,
+          "duration": 0.1125
         },
         {
-          "text": "s'empiler",
-          "start": 14.9625,
-          "duration": 0.5375
-        }
-      ],
-      "durationInSeconds": 16.368
-    },
-    {
-      "id": 3,
-      "narration": "Mais la caféine finit par partir. Et là, toute l'adénosine en attente se fixe d'un coup. Boum : le crash de quatorze heures.",
-      "mediaPath": "scene_3.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "slide"
-      },
-      "words": [
-        {
-          "text": "Mais",
-          "start": 0.1,
-          "duration": 0.175
+          "text": "perfection",
+          "start": 6.85,
+          "duration": 0.6
         },
         {
-          "text": "la",
-          "start": 0.2875,
-          "duration": 0.1
-        },
-        {
-          "text": "caféine",
-          "start": 0.4,
-          "duration": 0.45
+          "text": "qu'il",
+          "start": 7.675,
+          "duration": 0.1875
         },
         {
           "text": "finit",
-          "start": 0.8625,
+          "start": 7.875,
           "duration": 0.275
         },
         {
           "text": "par",
-          "start": 1.15,
+          "start": 8.1625,
           "duration": 0.1625
         },
         {
-          "text": "partir",
-          "start": 1.325,
-          "duration": 0.575
-        },
-        {
-          "text": "Et",
-          "start": 2.7625,
-          "duration": 0.15
-        },
-        {
-          "text": "là",
-          "start": 2.925,
-          "duration": 0.2125
-        },
-        {
-          "text": "toute",
-          "start": 3.4375,
-          "duration": 0.1875
-        },
-        {
-          "text": "l'adénosine",
-          "start": 3.6375,
-          "duration": 0.5625
-        },
-        {
-          "text": "en",
-          "start": 4.2125,
-          "duration": 0.05
-        },
-        {
-          "text": "attente",
-          "start": 4.275,
-          "duration": 0.3625
-        },
-        {
-          "text": "se",
-          "start": 4.65,
-          "duration": 0.1375
-        },
-        {
-          "text": "fixe",
-          "start": 4.8,
-          "duration": 0.2125
-        },
-        {
-          "text": "d'un",
-          "start": 5.025,
-          "duration": 0.15
-        },
-        {
-          "text": "coup",
-          "start": 5.1875,
-          "duration": 0.2875
-        },
-        {
-          "text": "Boum",
-          "start": 6.3375,
-          "duration": 0.3875
-        },
-        {
-          "text": "le",
-          "start": 6.925,
-          "duration": 0.1
-        },
-        {
-          "text": "crash",
-          "start": 7.0375,
-          "duration": 0.3
-        },
-        {
-          "text": "de",
-          "start": 7.35,
+          "text": "te",
+          "start": 8.3375,
           "duration": 0.1125
         },
         {
-          "text": "quatorze",
-          "start": 7.475,
-          "duration": 0.425
-        },
-        {
-          "text": "heures",
-          "start": 7.9125,
-          "duration": 0.3375
+          "text": "paralyser",
+          "start": 8.4625,
+          "duration": 0.6
         }
       ],
-      "durationInSeconds": 9.144
+      "durationInSeconds": 9.936
     },
     {
-      "id": 4,
-      "narration": "Et ce n'est pas fini. Le café est diurétique : il te déshydrate, et ça crée ce brouillard mental. Ajoute du sucre ou du lait, et tu déclenches un pic de glycémie… suivi d'une chute qui t'achève.",
-      "mediaPath": "scene_4.png",
+      "id": 3,
+      "narration": "Chaque détail doit être parfait. Le premier projet, la première frame, la première ligne. Alors, pour ne pas risquer d'échouer... tu choisis inconsciemment de ne pas commencer.",
+      "mediaPath": "scene_3.mp4",
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
+      "sounds": [
+        {
+          "src": "sounds/ambient/storm-drain.mp3",
+          "volume": 0.26,
+          "loop": true
+        }
+      ],
       "words": [
         {
-          "text": "Et",
+          "text": "Chaque",
           "start": 0.1,
+          "duration": 0.3125
+        },
+        {
+          "text": "détail",
+          "start": 0.425,
+          "duration": 0.325
+        },
+        {
+          "text": "doit",
+          "start": 0.7625,
           "duration": 0.15
         },
         {
-          "text": "ce",
-          "start": 0.2625,
-          "duration": 0.1125
-        },
-        {
-          "text": "n'est",
-          "start": 0.3875,
-          "duration": 0.1
-        },
-        {
-          "text": "pas",
-          "start": 0.5,
-          "duration": 0.15
-        },
-        {
-          "text": "fini",
-          "start": 0.6625,
-          "duration": 0.3875
-        },
-        {
-          "text": "Le",
-          "start": 1.9125,
-          "duration": 0.2
-        },
-        {
-          "text": "café",
-          "start": 2.125,
-          "duration": 0.35
-        },
-        {
-          "text": "est",
-          "start": 2.4875,
-          "duration": 0.05
-        },
-        {
-          "text": "diurétique",
-          "start": 2.55,
-          "duration": 0.625
-        },
-        {
-          "text": "il",
-          "start": 3.35,
-          "duration": 0.0875
-        },
-        {
-          "text": "te",
-          "start": 3.45,
-          "duration": 0.125
-        },
-        {
-          "text": "déshydrate",
-          "start": 3.5875,
-          "duration": 0.5625
-        },
-        {
-          "text": "et",
-          "start": 4.4875,
-          "duration": 0.0625
-        },
-        {
-          "text": "ça",
-          "start": 4.5625,
-          "duration": 0.125
-        },
-        {
-          "text": "crée",
-          "start": 4.7,
-          "duration": 0.2125
-        },
-        {
-          "text": "ce",
-          "start": 4.925,
-          "duration": 0.1125
-        },
-        {
-          "text": "brouillard",
-          "start": 5.05,
+          "text": "être",
+          "start": 0.925,
           "duration": 0.2875
         },
         {
-          "text": "mental",
-          "start": 5.35,
-          "duration": 0.55
-        },
-        {
-          "text": "Ajoute",
-          "start": 6.7625,
-          "duration": 0.3625
-        },
-        {
-          "text": "du",
-          "start": 7.1375,
-          "duration": 0.1125
-        },
-        {
-          "text": "sucre",
-          "start": 7.2625,
-          "duration": 0.25
-        },
-        {
-          "text": "ou",
-          "start": 7.525,
-          "duration": 0.0375
-        },
-        {
-          "text": "du",
-          "start": 7.575,
-          "duration": 0.125
-        },
-        {
-          "text": "lait",
-          "start": 7.7125,
-          "duration": 0.2375
-        },
-        {
-          "text": "et",
-          "start": 8.275,
-          "duration": 0.0375
-        },
-        {
-          "text": "tu",
-          "start": 8.325,
-          "duration": 0.125
-        },
-        {
-          "text": "déclenches",
-          "start": 8.4625,
+          "text": "parfait",
+          "start": 1.225,
           "duration": 0.45
         },
         {
-          "text": "un",
-          "start": 8.925,
-          "duration": 0.0625
+          "text": "Le",
+          "start": 2.55,
+          "duration": 0.2125
         },
         {
-          "text": "pic",
-          "start": 9,
+          "text": "premier",
+          "start": 2.775,
+          "duration": 0.2625
+        },
+        {
+          "text": "projet",
+          "start": 3.05,
+          "duration": 0.425
+        },
+        {
+          "text": "la",
+          "start": 3.8125,
           "duration": 0.1875
         },
         {
-          "text": "de",
-          "start": 9.2,
-          "duration": 0.1
+          "text": "première",
+          "start": 4.0125,
+          "duration": 0.325
         },
         {
-          "text": "glycémie",
-          "start": 9.3125,
-          "duration": 0.55
+          "text": "frame",
+          "start": 4.35,
+          "duration": 0.35
         },
         {
-          "text": "suivi",
-          "start": 10.075,
-          "duration": 0.2875
+          "text": "la",
+          "start": 5.025,
+          "duration": 0.175
         },
         {
-          "text": "d'une",
-          "start": 10.375,
-          "duration": 0.125
+          "text": "première",
+          "start": 5.2125,
+          "duration": 0.325
         },
         {
-          "text": "chute",
-          "start": 10.5125,
-          "duration": 0.225
+          "text": "ligne",
+          "start": 5.55,
+          "duration": 0.375
         },
         {
-          "text": "qui",
-          "start": 10.75,
-          "duration": 0.125
+          "text": "Alors",
+          "start": 6.8,
+          "duration": 0.4625
         },
         {
-          "text": "t'achève",
-          "start": 10.8875,
-          "duration": 0.5875
-        }
-      ],
-      "durationInSeconds": 12.36
-    },
-    {
-      "id": 5,
-      "narration": "Au final, le café masque ta fatigue, il ne la répare jamais. Tu dors mal, tu en reprends… et le cercle vicieux se referme.",
-      "mediaPath": "scene_5.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "words": [
-        {
-          "text": "Au",
-          "start": 0.1,
-          "duration": 0.15
-        },
-        {
-          "text": "final",
-          "start": 0.2625,
-          "duration": 0.4
-        },
-        {
-          "text": "le",
-          "start": 1.0125,
-          "duration": 0.1125
-        },
-        {
-          "text": "café",
-          "start": 1.1375,
-          "duration": 0.3
-        },
-        {
-          "text": "masque",
-          "start": 1.45,
-          "duration": 0.2875
-        },
-        {
-          "text": "ta",
-          "start": 1.75,
+          "text": "pour",
+          "start": 7.55,
           "duration": 0.1375
         },
         {
-          "text": "fatigue",
-          "start": 1.9,
-          "duration": 0.4375
+          "text": "ne",
+          "start": 7.7,
+          "duration": 0.0875
         },
         {
-          "text": "il",
-          "start": 2.6375,
+          "text": "pas",
+          "start": 7.8,
+          "duration": 0.1375
+        },
+        {
+          "text": "risquer",
+          "start": 7.95,
+          "duration": 0.2875
+        },
+        {
+          "text": "d'échouer",
+          "start": 8.25,
+          "duration": 0.5
+        },
+        {
+          "text": "tu",
+          "start": 8.9875,
+          "duration": 0.1375
+        },
+        {
+          "text": "choisis",
+          "start": 9.1375,
+          "duration": 0.3375
+        },
+        {
+          "text": "inconsciemment",
+          "start": 9.4875,
+          "duration": 0.55
+        },
+        {
+          "text": "de",
+          "start": 10.05,
           "duration": 0.0875
         },
         {
           "text": "ne",
-          "start": 2.7375,
-          "duration": 0.075
+          "start": 10.15,
+          "duration": 0.1
         },
         {
-          "text": "la",
-          "start": 2.825,
-          "duration": 0.075
+          "text": "pas",
+          "start": 10.2625,
+          "duration": 0.125
         },
         {
-          "text": "répare",
-          "start": 2.9125,
-          "duration": 0.3
+          "text": "commencer",
+          "start": 10.4,
+          "duration": 0.6125
+        }
+      ],
+      "durationInSeconds": 11.88
+    },
+    {
+      "id": 4,
+      "narration": "C'est un conflit interne épuisant. D'un côté, il y a cette voix ambitieuse qui te dit : imagine si c'est incroyable. De l'autre, une anxiété sourde qui réplique : et si tu n'étais pas à la hauteur ?",
+      "mediaPath": "scene_4.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "sounds": [
+        {
+          "src": "sounds/music/i-dont-know-why-alex-robinson.mp3",
+          "volume": 0.2,
+          "loop": true,
+          "fadeInSeconds": 3
+        }
+      ],
+      "words": [
+        {
+          "text": "C'est",
+          "start": 0.1,
+          "duration": 0.225
         },
         {
-          "text": "jamais",
-          "start": 3.225,
-          "duration": 0.4
+          "text": "un",
+          "start": 0.3375,
+          "duration": 0.1375
         },
         {
-          "text": "Tu",
-          "start": 4.5,
-          "duration": 0.15
+          "text": "conflit",
+          "start": 0.4875,
+          "duration": 0.375
         },
         {
-          "text": "dors",
-          "start": 4.6625,
-          "duration": 0.1875
+          "text": "interne",
+          "start": 0.875,
+          "duration": 0.2875
         },
         {
-          "text": "mal",
-          "start": 4.8625,
-          "duration": 0.275
+          "text": "épuisant",
+          "start": 1.175,
+          "duration": 0.5
         },
         {
-          "text": "tu",
-          "start": 5.4625,
-          "duration": 0.15
+          "text": "D'un",
+          "start": 2.55,
+          "duration": 0.225
         },
         {
-          "text": "en",
-          "start": 5.625,
+          "text": "côté",
+          "start": 2.7875,
+          "duration": 0.45
+        },
+        {
+          "text": "il",
+          "start": 3.5625,
+          "duration": 0.1
+        },
+        {
+          "text": "y",
+          "start": 3.675,
           "duration": 0.0625
         },
         {
-          "text": "reprends",
-          "start": 5.7,
+          "text": "a",
+          "start": 3.75,
+          "duration": 0.05
+        },
+        {
+          "text": "cette",
+          "start": 3.8125,
+          "duration": 0.1875
+        },
+        {
+          "text": "voix",
+          "start": 4.0125,
+          "duration": 0.1625
+        },
+        {
+          "text": "ambitieuse",
+          "start": 4.1875,
+          "duration": 0.525
+        },
+        {
+          "text": "qui",
+          "start": 4.725,
+          "duration": 0.125
+        },
+        {
+          "text": "te",
+          "start": 4.8625,
+          "duration": 0.1375
+        },
+        {
+          "text": "dit",
+          "start": 5.0125,
+          "duration": 0.2
+        },
+        {
+          "text": "imagine",
+          "start": 5.4125,
+          "duration": 0.375
+        },
+        {
+          "text": "si",
+          "start": 5.8,
+          "duration": 0.15
+        },
+        {
+          "text": "c'est",
+          "start": 5.9625,
+          "duration": 0.1125
+        },
+        {
+          "text": "incroyable",
+          "start": 6.0875,
+          "duration": 0.7375
+        },
+        {
+          "text": "De",
+          "start": 7.6875,
+          "duration": 0.2
+        },
+        {
+          "text": "l'autre",
+          "start": 7.9,
+          "duration": 0.3125
+        },
+        {
+          "text": "une",
+          "start": 8.4875,
+          "duration": 0.0875
+        },
+        {
+          "text": "anxiété",
+          "start": 8.5875,
+          "duration": 0.45
+        },
+        {
+          "text": "sourde",
+          "start": 9.05,
+          "duration": 0.225
+        },
+        {
+          "text": "qui",
+          "start": 9.2875,
+          "duration": 0.15
+        },
+        {
+          "text": "réplique",
+          "start": 9.45,
           "duration": 0.45
         },
         {
           "text": "et",
-          "start": 6.375,
-          "duration": 0.0125
+          "start": 10.0875,
+          "duration": 0.0625
         },
         {
-          "text": "le",
-          "start": 6.4,
+          "text": "si",
+          "start": 10.1625,
+          "duration": 0.15
+        },
+        {
+          "text": "tu",
+          "start": 10.325,
           "duration": 0.1125
         },
         {
-          "text": "cercle",
-          "start": 6.525,
-          "duration": 0.325
+          "text": "n'étais",
+          "start": 10.45,
+          "duration": 0.25
         },
         {
-          "text": "vicieux",
-          "start": 6.8625,
-          "duration": 0.325
+          "text": "pas",
+          "start": 10.7125,
+          "duration": 0.1375
         },
         {
-          "text": "se",
-          "start": 7.2,
-          "duration": 0.1125
+          "text": "à",
+          "start": 10.8625,
+          "duration": 0.1
         },
         {
-          "text": "referme",
-          "start": 7.325,
-          "duration": 0.6125
+          "text": "la",
+          "start": 10.975,
+          "duration": 0.0875
+        },
+        {
+          "text": "hauteur",
+          "start": 11.075,
+          "duration": 0.5
         }
       ],
-      "durationInSeconds": 8.832
+      "durationInSeconds": 12.456
     },
     {
-      "id": 6,
-      "narration": "La vraie solution ? Attends une heure après le réveil avant ton premier café, coupe-le après quatorze heures, bois de l'eau, et surtout : dors. Aucune tasse ne remplacera une vraie nuit. Toi, tu savais pour l'adénosine ? Dis-le en commentaire.",
-      "mediaPath": "scene_6.png",
+      "id": 5,
+      "narration": "Résultat ? Ton cerveau sature. Pour faire taire cette panique invisible, tu te réfugies dans la dopamine facile. Tu scrolles, tu lances un jeu, tu fuis. Tu te consoles en te disant que tu t'y mettras demain.",
+      "mediaPath": "scene_5.mp4",
       "effects": {
         "zoom": "out",
         "transition": "fade"
       },
+      "sounds": [
+        {
+          "src": "sounds/music/i-dont-know-why-alex-robinson.mp3",
+          "volume": 0.22,
+          "loop": true
+        }
+      ],
+      "words": [
+        {
+          "text": "Résultat",
+          "start": 0.1,
+          "duration": 0.7125
+        },
+        {
+          "text": "Ton",
+          "start": 1.6875,
+          "duration": 0.175
+        },
+        {
+          "text": "cerveau",
+          "start": 1.875,
+          "duration": 0.325
+        },
+        {
+          "text": "sature",
+          "start": 2.2125,
+          "duration": 0.575
+        },
+        {
+          "text": "Pour",
+          "start": 3.65,
+          "duration": 0.2
+        },
+        {
+          "text": "faire",
+          "start": 3.8625,
+          "duration": 0.2
+        },
+        {
+          "text": "taire",
+          "start": 4.075,
+          "duration": 0.2
+        },
+        {
+          "text": "cette",
+          "start": 4.2875,
+          "duration": 0.175
+        },
+        {
+          "text": "panique",
+          "start": 4.475,
+          "duration": 0.325
+        },
+        {
+          "text": "invisible",
+          "start": 4.8125,
+          "duration": 0.5125
+        },
+        {
+          "text": "tu",
+          "start": 5.65,
+          "duration": 0.1375
+        },
+        {
+          "text": "te",
+          "start": 5.8,
+          "duration": 0.1
+        },
+        {
+          "text": "réfugies",
+          "start": 5.9125,
+          "duration": 0.425
+        },
+        {
+          "text": "dans",
+          "start": 6.35,
+          "duration": 0.1125
+        },
+        {
+          "text": "la",
+          "start": 6.475,
+          "duration": 0.0875
+        },
+        {
+          "text": "dopamine",
+          "start": 6.575,
+          "duration": 0.4375
+        },
+        {
+          "text": "facile",
+          "start": 7.025,
+          "duration": 0.575
+        },
+        {
+          "text": "Tu",
+          "start": 8.4625,
+          "duration": 0.175
+        },
+        {
+          "text": "scrolles",
+          "start": 8.65,
+          "duration": 0.45
+        },
+        {
+          "text": "tu",
+          "start": 9.3375,
+          "duration": 0.125
+        },
+        {
+          "text": "lances",
+          "start": 9.475,
+          "duration": 0.2375
+        },
+        {
+          "text": "un",
+          "start": 9.725,
+          "duration": 0.0875
+        },
+        {
+          "text": "jeu",
+          "start": 9.825,
+          "duration": 0.275
+        },
+        {
+          "text": "tu",
+          "start": 10.35,
+          "duration": 0.125
+        },
+        {
+          "text": "fuis",
+          "start": 10.4875,
+          "duration": 0.3375
+        },
+        {
+          "text": "Tu",
+          "start": 11.7,
+          "duration": 0.1625
+        },
+        {
+          "text": "te",
+          "start": 11.875,
+          "duration": 0.1125
+        },
+        {
+          "text": "consoles",
+          "start": 12,
+          "duration": 0.375
+        },
+        {
+          "text": "en",
+          "start": 12.3875,
+          "duration": 0.05
+        },
+        {
+          "text": "te",
+          "start": 12.45,
+          "duration": 0.1375
+        },
+        {
+          "text": "disant",
+          "start": 12.6,
+          "duration": 0.325
+        },
+        {
+          "text": "que",
+          "start": 12.9375,
+          "duration": 0.125
+        },
+        {
+          "text": "tu",
+          "start": 13.075,
+          "duration": 0.1375
+        },
+        {
+          "text": "t'y",
+          "start": 13.225,
+          "duration": 0.1375
+        },
+        {
+          "text": "mettras",
+          "start": 13.375,
+          "duration": 0.275
+        },
+        {
+          "text": "demain",
+          "start": 13.6625,
+          "duration": 0.375
+        }
+      ],
+      "durationInSeconds": 14.904
+    },
+    {
+      "id": 6,
+      "narration": "Mais demain arrive. Et la culpabilité qui l'accompagne est encore plus lourde.",
+      "mediaPath": "scene_6.png",
+      "effects": {
+        "zoom": "in",
+        "transition": "none"
+      },
+      "sounds": [
+        {
+          "src": "sounds/music/i-dont-know-why-alex-robinson.mp3",
+          "volume": 0.18,
+          "loop": true,
+          "fadeOutSeconds": 2
+        }
+      ],
+      "words": [
+        {
+          "text": "Mais",
+          "start": 0.1,
+          "duration": 0.2
+        },
+        {
+          "text": "demain",
+          "start": 0.3125,
+          "duration": 0.2875
+        },
+        {
+          "text": "arrive",
+          "start": 0.6125,
+          "duration": 0.475
+        },
+        {
+          "text": "Et",
+          "start": 1.9625,
+          "duration": 0.125
+        },
+        {
+          "text": "la",
+          "start": 2.1,
+          "duration": 0.1
+        },
+        {
+          "text": "culpabilité",
+          "start": 2.2125,
+          "duration": 0.6875
+        },
+        {
+          "text": "qui",
+          "start": 2.9125,
+          "duration": 0.1375
+        },
+        {
+          "text": "l'accompagne",
+          "start": 3.0625,
+          "duration": 0.5
+        },
+        {
+          "text": "est",
+          "start": 3.575,
+          "duration": 0.0375
+        },
+        {
+          "text": "encore",
+          "start": 3.625,
+          "duration": 0.35
+        },
+        {
+          "text": "plus",
+          "start": 3.9875,
+          "duration": 0.1625
+        },
+        {
+          "text": "lourde",
+          "start": 4.1625,
+          "duration": 0.425
+        }
+      ],
+      "durationInSeconds": 5.448
+    },
+    {
+      "id": 7,
+      "narration": "On nous répète souvent que la solution, c'est d'avoir plus de discipline. Qu'il faut juste travailler plus dur. Mais comment avancer quand la simple idée de commencer te donne l'impression d'étouffer ?",
+      "mediaPath": "scene_7.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "sounds": [
+        {
+          "src": "sounds/ambient/rain-water-dripping-fast.mp3",
+          "volume": 0.38,
+          "loop": true,
+          "fadeInSeconds": 2
+        }
+      ],
+      "words": [
+        {
+          "text": "On",
+          "start": 0.1,
+          "duration": 0.15
+        },
+        {
+          "text": "nous",
+          "start": 0.2625,
+          "duration": 0.1125
+        },
+        {
+          "text": "répète",
+          "start": 0.3875,
+          "duration": 0.325
+        },
+        {
+          "text": "souvent",
+          "start": 0.725,
+          "duration": 0.2625
+        },
+        {
+          "text": "que",
+          "start": 1,
+          "duration": 0.1
+        },
+        {
+          "text": "la",
+          "start": 1.1125,
+          "duration": 0.1
+        },
+        {
+          "text": "solution",
+          "start": 1.225,
+          "duration": 0.5375
+        },
+        {
+          "text": "c'est",
+          "start": 2.075,
+          "duration": 0.1125
+        },
+        {
+          "text": "d'avoir",
+          "start": 2.2,
+          "duration": 0.3125
+        },
+        {
+          "text": "plus",
+          "start": 2.525,
+          "duration": 0.25
+        },
+        {
+          "text": "de",
+          "start": 2.7875,
+          "duration": 0.1125
+        },
+        {
+          "text": "discipline",
+          "start": 2.9125,
+          "duration": 0.725
+        },
+        {
+          "text": "Qu'il",
+          "start": 4.5,
+          "duration": 0.2125
+        },
+        {
+          "text": "faut",
+          "start": 4.725,
+          "duration": 0.15
+        },
+        {
+          "text": "juste",
+          "start": 4.8875,
+          "duration": 0.3
+        },
+        {
+          "text": "travailler",
+          "start": 5.2,
+          "duration": 0.4
+        },
+        {
+          "text": "plus",
+          "start": 5.6125,
+          "duration": 0.1625
+        },
+        {
+          "text": "dur",
+          "start": 5.7875,
+          "duration": 0.3875
+        },
+        {
+          "text": "Mais",
+          "start": 7.0375,
+          "duration": 0.2
+        },
+        {
+          "text": "comment",
+          "start": 7.25,
+          "duration": 0.3
+        },
+        {
+          "text": "avancer",
+          "start": 7.5625,
+          "duration": 0.35
+        },
+        {
+          "text": "quand",
+          "start": 7.925,
+          "duration": 0.1375
+        },
+        {
+          "text": "la",
+          "start": 8.075,
+          "duration": 0.1
+        },
+        {
+          "text": "simple",
+          "start": 8.1875,
+          "duration": 0.2875
+        },
+        {
+          "text": "idée",
+          "start": 8.4875,
+          "duration": 0.1625
+        },
+        {
+          "text": "de",
+          "start": 8.6625,
+          "duration": 0.1125
+        },
+        {
+          "text": "commencer",
+          "start": 8.7875,
+          "duration": 0.425
+        },
+        {
+          "text": "te",
+          "start": 9.225,
+          "duration": 0.1125
+        },
+        {
+          "text": "donne",
+          "start": 9.35,
+          "duration": 0.175
+        },
+        {
+          "text": "l'impression",
+          "start": 9.5375,
+          "duration": 0.4625
+        },
+        {
+          "text": "d'étouffer",
+          "start": 10.0125,
+          "duration": 0.575
+        }
+      ],
+      "durationInSeconds": 11.472
+    },
+    {
+      "id": 8,
+      "narration": "Le vrai problème, ce n'est pas ton manque de volonté. C'est ton ego. Tu as peur que ton premier jet ne soit pas le chef-d'œuvre que tu as imaginé. Tu confonds ton identité avec ton travail.",
+      "mediaPath": "scene_8.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "sounds": [
+        {
+          "src": "sounds/ambient/rain-water-dripping-fast.mp3",
+          "volume": 0.32,
+          "loop": true
+        }
+      ],
+      "words": [
+        {
+          "text": "Le",
+          "start": 0.1,
+          "duration": 0.1875
+        },
+        {
+          "text": "vrai",
+          "start": 0.3,
+          "duration": 0.1625
+        },
+        {
+          "text": "problème",
+          "start": 0.475,
+          "duration": 0.4375
+        },
+        {
+          "text": "ce",
+          "start": 1.2125,
+          "duration": 0.1125
+        },
+        {
+          "text": "n'est",
+          "start": 1.3375,
+          "duration": 0.1125
+        },
+        {
+          "text": "pas",
+          "start": 1.4625,
+          "duration": 0.1375
+        },
+        {
+          "text": "ton",
+          "start": 1.6125,
+          "duration": 0.15
+        },
+        {
+          "text": "manque",
+          "start": 1.775,
+          "duration": 0.1875
+        },
+        {
+          "text": "de",
+          "start": 1.975,
+          "duration": 0.0875
+        },
+        {
+          "text": "volonté",
+          "start": 2.075,
+          "duration": 0.5625
+        },
+        {
+          "text": "C'est",
+          "start": 3.5,
+          "duration": 0.2375
+        },
+        {
+          "text": "ton",
+          "start": 3.75,
+          "duration": 0.1375
+        },
+        {
+          "text": "ego",
+          "start": 3.9,
+          "duration": 0.4
+        },
+        {
+          "text": "Tu",
+          "start": 5.1625,
+          "duration": 0.175
+        },
+        {
+          "text": "as",
+          "start": 5.35,
+          "duration": 0.075
+        },
+        {
+          "text": "peur",
+          "start": 5.4375,
+          "duration": 0.2
+        },
+        {
+          "text": "que",
+          "start": 5.65,
+          "duration": 0.125
+        },
+        {
+          "text": "ton",
+          "start": 5.7875,
+          "duration": 0.1625
+        },
+        {
+          "text": "premier",
+          "start": 5.9625,
+          "duration": 0.2875
+        },
+        {
+          "text": "jet",
+          "start": 6.2625,
+          "duration": 0.1125
+        },
+        {
+          "text": "ne",
+          "start": 6.3875,
+          "duration": 0.1125
+        },
+        {
+          "text": "soit",
+          "start": 6.5125,
+          "duration": 0.175
+        },
+        {
+          "text": "pas",
+          "start": 6.7,
+          "duration": 0.125
+        },
+        {
+          "text": "le",
+          "start": 6.8375,
+          "duration": 0.1125
+        },
+        {
+          "text": "chef-d'œuvre",
+          "start": 6.9625,
+          "duration": 0.4
+        },
+        {
+          "text": "que",
+          "start": 7.375,
+          "duration": 0.125
+        },
+        {
+          "text": "tu",
+          "start": 7.5125,
+          "duration": 0.1625
+        },
+        {
+          "text": "as",
+          "start": 7.6875,
+          "duration": 0.0625
+        },
+        {
+          "text": "imaginé",
+          "start": 7.7625,
+          "duration": 0.625
+        },
+        {
+          "text": "Tu",
+          "start": 9.25,
+          "duration": 0.15
+        },
+        {
+          "text": "confonds",
+          "start": 9.4125,
+          "duration": 0.35
+        },
+        {
+          "text": "ton",
+          "start": 9.775,
+          "duration": 0.1375
+        },
+        {
+          "text": "identité",
+          "start": 9.925,
+          "duration": 0.5125
+        },
+        {
+          "text": "avec",
+          "start": 10.45,
+          "duration": 0.2
+        },
+        {
+          "text": "ton",
+          "start": 10.6625,
+          "duration": 0.1375
+        },
+        {
+          "text": "travail",
+          "start": 10.8125,
+          "duration": 0.5625
+        }
+      ],
+      "durationInSeconds": 12.24
+    },
+    {
+      "id": 9,
+      "narration": "Pour briser ce mur, il faut accepter quelque chose de douloureux mais de libérateur : accepte de faire des choses médiocres au début. Donne-toi le droit d'échouer proprement.",
+      "mediaPath": "scene_9.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "sounds": [
+        {
+          "src": "sounds/ambient/rain-water-dripping-fast.mp3",
+          "volume": 0.16,
+          "loop": true,
+          "fadeOutSeconds": 4
+        },
+        {
+          "src": "sounds/music/beneath-the-heavy-wool.mp3",
+          "volume": 0.18,
+          "loop": true,
+          "fadeInSeconds": 4
+        }
+      ],
+      "words": [
+        {
+          "text": "Pour",
+          "start": 0.1,
+          "duration": 0.1875
+        },
+        {
+          "text": "briser",
+          "start": 0.3,
+          "duration": 0.325
+        },
+        {
+          "text": "ce",
+          "start": 0.6375,
+          "duration": 0.125
+        },
+        {
+          "text": "mur",
+          "start": 0.775,
+          "duration": 0.2875
+        },
+        {
+          "text": "il",
+          "start": 1.4,
+          "duration": 0.1
+        },
+        {
+          "text": "faut",
+          "start": 1.5125,
+          "duration": 0.125
+        },
+        {
+          "text": "accepter",
+          "start": 1.65,
+          "duration": 0.5
+        },
+        {
+          "text": "quelque",
+          "start": 2.1625,
+          "duration": 0.3125
+        },
+        {
+          "text": "chose",
+          "start": 2.4875,
+          "duration": 0.2375
+        },
+        {
+          "text": "de",
+          "start": 2.7375,
+          "duration": 0.125
+        },
+        {
+          "text": "douloureux",
+          "start": 2.875,
+          "duration": 0.3125
+        },
+        {
+          "text": "mais",
+          "start": 3.2,
+          "duration": 0.125
+        },
+        {
+          "text": "de",
+          "start": 3.3375,
+          "duration": 0.0875
+        },
+        {
+          "text": "libérateur",
+          "start": 3.4375,
+          "duration": 0.75
+        },
+        {
+          "text": "accepte",
+          "start": 4.3875,
+          "duration": 0.3875
+        },
+        {
+          "text": "de",
+          "start": 4.7875,
+          "duration": 0.125
+        },
+        {
+          "text": "faire",
+          "start": 4.925,
+          "duration": 0.2
+        },
+        {
+          "text": "des",
+          "start": 5.1375,
+          "duration": 0.125
+        },
+        {
+          "text": "choses",
+          "start": 5.275,
+          "duration": 0.25
+        },
+        {
+          "text": "médiocres",
+          "start": 5.5375,
+          "duration": 0.4
+        },
+        {
+          "text": "au",
+          "start": 5.95,
+          "duration": 0.05
+        },
+        {
+          "text": "début",
+          "start": 6.0125,
+          "duration": 0.35
+        },
+        {
+          "text": "Donne-toi",
+          "start": 7.225,
+          "duration": 0.475
+        },
+        {
+          "text": "le",
+          "start": 7.7125,
+          "duration": 0.1
+        },
+        {
+          "text": "droit",
+          "start": 7.825,
+          "duration": 0.2
+        },
+        {
+          "text": "d'échouer",
+          "start": 8.0375,
+          "duration": 0.3625
+        },
+        {
+          "text": "proprement",
+          "start": 8.4125,
+          "duration": 0.575
+        }
+      ],
+      "durationInSeconds": 9.864
+    },
+    {
+      "id": 10,
+      "narration": "Éteins le bruit. Ferme les vingt onglets ouverts dans ta tête. Choisis une seule tâche. Une tâche ridiculeusement simple. Écris une seule ligne. Crée une seule seconde de vidéo.",
+      "mediaPath": "scene_10.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "sounds": [
+        {
+          "src": "sounds/music/beneath-the-heavy-wool.mp3",
+          "volume": 0.26,
+          "loop": true
+        }
+      ],
+      "words": [
+        {
+          "text": "Éteins",
+          "start": 0.1,
+          "duration": 0.325
+        },
+        {
+          "text": "le",
+          "start": 0.4375,
+          "duration": 0.0875
+        },
+        {
+          "text": "bruit",
+          "start": 0.5375,
+          "duration": 0.3625
+        },
+        {
+          "text": "Ferme",
+          "start": 1.775,
+          "duration": 0.3
+        },
+        {
+          "text": "les",
+          "start": 2.0875,
+          "duration": 0.1
+        },
+        {
+          "text": "vingt",
+          "start": 2.2,
+          "duration": 0.15
+        },
+        {
+          "text": "onglets",
+          "start": 2.3625,
+          "duration": 0.3375
+        },
+        {
+          "text": "ouverts",
+          "start": 2.7125,
+          "duration": 0.3
+        },
+        {
+          "text": "dans",
+          "start": 3.025,
+          "duration": 0.1
+        },
+        {
+          "text": "ta",
+          "start": 3.1375,
+          "duration": 0.1375
+        },
+        {
+          "text": "tête",
+          "start": 3.2875,
+          "duration": 0.475
+        },
+        {
+          "text": "Choisis",
+          "start": 4.6375,
+          "duration": 0.4375
+        },
+        {
+          "text": "une",
+          "start": 5.0875,
+          "duration": 0.125
+        },
+        {
+          "text": "seule",
+          "start": 5.225,
+          "duration": 0.225
+        },
+        {
+          "text": "tâche",
+          "start": 5.4625,
+          "duration": 0.55
+        },
+        {
+          "text": "Une",
+          "start": 6.8875,
+          "duration": 0.2
+        },
+        {
+          "text": "tâche",
+          "start": 7.1,
+          "duration": 0.2625
+        },
+        {
+          "text": "ridiculeusement",
+          "start": 7.375,
+          "duration": 0.675
+        },
+        {
+          "text": "simple",
+          "start": 8.0625,
+          "duration": 0.45
+        },
+        {
+          "text": "Écris",
+          "start": 9.3875,
+          "duration": 0.3625
+        },
+        {
+          "text": "une",
+          "start": 9.7625,
+          "duration": 0.1125
+        },
+        {
+          "text": "seule",
+          "start": 9.8875,
+          "duration": 0.2125
+        },
+        {
+          "text": "ligne",
+          "start": 10.1125,
+          "duration": 0.4
+        },
+        {
+          "text": "Crée",
+          "start": 11.3875,
+          "duration": 0.2
+        },
+        {
+          "text": "une",
+          "start": 11.6,
+          "duration": 0.125
+        },
+        {
+          "text": "seule",
+          "start": 11.7375,
+          "duration": 0.2375
+        },
+        {
+          "text": "seconde",
+          "start": 11.9875,
+          "duration": 0.3625
+        },
+        {
+          "text": "de",
+          "start": 12.3625,
+          "duration": 0.1125
+        },
+        {
+          "text": "vidéo",
+          "start": 12.4875,
+          "duration": 0.525
+        }
+      ],
+      "durationInSeconds": 13.896
+    },
+    {
+      "id": 11,
+      "narration": "La clarté ne vient pas de la réflexion. Elle vient de l'action. Alors fais-toi confiance, et commence maintenant. Juste un petit pas... Le reste suivra.",
+      "mediaPath": "scene_11.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "sounds": [
+        {
+          "src": "sounds/music/beneath-the-heavy-wool.mp3",
+          "volume": 0.28,
+          "loop": true,
+          "fadeOutSeconds": 5
+        }
+      ],
       "words": [
         {
           "text": "La",
@@ -823,192 +1619,127 @@
           "duration": 0.2
         },
         {
-          "text": "vraie",
+          "text": "clarté",
           "start": 0.3125,
-          "duration": 0.1875
-        },
-        {
-          "text": "solution",
-          "start": 0.5125,
-          "duration": 0.525
-        },
-        {
-          "text": "Attends",
-          "start": 1.9125,
-          "duration": 0.3125
-        },
-        {
-          "text": "une",
-          "start": 2.2375,
-          "duration": 0.1125
-        },
-        {
-          "text": "heure",
-          "start": 2.3625,
-          "duration": 0.1
-        },
-        {
-          "text": "après",
-          "start": 2.475,
-          "duration": 0.225
-        },
-        {
-          "text": "le",
-          "start": 2.7125,
-          "duration": 0.0875
-        },
-        {
-          "text": "réveil",
-          "start": 2.8125,
-          "duration": 0.2875
-        },
-        {
-          "text": "avant",
-          "start": 3.1125,
-          "duration": 0.1625
-        },
-        {
-          "text": "ton",
-          "start": 3.2875,
-          "duration": 0.1625
-        },
-        {
-          "text": "premier",
-          "start": 3.4625,
-          "duration": 0.2625
-        },
-        {
-          "text": "café",
-          "start": 3.7375,
-          "duration": 0.45
-        },
-        {
-          "text": "coupe-le",
-          "start": 4.4875,
-          "duration": 0.2875
-        },
-        {
-          "text": "après",
-          "start": 4.7875,
-          "duration": 0.25
-        },
-        {
-          "text": "quatorze",
-          "start": 5.05,
-          "duration": 0.425
-        },
-        {
-          "text": "heures",
-          "start": 5.4875,
-          "duration": 0.25
-        },
-        {
-          "text": "bois",
-          "start": 6.025,
-          "duration": 0.1875
-        },
-        {
-          "text": "de",
-          "start": 6.225,
-          "duration": 0.1
-        },
-        {
-          "text": "l'eau",
-          "start": 6.3375,
-          "duration": 0.2375
-        },
-        {
-          "text": "et",
-          "start": 6.8,
-          "duration": 0.05
-        },
-        {
-          "text": "surtout",
-          "start": 6.8625,
-          "duration": 0.425
-        },
-        {
-          "text": "dors",
-          "start": 7.5125,
-          "duration": 0.4375
-        },
-        {
-          "text": "Aucune",
-          "start": 8.8125,
-          "duration": 0.375
-        },
-        {
-          "text": "tasse",
-          "start": 9.2,
-          "duration": 0.275
+          "duration": 0.3625
         },
         {
           "text": "ne",
-          "start": 9.4875,
-          "duration": 0.1375
+          "start": 0.6875,
+          "duration": 0.125
         },
         {
-          "text": "remplacera",
-          "start": 9.6375,
-          "duration": 0.4875
-        },
-        {
-          "text": "une",
-          "start": 10.1375,
-          "duration": 0.1
-        },
-        {
-          "text": "vraie",
-          "start": 10.25,
+          "text": "vient",
+          "start": 0.825,
           "duration": 0.1875
         },
         {
-          "text": "nuit",
-          "start": 10.45,
-          "duration": 0.3
-        },
-        {
-          "text": "Toi",
-          "start": 11.6125,
-          "duration": 0.325
-        },
-        {
-          "text": "tu",
-          "start": 12.225,
+          "text": "pas",
+          "start": 1.025,
           "duration": 0.15
         },
         {
-          "text": "savais",
-          "start": 12.3875,
-          "duration": 0.2625
-        },
-        {
-          "text": "pour",
-          "start": 12.6625,
-          "duration": 0.15
-        },
-        {
-          "text": "l'adénosine",
-          "start": 12.825,
-          "duration": 0.7125
-        },
-        {
-          "text": "Dis-le",
-          "start": 14.4125,
-          "duration": 0.35
-        },
-        {
-          "text": "en",
-          "start": 14.775,
+          "text": "de",
+          "start": 1.1875,
           "duration": 0.0875
         },
         {
-          "text": "commentaire",
-          "start": 14.875,
-          "duration": 0.75
+          "text": "la",
+          "start": 1.2875,
+          "duration": 0.0625
+        },
+        {
+          "text": "réflexion",
+          "start": 1.3625,
+          "duration": 0.6125
+        },
+        {
+          "text": "Elle",
+          "start": 2.85,
+          "duration": 0.2
+        },
+        {
+          "text": "vient",
+          "start": 3.0625,
+          "duration": 0.175
+        },
+        {
+          "text": "de",
+          "start": 3.25,
+          "duration": 0.075
+        },
+        {
+          "text": "l'action",
+          "start": 3.3375,
+          "duration": 0.45
+        },
+        {
+          "text": "Alors",
+          "start": 4.6625,
+          "duration": 0.325
+        },
+        {
+          "text": "fais-toi",
+          "start": 5,
+          "duration": 0.3125
+        },
+        {
+          "text": "confiance",
+          "start": 5.325,
+          "duration": 0.65
+        },
+        {
+          "text": "et",
+          "start": 6.2625,
+          "duration": 0.05
+        },
+        {
+          "text": "commence",
+          "start": 6.325,
+          "duration": 0.3625
+        },
+        {
+          "text": "maintenant",
+          "start": 6.7,
+          "duration": 0.4875
+        },
+        {
+          "text": "Juste",
+          "start": 8.0625,
+          "duration": 0.375
+        },
+        {
+          "text": "un",
+          "start": 8.45,
+          "duration": 0.05
+        },
+        {
+          "text": "petit",
+          "start": 8.5125,
+          "duration": 0.2625
+        },
+        {
+          "text": "pas",
+          "start": 8.7875,
+          "duration": 0.2625
+        },
+        {
+          "text": "Le",
+          "start": 9.925,
+          "duration": 0.1875
+        },
+        {
+          "text": "reste",
+          "start": 10.125,
+          "duration": 0.3125
+        },
+        {
+          "text": "suivra",
+          "start": 10.45,
+          "duration": 0.4875
         }
       ],
-      "durationInSeconds": 16.512
+      "durationInSeconds": 11.808
     }
   ]
 }

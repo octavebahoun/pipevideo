@@ -19,5 +19,6 @@ public/*.mp4
 public/*.mp3
 public/*.png
 public/*.jpg
+public/*.jpeg
 public/sounds/**/*.mp3
 public/sounds/**/*.wav

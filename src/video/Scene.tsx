@@ -137,6 +137,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
               src={staticFile(mediaPath)}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               muted
+              loop
             />
           ) : (
             <Img

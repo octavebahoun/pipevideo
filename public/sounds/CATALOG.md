@@ -1,7 +1,7 @@
 # 🎧 Catalogue des sons — GÉNÉRÉ AUTOMATIQUEMENT
 
 > Ne pas éditer à la main. Régénère avec `npm run sounds` après chaque ajout/retrait de son.
-> 40 son(s) référencé(s).
+> 48 son(s) référencé(s).
 
 Pour utiliser un son : copie sa colonne `src` dans un objet du tableau `sounds` d'une scène du storyboard.
 
@@ -25,20 +25,28 @@ Pour utiliser un son : copie sa colonne `src` dans un objet du tableau `sounds` 
 | `fearless-the-soundlings-ruby-jay` | music | énergique, inspirant, moderne | false | 142s | F Maj | 72 | `[50.34, 57.21, 112.06, 118.91, 122.35]` | musique de générique, d'intro dynamique, ou de climax inspirant | `sounds/music/fearless-the-soundlings-ruby-jay.mp3` |
 | `i-dont-know-why-alex-robinson` | music | mélancolique, introspectif, acoustique | false | 206s | D Min | 62 | `[13.05, 54.38, 56.89, 136.95, 169.46]` | musique de fond pour une fin de vidéo, générique ou moment émotionnel fort | `sounds/music/i-dont-know-why-alex-robinson.mp3` |
 | `leberch-cinematic-space` | music | spatial, cinématique, grandiose | true | 238s | D Min | 83 | `[93.32, 122.51, 142.85, 171.41, 209.47]` | nappe de fond épique ou spatiale, moment de révélation ou de contemplation | `sounds/music/leberch-cinematic-space.mp3` |
+| `sleepless-horizon` | music | planant, atmosphérique, mystérieux, nocturne | true | 31s | A Maj | 86 | `[8.61, 11.8, 12.61, 13.17, 28.82]` | musique ou nappe d'ambiance planante pour accompagner des réflexions, une scène nocturne ou une attente | `sounds/music/sleepless-horizon.mp3` |
 | `weightless-horizon` | music | planant, futuriste, paisible | true | 31s | A Min | 103 | `[13.1, 27.21, 27.77, 28.86, 30.3]` | nappe sonore minimale pour accompagner des explications complexes sans distraire | `sounds/music/weightless-horizon.mp3` |
 | `aluminum-can-open` | sfx | sec, quotidien, rafraîchissant | false | 3s | - | - | - | bruit d'ouverture de cannette de soda ou de bière, transition sonore rapide | `sounds/sfx/aluminum-can-open.mp3` |
 | `body-in-car` | sfx | sourd, lourd, mystérieux | false | 4s | - | - | `[0.88]` | bruit sourd d'un objet lourd placé dans une voiture ou d'une portière/coffre qui se ferme avec force | `sounds/sfx/body-in-car.mp3` |
 | `dress-shoes-up-stairs-concrete` | sfx | rythmé, sec, formel | false | 3s | - | - | - | bruit de pas d'une personne portant des chaussures de ville ou à talons montant des marches en béton | `sounds/sfx/dress-shoes-up-stairs-concrete.mp3` |
+| `dropping-object-in-bathroom` | sfx | sourd, quotidien, maladroit | false | 8s | - | - | - | bruitage d'un objet (flacon, brosse, savon) tombant sur le carrelage d'une salle de bain | `sounds/sfx/dropping-object-in-bathroom.mp3` |
+| `hand-claps-medium` | sfx | rythmé, humain, enthousiaste | false | 13s | - | - | `[0.28]` | bruit d'applaudissements de mains à rythme moyen, félicitations ou soutien | `sounds/sfx/hand-claps-medium.mp3` |
+| `karate-hit` | sfx | dynamique, sec, percutant, martial | false | 8s | - | - | `[2.48]` | bruitage d'impact de coup de poing ou coup de pied de karaté, scène de combat | `sounds/sfx/karate-hit.mp3` |
 | `knife-sharpen` | sfx | tendu, dangereux, tranchant | false | 3s | - | - | `[0.14, 0.86, 1.51, 2.09]` | effet de tension, préparation d'une action, transition tranchante | `sounds/sfx/knife-sharpen.mp3` |
+| `lighter-flick` | sfx | sec, métallique, chaud, déclencheur | false | 11s | - | - | - | bruitage d'un briquet que l'on allume (clic métallique et frotte de molette), idéal pour allumer une cigarette, bougie ou idée | `sounds/sfx/lighter-flick.mp3` |
 | `male-zombie-roar` | sfx | terrifiant, agressif, sombre | false | 4s | - | - | `[0.51, 1.83, 3.11]` | saut de surprise (jumpscare), élément d'horreur ou tension dramatique soudaine | `sounds/sfx/male-zombie-roar.mp3` |
 | `peeling-object` | sfx | organique, frottant, sec | false | 7s | - | - | `[3.23, 5.74]` | bruitage d'épluchage de fruit ou d'arrachage d'un autocollant / scotch | `sounds/sfx/peeling-object.mp3` |
+| `punch-swoosh-series` | sfx | dynamique, rapide, vif, action | false | 8s | - | - | - | série de mouvements rapides de poings ou coups dans l'air, idéal pour des transitions d'action ou des scènes de combat | `sounds/sfx/punch-swoosh-series.mp3` |
 | `put-cap-on-pen` | sfx | sec, précis, final | false | 2s | - | - | - | action d'écrire terminée, prise de décision ou transition rapide | `sounds/sfx/put-cap-on-pen.mp3` |
 | `run-in-dirt` | sfx | rapide, pressé, physique | false | 4s | - | - | - | bruit de pas d'une personne courant précipitamment sur un sol en terre ou poussiéreux | `sounds/sfx/run-in-dirt.mp3` |
 | `run-on-wood` | sfx | rapide, paniqué, pressé | false | 4s | - | - | `[1.37, 2.41, 3.48]` | course précipitante à l'intérieur d'une maison, fuite ou poursuite | `sounds/sfx/run-on-wood.mp3` |
 | `slide-on-leaves` | sfx | organique, bruissant, automnal | false | 5s | - | - | - | bruit de chute ou de pas glissant sur un tapis de feuilles mortes | `sounds/sfx/slide-on-leaves.mp3` |
+| `sneaker-jog-dirt` | sfx | physique, rythmé, sportif | false | 13s | - | - | - | bruitage de pas de course/footing en baskets sur un sol de terre ou sentier | `sounds/sfx/sneaker-jog-dirt.mp3` |
 | `sneaker-large-jumps-light-grit` | sfx | physique, rythmé, sportif | false | 8s | - | - | - | sauts sportifs répétés, action d'entraînement ou mouvements saccadés sur sol sablonneux | `sounds/sfx/sneaker-large-jumps-light-grit.mp3` |
 | `soap-pickup` | sfx | propre, humide, quotidien | false | 6s | - | - | - | bruit de manipulation d'un savon mouillé dans une coupelle ou douche | `sounds/sfx/soap-pickup.mp3` |
 | `stairs` | sfx | quotidien, rythmé | false | 5s | - | - | - | descente ou montée rapide d'escalier | `sounds/sfx/stairs.mp3` |
+| `styrofoam-carton` | sfx | organique, grincant, sec, déballant | false | 12s | - | - | - | manipulation ou déballage d'un carton en polystyrène ou d'un colis | `sounds/sfx/styrofoam-carton.mp3` |
 | `swoosh` | sfx | dynamique, aérien, transition | false | 14s | - | - | `[3.83]` | effets de transition, mouvements de caméra rapides ou apparitions d'éléments graphiques | `sounds/sfx/swoosh.mp3` |
 | `walk-dirt` | sfx | régulier, calme, naturel | false | 6s | - | - | - | bruit de marche d'un personnage sur un sentier en terre | `sounds/sfx/walk-dirt.mp3` |
 | `walk-gravel` | sfx | crépitant, régulier, net | false | 7s | - | - | - | marche d'un personnage sur une allée ou une cour gravillonnée | `sounds/sfx/walk-gravel.mp3` |

@@ -1,31 +1,29 @@
-# Métadonnées — T'as une idée de pourquoi ton café te rend fatigué (et pas réveillé)
+# Métadonnées — « La Surcharge Mentale »
 
-## Format : TikTok / Shorts / Reels (9:16)
+## Format : Essai vidéo / YouTube (16:9)
 
-**Titre d'accroche (ultra court) :**
-Ton café te FATIGUE ? Voilà pourquoi ☕😴
+**Titre (accroche) :**
+La Surcharge Mentale — pourquoi ton cerveau te paralyse
 
-**Description (punchy, finit sur une question) :**
-Tu bois ton café pour te réveiller… et à 14h tu t'effondres. Ce n'est pas toi, c'est l'adénosine qui te tend un piège. Voilà pourquoi le café te fatigue au lieu de te réveiller. Toi, tu savais pour le rebond d'adénosine ?
+**Titres alternatifs :**
+- Pourquoi tu as mille idées mais tu ne commences jamais
+- La vraie raison de ta procrastination (ce n'est pas la discipline)
 
-**Hashtags :**
-#café #caffeine #adénosine #fatigue #sommeil #productivité #astucesanté #coupdebarre #biohacking #apprendresurtiktok #sciencefr #cafe
+**Description :**
+Tu as l'esprit plein d'idées, l'envie de tout créer… et pourtant tu ne fais rien. Ce n'est pas de la paresse, ni un manque de discipline. C'est la surcharge mentale : ce moment où ton cerveau simule tellement de perfection qu'il finit par te paralyser. Un essai intime sur la peur d'échouer, l'ego, et le premier pas ridiculement simple qui brise le mur.
 
----
+Ceci est mon vécu.
 
-## Alternative YouTube Short / titre long (si besoin)
-Pourquoi ton café te rend FATIGUÉ (et pas réveillé) 😴☕
+**Tags :**
+surcharge mentale, procrastination, paralysie de l'analyse, perfectionnisme, peur de l'échec, discipline, motivation, développement personnel, santé mentale, anime, essai vidéo, video essay
 
-## Angle & structure (6 scènes)
-1. Hook — « t'as une idée de pourquoi… » (vidéo café → coup de barre)
-2. Le mécanisme — l'adénosine et le blocage des récepteurs (image 3D)
-3. Le rebond — la caféine part, l'adénosine se fixe d'un coup : le crash de 14h (vidéo)
-4. Les complices — déshydratation (diurétique) + pic/chute de glycémie (image infographie)
-5. Le cercle vicieux — masque la fatigue, ne la répare pas (vidéo boucle)
-6. La solution — retarder le 1er café, couper après 14h, s'hydrater, dormir + CTA (image apaisante)
+## Structure (4 actes)
+1. **Le Piège de la Perfection** — mille idées, zéro action (bleu nuit / violet).
+2. **Le Combat Silencieux** — ambition vs anxiété, fuite dans la dopamine (rouge / orange).
+3. **La Déconstruction** — ce n'est pas la volonté, c'est l'ego (pluie cyberpunk → bascule).
+4. **Le Premier Pas** — accepter le médiocre, agir maintenant (golden hour / blanc).
 
-## Sources (science établie — neuro/nutrition grand public)
-- Mécanisme adénosine / antagonisme des récepteurs A1-A2A par la caféine
-- Effet diurétique léger de la caféine → déshydratation
-- Pic puis chute de glycémie (café sucré / lait)
-- Rebond d'adénosine → « afternoon crash »
+## Notes de production
+- Voix off : brouillon Edge-TTS à remplacer par la voix intime de l'auteur (`audioPath` par scène).
+- Sous-titres : désactivés (immersion).
+- CTA de fin : logo / abonnement sur le fondu au blanc (scène 11).

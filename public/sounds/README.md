@@ -26,8 +26,10 @@ sfx/heartbeat-slow.md    ← sa fiche (copiée depuis _TEMPLATE.md)
 ```
 
 Le front-matter de la fiche (voir `_TEMPLATE.md`) contient : `type`, `duration`,
-`loopable`, `mood`, `tags`, `usage`. Le corps décrit **quand** utiliser le son.
-C'est cette fiche qui permet à l'agent de choisir le bon son sans écouter.
+`loopable`, `mood`, `tags`, `usage`, et — pour la musique/le rythme — `key` (tonalité),
+`bpm`, et `peaks` (secondes des pics d'impact, pour **caler un effet visuel** sur un
+temps fort). Le corps décrit **quand** utiliser le son. C'est cette fiche qui permet à
+l'agent de choisir le bon son sans écouter.
 
 ## 🔄 Ajouter un son
 
@@ -71,17 +73,25 @@ Champs d'un son de scène :
 > **par-dessus**. Pour une musique de fond unique sur TOUTE la vidéo, utiliser
 > plutôt le champ global `music` du storyboard.
 
-## 💡 Sons recommandés à constituer (ex. essai psychologique / anime sombre)
+## 🗂️ Traçabilité à l'archivage (IMPORTANT pour l'agent)
 
-À sourcer puis décrire (les fiches guideront l'agent). Suggestions :
+Quand une vidéo est archivée (`npm run new-video` / `npm run archive`), les fichiers
+audio de la bibliothèque **ne sont PAS copiés** dans `history/` (ils restent partagés
+ici). À la place, la liste des sons utilisés — musique globale + `sounds` de chaque
+scène — est consignée en **noms seuls** dans `history/<projet>/sounds-used.md`.
+→ Conséquence : pour re-rendre une vidéo archivée, ses sons doivent toujours être
+présents dans `public/sounds/`. Ne pas renommer/supprimer un son encore référencé.
 
-- **music/** : `synth-drone-dark` (nappe sombre bouclable), `piano-melancolique`,
-  `lofi-nostalgique`, `guitare-acoustique-douce`, `piano-espoir`.
-- **sfx/** : `heartbeat-slow` (battement sourd), `glitch-hit`, `riser-tension`
-  (montée), `boum-impact`, `whoosh-transition`, `notification-scroll`,
-  `verre-brise` (miroir qui éclate), `clic-souris`, `papier-froisse`.
-- **ambient/** : `pluie-ville` (bouclable), `bourdonnement-neon`,
-  `vent-rideaux`, `silence-textured` (fond « presque muet » oppressant).
+## 💡 Choisir un son
 
-> Je ne peux pas générer les fichiers audio moi-même : dépose-les (ou fais-les
-> générer), ajoute une fiche `.md`, puis lance `npm run sounds`.
+La bibliothèque est déjà fournie — parcourir `CATALOG.md` (régénéré par `npm run sounds`),
+qui liste chaque son avec `type`, `mood`, `usage`, `key`/`bpm` et `peaks` :
+- **music/** : nappes cinématiques, vaporwave/planant, acoustique mélancolique…
+- **sfx/** : pas, chocs, swoosh/transitions, jumpscare, actions du quotidien…
+- **ambient/** : pluie, usine, campagne, arcade, tempête, souterrain…
+
+Filtrer par `type` + `mood` + `usage`, et se servir des `peaks` d'un son pour
+synchroniser un effet visuel (cut, flash, zoom) sur un impact précis.
+
+> Pour AJOUTER un son : je ne génère pas les fichiers audio moi-même — dépose l'audio,
+> ajoute une fiche `.md` (copie `_TEMPLATE.md`), puis lance `npm run sounds`.

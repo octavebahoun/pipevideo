@@ -31,7 +31,7 @@ Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voi
 - Respecter scrupuleusement la structure définie dans `src/types.ts`.
   - `ratio`: `"16:9"` | `"9:16"`.
   - Effets par scène : `zoom: "in" | "out" | "none"`, `transition: "fade" | "slide" | "none"`.
-  - **Un clip vidéo IA = max 10 s** : si une narration dépasse ~10 s, découper l'acte en plusieurs scènes.
+  - **Un clip vidéo IA = ~10 s max** : la pipeline **boucle** automatiquement le clip pour remplir la scène. Viser un mouvement continu/bouclable ; pour un mouvement à sens unique (chute, bris, révélation), **découper la scène en 2 clips**.
 
 ### 2. Voix off — deux modes
 La voix off est TOUJOURS produite/mesurée par `npm run tts` :
@@ -57,8 +57,9 @@ Recommandations :
 - **Couper (`showSubtitles: false`)** sur : plans purement visuels/contemplatifs, moments d'émotion ou de silence, plans où du texte gênerait la composition, et quand la voix est fournie sans timings précis.
 
 ### 4. Sound design — bibliothèque de sons
-Bibliothèque **réutilisable** dans `public/sounds/` (bruitages, ambiances, musiques), **préservée** d'un projet à l'autre. Voir `public/sounds/README.md`.
-- **Choisir un son** : lire `public/sounds/CATALOG.md` (régénéré par `npm run sounds`) — il liste chaque son avec type, ambiance, usage et le `src` à copier.
+Bibliothèque **réutilisable et déjà fournie** dans `public/sounds/` (bruitages, ambiances, musiques), **préservée** d'un projet à l'autre. Voir `public/sounds/README.md`.
+- **Choisir un son** : lire `public/sounds/CATALOG.md` (régénéré par `npm run sounds`) — il liste chaque son avec `type`, `mood`, `usage`, `key`/`bpm`, ses `peaks` (secondes des pics d'impact) et le `src` à copier. Filtrer par type/ambiance/usage. Utiliser les `peaks` pour caler un cut/flash/zoom sur un temps fort.
+- **⚠️ Traçabilité (archivage)** : à l'archivage, les fichiers audio de la biblio **ne sont pas copiés** dans `history/`. La liste des sons utilisés (musique globale + `sounds` de chaque scène) est écrite en **noms seuls** dans `history/<projet>/sounds-used.md`. Donc : ne jamais renommer/supprimer un son encore référencé, et pour re-rendre une vidéo archivée, ses sons doivent rester présents dans `public/sounds/`.
 - **Poser un son sur une scène** : ajouter un tableau `sounds` :
   ```json
   "sounds": [
@@ -71,10 +72,12 @@ Bibliothèque **réutilisable** dans `public/sounds/` (bruitages, ambiances, mus
 - **Ajouter un nouveau son** : déposer l'audio dans `music/`/`sfx/`/`ambient/`, créer une fiche `.md` du même nom (copier `public/sounds/_TEMPLATE.md`), puis `npm run sounds`.
   - ⚠️ L'IA ne génère pas de fichiers audio : demander à l'utilisateur de les fournir/générer.
 
-### 5. Pause Média (Demande à l'utilisateur)
-- Présenter la liste des scènes avec la narration et le **prompt visuel suggéré** (image/vidéo).
-- Créer `media-prompts.md` à la racine détaillant les prompts par média (durées, découpages si > 10 s, ratio, style).
-- Demander de placer les fichiers dans `public/` avec les bons noms (ex: `scene_1.png` / `scene_1.mp4`), et vérifier que `mediaPath` pointe dessus.
+### 5. Pause Média — 🎬 VIDÉO par défaut, 🖼️ image par exception
+- **RÈGLE DE FOND (ne pas y déroger sans raison)** : privilégier des **clips vidéo `.mp4`** — c'est le mouvement qui donne la profondeur et un meilleur rendu. Réserver les **images fixes `.png`** aux plans **délibérément statiques** (contemplation, tristesse, gros plan figé, jump-cut). ❌ Ne JAMAIS proposer une vidéo « tout en images » : ça tue la profondeur (surtout pour un essai/récit).
+- **Choix vidéo/image par scène** : lire la direction d'animation du plan. Un mouvement est décrit (pluie, vent, chute, particules, glitch, ralenti, caméra qui bouge) ? → **vidéo**. Plan volontairement immobile et lourd de sens ? → **image**.
+- **Durée > 10 s** : un clip IA fait ~10 s max ; la pipeline **boucle** le clip pour remplir la scène → demander un mouvement **continu/bouclable**. Pour un mouvement à sens unique (chute, bris, révélation), **découper la scène en 2 clips** plutôt que de boucler.
+- Créer `media-prompts.md` : par scène → **type (🎬 vidéo / 🖼️ image)**, narration, prompt (mouvement décrit pour les vidéos), durée, ratio, style, et **effets à cuire dans le média** (grain, glitch, aberration, split-screen, bandes noires…) que la pipeline ne fait pas.
+- Demander de déposer les fichiers dans `public/` aux bons noms (`.mp4` ou `.png`) et vérifier que `mediaPath` pointe dessus.
 
 ### 6. Rendu de la Vidéo Finale
 - Une fois les médias (et voix/sons) en place :
