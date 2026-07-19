@@ -1,0 +1,1014 @@
+{
+  "title": "T'as une idée de pourquoi ton café te rend fatigué (et pas réveillé)",
+  "ratio": "9:16",
+  "voice": "fr-FR-HenriNeural",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "T'as une idée de pourquoi ton café te fatigue au lieu de te réveiller ? Spoiler : ce n'est pas toi, c'est de la chimie.",
+      "mediaPath": "scene_1.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "T'as",
+          "start": 0.1,
+          "duration": 0.175
+        },
+        {
+          "text": "une",
+          "start": 0.2875,
+          "duration": 0.1
+        },
+        {
+          "text": "idée",
+          "start": 0.4,
+          "duration": 0.1625
+        },
+        {
+          "text": "de",
+          "start": 0.575,
+          "duration": 0.125
+        },
+        {
+          "text": "pourquoi",
+          "start": 0.7125,
+          "duration": 0.325
+        },
+        {
+          "text": "ton",
+          "start": 1.05,
+          "duration": 0.125
+        },
+        {
+          "text": "café",
+          "start": 1.1875,
+          "duration": 0.3
+        },
+        {
+          "text": "te",
+          "start": 1.5,
+          "duration": 0.1375
+        },
+        {
+          "text": "fatigue",
+          "start": 1.65,
+          "duration": 0.3625
+        },
+        {
+          "text": "au",
+          "start": 2.025,
+          "duration": 0.0375
+        },
+        {
+          "text": "lieu",
+          "start": 2.075,
+          "duration": 0.175
+        },
+        {
+          "text": "de",
+          "start": 2.2625,
+          "duration": 0.0875
+        },
+        {
+          "text": "te",
+          "start": 2.3625,
+          "duration": 0.1125
+        },
+        {
+          "text": "réveiller",
+          "start": 2.4875,
+          "duration": 0.5
+        },
+        {
+          "text": "Spoiler",
+          "start": 3.8625,
+          "duration": 0.65
+        },
+        {
+          "text": "ce",
+          "start": 4.7,
+          "duration": 0.1
+        },
+        {
+          "text": "n'est",
+          "start": 4.8125,
+          "duration": 0.1125
+        },
+        {
+          "text": "pas",
+          "start": 4.9375,
+          "duration": 0.1375
+        },
+        {
+          "text": "toi",
+          "start": 5.0875,
+          "duration": 0.2875
+        },
+        {
+          "text": "c'est",
+          "start": 5.65,
+          "duration": 0.1125
+        },
+        {
+          "text": "de",
+          "start": 5.775,
+          "duration": 0.0875
+        },
+        {
+          "text": "la",
+          "start": 5.875,
+          "duration": 0.0875
+        },
+        {
+          "text": "chimie",
+          "start": 5.975,
+          "duration": 0.3875
+        }
+      ],
+      "durationInSeconds": 7.224
+    },
+    {
+      "id": 2,
+      "narration": "Dans ton cerveau, une molécule s'accumule toute la journée : l'adénosine. C'est elle qui te donne envie de dormir. La caféine ne la détruit pas : elle prend juste sa place sur les récepteurs. Tu ne sens plus la fatigue… mais elle, elle continue de s'empiler.",
+      "mediaPath": "scene_2.png",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Dans",
+          "start": 0.1,
+          "duration": 0.2375
+        },
+        {
+          "text": "ton",
+          "start": 0.35,
+          "duration": 0.15
+        },
+        {
+          "text": "cerveau",
+          "start": 0.5125,
+          "duration": 0.4875
+        },
+        {
+          "text": "une",
+          "start": 1.25,
+          "duration": 0.0875
+        },
+        {
+          "text": "molécule",
+          "start": 1.35,
+          "duration": 0.4375
+        },
+        {
+          "text": "s'accumule",
+          "start": 1.8,
+          "duration": 0.475
+        },
+        {
+          "text": "toute",
+          "start": 2.2875,
+          "duration": 0.225
+        },
+        {
+          "text": "la",
+          "start": 2.525,
+          "duration": 0.0875
+        },
+        {
+          "text": "journée",
+          "start": 2.625,
+          "duration": 0.4375
+        },
+        {
+          "text": "l'adénosine",
+          "start": 3.25,
+          "duration": 0.8
+        },
+        {
+          "text": "C'est",
+          "start": 4.9125,
+          "duration": 0.225
+        },
+        {
+          "text": "elle",
+          "start": 5.15,
+          "duration": 0.2125
+        },
+        {
+          "text": "qui",
+          "start": 5.375,
+          "duration": 0.1625
+        },
+        {
+          "text": "te",
+          "start": 5.55,
+          "duration": 0.125
+        },
+        {
+          "text": "donne",
+          "start": 5.6875,
+          "duration": 0.1875
+        },
+        {
+          "text": "envie",
+          "start": 5.8875,
+          "duration": 0.1875
+        },
+        {
+          "text": "de",
+          "start": 6.0875,
+          "duration": 0.1125
+        },
+        {
+          "text": "dormir",
+          "start": 6.2125,
+          "duration": 0.55
+        },
+        {
+          "text": "La",
+          "start": 7.625,
+          "duration": 0.1875
+        },
+        {
+          "text": "caféine",
+          "start": 7.825,
+          "duration": 0.4
+        },
+        {
+          "text": "ne",
+          "start": 8.2375,
+          "duration": 0.0875
+        },
+        {
+          "text": "la",
+          "start": 8.3375,
+          "duration": 0.0875
+        },
+        {
+          "text": "détruit",
+          "start": 8.4375,
+          "duration": 0.325
+        },
+        {
+          "text": "pas",
+          "start": 8.775,
+          "duration": 0.2375
+        },
+        {
+          "text": "elle",
+          "start": 9.25,
+          "duration": 0.1125
+        },
+        {
+          "text": "prend",
+          "start": 9.375,
+          "duration": 0.1625
+        },
+        {
+          "text": "juste",
+          "start": 9.55,
+          "duration": 0.3125
+        },
+        {
+          "text": "sa",
+          "start": 9.875,
+          "duration": 0.125
+        },
+        {
+          "text": "place",
+          "start": 10.0125,
+          "duration": 0.2625
+        },
+        {
+          "text": "sur",
+          "start": 10.2875,
+          "duration": 0.15
+        },
+        {
+          "text": "les",
+          "start": 10.45,
+          "duration": 0.075
+        },
+        {
+          "text": "récepteurs",
+          "start": 10.5375,
+          "duration": 0.75
+        },
+        {
+          "text": "Tu",
+          "start": 12.1625,
+          "duration": 0.15
+        },
+        {
+          "text": "ne",
+          "start": 12.325,
+          "duration": 0.1125
+        },
+        {
+          "text": "sens",
+          "start": 12.45,
+          "duration": 0.1625
+        },
+        {
+          "text": "plus",
+          "start": 12.625,
+          "duration": 0.1375
+        },
+        {
+          "text": "la",
+          "start": 12.775,
+          "duration": 0.1
+        },
+        {
+          "text": "fatigue",
+          "start": 12.8875,
+          "duration": 0.425
+        },
+        {
+          "text": "mais",
+          "start": 13.5125,
+          "duration": 0.125
+        },
+        {
+          "text": "elle",
+          "start": 13.65,
+          "duration": 0.2875
+        },
+        {
+          "text": "elle",
+          "start": 14.2875,
+          "duration": 0.1125
+        },
+        {
+          "text": "continue",
+          "start": 14.4125,
+          "duration": 0.4
+        },
+        {
+          "text": "de",
+          "start": 14.825,
+          "duration": 0.125
+        },
+        {
+          "text": "s'empiler",
+          "start": 14.9625,
+          "duration": 0.5375
+        }
+      ],
+      "durationInSeconds": 16.368
+    },
+    {
+      "id": 3,
+      "narration": "Mais la caféine finit par partir. Et là, toute l'adénosine en attente se fixe d'un coup. Boum : le crash de quatorze heures.",
+      "mediaPath": "scene_3.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "slide"
+      },
+      "words": [
+        {
+          "text": "Mais",
+          "start": 0.1,
+          "duration": 0.175
+        },
+        {
+          "text": "la",
+          "start": 0.2875,
+          "duration": 0.1
+        },
+        {
+          "text": "caféine",
+          "start": 0.4,
+          "duration": 0.45
+        },
+        {
+          "text": "finit",
+          "start": 0.8625,
+          "duration": 0.275
+        },
+        {
+          "text": "par",
+          "start": 1.15,
+          "duration": 0.1625
+        },
+        {
+          "text": "partir",
+          "start": 1.325,
+          "duration": 0.575
+        },
+        {
+          "text": "Et",
+          "start": 2.7625,
+          "duration": 0.15
+        },
+        {
+          "text": "là",
+          "start": 2.925,
+          "duration": 0.2125
+        },
+        {
+          "text": "toute",
+          "start": 3.4375,
+          "duration": 0.1875
+        },
+        {
+          "text": "l'adénosine",
+          "start": 3.6375,
+          "duration": 0.5625
+        },
+        {
+          "text": "en",
+          "start": 4.2125,
+          "duration": 0.05
+        },
+        {
+          "text": "attente",
+          "start": 4.275,
+          "duration": 0.3625
+        },
+        {
+          "text": "se",
+          "start": 4.65,
+          "duration": 0.1375
+        },
+        {
+          "text": "fixe",
+          "start": 4.8,
+          "duration": 0.2125
+        },
+        {
+          "text": "d'un",
+          "start": 5.025,
+          "duration": 0.15
+        },
+        {
+          "text": "coup",
+          "start": 5.1875,
+          "duration": 0.2875
+        },
+        {
+          "text": "Boum",
+          "start": 6.3375,
+          "duration": 0.3875
+        },
+        {
+          "text": "le",
+          "start": 6.925,
+          "duration": 0.1
+        },
+        {
+          "text": "crash",
+          "start": 7.0375,
+          "duration": 0.3
+        },
+        {
+          "text": "de",
+          "start": 7.35,
+          "duration": 0.1125
+        },
+        {
+          "text": "quatorze",
+          "start": 7.475,
+          "duration": 0.425
+        },
+        {
+          "text": "heures",
+          "start": 7.9125,
+          "duration": 0.3375
+        }
+      ],
+      "durationInSeconds": 9.144
+    },
+    {
+      "id": 4,
+      "narration": "Et ce n'est pas fini. Le café est diurétique : il te déshydrate, et ça crée ce brouillard mental. Ajoute du sucre ou du lait, et tu déclenches un pic de glycémie… suivi d'une chute qui t'achève.",
+      "mediaPath": "scene_4.png",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Et",
+          "start": 0.1,
+          "duration": 0.15
+        },
+        {
+          "text": "ce",
+          "start": 0.2625,
+          "duration": 0.1125
+        },
+        {
+          "text": "n'est",
+          "start": 0.3875,
+          "duration": 0.1
+        },
+        {
+          "text": "pas",
+          "start": 0.5,
+          "duration": 0.15
+        },
+        {
+          "text": "fini",
+          "start": 0.6625,
+          "duration": 0.3875
+        },
+        {
+          "text": "Le",
+          "start": 1.9125,
+          "duration": 0.2
+        },
+        {
+          "text": "café",
+          "start": 2.125,
+          "duration": 0.35
+        },
+        {
+          "text": "est",
+          "start": 2.4875,
+          "duration": 0.05
+        },
+        {
+          "text": "diurétique",
+          "start": 2.55,
+          "duration": 0.625
+        },
+        {
+          "text": "il",
+          "start": 3.35,
+          "duration": 0.0875
+        },
+        {
+          "text": "te",
+          "start": 3.45,
+          "duration": 0.125
+        },
+        {
+          "text": "déshydrate",
+          "start": 3.5875,
+          "duration": 0.5625
+        },
+        {
+          "text": "et",
+          "start": 4.4875,
+          "duration": 0.0625
+        },
+        {
+          "text": "ça",
+          "start": 4.5625,
+          "duration": 0.125
+        },
+        {
+          "text": "crée",
+          "start": 4.7,
+          "duration": 0.2125
+        },
+        {
+          "text": "ce",
+          "start": 4.925,
+          "duration": 0.1125
+        },
+        {
+          "text": "brouillard",
+          "start": 5.05,
+          "duration": 0.2875
+        },
+        {
+          "text": "mental",
+          "start": 5.35,
+          "duration": 0.55
+        },
+        {
+          "text": "Ajoute",
+          "start": 6.7625,
+          "duration": 0.3625
+        },
+        {
+          "text": "du",
+          "start": 7.1375,
+          "duration": 0.1125
+        },
+        {
+          "text": "sucre",
+          "start": 7.2625,
+          "duration": 0.25
+        },
+        {
+          "text": "ou",
+          "start": 7.525,
+          "duration": 0.0375
+        },
+        {
+          "text": "du",
+          "start": 7.575,
+          "duration": 0.125
+        },
+        {
+          "text": "lait",
+          "start": 7.7125,
+          "duration": 0.2375
+        },
+        {
+          "text": "et",
+          "start": 8.275,
+          "duration": 0.0375
+        },
+        {
+          "text": "tu",
+          "start": 8.325,
+          "duration": 0.125
+        },
+        {
+          "text": "déclenches",
+          "start": 8.4625,
+          "duration": 0.45
+        },
+        {
+          "text": "un",
+          "start": 8.925,
+          "duration": 0.0625
+        },
+        {
+          "text": "pic",
+          "start": 9,
+          "duration": 0.1875
+        },
+        {
+          "text": "de",
+          "start": 9.2,
+          "duration": 0.1
+        },
+        {
+          "text": "glycémie",
+          "start": 9.3125,
+          "duration": 0.55
+        },
+        {
+          "text": "suivi",
+          "start": 10.075,
+          "duration": 0.2875
+        },
+        {
+          "text": "d'une",
+          "start": 10.375,
+          "duration": 0.125
+        },
+        {
+          "text": "chute",
+          "start": 10.5125,
+          "duration": 0.225
+        },
+        {
+          "text": "qui",
+          "start": 10.75,
+          "duration": 0.125
+        },
+        {
+          "text": "t'achève",
+          "start": 10.8875,
+          "duration": 0.5875
+        }
+      ],
+      "durationInSeconds": 12.36
+    },
+    {
+      "id": 5,
+      "narration": "Au final, le café masque ta fatigue, il ne la répare jamais. Tu dors mal, tu en reprends… et le cercle vicieux se referme.",
+      "mediaPath": "scene_5.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Au",
+          "start": 0.1,
+          "duration": 0.15
+        },
+        {
+          "text": "final",
+          "start": 0.2625,
+          "duration": 0.4
+        },
+        {
+          "text": "le",
+          "start": 1.0125,
+          "duration": 0.1125
+        },
+        {
+          "text": "café",
+          "start": 1.1375,
+          "duration": 0.3
+        },
+        {
+          "text": "masque",
+          "start": 1.45,
+          "duration": 0.2875
+        },
+        {
+          "text": "ta",
+          "start": 1.75,
+          "duration": 0.1375
+        },
+        {
+          "text": "fatigue",
+          "start": 1.9,
+          "duration": 0.4375
+        },
+        {
+          "text": "il",
+          "start": 2.6375,
+          "duration": 0.0875
+        },
+        {
+          "text": "ne",
+          "start": 2.7375,
+          "duration": 0.075
+        },
+        {
+          "text": "la",
+          "start": 2.825,
+          "duration": 0.075
+        },
+        {
+          "text": "répare",
+          "start": 2.9125,
+          "duration": 0.3
+        },
+        {
+          "text": "jamais",
+          "start": 3.225,
+          "duration": 0.4
+        },
+        {
+          "text": "Tu",
+          "start": 4.5,
+          "duration": 0.15
+        },
+        {
+          "text": "dors",
+          "start": 4.6625,
+          "duration": 0.1875
+        },
+        {
+          "text": "mal",
+          "start": 4.8625,
+          "duration": 0.275
+        },
+        {
+          "text": "tu",
+          "start": 5.4625,
+          "duration": 0.15
+        },
+        {
+          "text": "en",
+          "start": 5.625,
+          "duration": 0.0625
+        },
+        {
+          "text": "reprends",
+          "start": 5.7,
+          "duration": 0.45
+        },
+        {
+          "text": "et",
+          "start": 6.375,
+          "duration": 0.0125
+        },
+        {
+          "text": "le",
+          "start": 6.4,
+          "duration": 0.1125
+        },
+        {
+          "text": "cercle",
+          "start": 6.525,
+          "duration": 0.325
+        },
+        {
+          "text": "vicieux",
+          "start": 6.8625,
+          "duration": 0.325
+        },
+        {
+          "text": "se",
+          "start": 7.2,
+          "duration": 0.1125
+        },
+        {
+          "text": "referme",
+          "start": 7.325,
+          "duration": 0.6125
+        }
+      ],
+      "durationInSeconds": 8.832
+    },
+    {
+      "id": 6,
+      "narration": "La vraie solution ? Attends une heure après le réveil avant ton premier café, coupe-le après quatorze heures, bois de l'eau, et surtout : dors. Aucune tasse ne remplacera une vraie nuit. Toi, tu savais pour l'adénosine ? Dis-le en commentaire.",
+      "mediaPath": "scene_6.png",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "La",
+          "start": 0.1,
+          "duration": 0.2
+        },
+        {
+          "text": "vraie",
+          "start": 0.3125,
+          "duration": 0.1875
+        },
+        {
+          "text": "solution",
+          "start": 0.5125,
+          "duration": 0.525
+        },
+        {
+          "text": "Attends",
+          "start": 1.9125,
+          "duration": 0.3125
+        },
+        {
+          "text": "une",
+          "start": 2.2375,
+          "duration": 0.1125
+        },
+        {
+          "text": "heure",
+          "start": 2.3625,
+          "duration": 0.1
+        },
+        {
+          "text": "après",
+          "start": 2.475,
+          "duration": 0.225
+        },
+        {
+          "text": "le",
+          "start": 2.7125,
+          "duration": 0.0875
+        },
+        {
+          "text": "réveil",
+          "start": 2.8125,
+          "duration": 0.2875
+        },
+        {
+          "text": "avant",
+          "start": 3.1125,
+          "duration": 0.1625
+        },
+        {
+          "text": "ton",
+          "start": 3.2875,
+          "duration": 0.1625
+        },
+        {
+          "text": "premier",
+          "start": 3.4625,
+          "duration": 0.2625
+        },
+        {
+          "text": "café",
+          "start": 3.7375,
+          "duration": 0.45
+        },
+        {
+          "text": "coupe-le",
+          "start": 4.4875,
+          "duration": 0.2875
+        },
+        {
+          "text": "après",
+          "start": 4.7875,
+          "duration": 0.25
+        },
+        {
+          "text": "quatorze",
+          "start": 5.05,
+          "duration": 0.425
+        },
+        {
+          "text": "heures",
+          "start": 5.4875,
+          "duration": 0.25
+        },
+        {
+          "text": "bois",
+          "start": 6.025,
+          "duration": 0.1875
+        },
+        {
+          "text": "de",
+          "start": 6.225,
+          "duration": 0.1
+        },
+        {
+          "text": "l'eau",
+          "start": 6.3375,
+          "duration": 0.2375
+        },
+        {
+          "text": "et",
+          "start": 6.8,
+          "duration": 0.05
+        },
+        {
+          "text": "surtout",
+          "start": 6.8625,
+          "duration": 0.425
+        },
+        {
+          "text": "dors",
+          "start": 7.5125,
+          "duration": 0.4375
+        },
+        {
+          "text": "Aucune",
+          "start": 8.8125,
+          "duration": 0.375
+        },
+        {
+          "text": "tasse",
+          "start": 9.2,
+          "duration": 0.275
+        },
+        {
+          "text": "ne",
+          "start": 9.4875,
+          "duration": 0.1375
+        },
+        {
+          "text": "remplacera",
+          "start": 9.6375,
+          "duration": 0.4875
+        },
+        {
+          "text": "une",
+          "start": 10.1375,
+          "duration": 0.1
+        },
+        {
+          "text": "vraie",
+          "start": 10.25,
+          "duration": 0.1875
+        },
+        {
+          "text": "nuit",
+          "start": 10.45,
+          "duration": 0.3
+        },
+        {
+          "text": "Toi",
+          "start": 11.6125,
+          "duration": 0.325
+        },
+        {
+          "text": "tu",
+          "start": 12.225,
+          "duration": 0.15
+        },
+        {
+          "text": "savais",
+          "start": 12.3875,
+          "duration": 0.2625
+        },
+        {
+          "text": "pour",
+          "start": 12.6625,
+          "duration": 0.15
+        },
+        {
+          "text": "l'adénosine",
+          "start": 12.825,
+          "duration": 0.7125
+        },
+        {
+          "text": "Dis-le",
+          "start": 14.4125,
+          "duration": 0.35
+        },
+        {
+          "text": "en",
+          "start": 14.775,
+          "duration": 0.0875
+        },
+        {
+          "text": "commentaire",
+          "start": 14.875,
+          "duration": 0.75
+        }
+      ],
+      "durationInSeconds": 16.512
+    }
+  ]
+}

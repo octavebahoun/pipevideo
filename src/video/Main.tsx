@@ -27,6 +27,10 @@ function presentationForScene(scene: Scene) {
 export const Main: React.FC<MainProps> = ({ storyboard }) => {
   const { fps } = useVideoConfig();
 
+  // Réglages de sous-titres globaux (surchargeables par scène via showSubtitles).
+  const subtitlesEnabled = storyboard.subtitles ?? true;
+  const subtitleStyle = storyboard.subtitleStyle ?? 'karaoke';
+
   // On construit une liste plate [Sequence, Transition, Sequence, ...] car
   // TransitionSeries attend ses enfants directement (pas dans des fragments).
   const children: React.ReactNode[] = [];
@@ -45,7 +49,12 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
 
     children.push(
       <TransitionSeries.Sequence key={`scene-${scene.id}`} durationInFrames={durationInFrames}>
-        <SceneComponent scene={scene} durationInFrames={durationInFrames} />
+        <SceneComponent
+          scene={scene}
+          durationInFrames={durationInFrames}
+          subtitlesEnabled={subtitlesEnabled}
+          subtitleStyle={subtitleStyle}
+        />
       </TransitionSeries.Sequence>
     );
   });

@@ -105,6 +105,20 @@ async function archiveCurrentProject() {
                     await fs.unlink(mediaSourcePath);
                 }
             }
+            // 3. Copier et supprimer la voix off FOURNIE par l'utilisateur (audioPath),
+            //    sauf si elle vient de la bibliothèque de sons partagée (public/sounds/),
+            //    qui, elle, doit être PRÉSERVÉE d'un projet à l'autre.
+            if (scene.audioPath && !scene.audioPath.startsWith('sounds/')) {
+                const providedAudioPath = path.join(PUBLIC_DIR, scene.audioPath);
+                if (await fileExists(providedAudioPath)) {
+                    const destPath = path.join(archivePublicPath, scene.audioPath);
+                    await fs.mkdir(path.dirname(destPath), { recursive: true });
+                    await fs.copyFile(providedAudioPath, destPath);
+                    await fs.unlink(providedAudioPath);
+                }
+            }
+            // NB : on ne touche JAMAIS à scene.sounds[].src → ce sont des références
+            // vers la bibliothèque réutilisable public/sounds/ (bruitages, musiques).
         }
         // Supprimer le storyboard.json d'origine
         await fs.unlink(STORYBOARD_PATH);

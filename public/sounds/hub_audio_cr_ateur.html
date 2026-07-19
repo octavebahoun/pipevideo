@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Hub : Surcharge Mentale & Essais Vidéos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .source-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .source-card:hover {
+            border-color: #10b981;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            height: 350px;
+        }
+
+        .badge-safe { background: #065f46; color: #34d399; }
+        .badge-warning { background: #7c2d12; color: #fb923c; }
+
+        input:checked + label {
+            background-color: #10b981;
+            color: #020617;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+
+    <header class="py-12 px-6 border-b border-white/10 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-indigo-500 mb-4">
+            AUDIO HUB EXPERT
+        </h1>
+        <p class="max-w-2xl mx-auto text-slate-400">
+            Trouvez les sons profonds, glitch et ambient pour vos essais vidéos. 
+            Sélection de sources libres de droits compatibles YouTube & TikTok.
+        </p>
+    </header>
+
+    <main class="container mx-auto px-4 mt-12 max-w-6xl">
+        
+        <section class="mb-16">
+            <div class="glass-panel p-8 rounded-3xl">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-2 h-8 bg-emerald-500 rounded-full"></span>
+                    Analyse de Sécurité Copyright
+                </h2>
+                <p class="text-sm text-slate-400 mb-8">
+                    Chaque plateforme a sa propre sensibilité. Ce graphique compare la "liberté de création" contre le risque de réclamation (Content ID). Plus le score est haut, plus vous êtes en sécurité.
+                </p>
+                <div class="chart-container">
+                    <canvas id="safetyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="flex flex-wrap gap-4 mb-10 justify-center">
+                <div class="relative">
+                    <input type="radio" name="filter" id="all" checked class="hidden" onclick="filterSources('all')">
+                    <label for="all" class="px-6 py-2 rounded-full border border-white/20 cursor-pointer hover:bg-white/5 transition-all block">Tout</label>
+                </div>
+                <div class="relative">
+                    <input type="radio" name="filter" id="bgm" class="hidden" onclick="filterSources('bgm')">
+                    <label for="bgm" class="px-6 py-2 rounded-full border border-white/20 cursor-pointer hover:bg-white/5 transition-all block">Musique (BGM)</label>
+                </div>
+                <div class="relative">
+                    <input type="radio" name="filter" id="sfx" class="hidden" onclick="filterSources('sfx')">
+                    <label for="sfx" class="px-6 py-2 rounded-full border border-white/20 cursor-pointer hover:bg-white/5 transition-all block">Bruitages (SFX)</label>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="sourcesGrid">
+                <!-- Les cartes seront injectées ici par JS -->
+            </div>
+        </section>
+
+        <section class="mt-20 grid md:grid-cols-2 gap-8">
+            <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-indigo-500">
+                <h3 class="text-xl font-bold mb-4">Stratégie TikTok</h3>
+                <p class="text-sm leading-relaxed text-slate-300">
+                    TikTok est très agressif sur la musique de plus de 60s. <br><br>
+                    <strong>Astuce :</strong> Ne téléchargez pas de musique connue "retravaillée". Privilégiez le <strong>"CC0" (Creative Commons Zero)</strong>. Sur TikTok, si vous utilisez un son externe, essayez de le mixer à 90% avec un "son tendance" TikTok mis à 1% de volume (muet) pour profiter du boost algorithmique sans changer votre audio.
+                </p>
+            </div>
+            <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-emerald-500">
+                <h3 class="text-xl font-bold mb-4">Recherche Avancée</h3>
+                <p class="text-sm leading-relaxed text-slate-300">
+                    Pour le style Jules Robert, cherchez ces termes précis sur les sites ci-dessus : <br><br>
+                    <code class="text-emerald-400">"Cinematic Drone"</code>, 
+                    <code class="text-emerald-400">"Ethereal"</code>, 
+                    <code class="text-emerald-400">"Industrial Tension"</code>, 
+                    <code class="text-emerald-400">"Sub Bass"</code>. <br>
+                    Évitez les musiques avec trop de batterie (drums) qui cassent l'aspect confessionnel.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const sources = [
+            {
+                name: "Freesound.org",
+                type: "sfx",
+                desc: "La mine d'or pour les bruits de glitch, de vent et d'ambiance urbaine. Recherchez 'CC0' pour une sécurité totale.",
+                safety: "Maximale",
+                safeClass: "badge-safe",
+                url: "https://freesound.org"
+            },
+            {
+                name: "Free Music Archive",
+                type: "bgm",
+                desc: "Spécialiste de la musique expérimentale et 'Ambient'. Parfait pour les nappes sonores de l'Acte I.",
+                safety: "Haute",
+                safeClass: "badge-safe",
+                url: "https://freemusicarchive.org"
+            },
+            {
+                name: "Uppbeat",
+                type: "bgm",
+                desc: "Qualité premium gratuite. Vous devez juste copier un crédit dans la description. Très moderne.",
+                safety: "Vérifiée",
+                safeClass: "badge-safe",
+                url: "https://uppbeat.io"
+            },
+            {
+                name: "Sample Focus",
+                type: "sfx",
+                desc: "Incroyable pour des textures sonores courtes (impacts, transitions de miroir brisé).",
+                safety: "Haute",
+                safeClass: "badge-safe",
+                url: "https://samplefocus.com"
+            },
+            {
+                name: "Unminus",
+                type: "bgm",
+                desc: "Musique sans copyright (CC0). Peu de choix mais que de la qualité 'Lo-fi' et 'Minimaliste'.",
+                safety: "Maximale",
+                safeClass: "badge-safe",
+                url: "https://unminus.com"
+            },
+            {
+                name: "Sonniss (GDC Bundles)",
+                type: "sfx",
+                desc: "Des gigas de bruitages pro offerts chaque année. Idéal pour des sons organiques (pas de pluie).",
+                safety: "Pro",
+                safeClass: "badge-safe",
+                url: "https://sonniss.com/gameaudiogdc"
+            }
+        ];
+
+        function renderSources(filter = 'all') {
+            const grid = document.getElementById('sourcesGrid');
+            grid.innerHTML = '';
+            
+            const filtered = sources.filter(s => filter === 'all' || s.type === filter);
+            
+            filtered.forEach(source => {
+                grid.innerHTML += `
+                    <div class="source-card glass-panel p-6 rounded-2xl flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-lg">${source.name}</h3>
+                            <span class="text-[10px] px-2 py-1 rounded font-bold uppercase ${source.safeClass}">${source.safety}</span>
+                        </div>
+                        <p class="text-sm text-slate-400 mb-6 flex-grow">${source.desc}</p>
+                        <a href="${source.url}" target="_blank" class="text-center w-full py-2 bg-white/10 hover:bg-emerald-500 hover:text-white rounded-lg transition-colors font-bold text-sm">
+                            Explorer la source
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        function filterSources(type) {
+            renderSources(type);
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('safetyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Freesound (CC0)', 'YouTube Audio Lib', 'Free Music Archive', 'Uppbeat (Attribution)', 'TikTok Built-in'],
+                    datasets: [{
+                        label: 'Indice de Sécurité Copyright (0-100)',
+                        data: [100, 95, 85, 80, 70],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.6)',
+                            'rgba(16, 185, 129, 0.4)',
+                            'rgba(99, 102, 241, 0.4)',
+                            'rgba(99, 102, 241, 0.4)',
+                            'rgba(244, 63, 94, 0.4)'
+                        ],
+                        borderColor: '#10b981',
+                        borderWidth: 1,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#64748b' }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { color: '#64748b', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.onload = () => {
+            renderSources();
+            initChart();
+        };
+    </script>
+</body>
+</html>

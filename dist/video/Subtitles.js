@@ -3,14 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Subtitles = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const remotion_1 = require("remotion");
-/** Nombre de mots affichés simultanément à l'écran. */
-const CHUNK_SIZE = 5;
-const Subtitles = ({ text, words, durationInFrames }) => {
+const Subtitles = ({ text, words, durationInFrames, style = 'karaoke', }) => {
     const frame = (0, remotion_1.useCurrentFrame)();
     const { fps } = (0, remotion_1.useVideoConfig)();
     const timeInSeconds = frame / fps;
+    // Le style cinéma affiche des groupes plus longs (lecture posée) ;
+    // le karaoké des groupes courts et punchy.
+    const chunkSize = style === 'cinematic' ? 8 : 5;
     // Soit les vrais timings d'Edge-TTS (karaoké précis), soit une répartition
-    // régulière du texte sur la durée de la scène (fallback si pas de timings).
+    // régulière du texte sur la durée de la scène (fallback si pas de timings —
+    // typiquement quand la voix off est fournie par l'utilisateur).
     const timedWords = words && words.length > 0
         ? words
         : (() => {
@@ -22,10 +24,10 @@ const Subtitles = ({ text, words, durationInFrames }) => {
     if (timedWords.length === 0) {
         return null;
     }
-    // Découpe en groupes de CHUNK_SIZE mots.
+    // Découpe en groupes.
     const chunks = [];
-    for (let i = 0; i < timedWords.length; i += CHUNK_SIZE) {
-        chunks.push(timedWords.slice(i, i + CHUNK_SIZE));
+    for (let i = 0; i < timedWords.length; i += chunkSize) {
+        chunks.push(timedWords.slice(i, i + chunkSize));
     }
     // Groupe courant : le dernier dont le 1er mot a déjà commencé.
     let activeChunk = chunks[0];
@@ -41,6 +43,32 @@ const Subtitles = ({ text, words, durationInFrames }) => {
         fps,
         config: { damping: 14 },
     });
+    if (style === 'cinematic') {
+        // Sous-titre sobre : sans MAJUSCULES, sans surlignage mot-à-mot, léger fondu.
+        const opacity = (0, remotion_1.interpolate)(spr, [0, 1], [0, 1]);
+        return ((0, jsx_runtime_1.jsx)("div", { style: {
+                position: 'absolute',
+                bottom: '8%',
+                left: '10%',
+                right: '10%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-end',
+                pointerEvents: 'none',
+            }, children: (0, jsx_runtime_1.jsx)("div", { style: {
+                    opacity,
+                    color: 'rgba(255, 255, 255, 0.94)',
+                    fontFamily: '"Inter", "Helvetica", sans-serif',
+                    fontSize: '2.6rem',
+                    fontWeight: 500,
+                    textAlign: 'center',
+                    lineHeight: '1.35',
+                    letterSpacing: '0.2px',
+                    maxWidth: '100%',
+                    textShadow: '0px 2px 8px rgba(0, 0, 0, 0.9)',
+                }, children: activeChunk.map((w) => w.text).join(' ') }) }));
+    }
+    // Style "karaoke" (défaut) — inchangé.
     const popScale = (0, remotion_1.interpolate)(spr, [0, 1], [0.92, 1]);
     const popOpacity = (0, remotion_1.interpolate)(spr, [0, 1], [0, 1]);
     return ((0, jsx_runtime_1.jsx)("div", { style: {

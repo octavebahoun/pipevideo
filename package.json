@@ -6,6 +6,7 @@
   "scripts": {
     "tts": "ts-node src/tts.ts",
     "render": "ts-node src/render.ts",
+    "sounds": "ts-node src/sounds.ts",
     "new-video": "ts-node src/new-video.ts",
     "archive": "ts-node src/archive.ts",
     "build": "tsc"

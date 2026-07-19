@@ -18,6 +18,9 @@ function presentationForScene(scene) {
 }
 const Main = ({ storyboard }) => {
     const { fps } = (0, remotion_1.useVideoConfig)();
+    // Réglages de sous-titres globaux (surchargeables par scène via showSubtitles).
+    const subtitlesEnabled = storyboard.subtitles ?? true;
+    const subtitleStyle = storyboard.subtitleStyle ?? 'karaoke';
     // On construit une liste plate [Sequence, Transition, Sequence, ...] car
     // TransitionSeries attend ses enfants directement (pas dans des fragments).
     const children = [];
@@ -26,7 +29,7 @@ const Main = ({ storyboard }) => {
         if ((0, types_1.getTransitionFramesBefore)(scene, index) > 0) {
             children.push((0, jsx_runtime_1.jsx)(transitions_1.TransitionSeries.Transition, { presentation: presentationForScene(scene), timing: (0, transitions_1.linearTiming)({ durationInFrames: types_1.TRANSITION_FRAMES }) }, `transition-${scene.id}`));
         }
-        children.push((0, jsx_runtime_1.jsx)(transitions_1.TransitionSeries.Sequence, { durationInFrames: durationInFrames, children: (0, jsx_runtime_1.jsx)(Scene_1.SceneComponent, { scene: scene, durationInFrames: durationInFrames }) }, `scene-${scene.id}`));
+        children.push((0, jsx_runtime_1.jsx)(transitions_1.TransitionSeries.Sequence, { durationInFrames: durationInFrames, children: (0, jsx_runtime_1.jsx)(Scene_1.SceneComponent, { scene: scene, durationInFrames: durationInFrames, subtitlesEnabled: subtitlesEnabled, subtitleStyle: subtitleStyle }) }, `scene-${scene.id}`));
     });
     return ((0, jsx_runtime_1.jsxs)("div", { style: { flex: 1, backgroundColor: 'black', position: 'relative' }, children: [(0, jsx_runtime_1.jsx)(transitions_1.TransitionSeries, { children: children }), storyboard.music && ((0, jsx_runtime_1.jsx)(remotion_1.Audio, { src: (0, remotion_1.staticFile)(storyboard.music), volume: 0.18, loop: true }))] }));
 };

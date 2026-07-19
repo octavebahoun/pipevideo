@@ -40,6 +40,15 @@ const path = __importStar(require("path"));
 const storyboard_1 = require("./storyboard");
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
+async function fileExists(filePath) {
+    try {
+        await fs.access(filePath);
+        return true;
+    }
+    catch {
+        return false;
+    }
+}
 async function main() {
     try {
         // 1. Lire et valider le storyboard.json
@@ -49,9 +58,33 @@ async function main() {
         await fs.mkdir(MEDIA_DIR, { recursive: true });
         const voice = storyboard.voice || 'fr-FR-HenriNeural';
         console.log(`Voix utilisée : ${voice}`);
-        // 3. Parcourir et générer la voix-off pour chaque scène
+        // 3. Parcourir et générer (ou mesurer) la voix-off pour chaque scène
         for (const scene of storyboard.scenes) {
             console.log(`\nTraitement de la scène ${scene.id}...`);
+            // --- Cas 1 : voix off FOURNIE par l'utilisateur → on ne régénère pas. ---
+            // Soit la scène pointe explicitement un `audioPath`, soit le mode global
+            // `useProvidedAudio` est actif (on attend alors public/scene_<id>.mp3).
+            const providedRelPath = scene.audioPath ?? (storyboard.useProvidedAudio ? `scene_${scene.id}.mp3` : undefined);
+            if (providedRelPath) {
+                const providedPath = path.join(MEDIA_DIR, providedRelPath);
+                if (!(await fileExists(providedPath))) {
+                    throw new Error(`Voix off fournie manquante pour la scène ${scene.id} : ${providedPath}\n` +
+                        `→ Dépose le fichier dans public/, ou retire "audioPath"/"useProvidedAudio" pour repasser en Edge-TTS.`);
+                }
+                console.log(`Voix off fournie par l'utilisateur : ${providedRelPath} (Edge-TTS ignoré)`);
+                // Pas de WordBoundary sur un audio fourni → pas de karaoké précis.
+                // On efface d'éventuels anciens timings pour éviter un décalage.
+                scene.words = undefined;
+                const metadata = await (0, music_metadata_1.parseFile)(providedPath);
+                const duration = metadata.format.duration;
+                if (duration === undefined) {
+                    throw new Error(`Impossible de lire la durée du fichier audio : ${providedPath}`);
+                }
+                console.log(`Durée mesurée : ${duration.toFixed(2)} secondes`);
+                scene.durationInSeconds = duration;
+                continue;
+            }
+            // --- Cas 2 : génération Edge-TTS classique. ---
             console.log(`Texte : "${scene.narration}"`);
             // Chemin du fichier audio pour cette scène
             const audioFileName = `scene_${scene.id}.mp3`;

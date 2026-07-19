@@ -5,3 +5,19 @@
 **/*.log
 **/venv/
 **history/**
+
+# Output & Build
+out/
+*.mp4
+*.webm
+*.mov
+*.wav
+*.mp3
+
+# Ignore heavy media assets in public while keeping markdown metadata
+public/*.mp4
+public/*.mp3
+public/*.png
+public/*.jpg
+public/sounds/**/*.mp3
+public/sounds/**/*.wav

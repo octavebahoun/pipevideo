@@ -7,18 +7,30 @@ interface SubtitlesProps {
   /** Timings mot-à-mot (karaoké). Si absent, le texte est réparti régulièrement. */
   words?: WordTiming[];
   durationInFrames: number;
+  /**
+   * "karaoke"   : gros mots MAJUSCULES surlignés au fil de la voix (shorts).
+   * "cinematic" : phrase sobre, discrète, centrée en bas (essai / doc 16:9).
+   */
+  style?: 'karaoke' | 'cinematic';
 }
 
-/** Nombre de mots affichés simultanément à l'écran. */
-const CHUNK_SIZE = 5;
-
-export const Subtitles: React.FC<SubtitlesProps> = ({ text, words, durationInFrames }) => {
+export const Subtitles: React.FC<SubtitlesProps> = ({
+  text,
+  words,
+  durationInFrames,
+  style = 'karaoke',
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const timeInSeconds = frame / fps;
 
+  // Le style cinéma affiche des groupes plus longs (lecture posée) ;
+  // le karaoké des groupes courts et punchy.
+  const chunkSize = style === 'cinematic' ? 8 : 5;
+
   // Soit les vrais timings d'Edge-TTS (karaoké précis), soit une répartition
-  // régulière du texte sur la durée de la scène (fallback si pas de timings).
+  // régulière du texte sur la durée de la scène (fallback si pas de timings —
+  // typiquement quand la voix off est fournie par l'utilisateur).
   const timedWords: WordTiming[] =
     words && words.length > 0
       ? words
@@ -33,10 +45,10 @@ export const Subtitles: React.FC<SubtitlesProps> = ({ text, words, durationInFra
     return null;
   }
 
-  // Découpe en groupes de CHUNK_SIZE mots.
+  // Découpe en groupes.
   const chunks: WordTiming[][] = [];
-  for (let i = 0; i < timedWords.length; i += CHUNK_SIZE) {
-    chunks.push(timedWords.slice(i, i + CHUNK_SIZE));
+  for (let i = 0; i < timedWords.length; i += chunkSize) {
+    chunks.push(timedWords.slice(i, i + chunkSize));
   }
 
   // Groupe courant : le dernier dont le 1er mot a déjà commencé.
@@ -54,6 +66,44 @@ export const Subtitles: React.FC<SubtitlesProps> = ({ text, words, durationInFra
     fps,
     config: { damping: 14 },
   });
+
+  if (style === 'cinematic') {
+    // Sous-titre sobre : sans MAJUSCULES, sans surlignage mot-à-mot, léger fondu.
+    const opacity = interpolate(spr, [0, 1], [0, 1]);
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '8%',
+          left: '10%',
+          right: '10%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          style={{
+            opacity,
+            color: 'rgba(255, 255, 255, 0.94)',
+            fontFamily: '"Inter", "Helvetica", sans-serif',
+            fontSize: '2.6rem',
+            fontWeight: 500,
+            textAlign: 'center',
+            lineHeight: '1.35',
+            letterSpacing: '0.2px',
+            maxWidth: '100%',
+            textShadow: '0px 2px 8px rgba(0, 0, 0, 0.9)',
+          }}
+        >
+          {activeChunk.map((w) => w.text).join(' ')}
+        </div>
+      </div>
+    );
+  }
+
+  // Style "karaoke" (défaut) — inchangé.
   const popScale = interpolate(spr, [0, 1], [0.92, 1]);
   const popOpacity = interpolate(spr, [0, 1], [0, 1]);
 
