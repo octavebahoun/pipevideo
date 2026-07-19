@@ -1,0 +1,17 @@
+{
+  "title": "Default Video",
+  "ratio": "16:9",
+  "voice": "fr-FR-HenriNeural",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ceci est un exemple de storyboard.",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "mediaPath": "scene_1.png",
+      "durationInSeconds": 2.976
+    }
+  ]
+}

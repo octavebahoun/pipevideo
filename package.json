@@ -1,0 +1,30 @@
+{
+  "name": "content-factory",
+  "version": "1.0.0",
+  "description": "Automated video pipeline orchestrator via Agent Skill",
+  "main": "dist/index.js",
+  "scripts": {
+    "tts": "ts-node src/tts.ts",
+    "render": "ts-node src/render.ts",
+    "new-video": "ts-node src/new-video.ts",
+    "archive": "ts-node src/archive.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.228",
+    "@remotion/cli": "^4.0.228",
+    "@remotion/renderer": "^4.0.228",
+    "edge-tts-universal": "^1.1.1",
+    "music-metadata": "^7.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.228"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

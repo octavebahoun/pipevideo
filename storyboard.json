@@ -1,0 +1,47 @@
+{
+  "title": "L'histoire de la création du Bitcoin",
+  "ratio": "9:16",
+  "voice": "fr-FR-HenriNeural",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "En 2008, la pire crise financière mondiale paralyse les banques.",
+      "subtitle": "En 2008, la crise financière paralyse les banques.",
+      "mediaPath": "scene_1.png",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Dans l'ombre, un mystérieux génie nommé Satoshi Nakamoto crée le Bitcoin.",
+      "subtitle": "Dans l'ombre, le mystérieux Satoshi crée le Bitcoin.",
+      "mediaPath": "scene_2.png",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Une monnaie numérique décentralisée, totalement libre et infalsifiable.",
+      "subtitle": "Une monnaie décentralisée, libre et infalsifiable.",
+      "mediaPath": "scene_3.png",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Satoshi disparaît en 2010. Mais sa création a changé l'histoire à jamais.",
+      "subtitle": "Satoshi disparaît, mais sa création change le monde.",
+      "mediaPath": "scene_4.png",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      }
+    }
+  ]
+}
