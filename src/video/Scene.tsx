@@ -1,9 +1,10 @@
 import React from 'react';
 import {
   Img,
-  Video,
+  OffthreadVideo,
   Audio,
   Sequence,
+  Loop,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
@@ -90,6 +91,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   subtitleStyle,
 }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
   // Effet Ken Burns (zoom lent). Les fondus/slides entre scènes sont gérés
   // par TransitionSeries dans Main.tsx — on ne fait donc PAS de fondu ici
@@ -106,6 +108,13 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
     });
   }
 
+  // Léger tremblement de caméra (tension / effort). On ajoute un peu d'overscan
+  // (shakeScale) pour que le décalage ne fasse jamais apparaître les bords.
+  const shake = scene.effects?.shake ?? false;
+  const shakeScale = shake ? 1.05 : 1;
+  const dx = shake ? Math.sin(frame * 0.9) * 4 + Math.sin(frame * 2.3) * 2 : 0;
+  const dy = shake ? Math.cos(frame * 1.1) * 4 + Math.cos(frame * 1.7) * 2 : 0;
+
   const mediaPath = scene.mediaPath;
   const isVideo = mediaPath ? /\.(mp4|mkv|webm|mov|avi)$/i.test(mediaPath) : false;
 
@@ -115,12 +124,22 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   // Sous-titres : la scène peut surcharger le défaut global.
   const showSubtitles = scene.showSubtitles ?? subtitlesEnabled;
 
+  // Texte incrusté (CTA) éventuel.
+  const overlayText = scene.overlayText;
+  const overlayStart = (overlayText?.startInSeconds ?? 0) * fps;
+
   // Carte texte (ex: fin) : écran noir + texte centré, SANS média / voix / son.
   if (scene.card) {
-    const appear = interpolate(frame, [8, 28], [0, 1], {
+    const appearIn = interpolate(frame, [8, 28], [0, 1], {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
     });
+    // Fondu de sortie doux sur la dernière seconde (laisser le message respirer).
+    const fadeOut = interpolate(frame, [durationInFrames - 28, durationInFrames - 6], [1, 0], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+    const appear = appearIn * fadeOut;
     return (
       <div
         style={{
@@ -186,18 +205,19 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
           style={{
             width: '100%',
             height: '100%',
-            transform: `scale(${scale})`,
+            transform: `translate(${dx}px, ${dy}px) scale(${scale * shakeScale})`,
             transformOrigin: 'center center',
           }}
         >
           {isVideo ? (
-            <Video
-              src={staticFile(mediaPath)}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              muted
-              loop
-              playbackRate={scene.playbackRate ?? 1}
-            />
+            <Loop durationInFrames={durationInFrames}>
+              <OffthreadVideo
+                src={staticFile(mediaPath)}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                muted
+                playbackRate={scene.playbackRate ?? 1}
+              />
+            </Loop>
           ) : (
             <Img
               src={staticFile(mediaPath)}
@@ -239,6 +259,45 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
           durationInFrames={durationInFrames}
           style={subtitleStyle}
         />
+      )}
+
+      {/* Texte incrusté (CTA) : apparaît en fondu + léger montée à startInSeconds */}
+      {overlayText && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '14%',
+            left: '8%',
+            right: '8%',
+            display: 'flex',
+            justifyContent: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          <div
+            style={{
+              opacity: interpolate(frame, [overlayStart, overlayStart + 18], [0, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              }),
+              transform: `translateY(${interpolate(
+                frame,
+                [overlayStart, overlayStart + 18],
+                [16, 0],
+                { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+              )}px)`,
+              color: '#fff',
+              fontFamily: '"Inter", "Helvetica", sans-serif',
+              fontSize: '2.4rem',
+              fontWeight: 600,
+              letterSpacing: '0.5px',
+              textAlign: 'center',
+              textShadow: '0 2px 12px rgba(0, 0, 0, 0.9)',
+            }}
+          >
+            {overlayText.text}
+          </div>
+        </div>
       )}
     </div>
   );

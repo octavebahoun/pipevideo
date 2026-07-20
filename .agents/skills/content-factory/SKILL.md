@@ -24,14 +24,23 @@ Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voi
 
 ## Workflow d'Orchestration
 
-### 1. Recherche & Écriture du Script
-- Faire des recherches (via `agent-reach` ou connaissances) sur le sujet demandé.
-- Rédiger le script et le diviser en scènes cohérentes.
-- Enregistrer le storyboard au format JSON dans `/home/precieux/pipevideo/storyboard.json`.
-- Respecter scrupuleusement la structure définie dans `src/types.ts`.
-  - `ratio`: `"16:9"` | `"9:16"`.
-  - Effets par scène : `zoom: "in" | "out" | "none"`, `transition: "fade" | "slide" | "none"`.
-  - **Un clip vidéo IA = ~10 s max** : la pipeline **boucle** automatiquement le clip pour remplir la scène. Viser un mouvement continu/bouclable ; pour un mouvement à sens unique (chute, bris, révélation), **découper la scène en 2 clips**.
+### 1. Recherche & Écriture du Script — ⚠️ CRÉATIVITÉ IMPOSÉE
+- Faire des recherches (via `agent-reach` ou connaissances) sur le sujet.
+- Diviser en scènes cohérentes ; enregistrer dans `storyboard.json` (structure `src/types.ts`).
+
+**RÈGLES D'ÉCRITURE — NON NÉGOCIABLES.** Un script plat, linéaire ou encyclopédique est un **ÉCHEC** : le réécrire. Chaque script DOIT cocher les 5 points ci-dessous, et l'agent doit **s'auto-auditer AVANT `npm run tts`** :
+
+1. **HOOK (0–3 s)** — accroche immédiate. ❌ Interdit : « un abonné m'a demandé… », une définition, un « aujourd'hui on va voir… ». ✅ Choisir un angle fort : **Choc** (« techniquement, du vomi d'abeille »), **Exploit** (« 4 millions de fleurs pour UN pot »), ou **Mystère** (« le seul aliment qui ne périme jamais »).
+2. **ÉTAPE MANQUANTE (curiosity gap)** — ne pas tout révéler d'un coup. Poser une question ouverte au milieu (« mais comment ce liquide devient une pâte dorée ? ») AVANT d'expliquer.
+3. **TERMES VISUELS / MÉTAPHORES** — nommer les choses de façon imagée (« l'estomac social », « la danse de la ventilation »), jamais plat (« un estomac », « elles battent des ailes »).
+4. **MICRO-FACTS AU MILIEU** — glisser un fait marquant vers le **milieu** pour relancer l'attention (pas seulement à la fin).
+5. **LOOP DE FIN** — clore en renvoyant au hook (« voilà comment… ») + émotion/CTA. Jamais une fin à plat.
+
+> **Auto-check obligatoire** : les 5 cases cochées, sinon réécrire. (Réf. : l'audit du short « miel » est passé de **1/5 → 5/5** grâce à ces règles.)
+
+- Effets par scène : `zoom: in|out|none`, `transition: fade|slide|none|black|wipe`.
+  - `black` = fondu **au noir** (fermeture cinéma), `wipe` = **révélation**. S'en servir pour rythmer et masquer un point de boucle.
+- **Clip vidéo IA ~10 s** : si la scène (voix) est plus longue, la pipeline **étire le clip en ralenti** (`playbackRate`, calculé après les durées) ou le boucle → **préférer le ralenti** (mouvement continu, effet ciné). Une `card` (écran noir + texte, sans audio) sert de carte de fin.
 
 ### 2. Voix off — deux modes
 La voix off est TOUJOURS produite/mesurée par `npm run tts` :
@@ -75,7 +84,7 @@ Bibliothèque **réutilisable et déjà fournie** dans `public/sounds/` (bruitag
 ### 5. Pause Média — 🎬 VIDÉO par défaut, 🖼️ image par exception
 - **RÈGLE DE FOND (ne pas y déroger sans raison)** : privilégier des **clips vidéo `.mp4`** — c'est le mouvement qui donne la profondeur et un meilleur rendu. Réserver les **images fixes `.png`** aux plans **délibérément statiques** (contemplation, tristesse, gros plan figé, jump-cut). ❌ Ne JAMAIS proposer une vidéo « tout en images » : ça tue la profondeur (surtout pour un essai/récit).
 - **Choix vidéo/image par scène** : lire la direction d'animation du plan. Un mouvement est décrit (pluie, vent, chute, particules, glitch, ralenti, caméra qui bouge) ? → **vidéo**. Plan volontairement immobile et lourd de sens ? → **image**.
-- **Durée > 10 s** : un clip IA fait ~10 s max ; la pipeline **boucle** le clip pour remplir la scène → demander un mouvement **continu/bouclable**. Pour un mouvement à sens unique (chute, bris, révélation), **découper la scène en 2 clips** plutôt que de boucler.
+- **Durée > 10 s** : un clip IA fait ~10 s max ; la pipeline **étire le clip en ralenti** (`playbackRate`) pour remplir la scène, ou le boucle. **Préférer le ralenti** (mouvement continu, effet ciné) — idéal pour chute/bris/révélation « au ralenti ». Le découpage en 2 clips reste possible si le ralenti est trop lent (< 0,5×).
 - Créer `media-prompts.md` : par scène → **type (🎬 vidéo / 🖼️ image)**, narration, prompt (mouvement décrit pour les vidéos), durée, ratio, style, et **effets à cuire dans le média** (grain, glitch, aberration, split-screen, bandes noires…) que la pipeline ne fait pas.
 - Demander de déposer les fichiers dans `public/` aux bons noms (`.mp4` ou `.png`) et vérifier que `mediaPath` pointe dessus.
 
@@ -86,11 +95,20 @@ Bibliothèque **réutilisable et déjà fournie** dans `public/sounds/` (bruitag
   ```
 - La vidéo finale : `/home/precieux/pipevideo/out/video.mp4`.
 
+### 7. Rendu cloud (AWS Lambda) — optionnel, pour décharger la machine
+```bash
+npm run render:lambda
+```
+Miroir cloud de `npm run render` : trouve la fonction Lambda déployée, (re)déploie le site (bundle + tout `public/` sur S3), rend avec le `storyboard.json` courant, télécharge dans `out/video.mp4`.
+- **Prérequis** : AWS CLI configuré, fonction déployée (`npx remotion lambda functions deploy`), région dans `.env` (`REMOTION_AWS_REGION`), et **toutes les versions `remotion`/`@remotion/*` identiques** (sinon le rendu casse).
+- **Temps** : 1er run lent (upload du site) ; suivants rapides car `deploySite` est **incrémental** (ré-uploade seulement les fichiers modifiés). Le rendu Lambda lui-même est rapide quelle que soit la durée (chunks parallèles).
+
 ## Scripts npm disponibles
 | Commande | Rôle |
 | --- | --- |
 | `npm run tts` | Génère (Edge-TTS) ou mesure (voix fournie) les voix off + durées + timings karaoké. |
 | `npm run sounds` | Régénère `public/sounds/CATALOG.md` depuis les fiches de la bibliothèque. |
-| `npm run render` | Compile et rend la vidéo finale dans `out/video.mp4`. |
+| `npm run render` | Compile et rend la vidéo finale **en local** dans `out/video.mp4`. |
+| `npm run render:lambda` | Rend la vidéo **sur AWS Lambda** (cloud) et la télécharge dans `out/video.mp4`. |
 | `npm run new-video "Sujet"` | Archive le projet courant dans `history/` et initialise un nouveau storyboard. |
 | `npm run archive` | Archive le projet courant dans `history/` (⚠️ vide storyboard.json + médias de scène du dossier de travail). |

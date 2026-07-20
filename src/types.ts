@@ -61,6 +61,18 @@ export const sceneSchema = z.object({
     .object({
       zoom: z.enum(['in', 'out', 'none']).optional(),
       transition: z.enum(['fade', 'slide', 'none', 'black', 'wipe']).optional(),
+      /** Léger tremblement de caméra (tension / effort). */
+      shake: z.boolean().optional(),
+    })
+    .optional(),
+  /**
+   * Texte incrusté à l'écran par-dessus le média (ex: CTA « Commence aujourd'hui »).
+   * Apparaît en fondu à `startInSeconds` et reste jusqu'à la fin de la scène.
+   */
+  overlayText: z
+    .object({
+      text: z.string(),
+      startInSeconds: z.number().min(0).optional(),
     })
     .optional(),
   /**
@@ -109,6 +121,8 @@ export const storyboardSchema = z.object({
   subtitleStyle: z.enum(['karaoke', 'cinematic']).optional(),
   /** Musique de fond optionnelle : nom de fichier dans public/ (ex: "music.mp3"). */
   music: z.string().optional(),
+  /** Volume de la musique de fond (de 0 à 1). Défaut : 0.09. */
+  musicVolume: z.number().min(0).max(1).optional(),
   scenes: z.array(sceneSchema),
 });
 

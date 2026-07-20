@@ -1,926 +1,639 @@
 {
-  "title": "Comment est produit le miel",
+  "title": "Le Faucon Pèlerin : L'Oiseau qui Brise le Mur du Son Naturel",
   "ratio": "9:16",
   "voice": "fr-FR-HenriNeural",
-  "music": "sounds/music/weightless-horizon.mp3",
+  "subtitles": true,
+  "subtitleStyle": "karaoke",
+  "music": "sounds/music/fearless-the-soundlings-ruby-jay.mp3",
+  "musicVolume": 0.07,
   "scenes": [
     {
       "id": 1,
-      "narration": "Le miel que tu manges ? C'est, techniquement, du vomi d'abeille. Et pourtant, c'est un vrai miracle de chimie.",
+      "narration": "Plus rapide qu'une Formule 1 en pleine ligne droite : à 389 kilomètres par heure, le faucon pèlerin est la créature la plus rapide sur Terre.",
       "mediaPath": "scene_1.mp4",
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
-      "durationInSeconds": 8.568,
       "sounds": [
         {
-          "src": "sounds/ambient/outdoor-farm-sounds.mp3",
-          "volume": 0.25,
-          "loop": true,
-          "fadeInSeconds": 1
+          "src": "sounds/sfx/swoosh.mp3",
+          "volume": 0.5,
+          "startInSeconds": 0.2
         }
       ],
       "words": [
-        {
-          "text": "Le",
-          "start": 0.1,
-          "duration": 0.1875
-        },
-        {
-          "text": "miel",
-          "start": 0.3,
-          "duration": 0.2125
-        },
-        {
-          "text": "que",
-          "start": 0.525,
-          "duration": 0.1375
-        },
-        {
-          "text": "tu",
-          "start": 0.675,
-          "duration": 0.125
-        },
-        {
-          "text": "manges",
-          "start": 0.8125,
-          "duration": 0.45
-        },
-        {
-          "text": "C'est",
-          "start": 2.1375,
-          "duration": 0.3625
-        },
-        {
-          "text": "techniquement",
-          "start": 2.8,
-          "duration": 0.6125
-        },
-        {
-          "text": "du",
-          "start": 3.6,
-          "duration": 0.1125
-        },
-        {
-          "text": "vomi",
-          "start": 3.725,
-          "duration": 0.2375
-        },
-        {
-          "text": "d'abeille",
-          "start": 3.975,
-          "duration": 0.5125
-        },
-        {
-          "text": "Et",
-          "start": 5.35,
-          "duration": 0.15
-        },
-        {
-          "text": "pourtant",
-          "start": 5.5125,
-          "duration": 0.425
-        },
-        {
-          "text": "c'est",
-          "start": 6.275,
-          "duration": 0.1125
-        },
-        {
-          "text": "un",
-          "start": 6.4,
-          "duration": 0.15
-        },
-        {
-          "text": "vrai",
-          "start": 6.5625,
-          "duration": 0.175
-        },
-        {
-          "text": "miracle",
-          "start": 6.75,
-          "duration": 0.4
-        },
-        {
-          "text": "de",
-          "start": 7.1625,
-          "duration": 0.1375
-        },
-        {
-          "text": "chimie",
-          "start": 7.3125,
-          "duration": 0.3875
-        }
-      ],
-      "playbackRate": 0.702
-    },
-    {
-      "id": 2,
-      "narration": "Tout part du nectar. L'abeille l'aspire et le stocke dans un estomac spécial : le jabot. Pour remplir un seul pot ? Plus de quatre millions de fleurs.",
-      "mediaPath": "scene_2.mp4",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      },
-      "durationInSeconds": 10.608,
-      "sounds": [
-        {
-          "src": "sounds/ambient/outdoor-farm-sounds.mp3",
-          "volume": 0.22,
-          "loop": true
-        }
-      ],
-      "words": [
-        {
-          "text": "Tout",
-          "start": 0.1,
-          "duration": 0.175
-        },
-        {
-          "text": "part",
-          "start": 0.2875,
-          "duration": 0.175
-        },
-        {
-          "text": "du",
-          "start": 0.475,
-          "duration": 0.1
-        },
-        {
-          "text": "nectar",
-          "start": 0.5875,
-          "duration": 0.6375
-        },
-        {
-          "text": "L'abeille",
-          "start": 2.1,
-          "duration": 0.4
-        },
-        {
-          "text": "l'aspire",
-          "start": 2.5125,
-          "duration": 0.375
-        },
-        {
-          "text": "et",
-          "start": 2.9,
-          "duration": 0.025
-        },
-        {
-          "text": "le",
-          "start": 2.9375,
-          "duration": 0.1125
-        },
-        {
-          "text": "stocke",
-          "start": 3.0625,
-          "duration": 0.2625
-        },
-        {
-          "text": "dans",
-          "start": 3.3375,
-          "duration": 0.1125
-        },
-        {
-          "text": "un",
-          "start": 3.4625,
-          "duration": 0.1
-        },
-        {
-          "text": "estomac",
-          "start": 3.575,
-          "duration": 0.4125
-        },
-        {
-          "text": "spécial",
-          "start": 4,
-          "duration": 0.55
-        },
-        {
-          "text": "le",
-          "start": 4.7375,
-          "duration": 0.1
-        },
-        {
-          "text": "jabot",
-          "start": 4.85,
-          "duration": 0.425
-        },
-        {
-          "text": "Pour",
-          "start": 6.1375,
-          "duration": 0.1875
-        },
-        {
-          "text": "remplir",
-          "start": 6.3375,
-          "duration": 0.35
-        },
-        {
-          "text": "un",
-          "start": 6.7,
-          "duration": 0.0625
-        },
-        {
-          "text": "seul",
-          "start": 6.775,
-          "duration": 0.2375
-        },
-        {
-          "text": "pot",
-          "start": 7.025,
-          "duration": 0.3
-        },
         {
           "text": "Plus",
-          "start": 8.2,
-          "duration": 0.1625
+          "start": 0.1,
+          "duration": 0.175
         },
         {
-          "text": "de",
-          "start": 8.375,
-          "duration": 0.125
-        },
-        {
-          "text": "quatre",
-          "start": 8.5125,
+          "text": "rapide",
+          "start": 0.2875,
           "duration": 0.3125
         },
         {
-          "text": "millions",
-          "start": 8.8375,
+          "text": "qu'une",
+          "start": 0.6125,
+          "duration": 0.1875
+        },
+        {
+          "text": "Formule",
+          "start": 0.8125,
+          "duration": 0.3625
+        },
+        {
+          "text": "1",
+          "start": 1.1875,
+          "duration": 0.0625
+        },
+        {
+          "text": "en",
+          "start": 1.2625,
+          "duration": 0.075
+        },
+        {
+          "text": "pleine",
+          "start": 1.35,
+          "duration": 0.2375
+        },
+        {
+          "text": "ligne",
+          "start": 1.6,
+          "duration": 0.2125
+        },
+        {
+          "text": "droite",
+          "start": 1.825,
+          "duration": 0.325
+        },
+        {
+          "text": "à",
+          "start": 2.3625,
+          "duration": 0.0375
+        },
+        {
+          "text": "389 kilomètres",
+          "start": 2.4125,
+          "duration": 1.4125
+        },
+        {
+          "text": "par",
+          "start": 3.8375,
+          "duration": 0.1625
+        },
+        {
+          "text": "heure",
+          "start": 4.0125,
           "duration": 0.25
         },
         {
-          "text": "de",
-          "start": 9.1,
-          "duration": 0.125
+          "text": "le",
+          "start": 4.5875,
+          "duration": 0.1125
         },
         {
-          "text": "fleurs",
-          "start": 9.2375,
-          "duration": 0.4875
+          "text": "faucon",
+          "start": 4.7125,
+          "duration": 0.3125
+        },
+        {
+          "text": "pèlerin",
+          "start": 5.0375,
+          "duration": 0.325
+        },
+        {
+          "text": "est",
+          "start": 5.375,
+          "duration": 0.0375
+        },
+        {
+          "text": "la",
+          "start": 5.425,
+          "duration": 0.1
+        },
+        {
+          "text": "créature",
+          "start": 5.5375,
+          "duration": 0.45
+        },
+        {
+          "text": "la",
+          "start": 6,
+          "duration": 0.0875
+        },
+        {
+          "text": "plus",
+          "start": 6.1,
+          "duration": 0.1625
+        },
+        {
+          "text": "rapide",
+          "start": 6.275,
+          "duration": 0.35
+        },
+        {
+          "text": "sur",
+          "start": 6.6375,
+          "duration": 0.15
+        },
+        {
+          "text": "Terre",
+          "start": 6.8,
+          "duration": 0.4625
         }
       ],
-      "playbackRate": 0.754
+      "durationInSeconds": 8.136
     },
     {
-      "id": 3,
-      "narration": "Mais ce nectar, c'est juste de l'eau sucrée. Alors comment ça devient du miel ? Dans la ruche, les abeilles se le passent de bouche en bouche, et leurs enzymes cassent les sucres.",
-      "mediaPath": "scene_3.mp4",
+      "id": 2,
+      "narration": "Mais comment un simple oiseau peut-il plonger en piqué vertigineux sans que ses poumons n'explosent sous la pression ?",
+      "mediaPath": "scene_2.mp4",
       "effects": {
-        "zoom": "in",
-        "transition": "fade"
+        "zoom": "out",
+        "transition": "slide"
       },
-      "durationInSeconds": 11.04,
       "words": [
         {
           "text": "Mais",
           "start": 0.1,
-          "duration": 0.2125
-        },
-        {
-          "text": "ce",
-          "start": 0.325,
-          "duration": 0.125
-        },
-        {
-          "text": "nectar",
-          "start": 0.4625,
-          "duration": 0.5375
-        },
-        {
-          "text": "c'est",
-          "start": 1.2375,
-          "duration": 0.1375
-        },
-        {
-          "text": "juste",
-          "start": 1.3875,
-          "duration": 0.325
-        },
-        {
-          "text": "de",
-          "start": 1.725,
-          "duration": 0.0875
-        },
-        {
-          "text": "l'eau",
-          "start": 1.825,
-          "duration": 0.1125
-        },
-        {
-          "text": "sucrée",
-          "start": 1.95,
-          "duration": 0.475
-        },
-        {
-          "text": "Alors",
-          "start": 3.2875,
-          "duration": 0.3375
+          "duration": 0.2
         },
         {
           "text": "comment",
-          "start": 3.6375,
+          "start": 0.3125,
           "duration": 0.2875
         },
         {
-          "text": "ça",
-          "start": 3.9375,
-          "duration": 0.1375
+          "text": "un",
+          "start": 0.6125,
+          "duration": 0.075
         },
         {
-          "text": "devient",
-          "start": 4.0875,
+          "text": "simple",
+          "start": 0.7,
           "duration": 0.2875
         },
         {
-          "text": "du",
-          "start": 4.3875,
-          "duration": 0.1
+          "text": "oiseau",
+          "start": 1,
+          "duration": 0.3125
         },
         {
-          "text": "miel",
-          "start": 4.5,
-          "duration": 0.4125
+          "text": "peut-il",
+          "start": 1.325,
+          "duration": 0.3375
         },
         {
-          "text": "Dans",
-          "start": 5.7875,
-          "duration": 0.2125
-        },
-        {
-          "text": "la",
-          "start": 6.0125,
-          "duration": 0.0875
-        },
-        {
-          "text": "ruche",
-          "start": 6.1125,
+          "text": "plonger",
+          "start": 1.675,
           "duration": 0.35
-        },
-        {
-          "text": "les",
-          "start": 6.725,
-          "duration": 0.1
-        },
-        {
-          "text": "abeilles",
-          "start": 6.8375,
-          "duration": 0.325
-        },
-        {
-          "text": "se",
-          "start": 7.175,
-          "duration": 0.1125
-        },
-        {
-          "text": "le",
-          "start": 7.3,
-          "duration": 0.1
-        },
-        {
-          "text": "passent",
-          "start": 7.4125,
-          "duration": 0.2125
-        },
-        {
-          "text": "de",
-          "start": 7.6375,
-          "duration": 0.125
-        },
-        {
-          "text": "bouche",
-          "start": 7.775,
-          "duration": 0.2375
         },
         {
           "text": "en",
-          "start": 8.025,
-          "duration": 0.0875
+          "start": 2.0375,
+          "duration": 0.075
         },
         {
-          "text": "bouche",
-          "start": 8.125,
-          "duration": 0.4125
-        },
-        {
-          "text": "et",
-          "start": 8.8125,
-          "duration": 0.025
-        },
-        {
-          "text": "leurs",
-          "start": 8.85,
-          "duration": 0.1375
-        },
-        {
-          "text": "enzymes",
-          "start": 9,
-          "duration": 0.35
-        },
-        {
-          "text": "cassent",
-          "start": 9.3625,
-          "duration": 0.25
-        },
-        {
-          "text": "les",
-          "start": 9.625,
-          "duration": 0.1125
-        },
-        {
-          "text": "sucres",
-          "start": 9.75,
-          "duration": 0.425
-        }
-      ],
-      "playbackRate": 0.725
-    },
-    {
-      "id": 4,
-      "narration": "Ensuite, la danse de la ventilation : des milliers d'ailes qui battent pour évaporer l'eau. De soixante-dix pour cent, à moins de dix-huit.",
-      "mediaPath": "scene_4.mp4",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      },
-      "durationInSeconds": 8.688,
-      "words": [
-        {
-          "text": "Ensuite",
-          "start": 0.1,
-          "duration": 0.5125
-        },
-        {
-          "text": "la",
-          "start": 0.95,
-          "duration": 0.1625
-        },
-        {
-          "text": "danse",
-          "start": 1.125,
-          "duration": 0.2125
-        },
-        {
-          "text": "de",
-          "start": 1.35,
-          "duration": 0.1
-        },
-        {
-          "text": "la",
-          "start": 1.4625,
-          "duration": 0.0875
-        },
-        {
-          "text": "ventilation",
-          "start": 1.5625,
-          "duration": 0.6875
-        },
-        {
-          "text": "des",
-          "start": 2.4125,
-          "duration": 0.125
-        },
-        {
-          "text": "milliers",
-          "start": 2.55,
+          "text": "piqué",
+          "start": 2.125,
           "duration": 0.3
         },
         {
-          "text": "d'ailes",
-          "start": 2.8625,
-          "duration": 0.1875
+          "text": "vertigineux",
+          "start": 2.4375,
+          "duration": 0.5625
         },
         {
-          "text": "qui",
-          "start": 3.0625,
-          "duration": 0.1625
+          "text": "sans",
+          "start": 3.0125,
+          "duration": 0.15
         },
         {
-          "text": "battent",
-          "start": 3.2375,
-          "duration": 0.2375
+          "text": "que",
+          "start": 3.175,
+          "duration": 0.15
         },
         {
-          "text": "pour",
-          "start": 3.4875,
-          "duration": 0.1875
-        },
-        {
-          "text": "évaporer",
-          "start": 3.6875,
-          "duration": 0.425
-        },
-        {
-          "text": "l'eau",
-          "start": 4.125,
-          "duration": 0.2875
-        },
-        {
-          "text": "De",
-          "start": 5.275,
-          "duration": 0.25
-        },
-        {
-          "text": "soixante-dix",
-          "start": 5.5375,
-          "duration": 0.575
-        },
-        {
-          "text": "pour",
-          "start": 6.125,
-          "duration": 0.2
-        },
-        {
-          "text": "cent",
-          "start": 6.3375,
-          "duration": 0.25
-        },
-        {
-          "text": "à",
-          "start": 6.825,
-          "duration": 0.05
-        },
-        {
-          "text": "moins",
-          "start": 6.8875,
-          "duration": 0.175
-        },
-        {
-          "text": "de",
-          "start": 7.075,
-          "duration": 0.1
-        },
-        {
-          "text": "dix-huit",
-          "start": 7.1875,
-          "duration": 0.6125
-        }
-      ],
-      "playbackRate": 0.921
-    },
-    {
-      "id": 5,
-      "narration": "Trop de sucre, trop peu d'eau : aucun microbe ne survit. Elles scellent l'alvéole à la cire. C'est pour ça qu'on a retrouvé du miel comestible dans des tombes de pharaons de trois mille ans.",
-      "mediaPath": "scene_5.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "durationInSeconds": 11.04,
-      "words": [
-        {
-          "text": "Trop",
-          "start": 0.1,
-          "duration": 0.2125
-        },
-        {
-          "text": "de",
-          "start": 0.325,
-          "duration": 0.125
-        },
-        {
-          "text": "sucre",
-          "start": 0.4625,
-          "duration": 0.325
-        },
-        {
-          "text": "trop",
-          "start": 1.0375,
-          "duration": 0.2
-        },
-        {
-          "text": "peu",
-          "start": 1.25,
-          "duration": 0.1625
-        },
-        {
-          "text": "d'eau",
-          "start": 1.425,
-          "duration": 0.25
-        },
-        {
-          "text": "aucun",
-          "start": 1.85,
-          "duration": 0.225
-        },
-        {
-          "text": "microbe",
-          "start": 2.0875,
-          "duration": 0.4
-        },
-        {
-          "text": "ne",
-          "start": 2.5,
+          "text": "ses",
+          "start": 3.3375,
           "duration": 0.1125
         },
         {
-          "text": "survit",
-          "start": 2.625,
+          "text": "poumons",
+          "start": 3.4625,
+          "duration": 0.25
+        },
+        {
+          "text": "n'explosent",
+          "start": 3.725,
           "duration": 0.4375
         },
         {
-          "text": "Elles",
-          "start": 3.9375,
-          "duration": 0.2125
-        },
-        {
-          "text": "scellent",
-          "start": 4.1625,
-          "duration": 0.2
-        },
-        {
-          "text": "l'alvéole",
-          "start": 4.375,
-          "duration": 0.425
-        },
-        {
-          "text": "à",
-          "start": 4.8125,
-          "duration": 0.025
+          "text": "sous",
+          "start": 4.175,
+          "duration": 0.1125
         },
         {
           "text": "la",
-          "start": 4.85,
-          "duration": 0.1125
-        },
-        {
-          "text": "cire",
-          "start": 4.975,
-          "duration": 0.45
-        },
-        {
-          "text": "C'est",
-          "start": 6.2875,
-          "duration": 0.2375
-        },
-        {
-          "text": "pour",
-          "start": 6.5375,
-          "duration": 0.1875
-        },
-        {
-          "text": "ça",
-          "start": 6.7375,
-          "duration": 0.125
-        },
-        {
-          "text": "qu'on",
-          "start": 6.875,
-          "duration": 0.125
-        },
-        {
-          "text": "a",
-          "start": 7.0125,
+          "start": 4.3,
           "duration": 0.0875
         },
         {
-          "text": "retrouvé",
-          "start": 7.1125,
-          "duration": 0.425
+          "text": "pression",
+          "start": 4.4,
+          "duration": 0.475
+        }
+      ],
+      "durationInSeconds": 5.76
+    },
+    {
+      "id": 3,
+      "narration": "Son secret ? Des petits cônes osseux dans ses narines qui canalisent le choc de l'air. Une technique si incroyable que la NASA s'en est inspirée pour les réacteurs d'avions.",
+      "mediaPath": "scene_3.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "words": [
+        {
+          "text": "Son",
+          "start": 0.1,
+          "duration": 0.225
         },
         {
-          "text": "du",
-          "start": 7.55,
-          "duration": 0.1
+          "text": "secret",
+          "start": 0.3375,
+          "duration": 0.4625
         },
         {
-          "text": "miel",
-          "start": 7.6625,
+          "text": "Des",
+          "start": 1.6625,
+          "duration": 0.225
+        },
+        {
+          "text": "petits",
+          "start": 1.9,
+          "duration": 0.2875
+        },
+        {
+          "text": "cônes",
+          "start": 2.2,
           "duration": 0.2125
         },
         {
-          "text": "comestible",
-          "start": 7.8875,
-          "duration": 0.6375
+          "text": "osseux",
+          "start": 2.425,
+          "duration": 0.3
         },
         {
           "text": "dans",
-          "start": 8.5375,
-          "duration": 0.125
-        },
-        {
-          "text": "des",
-          "start": 8.675,
+          "start": 2.7375,
           "duration": 0.1125
         },
         {
-          "text": "tombes",
-          "start": 8.8,
+          "text": "ses",
+          "start": 2.8625,
+          "duration": 0.125
+        },
+        {
+          "text": "narines",
+          "start": 3,
+          "duration": 0.3
+        },
+        {
+          "text": "qui",
+          "start": 3.3125,
+          "duration": 0.15
+        },
+        {
+          "text": "canalisent",
+          "start": 3.475,
+          "duration": 0.4375
+        },
+        {
+          "text": "le",
+          "start": 3.925,
+          "duration": 0.1375
+        },
+        {
+          "text": "choc",
+          "start": 4.075,
           "duration": 0.225
         },
         {
           "text": "de",
-          "start": 9.0375,
-          "duration": 0.125
-        },
-        {
-          "text": "pharaons",
-          "start": 9.175,
-          "duration": 0.325
-        },
-        {
-          "text": "de",
-          "start": 9.5125,
+          "start": 4.3125,
           "duration": 0.1
         },
         {
-          "text": "trois",
-          "start": 9.625,
-          "duration": 0.2
+          "text": "l'air",
+          "start": 4.425,
+          "duration": 0.375
         },
         {
-          "text": "mille",
-          "start": 9.8375,
+          "text": "Une",
+          "start": 5.675,
+          "duration": 0.1875
+        },
+        {
+          "text": "technique",
+          "start": 5.875,
+          "duration": 0.4
+        },
+        {
+          "text": "si",
+          "start": 6.2875,
           "duration": 0.1625
         },
         {
-          "text": "ans",
-          "start": 10.0125,
+          "text": "incroyable",
+          "start": 6.4625,
+          "duration": 0.5625
+        },
+        {
+          "text": "que",
+          "start": 7.0375,
+          "duration": 0.1
+        },
+        {
+          "text": "la",
+          "start": 7.15,
+          "duration": 0.0625
+        },
+        {
+          "text": "NASA",
+          "start": 7.225,
+          "duration": 0.3
+        },
+        {
+          "text": "s'en",
+          "start": 7.5375,
+          "duration": 0.15
+        },
+        {
+          "text": "est",
+          "start": 7.7,
+          "duration": 0.0875
+        },
+        {
+          "text": "inspirée",
+          "start": 7.8,
+          "duration": 0.525
+        },
+        {
+          "text": "pour",
+          "start": 8.3375,
           "duration": 0.1625
+        },
+        {
+          "text": "les",
+          "start": 8.5125,
+          "duration": 0.075
+        },
+        {
+          "text": "réacteurs",
+          "start": 8.6,
+          "duration": 0.425
+        },
+        {
+          "text": "d'avions",
+          "start": 9.0375,
+          "duration": 0.375
         }
       ],
-      "playbackRate": 0.725
+      "durationInSeconds": 10.296
     },
     {
-      "id": 6,
-      "narration": "Et une seule abeille en produit à peine un douzième de cuillère dans toute sa vie. Tout ça, pour ce pot. Voilà comment on fait le miel. Abonne-toi si t'as appris un truc.",
-      "mediaPath": "scene_6.mp4",
+      "id": 4,
+      "narration": "Et ce n'est pas son seul super-pouvoir. Ajoutez à cela des yeux armés d'une visière transparente, et des serres capables de tout pulvériser à l'impact.",
+      "mediaPath": "scene_4.mp4",
       "effects": {
-        "zoom": "out",
-        "transition": "fade"
+        "zoom": "in",
+        "transition": "black"
       },
-      "durationInSeconds": 11.256,
+      "overlayText": {
+        "text": "Membrane nictitante (Visière intégrée)",
+        "startInSeconds": 1.2
+      },
+      "sounds": [
+        {
+          "src": "sounds/sfx/wood-hit-metal-crash.mp3",
+          "volume": 0.6,
+          "startInSeconds": 3.8
+        }
+      ],
       "words": [
         {
           "text": "Et",
           "start": 0.1,
-          "duration": 0.1375
+          "duration": 0.15
         },
         {
-          "text": "une",
-          "start": 0.25,
+          "text": "ce",
+          "start": 0.2625,
           "duration": 0.1125
         },
         {
-          "text": "seule",
-          "start": 0.375,
+          "text": "n'est",
+          "start": 0.3875,
+          "duration": 0.1125
+        },
+        {
+          "text": "pas",
+          "start": 0.5125,
+          "duration": 0.1625
+        },
+        {
+          "text": "son",
+          "start": 0.6875,
+          "duration": 0.1625
+        },
+        {
+          "text": "seul",
+          "start": 0.8625,
+          "duration": 0.225
+        },
+        {
+          "text": "super-pouvoir",
+          "start": 1.1,
+          "duration": 0.9375
+        },
+        {
+          "text": "Ajoutez",
+          "start": 2.9125,
+          "duration": 0.4875
+        },
+        {
+          "text": "à",
+          "start": 3.4125,
+          "duration": 0.075
+        },
+        {
+          "text": "cela",
+          "start": 3.5,
+          "duration": 0.25
+        },
+        {
+          "text": "des",
+          "start": 3.7625,
+          "duration": 0.1125
+        },
+        {
+          "text": "yeux",
+          "start": 3.8875,
+          "duration": 0.1625
+        },
+        {
+          "text": "armés",
+          "start": 4.0625,
+          "duration": 0.275
+        },
+        {
+          "text": "d'une",
+          "start": 4.35,
+          "duration": 0.15
+        },
+        {
+          "text": "visière",
+          "start": 4.5125,
+          "duration": 0.3125
+        },
+        {
+          "text": "transparente",
+          "start": 4.8375,
+          "duration": 0.6875
+        },
+        {
+          "text": "et",
+          "start": 5.85,
+          "duration": 0.0375
+        },
+        {
+          "text": "des",
+          "start": 5.9,
+          "duration": 0.125
+        },
+        {
+          "text": "serres",
+          "start": 6.0375,
           "duration": 0.1875
         },
         {
-          "text": "abeille",
-          "start": 0.575,
+          "text": "capables",
+          "start": 6.2375,
+          "duration": 0.425
+        },
+        {
+          "text": "de",
+          "start": 6.675,
+          "duration": 0.125
+        },
+        {
+          "text": "tout",
+          "start": 6.8125,
+          "duration": 0.15
+        },
+        {
+          "text": "pulvériser",
+          "start": 6.975,
+          "duration": 0.55
+        },
+        {
+          "text": "à",
+          "start": 7.5375,
+          "duration": 0.0375
+        },
+        {
+          "text": "l'impact",
+          "start": 7.5875,
+          "duration": 0.575
+        }
+      ],
+      "durationInSeconds": 9.024
+    },
+    {
+      "id": 5,
+      "narration": "Voilà comment ce missile vivant transforme chaque centimètre du ciel en une arène supersonique.",
+      "mediaPath": "scene_5.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Voilà",
+          "start": 0.1,
+          "duration": 0.3375
+        },
+        {
+          "text": "comment",
+          "start": 0.45,
+          "duration": 0.3
+        },
+        {
+          "text": "ce",
+          "start": 0.7625,
+          "duration": 0.125
+        },
+        {
+          "text": "missile",
+          "start": 0.9,
+          "duration": 0.35
+        },
+        {
+          "text": "vivant",
+          "start": 1.2625,
+          "duration": 0.2625
+        },
+        {
+          "text": "transforme",
+          "start": 1.5375,
+          "duration": 0.4875
+        },
+        {
+          "text": "chaque",
+          "start": 2.0375,
+          "duration": 0.2375
+        },
+        {
+          "text": "centimètre",
+          "start": 2.2875,
+          "duration": 0.575
+        },
+        {
+          "text": "du",
+          "start": 2.875,
+          "duration": 0.125
+        },
+        {
+          "text": "ciel",
+          "start": 3.0125,
           "duration": 0.2375
         },
         {
           "text": "en",
-          "start": 0.825,
-          "duration": 0.075
-        },
-        {
-          "text": "produit",
-          "start": 0.9125,
-          "duration": 0.3125
-        },
-        {
-          "text": "à",
-          "start": 1.2375,
-          "duration": 0.0625
-        },
-        {
-          "text": "peine",
-          "start": 1.3125,
-          "duration": 0.2125
-        },
-        {
-          "text": "un",
-          "start": 1.5375,
+          "start": 3.2625,
           "duration": 0.05
         },
         {
-          "text": "douzième",
-          "start": 1.6,
-          "duration": 0.3625
+          "text": "une",
+          "start": 3.325,
+          "duration": 0.1625
         },
         {
-          "text": "de",
-          "start": 1.975,
-          "duration": 0.1125
-        },
-        {
-          "text": "cuillère",
-          "start": 2.1,
-          "duration": 0.325
-        },
-        {
-          "text": "dans",
-          "start": 2.4375,
-          "duration": 0.1125
-        },
-        {
-          "text": "toute",
-          "start": 2.5625,
+          "text": "arène",
+          "start": 3.5,
           "duration": 0.2125
         },
         {
-          "text": "sa",
-          "start": 2.7875,
-          "duration": 0.125
-        },
-        {
-          "text": "vie",
-          "start": 2.925,
-          "duration": 0.2625
-        },
-        {
-          "text": "Tout",
-          "start": 4.0625,
-          "duration": 0.2
-        },
-        {
-          "text": "ça",
-          "start": 4.275,
-          "duration": 0.25
-        },
-        {
-          "text": "pour",
-          "start": 4.7875,
-          "duration": 0.1625
-        },
-        {
-          "text": "ce",
-          "start": 4.9625,
-          "duration": 0.125
-        },
-        {
-          "text": "pot",
-          "start": 5.1,
-          "duration": 0.2875
-        },
-        {
-          "text": "Voilà",
-          "start": 6.2625,
-          "duration": 0.35
-        },
-        {
-          "text": "comment",
-          "start": 6.625,
-          "duration": 0.3
-        },
-        {
-          "text": "on",
-          "start": 6.9375,
-          "duration": 0.075
-        },
-        {
-          "text": "fait",
-          "start": 7.025,
-          "duration": 0.1625
-        },
-        {
-          "text": "le",
-          "start": 7.2,
-          "duration": 0.075
-        },
-        {
-          "text": "miel",
-          "start": 7.2875,
-          "duration": 0.4375
-        },
-        {
-          "text": "Abonne-toi",
-          "start": 8.5875,
-          "duration": 0.55
-        },
-        {
-          "text": "si",
-          "start": 9.15,
-          "duration": 0.1625
-        },
-        {
-          "text": "t'as",
-          "start": 9.325,
-          "duration": 0.15
-        },
-        {
-          "text": "appris",
-          "start": 9.4875,
-          "duration": 0.2875
-        },
-        {
-          "text": "un",
-          "start": 9.7875,
-          "duration": 0.05
-        },
-        {
-          "text": "truc",
-          "start": 9.85,
-          "duration": 0.5125
+          "text": "supersonique",
+          "start": 3.725,
+          "duration": 0.875
         }
       ],
-      "playbackRate": 0.711
+      "durationInSeconds": 5.472
     }
   ]
 }

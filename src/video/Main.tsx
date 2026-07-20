@@ -76,7 +76,7 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
 
       {/* Musique de fond optionnelle, en boucle et à volume réduit sur toute la vidéo. */}
       {storyboard.music && (
-        <Audio src={staticFile(storyboard.music)} volume={0.18} loop />
+        <Audio src={staticFile(storyboard.music)} volume={storyboard.musicVolume ?? 0.09} loop />
       )}
     </div>
   );

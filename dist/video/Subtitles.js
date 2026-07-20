@@ -29,17 +29,26 @@ const Subtitles = ({ text, words, durationInFrames, style = 'karaoke', }) => {
     for (let i = 0; i < timedWords.length; i += chunkSize) {
         chunks.push(timedWords.slice(i, i + chunkSize));
     }
-    // Groupe courant : le dernier dont le 1er mot a déjà commencé.
-    let activeChunk = chunks[0];
-    for (const chunk of chunks) {
-        if (timeInSeconds >= chunk[0].start) {
+    // Groupe courant : le groupe activement prononcé en ce moment.
+    let activeChunk = null;
+    for (let i = 0; i < chunks.length; i++) {
+        const chunk = chunks[i];
+        const chunkStart = chunk[0].start;
+        const lastWord = chunk[chunk.length - 1];
+        const nextChunkStart = chunks[i + 1] ? chunks[i + 1][0].start : Infinity;
+        const chunkEnd = Math.min(nextChunkStart, lastWord.start + lastWord.duration + 0.6);
+        if (timeInSeconds >= chunkStart && timeInSeconds < chunkEnd) {
             activeChunk = chunk;
+            break;
         }
+    }
+    if (!activeChunk) {
+        return null;
     }
     // Petite animation d'apparition à l'arrivée du groupe.
     const chunkStartFrame = activeChunk[0].start * fps;
     const spr = (0, remotion_1.spring)({
-        frame: frame - chunkStartFrame,
+        frame: Math.max(0, frame - chunkStartFrame),
         fps,
         config: { damping: 14 },
     });

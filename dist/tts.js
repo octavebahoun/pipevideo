@@ -61,6 +61,14 @@ async function main() {
         // 3. Parcourir et générer (ou mesurer) la voix-off pour chaque scène
         for (const scene of storyboard.scenes) {
             console.log(`\nTraitement de la scène ${scene.id}...`);
+            // --- Cas 0 : carte texte (fin) → pas de voix, on garde sa durée manuelle. ---
+            if (scene.card) {
+                console.log('Carte texte (pas de voix off).');
+                scene.words = undefined;
+                if (scene.durationInSeconds === undefined)
+                    scene.durationInSeconds = 5;
+                continue;
+            }
             // --- Cas 1 : voix off FOURNIE par l'utilisateur → on ne régénère pas. ---
             // Soit la scène pointe explicitement un `audioPath`, soit le mode global
             // `useProvidedAudio` est actif (on attend alors public/scene_<id>.mp3).

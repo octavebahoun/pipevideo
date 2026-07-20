@@ -108,7 +108,16 @@ async function main() {
     const rows = descriptors.map((d) => {
         const fm = d.frontmatter;
         const name = fm.name || path.basename(d.relPath, '.md');
-        return `| \`${cell(name)}\` | ${cell(fm.type)} | ${cell(fm.mood)} | ${cell(fm.loopable)} | ${cell(fm.duration)} | ${cell(fm.usage)} | \`${cell(d.src)}\` |`;
+        const keyVal = fm.key === 'null' || !fm.key ? '-' : fm.key;
+        const bpmVal = fm.bpm === 'null' || !fm.bpm ? '-' : fm.bpm;
+        let peaksVal = '-';
+        if (fm.peaks && fm.peaks.trim() !== '') {
+            const parts = fm.peaks.split(',').map(p => p.trim()).filter(Boolean);
+            if (parts.length > 0) {
+                peaksVal = `\`[${parts.join(', ')}]\``;
+            }
+        }
+        return `| \`${cell(name)}\` | ${cell(fm.type)} | ${cell(fm.mood)} | ${cell(fm.loopable)} | ${cell(fm.duration)} | ${cell(keyVal)} | ${cell(bpmVal)} | ${cell(peaksVal)} | ${cell(fm.usage)} | \`${cell(d.src)}\` |`;
     });
     const catalog = [
         '# 🎧 Catalogue des sons — GÉNÉRÉ AUTOMATIQUEMENT',
@@ -118,8 +127,8 @@ async function main() {
         '',
         'Pour utiliser un son : copie sa colonne `src` dans un objet du tableau `sounds` d\'une scène du storyboard.',
         '',
-        '| Nom | Type | Ambiance | Bouclable | Durée | Usage | `src` |',
-        '| --- | --- | --- | --- | --- | --- | --- |',
+        '| Nom | Type | Ambiance | Bouclable | Durée | Tonalité | BPM | Pics d\'impact (s) | Usage | `src` |',
+        '| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |',
         ...rows,
         '',
     ].join('\n');

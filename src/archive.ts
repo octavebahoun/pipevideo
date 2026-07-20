@@ -125,7 +125,9 @@ export async function archiveCurrentProject(): Promise<boolean> {
       if (scene.mediaPath) {
         const mediaSourcePath = path.join(PUBLIC_DIR, scene.mediaPath);
         if (await fileExists(mediaSourcePath)) {
-          await fs.copyFile(mediaSourcePath, path.join(archivePublicPath, scene.mediaPath));
+          const destPath = path.join(archivePublicPath, scene.mediaPath);
+          await fs.mkdir(path.dirname(destPath), { recursive: true });
+          await fs.copyFile(mediaSourcePath, destPath);
           await fs.unlink(mediaSourcePath);
         }
       }

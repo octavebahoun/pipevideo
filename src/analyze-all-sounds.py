@@ -6,7 +6,7 @@ import scipy.io.wavfile as wavfile
 import scipy.signal as signal
 import subprocess
 
-SOUNDS_DIR = os.path.join(os.cwd() if hasattr(os, 'cwd') else os.getcwd(), 'public', 'sounds')
+SOUNDS_DIR = os.path.join(os.getcwd(), 'public', 'sounds')
 IGNORED_FILES = {'README.md', '_TEMPLATE.md', 'CATALOG.md'}
 
 def convert_to_wav(mp3_path, wav_path):

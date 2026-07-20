@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TRANSITION_FRAMES = exports.MIN_SCENE_FRAMES = exports.FPS = exports.mainPropsSchema = exports.storyboardSchema = exports.sceneSchema = exports.sceneSoundSchema = exports.wordTimingSchema = void 0;
 exports.getSceneDurationInFrames = getSceneDurationInFrames;
+exports.transitionDurationFrames = transitionDurationFrames;
 exports.getTransitionFramesBefore = getTransitionFramesBefore;
 exports.getTotalDurationInFrames = getTotalDurationInFrames;
 exports.getDimensions = getDimensions;
@@ -34,6 +35,10 @@ exports.sceneSoundSchema = zod_1.z.object({
     fadeInSeconds: zod_1.z.number().min(0).optional(),
     /** Fondu de sortie (descente du volume) en secondes. Défaut : 0. */
     fadeOutSeconds: zod_1.z.number().min(0).optional(),
+    /** Rogne le DÉBUT du fichier source, en secondes (pour isoler un impact). Défaut : 0. */
+    trimStart: zod_1.z.number().min(0).optional(),
+    /** Rogne la FIN du fichier source, en secondes (lu depuis le début du fichier). */
+    trimEnd: zod_1.z.number().min(0).optional(),
 });
 exports.sceneSchema = zod_1.z.object({
     id: zod_1.z.number(),
@@ -60,7 +65,35 @@ exports.sceneSchema = zod_1.z.object({
     effects: zod_1.z
         .object({
         zoom: zod_1.z.enum(['in', 'out', 'none']).optional(),
-        transition: zod_1.z.enum(['fade', 'slide', 'none']).optional(),
+        transition: zod_1.z.enum(['fade', 'slide', 'none', 'black', 'wipe']).optional(),
+        /** Léger tremblement de caméra (tension / effort). */
+        shake: zod_1.z.boolean().optional(),
+    })
+        .optional(),
+    /**
+     * Texte incrusté à l'écran par-dessus le média (ex: CTA « Commence aujourd'hui »).
+     * Apparaît en fondu à `startInSeconds` et reste jusqu'à la fin de la scène.
+     */
+    overlayText: zod_1.z
+        .object({
+        text: zod_1.z.string(),
+        startInSeconds: zod_1.z.number().min(0).optional(),
+    })
+        .optional(),
+    /**
+     * Vitesse de lecture du clip vidéo (1 = normal, <1 = ralenti). Sert à étirer un
+     * clip court pour remplir toute la scène SANS boucle visible (mouvement continu
+     * au ralenti). Injecté par un script après mesure des durées.
+     */
+    playbackRate: zod_1.z.number().positive().optional(),
+    /**
+     * Carte texte (ex: fin de vidéo) : écran noir + texte centré, SANS voix ni son,
+     * sans média. Si présent, la scène ignore mediaPath/narration/sounds.
+     */
+    card: zod_1.z
+        .object({
+        text: zod_1.z.string(),
+        subtext: zod_1.z.string().optional(),
     })
         .optional(),
     /** Durée réelle de la voix off. Injectée automatiquement par tts.ts. */
@@ -92,6 +125,8 @@ exports.storyboardSchema = zod_1.z.object({
     subtitleStyle: zod_1.z.enum(['karaoke', 'cinematic']).optional(),
     /** Musique de fond optionnelle : nom de fichier dans public/ (ex: "music.mp3"). */
     music: zod_1.z.string().optional(),
+    /** Volume de la musique de fond (de 0 à 1). Défaut : 0.09. */
+    musicVolume: zod_1.z.number().min(0).max(1).optional(),
     scenes: zod_1.z.array(exports.sceneSchema),
 });
 /** Props du composant racine Remotion (utilisé aussi comme schéma de Composition). */
@@ -115,11 +150,26 @@ function getSceneDurationInFrames(scene, fps = exports.FPS) {
  * Frames de transition consommées AVANT une scène (chevauchement avec la précédente).
  * La première scène n'a pas de transition entrante.
  */
+/**
+ * Durée (en frames) d'une transition selon son type.
+ * Le fondu au noir a besoin de respirer un peu plus (effet cinéma).
+ */
+function transitionDurationFrames(transition) {
+    switch (transition) {
+        case 'none':
+            return 0;
+        case 'black':
+            return 26; // fondu AU NOIR : plus long pour « fermer » puis rouvrir
+        case 'wipe':
+            return 20;
+        default:
+            return exports.TRANSITION_FRAMES; // fade, slide
+    }
+}
 function getTransitionFramesBefore(scene, index) {
     if (index === 0)
         return 0;
-    const transition = scene.effects?.transition ?? 'fade';
-    return transition === 'none' ? 0 : exports.TRANSITION_FRAMES;
+    return transitionDurationFrames(scene.effects?.transition ?? 'fade');
 }
 /**
  * Durée totale de la composition.
