@@ -2,26 +2,35 @@ import React from 'react';
 import { z } from 'zod';
 import { Audio, staticFile, useVideoConfig } from 'remotion';
 import { TransitionSeries, linearTiming } from '@remotion/transitions';
+import type { TransitionPresentation } from '@remotion/transitions';
 import { fade } from '@remotion/transitions/fade';
 import { slide } from '@remotion/transitions/slide';
+import { wipe } from '@remotion/transitions/wipe';
 import {
   mainPropsSchema,
   Scene,
   getSceneDurationInFrames,
   getTransitionFramesBefore,
-  TRANSITION_FRAMES,
+  transitionDurationFrames,
 } from '../types';
 import { SceneComponent } from './Scene';
+import { fadeThroughBlack } from './transitions';
 
 type MainProps = z.infer<typeof mainPropsSchema>;
 
 /** Présentation de transition à jouer AVANT une scène, selon son effet. */
-function presentationForScene(scene: Scene) {
+function presentationForScene(scene: Scene): TransitionPresentation<any> {
   const transition = scene.effects?.transition ?? 'fade';
-  if (transition === 'slide') {
-    return slide({ direction: 'from-right' });
+  switch (transition) {
+    case 'black':
+      return fadeThroughBlack();
+    case 'wipe':
+      return wipe();
+    case 'slide':
+      return slide({ direction: 'from-right' });
+    default:
+      return fade();
   }
-  return fade();
 }
 
 export const Main: React.FC<MainProps> = ({ storyboard }) => {
@@ -42,7 +51,9 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
         <TransitionSeries.Transition
           key={`transition-${scene.id}`}
           presentation={presentationForScene(scene)}
-          timing={linearTiming({ durationInFrames: TRANSITION_FRAMES })}
+          timing={linearTiming({
+            durationInFrames: transitionDurationFrames(scene.effects?.transition ?? 'fade'),
+          })}
         />
       );
     }

@@ -41,12 +41,18 @@ const SceneSounds: React.FC<{ sounds: SceneSound[]; durationInFrames: number }> 
         const fadeInFrames = Math.round((sound.fadeInSeconds ?? 0) * fps);
         const fadeOutFrames = Math.round((sound.fadeOutSeconds ?? 0) * fps);
         const hasFade = fadeInFrames > 0 || fadeOutFrames > 0;
+        // Rognage du fichier source (pour isoler un impact, ex: un seul « boum »).
+        const startFrom =
+          sound.trimStart != null ? Math.round(sound.trimStart * fps) : undefined;
+        const endAt = sound.trimEnd != null ? Math.round(sound.trimEnd * fps) : undefined;
 
         return (
           <Sequence key={`${sound.src}-${i}`} from={from} durationInFrames={localDuration}>
             <Audio
               src={staticFile(sound.src)}
               loop={sound.loop ?? false}
+              startFrom={startFrom}
+              endAt={endAt}
               volume={
                 hasFade
                   ? (f) => {
@@ -109,6 +115,58 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   // Sous-titres : la scène peut surcharger le défaut global.
   const showSubtitles = scene.showSubtitles ?? subtitlesEnabled;
 
+  // Carte texte (ex: fin) : écran noir + texte centré, SANS média / voix / son.
+  if (scene.card) {
+    const appear = interpolate(frame, [8, 28], [0, 1], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#000',
+        }}
+      >
+        <div
+          style={{
+            opacity: appear,
+            color: 'rgba(255, 255, 255, 0.92)',
+            fontFamily: '"Inter", "Helvetica", sans-serif',
+            fontSize: '3.4rem',
+            fontWeight: 400,
+            letterSpacing: '1px',
+            textAlign: 'center',
+            lineHeight: 1.4,
+            padding: '0 8%',
+          }}
+        >
+          {scene.card.text}
+        </div>
+        {scene.card.subtext && (
+          <div
+            style={{
+              opacity: appear * 0.7,
+              color: 'rgba(255, 255, 255, 0.55)',
+              fontFamily: '"Inter", "Helvetica", sans-serif',
+              fontSize: '1.5rem',
+              marginTop: 24,
+              textAlign: 'center',
+            }}
+          >
+            {scene.card.subtext}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       style={{
@@ -138,6 +196,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               muted
               loop
+              playbackRate={scene.playbackRate ?? 1}
             />
           ) : (
             <Img

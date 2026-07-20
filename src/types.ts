@@ -29,6 +29,10 @@ export const sceneSoundSchema = z.object({
   fadeInSeconds: z.number().min(0).optional(),
   /** Fondu de sortie (descente du volume) en secondes. Défaut : 0. */
   fadeOutSeconds: z.number().min(0).optional(),
+  /** Rogne le DÉBUT du fichier source, en secondes (pour isoler un impact). Défaut : 0. */
+  trimStart: z.number().min(0).optional(),
+  /** Rogne la FIN du fichier source, en secondes (lu depuis le début du fichier). */
+  trimEnd: z.number().min(0).optional(),
 });
 
 export const sceneSchema = z.object({
@@ -56,7 +60,23 @@ export const sceneSchema = z.object({
   effects: z
     .object({
       zoom: z.enum(['in', 'out', 'none']).optional(),
-      transition: z.enum(['fade', 'slide', 'none']).optional(),
+      transition: z.enum(['fade', 'slide', 'none', 'black', 'wipe']).optional(),
+    })
+    .optional(),
+  /**
+   * Vitesse de lecture du clip vidéo (1 = normal, <1 = ralenti). Sert à étirer un
+   * clip court pour remplir toute la scène SANS boucle visible (mouvement continu
+   * au ralenti). Injecté par un script après mesure des durées.
+   */
+  playbackRate: z.number().positive().optional(),
+  /**
+   * Carte texte (ex: fin de vidéo) : écran noir + texte centré, SANS voix ni son,
+   * sans média. Si présent, la scène ignore mediaPath/narration/sounds.
+   */
+  card: z
+    .object({
+      text: z.string(),
+      subtext: z.string().optional(),
     })
     .optional(),
   /** Durée réelle de la voix off. Injectée automatiquement par tts.ts. */
@@ -124,10 +144,26 @@ export function getSceneDurationInFrames(scene: Scene, fps: number = FPS): numbe
  * Frames de transition consommées AVANT une scène (chevauchement avec la précédente).
  * La première scène n'a pas de transition entrante.
  */
+/**
+ * Durée (en frames) d'une transition selon son type.
+ * Le fondu au noir a besoin de respirer un peu plus (effet cinéma).
+ */
+export function transitionDurationFrames(transition?: string): number {
+  switch (transition) {
+    case 'none':
+      return 0;
+    case 'black':
+      return 26; // fondu AU NOIR : plus long pour « fermer » puis rouvrir
+    case 'wipe':
+      return 20;
+    default:
+      return TRANSITION_FRAMES; // fade, slide
+  }
+}
+
 export function getTransitionFramesBefore(scene: Scene, index: number): number {
   if (index === 0) return 0;
-  const transition = scene.effects?.transition ?? 'fade';
-  return transition === 'none' ? 0 : TRANSITION_FRAMES;
+  return transitionDurationFrames(scene.effects?.transition ?? 'fade');
 }
 
 /**

@@ -1,29 +1,26 @@
-# Métadonnées — « La Surcharge Mentale »
+# Métadonnées — « Comment est produit le miel »
 
-## Format : Essai vidéo / YouTube (16:9)
+## Format : TikTok / Shorts / Reels (9:16)
 
-**Titre (accroche) :**
-La Surcharge Mentale — pourquoi ton cerveau te paralyse
+**Titre d'accroche :**
+Le miel, c'est du « vomi d'abeille » 🐝🍯
 
-**Titres alternatifs :**
-- Pourquoi tu as mille idées mais tu ne commences jamais
-- La vraie raison de ta procrastination (ce n'est pas la discipline)
+**Description (finit sur une question / CTA) :**
+Le miel, c'est techniquement du vomi d'abeille… et pourtant il ne périme JAMAIS. Du nectar au pot : 4 millions de fleurs, le jabot, la danse de la ventilation, et ce miel encore comestible retrouvé dans des tombes de pharaons de 3000 ans. Tu savais qu'une abeille n'en produit qu'un douzième de cuillère dans toute sa vie ?
 
-**Description :**
-Tu as l'esprit plein d'idées, l'envie de tout créer… et pourtant tu ne fais rien. Ce n'est pas de la paresse, ni un manque de discipline. C'est la surcharge mentale : ce moment où ton cerveau simule tellement de perfection qu'il finit par te paralyser. Un essai intime sur la peur d'échouer, l'ego, et le premier pas ridiculement simple qui brise le mur.
+**Hashtags :**
+#miel #abeilles #apiculture #nature #miel🍯 #savoir #culturegenerale #apprendresurtiktok #honey #bees #sciencefr #ruche
 
-Ceci est mon vécu.
+## Angle & structure (6 scènes)
+1. Hook — « un abonné m'a demandé… » (abeille qui butine)
+2. Le nectar — aspiré et stocké dans l'estomac à miel (macro trompe)
+3. Transformation — enzymes + bouche à bouche (trophallaxie)
+4. Séchage — battement d'ailes, de 70 % à 18 % d'eau (alvéoles)
+5. Operculation — alvéoles scellées à la cire (conservation)
+6. Récolte + CTA — apiculteur, centrifuge, fait marquant + abonne-toi
 
-**Tags :**
-surcharge mentale, procrastination, paralysie de l'analyse, perfectionnisme, peur de l'échec, discipline, motivation, développement personnel, santé mentale, anime, essai vidéo, video essay
-
-## Structure (4 actes)
-1. **Le Piège de la Perfection** — mille idées, zéro action (bleu nuit / violet).
-2. **Le Combat Silencieux** — ambition vs anxiété, fuite dans la dopamine (rouge / orange).
-3. **La Déconstruction** — ce n'est pas la volonté, c'est l'ego (pluie cyberpunk → bascule).
-4. **Le Premier Pas** — accepter le médiocre, agir maintenant (golden hour / blanc).
-
-## Notes de production
-- Voix off : brouillon Edge-TTS à remplacer par la voix intime de l'auteur (`audioPath` par scène).
-- Sous-titres : désactivés (immersion).
-- CTA de fin : logo / abonnement sur le fondu au blanc (scène 11).
+## Sources (savoir établi)
+- Nectar → estomac à miel (jabot), enzymes (invertase) → glucose + fructose
+- Trophallaxie (échange bouche à bouche) + déshydratation par ventilation
+- Teneur en eau finale ~17‑18 % → operculation à la cire → conservation longue
+- ~1/12 de cuillère à café de miel par abeille sur sa vie
