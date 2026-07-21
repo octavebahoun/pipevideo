@@ -9,6 +9,10 @@ triggers:
 
 # Content Factory — Pipeline de Création Vidéo
 
+> [!IMPORTANT]
+> **CONSIGNE STRICTEMENT OBLIGATOIRE POUR TOUT AGENT IA** :
+> Vous DEVEZ LIRE ET APPLIQUER STRICTEMENT l'ensemble des règles de ce skill (Content Factory) ainsi que des skills Remotion associés (`remotion-best-practices`) avant toute action. Ne pas ignorer ni déroger aux voix ElevenLabs (`george`, `anais`, `liam`, `rachel`), aux formats de sous-titres, et aux procédures de synchronisation TTS (`npm run tts`).
+
 Ce skill permet à l'IA d'orchestrer la génération automatisée de vidéos de A à Z en local.
 
 ## Règle d'or
@@ -17,7 +21,7 @@ Ce skill permet à l'IA d'orchestrer la génération automatisée de vidéos de 
 
 ## Deux genres de contenu supportés
 La pipeline gère aussi bien :
-- **Short vertical (9:16)** — punchy, sous-titres **karaoké** (défaut), voix Edge-TTS.
+- **Short vertical (9:16)** — punchy, sous-titres **karaoké** (défaut), voix ElevenLabs.
 - **Essai / documentaire (16:9)** — posé, sous-titres **cinématiques** ou coupés, voix souvent **fournie par l'utilisateur**, **sound design** par scène.
 
 Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voir ci-dessous).
@@ -47,10 +51,11 @@ La voix off est TOUJOURS produite/mesurée par `npm run tts` :
 ```bash
 npm run tts
 ```
-- **Mode A — Edge-TTS (défaut)** : la voix est générée depuis `narration` (voix `voice`, défaut `fr-FR-HenriNeural`). Les timings mot-à-mot (karaoké) sont capturés automatiquement, et `durationInSeconds` est synchronisée.
+- **Mode A — ElevenLabs TTS (défaut)** : la voix est générée depuis `narration` via **ElevenLabs Multilingual v2** (`voice`, défaut `"george"` ou `voiceId` spécifique). Les voix disponibles (`george`, `liam`, `antoni`, `anais`, `rachel`) et leur guide d'utilisation sont documentés dans `docs/VOICES.md`.
+  - Grâce à `convertWithTimestamps`, les timings mot-à-mot (karaoké) sont capturés automatiquement avec précision, et `durationInSeconds` est réajustée.
 - **Mode B — Voix FOURNIE par l'utilisateur** : quand l'utilisateur veut sa propre voix (ton intime, narration humaine…).
   - Global : mettre `"useProvidedAudio": true` → `npm run tts` **ne génère rien**, il attend `public/scene_<id>.mp3` pour chaque scène et se contente d'en **mesurer la durée**.
-  - Par scène : renseigner `"audioPath": "scene_3.mp3"` (ou `"voix/scene_3.mp3"`) → cette scène utilise ce fichier, les autres restent en Edge-TTS.
+  - Par scène : renseigner `"audioPath": "scene_3.mp3"` (ou `"voix/scene_3.mp3"`) → cette scène utilise ce fichier, les autres restent en ElevenLabs.
   - ⚠️ Une voix fournie **n'a pas de timings karaoké** → les sous-titres retombent sur une répartition régulière. Pour un essai, préférer alors `subtitleStyle: "cinematic"` ou couper les sous-titres.
   - **Toujours lancer `npm run tts`** même en mode fourni : c'est lui qui écrit `durationInSeconds` (indispensable au rendu).
 
@@ -106,7 +111,7 @@ Miroir cloud de `npm run render` : trouve la fonction Lambda déployée, (re)dé
 ## Scripts npm disponibles
 | Commande | Rôle |
 | --- | --- |
-| `npm run tts` | Génère (Edge-TTS) ou mesure (voix fournie) les voix off + durées + timings karaoké. |
+| `npm run tts` | Génère (ElevenLabs) ou mesure (voix fournie) les voix off + durées + timings karaoké. |
 | `npm run sounds` | Régénère `public/sounds/CATALOG.md` depuis les fiches de la bibliothèque. |
 | `npm run render` | Compile et rend la vidéo finale **en local** dans `out/video.mp4`. |
 | `npm run render:lambda` | Rend la vidéo **sur AWS Lambda** (cloud) et la télécharge dans `out/video.mp4`. |

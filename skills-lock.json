@@ -12,6 +12,12 @@
       "sourceType": "github",
       "skillPath": "skills/remotion-best-practices/SKILL.md",
       "computedHash": "54b316f9070079df3f7dad45a9df11115e9f2aaeb46187a2c1dfe8c26fafddce"
+    },
+    "text-to-speech": {
+      "source": "elevenlabs/skills",
+      "sourceType": "github",
+      "skillPath": "text-to-speech/SKILL.md",
+      "computedHash": "ce96454df84df2c8196ce7a650ac178185f3a62b32c2f1fd6250f05ec4982ff0"
     }
   }
 }

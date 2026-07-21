@@ -33,13 +33,81 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-const edge_tts_universal_1 = require("edge-tts-universal");
+require("dotenv/config");
+const elevenlabs_1 = require("elevenlabs");
 const music_metadata_1 = require("music-metadata");
 const fs = __importStar(require("fs/promises"));
 const path = __importStar(require("path"));
 const storyboard_1 = require("./storyboard");
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
+const DEFAULT_API_KEY = '';
+const apiKey = process.env.ELEVENLABS_API_KEY || DEFAULT_API_KEY;
+const client = new elevenlabs_1.ElevenLabsClient({ apiKey });
+const VOICE_MAP = {
+    george: 'JBFqnCBsd6RMkjVDRZzb',
+    liam: 'EmZGlxI7QPvCEMOkFhB9',
+    antoni: 'ErXwobaYiN019PkySvjV',
+    anais: '5OnMHwgTFgvPVwE8jP6B',
+    rachel: 'or4EV8aZq78KWcXw48wd',
+};
+function resolveVoiceId(voiceInput) {
+    if (!voiceInput)
+        return VOICE_MAP.george;
+    const normalized = voiceInput.toLowerCase().trim();
+    if (VOICE_MAP[normalized]) {
+        return VOICE_MAP[normalized];
+    }
+    // Check if voiceInput looks like an ElevenLabs Voice ID (typically 20 chars alphanumeric)
+    if (/^[a-zA-Z0-9]{15,25}$/.test(voiceInput)) {
+        return voiceInput;
+    }
+    console.log(`⚠️  Voix inconnue ou ancienne voix Edge-TTS ("${voiceInput}"). Utilisation de la voix George par défaut.`);
+    return VOICE_MAP.george;
+}
+function parseElevenLabsAlignment(alignment) {
+    const words = [];
+    if (!alignment || !alignment.characters || alignment.characters.length === 0) {
+        return words;
+    }
+    const { characters, character_start_times_seconds, character_end_times_seconds } = alignment;
+    let currentWordChars = [];
+    let wordStartTime = null;
+    let wordEndTime = 0;
+    for (let i = 0; i < characters.length; i++) {
+        const char = characters[i];
+        const start = character_start_times_seconds[i];
+        const end = character_end_times_seconds[i];
+        if (/\s/.test(char)) {
+            if (currentWordChars.length > 0 && wordStartTime !== null) {
+                const wordText = currentWordChars.join('');
+                words.push({
+                    text: wordText,
+                    start: Number(wordStartTime.toFixed(3)),
+                    duration: Number(Math.max(0, wordEndTime - wordStartTime).toFixed(3)),
+                });
+                currentWordChars = [];
+                wordStartTime = null;
+            }
+        }
+        else {
+            if (wordStartTime === null) {
+                wordStartTime = start;
+            }
+            currentWordChars.push(char);
+            wordEndTime = end;
+        }
+    }
+    if (currentWordChars.length > 0 && wordStartTime !== null) {
+        const wordText = currentWordChars.join('');
+        words.push({
+            text: wordText,
+            start: Number(wordStartTime.toFixed(3)),
+            duration: Number(Math.max(0, wordEndTime - wordStartTime).toFixed(3)),
+        });
+    }
+    return words;
+}
 async function fileExists(filePath) {
     try {
         await fs.access(filePath);
@@ -56,9 +124,9 @@ async function main() {
         const storyboard = await (0, storyboard_1.loadStoryboard)(STORYBOARD_PATH);
         // 2. Créer le dossier media s'il n'existe pas
         await fs.mkdir(MEDIA_DIR, { recursive: true });
-        const voice = storyboard.voice || 'fr-FR-HenriNeural';
-        console.log(`Voix utilisée : ${voice}`);
-        // 3. Parcourir et générer (ou mesurer) la voix-off pour chaque scène
+        const voiceId = resolveVoiceId(storyboard.voice);
+        console.log(`Moteur TTS : ElevenLabs Multilingual v2 | Voice ID : ${voiceId}`);
+        // 3. Parcourir et générer la voix-off pour chaque scène
         for (const scene of storyboard.scenes) {
             console.log(`\nTraitement de la scène ${scene.id}...`);
             // --- Cas 0 : carte texte (fin) → pas de voix, on garde sa durée manuelle. ---
@@ -70,18 +138,14 @@ async function main() {
                 continue;
             }
             // --- Cas 1 : voix off FOURNIE par l'utilisateur → on ne régénère pas. ---
-            // Soit la scène pointe explicitement un `audioPath`, soit le mode global
-            // `useProvidedAudio` est actif (on attend alors public/scene_<id>.mp3).
             const providedRelPath = scene.audioPath ?? (storyboard.useProvidedAudio ? `scene_${scene.id}.mp3` : undefined);
             if (providedRelPath) {
                 const providedPath = path.join(MEDIA_DIR, providedRelPath);
                 if (!(await fileExists(providedPath))) {
                     throw new Error(`Voix off fournie manquante pour la scène ${scene.id} : ${providedPath}\n` +
-                        `→ Dépose le fichier dans public/, ou retire "audioPath"/"useProvidedAudio" pour repasser en Edge-TTS.`);
+                        `→ Dépose le fichier dans public/, ou retire "audioPath"/"useProvidedAudio" pour repasser en ElevenLabs.`);
                 }
-                console.log(`Voix off fournie par l'utilisateur : ${providedRelPath} (Edge-TTS ignoré)`);
-                // Pas de WordBoundary sur un audio fourni → pas de karaoké précis.
-                // On efface d'éventuels anciens timings pour éviter un décalage.
+                console.log(`Voix off fournie par l'utilisateur : ${providedRelPath} (ElevenLabs ignoré)`);
                 scene.words = undefined;
                 const metadata = await (0, music_metadata_1.parseFile)(providedPath);
                 const duration = metadata.format.duration;
@@ -92,26 +156,26 @@ async function main() {
                 scene.durationInSeconds = duration;
                 continue;
             }
-            // --- Cas 2 : génération Edge-TTS classique. ---
+            // --- Cas 2 : génération ElevenLabs avec timestamps mot-à-mot ---
             console.log(`Texte : "${scene.narration}"`);
-            // Chemin du fichier audio pour cette scène
             const audioFileName = `scene_${scene.id}.mp3`;
             const audioFilePath = path.join(MEDIA_DIR, audioFileName);
-            // Générer avec EdgeTTS
-            const tts = new edge_tts_universal_1.EdgeTTS(scene.narration, voice);
-            const result = await tts.synthesize();
-            const audioBuffer = Buffer.from(await result.audio.arrayBuffer());
+            const response = await client.textToSpeech.convertWithTimestamps(voiceId, {
+                text: scene.narration,
+                model_id: 'eleven_multilingual_v2',
+                output_format: 'mp3_44100_128',
+            });
+            const audioBuffer = Buffer.from(response.audio_base64, 'base64');
             await fs.writeFile(audioFilePath, audioBuffer);
             console.log(`Audio généré et sauvegardé dans : ${audioFilePath}`);
-            // Capturer les timings mot-à-mot (WordBoundary) pour le karaoké.
-            // offset/duration sont en unités de 100 ns → conversion en secondes.
-            if (Array.isArray(result.subtitle) && result.subtitle.length > 0) {
-                scene.words = result.subtitle.map((wb) => ({
-                    text: wb.text,
-                    start: wb.offset / 10_000_000,
-                    duration: wb.duration / 10_000_000,
-                }));
-                console.log(`Timings karaoké : ${scene.words.length} mots capturés`);
+            // Capturer les timings mot-à-mot pour le karaoké Remotion
+            const words = parseElevenLabsAlignment(response.alignment);
+            if (words.length > 0) {
+                scene.words = words;
+                console.log(`Timings karaoké : ${scene.words.length} mots capturés avec succès`);
+            }
+            else {
+                scene.words = undefined;
             }
             // Mesurer la durée exacte du fichier audio
             const metadata = await (0, music_metadata_1.parseFile)(audioFilePath);
@@ -120,12 +184,11 @@ async function main() {
                 throw new Error(`Impossible de lire la durée du fichier audio : ${audioFilePath}`);
             }
             console.log(`Durée calculée : ${duration.toFixed(2)} secondes`);
-            // Mettre à jour la durée dans le JSON
             scene.durationInSeconds = duration;
         }
         // 4. Sauvegarder le storyboard mis à jour
         await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
-        console.log(`\n✅ Storyboard synchronisé avec succès dans storyboard.json !`);
+        console.log(`\n✅ Storyboard synchronisé avec succès avec ElevenLabs !`);
     }
     catch (error) {
         console.error('❌ Une erreur est survenue lors de la génération TTS :', error.message);

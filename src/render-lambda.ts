@@ -11,7 +11,7 @@ import {
 } from '@remotion/lambda';
 import type { AwsRegion } from '@remotion/lambda';
 import { loadStoryboard } from './storyboard';
-import { Storyboard, getTotalDurationInFrames } from './types';
+import { Storyboard, getTotalDurationInFrames, FPS } from './types';
 
 /**
  * Rendu CLOUD (miroir de src/render.ts, mais sur AWS Lambda).
@@ -157,18 +157,41 @@ async function main() {
   }
   console.log(`Site     : ${serveUrl}`);
 
-  // Limiter le nombre de Lambdas en parallèle. Un compte AWS neuf a un quota de
-  // concurrence bas → "Rate Exceeded". Ajustable via RENDER_MAX_LAMBDAS (monte-le
-  // après une augmentation de quota pour un rendu plus rapide).
-  const maxLambdas = Number(process.env.RENDER_MAX_LAMBDAS || 30);
+  // Découpage en chunks piloté par le QUOTA DE CONCURRENCE du compte AWS.
+  // Contexte : dépasser le quota est FATAL et NON retenté (18 renderers sur un quota
+  // de 10 ⇒ « Rate Exceeded » immédiat). Et la fonction "launch" attend TOUS les
+  // chunks : au-delà d'une vague, elle dépasse son propre timeout de 600 s.
+  // Stratégie : tout rendre en UNE SEULE vague qui tient dans le quota.
+  //  - RENDER_MAX_LAMBDAS = quota de concurrence Lambda du compte (ici 10).
+  //  - On réserve 1 slot pour la fonction "launch" + 1 slot de marge (invocations
+  //    transitoires de Remotion) ⇒ renderers = quota - 2.
+  //  - chunks = renderers (1 vague), donc les plus petits chunks possibles sans
+  //    dépasser le quota → sûr à la fois côté "Rate Exceeded" et côté timeout.
+  // Après une hausse du quota AWS (Service Quotas), augmenter RENDER_MAX_LAMBDAS :
+  // plus de renderers ⇒ chunks plus petits ⇒ rendu plus rapide et vidéos plus longues.
+  const awsConcurrencyQuota = Number(process.env.RENDER_MAX_LAMBDAS || 10);
+  const maxRenderers = Math.max(1, awsConcurrencyQuota - 2);
   const totalFrames = getTotalDurationInFrames(storyboard);
-  const framesPerLambda = Math.max(20, Math.ceil(totalFrames / maxLambdas));
-  const estLambdas = Math.ceil(totalFrames / framesPerLambda);
+  const framesPerLambda = Math.max(60, Math.ceil(totalFrames / maxRenderers));
+  const estChunks = Math.ceil(totalFrames / framesPerLambda);
+
+  // Garde-fou timeout : un chunk de ~1586 frames frôlait déjà les 600 s au 1er essai.
+  // Au-delà de ce seuil, la vidéo est trop longue pour ce quota → relever le quota AWS.
+  const SAFE_MAX_FRAMES = 1500;
+  if (framesPerLambda > SAFE_MAX_FRAMES) {
+    throw new Error(
+      `Vidéo trop longue (${totalFrames} frames ≈ ${(totalFrames / (FPS * 60)).toFixed(1)} min) ` +
+        `pour un quota de ${awsConcurrencyQuota} Lambdas : ${framesPerLambda} frames/chunk ` +
+        `dépasseraient le timeout de 600 s.\n` +
+        `→ Fais relever le quota de concurrence Lambda AWS (Service Quotas > Lambda > ` +
+        `« Concurrent executions »), puis augmente RENDER_MAX_LAMBDAS.`
+    );
+  }
 
   // 3. Lancer le rendu sur Lambda. (Un retry peut, en cas de timeout APRÈS invoke
   //    réussi, lancer un 2e rendu — surcoût négligeable, on garde le dernier renderId.)
   console.log(
-    `Lancement du rendu sur Lambda… (~${estLambdas} Lambdas, framesPerLambda=${framesPerLambda})`
+    `Lancement du rendu sur Lambda… (${estChunks} chunks de ${framesPerLambda} frames)`
   );
   const { renderId } = await withRetry(
     'lancement du rendu',
@@ -199,6 +222,10 @@ async function main() {
     }
     if (progress.done) {
       process.stdout.write('\rRendu Lambda : 100%          \n');
+      if (progress.outputFile) {
+        console.log(`\n☁️  Vidéo générée et sauvegardée sur AWS S3 (aucun risque de la perdre !) :`);
+        console.log(`   👉 Lien S3 Cloud : ${progress.outputFile}\n`);
+      }
       break;
     }
     process.stdout.write(`\rRendu Lambda : ${Math.round(progress.overallProgress * 100)}%   `);

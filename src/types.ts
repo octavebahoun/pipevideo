@@ -95,6 +95,8 @@ export const sceneSchema = z.object({
   durationInSeconds: z.number().optional(),
   /** Timings mot-à-mot pour le karaoké. Injectés automatiquement par tts.ts (ne pas écrire à la main). */
   words: z.array(wordTimingSchema).optional(),
+  /** Volume du média vidéo (audio original du clip). 0 = muet, 1 = plein volume. Défaut : 0. */
+  mediaVolume: z.number().min(0).max(1).optional(),
   /** Sons additionnels (bruitages, ambiances, musiques) joués pendant la scène. */
   sounds: z.array(sceneSoundSchema).optional(),
 });
@@ -102,11 +104,11 @@ export const sceneSchema = z.object({
 export const storyboardSchema = z.object({
   title: z.string(),
   ratio: z.enum(['16:9', '9:16']),
-  /** Voix Edge-TTS. Par défaut : fr-FR-HenriNeural. */
+  /** Voix ElevenLabs (ex: "george", "anais", "liam", "rachel"). Par défaut : george. */
   voice: z.string().optional(),
   /**
    * Utiliser des voix off FOURNIES par l'utilisateur pour TOUTES les scènes
-   * (skip Edge-TTS global). `npm run tts` se contente alors de mesurer la durée
+   * (skip ElevenLabs global). `npm run tts` se contente alors de mesurer la durée
    * des fichiers public/scene_<id>.mp3 (ou du `audioPath` de chaque scène).
    * Une scène peut toujours surcharger avec son propre `audioPath`. Défaut : false.
    */

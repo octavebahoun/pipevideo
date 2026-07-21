@@ -19,6 +19,7 @@
     "@remotion/renderer": "^4.0.491",
     "@remotion/transitions": "4.0.491",
     "edge-tts-universal": "^1.1.1",
+    "elevenlabs": "^1.59.0",
     "music-metadata": "^7.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

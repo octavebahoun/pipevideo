@@ -1,12 +1,12 @@
-# 📝 Métadonnées de Publication — Le Faucon Pèlerin : L'Oiseau Supersonique
+# 📝 Métadonnées de Publication — Le Sommeil et les Rêves des Animaux
 
 ## 📌 Titres optimisés (CTR)
-1. **Plus rapide qu'une Formule 1 : l'oiseau le plus rapide du monde ! 🦅⚡** *(Recommandé)*
-2. **Comment cet oiseau atteint 389 km/h sans exploser ? 😱**
-3. **Le missile vivant qui a inspiré les réacteurs de la NASA 🚀**
+1. **Les animaux rêvent-ils ? La science répond enfin 🧠🐾** *(Recommandé)*
+2. **Ce que votre chien voit vraiment dans ses rêves va vous surprendre 😱**
+3. **Le sommeil animal : 7 découvertes qui changent tout**
 
-## 📄 Description (YouTube Shorts / TikTok / Instagram Reels)
-> À 389 km/h, le faucon pèlerin est plus rapide qu'une Formule 1 en pleine ligne droite ! Mais comment un simple oiseau peut-il résister à un tel piqué sans que ses poumons n'explosent ? Découvrez l'ingénierie naturelle qui a inspiré les réacteurs d'avions supersoniques ! 🦅⚡
+## 📄 Description (YouTube / Documentaire)
+> Votre chien agite les pattes en dormant ? Ce n'est pas un hasard. La science a prouvé que les animaux rêvent — et pas seulement les mammifères. Des rats du MIT aux poulpes qui changent de couleur en dormant, plongez dans les mystères du sommeil animal. 🧠🐾
 
 ## 🏷️ Hashtags & Tags
-`#faucon pèlerin` `#vitesse` `#formule1` `#nature` `#science` `#animaux` `#nasa` `#documentaire` `#facts` `#shorts` `#tiktok`
+`#sommeil` `#rêves` `#animaux` `#science` `#documentaire` `#neurologie` `#chiens` `#chats` `#poulpe` `#nature` `#biologie` `#cerveau`

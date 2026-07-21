@@ -171,16 +171,15 @@ async function main() {
         await fs.rm(stagingDir, { recursive: true, force: true });
     }
     console.log(`Site     : ${serveUrl}`);
-    // Limiter le nombre de Lambdas en parallèle. Un compte AWS neuf a un quota de
-    // concurrence bas → "Rate Exceeded". Ajustable via RENDER_MAX_LAMBDAS (monte-le
-    // après une augmentation de quota pour un rendu plus rapide).
-    const maxLambdas = Number(process.env.RENDER_MAX_LAMBDAS || 30);
+    // 1. framesPerLambda petit (~40 images/chunk) pour qu'aucune Lambda ne dépasse le timeout de 120s.
+    // 2. concurrency passé à renderMediaOnLambda pour borner le nombre de Lambdas simultanées sur AWS.
+    const maxConcurrency = Number(process.env.RENDER_MAX_LAMBDAS || 10);
     const totalFrames = (0, types_1.getTotalDurationInFrames)(storyboard);
-    const framesPerLambda = Math.max(20, Math.ceil(totalFrames / maxLambdas));
-    const estLambdas = Math.ceil(totalFrames / framesPerLambda);
+    const framesPerLambda = 40;
+    const estChunks = Math.ceil(totalFrames / framesPerLambda);
     // 3. Lancer le rendu sur Lambda. (Un retry peut, en cas de timeout APRÈS invoke
     //    réussi, lancer un 2e rendu — surcoût négligeable, on garde le dernier renderId.)
-    console.log(`Lancement du rendu sur Lambda… (~${estLambdas} Lambdas, framesPerLambda=${framesPerLambda})`);
+    console.log(`Lancement du rendu sur Lambda… (${estChunks} chunks de ${framesPerLambda} frames, concurrence max=${maxConcurrency})`);
     const { renderId } = await withRetry('lancement du rendu', () => (0, lambda_1.renderMediaOnLambda)({
         region,
         functionName,
@@ -189,7 +188,7 @@ async function main() {
         inputProps: { storyboard },
         codec: 'h264',
         privacy: 'no-acl',
-        framesPerLambda,
+        concurrency: maxConcurrency,
     }), 5);
     console.log(`Rendu lancé : ${renderId}`);
     // 4. Suivre la progression (chaque sondage est résilient aux coupures).
@@ -200,6 +199,10 @@ async function main() {
         }
         if (progress.done) {
             process.stdout.write('\rRendu Lambda : 100%          \n');
+            if (progress.outputFile) {
+                console.log(`\n☁️  Vidéo générée et sauvegardée sur AWS S3 (aucun risque de la perdre !) :`);
+                console.log(`   👉 Lien S3 Cloud : ${progress.outputFile}\n`);
+            }
             break;
         }
         process.stdout.write(`\rRendu Lambda : ${Math.round(progress.overallProgress * 100)}%   `);

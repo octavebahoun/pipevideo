@@ -20,7 +20,7 @@ async function main() {
   const initialStoryboard: Storyboard = {
     title: subject,
     ratio: '16:9',
-    voice: 'fr-FR-HenriNeural',
+    voice: 'george',
     scenes: [
       {
         id: 1,
@@ -29,7 +29,7 @@ async function main() {
           zoom: 'in',
           transition: 'fade'
         },
-        mediaPath: 'scene_1.png'
+        mediaPath: 'scene_1.mp4'
       }
     ]
   };
@@ -40,11 +40,12 @@ async function main() {
     console.log(`- Sujet : "${subject}"`);
     console.log(`- Fichier créé : ${STORYBOARD_PATH}\n`);
     
-    console.log(`🤖 CONSIGNE POUR L'AGENT IA :`);
+    console.log(`🤖 CONSIGNE STRICTEMENT OBLIGATOIRE POUR L'AGENT IA :`);
     console.log(`--------------------------------------------------------------------------------`);
-    console.log(`Un nouveau projet vidéo sur "${subject}" a été initialisé.`);
-    console.log(`Agent, lis le fichier storyboard.json et utilise le skill "content-factory"`);
-    console.log(`pour générer toutes les scènes (narration, effets, mediaPath) pour ce sujet.`);
+    console.log(`⚠️ ATTENTION AGENT : Tu DOIS consulter et appliquer STRICTEMENT le skill "content-factory"`);
+    console.log(`   (fichier .agents/skills/content-factory/SKILL.md) ainsi que les best-practices Remotion.`);
+    console.log(`   Tu ne dois JAMAIS ignorer ces règles. Génère le script dans storyboard.json`);
+    console.log(`   avec des voix ElevenLabs (ex: "george", "anais") et lance "npm run tts".`);
     console.log(`--------------------------------------------------------------------------------\n`);
 
   } catch (error: any) {

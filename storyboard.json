@@ -1,639 +1,210 @@
 {
-  "title": "Le Faucon Pèlerin : L'Oiseau qui Brise le Mur du Son Naturel",
-  "ratio": "9:16",
-  "voice": "fr-FR-HenriNeural",
+  "title": "Le Sommeil et les Rêves des Animaux : Que se Passe-t-il Vraiment ?",
+  "ratio": "16:9",
+  "voice": "antoni",
   "subtitles": true,
-  "subtitleStyle": "karaoke",
+  "subtitleStyle": "cinematic",
   "music": "sounds/music/fearless-the-soundlings-ruby-jay.mp3",
-  "musicVolume": 0.07,
+  "musicVolume": 0.06,
   "scenes": [
     {
       "id": 1,
-      "narration": "Plus rapide qu'une Formule 1 en pleine ligne droite : à 389 kilomètres par heure, le faucon pèlerin est la créature la plus rapide sur Terre.",
-      "mediaPath": "scene_1.mp4",
+      "narration": "Et si je vous disais qu'en ce moment même, votre chien est en train de revivre sa promenade de ce matin ? Ce n'est pas une intuition, c'est ce que la science vient de prouver. Et restez jusqu'à la fin, car vous allez découvrir un animal qui affiche littéralement ses rêves sur sa propre peau.",
+      "mediaPath": "scene_01_202607210247.mp4",
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
-      "sounds": [
-        {
-          "src": "sounds/sfx/swoosh.mp3",
-          "volume": 0.5,
-          "startInSeconds": 0.2
-        }
-      ],
-      "words": [
-        {
-          "text": "Plus",
-          "start": 0.1,
-          "duration": 0.175
-        },
-        {
-          "text": "rapide",
-          "start": 0.2875,
-          "duration": 0.3125
-        },
-        {
-          "text": "qu'une",
-          "start": 0.6125,
-          "duration": 0.1875
-        },
-        {
-          "text": "Formule",
-          "start": 0.8125,
-          "duration": 0.3625
-        },
-        {
-          "text": "1",
-          "start": 1.1875,
-          "duration": 0.0625
-        },
-        {
-          "text": "en",
-          "start": 1.2625,
-          "duration": 0.075
-        },
-        {
-          "text": "pleine",
-          "start": 1.35,
-          "duration": 0.2375
-        },
-        {
-          "text": "ligne",
-          "start": 1.6,
-          "duration": 0.2125
-        },
-        {
-          "text": "droite",
-          "start": 1.825,
-          "duration": 0.325
-        },
-        {
-          "text": "à",
-          "start": 2.3625,
-          "duration": 0.0375
-        },
-        {
-          "text": "389 kilomètres",
-          "start": 2.4125,
-          "duration": 1.4125
-        },
-        {
-          "text": "par",
-          "start": 3.8375,
-          "duration": 0.1625
-        },
-        {
-          "text": "heure",
-          "start": 4.0125,
-          "duration": 0.25
-        },
-        {
-          "text": "le",
-          "start": 4.5875,
-          "duration": 0.1125
-        },
-        {
-          "text": "faucon",
-          "start": 4.7125,
-          "duration": 0.3125
-        },
-        {
-          "text": "pèlerin",
-          "start": 5.0375,
-          "duration": 0.325
-        },
-        {
-          "text": "est",
-          "start": 5.375,
-          "duration": 0.0375
-        },
-        {
-          "text": "la",
-          "start": 5.425,
-          "duration": 0.1
-        },
-        {
-          "text": "créature",
-          "start": 5.5375,
-          "duration": 0.45
-        },
-        {
-          "text": "la",
-          "start": 6,
-          "duration": 0.0875
-        },
-        {
-          "text": "plus",
-          "start": 6.1,
-          "duration": 0.1625
-        },
-        {
-          "text": "rapide",
-          "start": 6.275,
-          "duration": 0.35
-        },
-        {
-          "text": "sur",
-          "start": 6.6375,
-          "duration": 0.15
-        },
-        {
-          "text": "Terre",
-          "start": 6.8,
-          "duration": 0.4625
-        }
-      ],
-      "durationInSeconds": 8.136
+      "mediaVolume": 0.12,
+      "durationInSeconds": 15.542857142857143
     },
     {
       "id": 2,
-      "narration": "Mais comment un simple oiseau peut-il plonger en piqué vertigineux sans que ses poumons n'explosent sous la pression ?",
-      "mediaPath": "scene_2.mp4",
+      "narration": "En 2001, des chercheurs du MIT ont branché des rats à des électrodes pendant qu'ils couraient dans un labyrinthe. La nuit venue, leur cerveau rejouait exactement le même parcours. Les rats rêvaient de leur labyrinthe.",
+      "mediaPath": "scene_02_202607210241.jpeg",
       "effects": {
-        "zoom": "out",
-        "transition": "slide"
+        "zoom": "none",
+        "transition": "fade"
       },
-      "words": [
-        {
-          "text": "Mais",
-          "start": 0.1,
-          "duration": 0.2
-        },
-        {
-          "text": "comment",
-          "start": 0.3125,
-          "duration": 0.2875
-        },
-        {
-          "text": "un",
-          "start": 0.6125,
-          "duration": 0.075
-        },
-        {
-          "text": "simple",
-          "start": 0.7,
-          "duration": 0.2875
-        },
-        {
-          "text": "oiseau",
-          "start": 1,
-          "duration": 0.3125
-        },
-        {
-          "text": "peut-il",
-          "start": 1.325,
-          "duration": 0.3375
-        },
-        {
-          "text": "plonger",
-          "start": 1.675,
-          "duration": 0.35
-        },
-        {
-          "text": "en",
-          "start": 2.0375,
-          "duration": 0.075
-        },
-        {
-          "text": "piqué",
-          "start": 2.125,
-          "duration": 0.3
-        },
-        {
-          "text": "vertigineux",
-          "start": 2.4375,
-          "duration": 0.5625
-        },
-        {
-          "text": "sans",
-          "start": 3.0125,
-          "duration": 0.15
-        },
-        {
-          "text": "que",
-          "start": 3.175,
-          "duration": 0.15
-        },
-        {
-          "text": "ses",
-          "start": 3.3375,
-          "duration": 0.1125
-        },
-        {
-          "text": "poumons",
-          "start": 3.4625,
-          "duration": 0.25
-        },
-        {
-          "text": "n'explosent",
-          "start": 3.725,
-          "duration": 0.4375
-        },
-        {
-          "text": "sous",
-          "start": 4.175,
-          "duration": 0.1125
-        },
-        {
-          "text": "la",
-          "start": 4.3,
-          "duration": 0.0875
-        },
-        {
-          "text": "pression",
-          "start": 4.4,
-          "duration": 0.475
-        }
-      ],
-      "durationInSeconds": 5.76
+      "durationInSeconds": 12.564897959183673
     },
     {
       "id": 3,
-      "narration": "Son secret ? Des petits cônes osseux dans ses narines qui canalisent le choc de l'air. Une technique si incroyable que la NASA s'en est inspirée pour les réacteurs d'avions.",
-      "mediaPath": "scene_3.mp4",
+      "narration": "Cette expérience a changé notre compréhension du sommeil animal. Pour la première fois, on pouvait littéralement lire dans le cerveau d'un rat endormi et deviner ce qu'il était en train de revivre. Mais cette capacité à rêver est-elle universelle ?",
+      "mediaPath": "scene_03_202607210241.jpeg",
       "effects": {
         "zoom": "in",
-        "transition": "wipe"
+        "transition": "fade"
       },
-      "words": [
-        {
-          "text": "Son",
-          "start": 0.1,
-          "duration": 0.225
-        },
-        {
-          "text": "secret",
-          "start": 0.3375,
-          "duration": 0.4625
-        },
-        {
-          "text": "Des",
-          "start": 1.6625,
-          "duration": 0.225
-        },
-        {
-          "text": "petits",
-          "start": 1.9,
-          "duration": 0.2875
-        },
-        {
-          "text": "cônes",
-          "start": 2.2,
-          "duration": 0.2125
-        },
-        {
-          "text": "osseux",
-          "start": 2.425,
-          "duration": 0.3
-        },
-        {
-          "text": "dans",
-          "start": 2.7375,
-          "duration": 0.1125
-        },
-        {
-          "text": "ses",
-          "start": 2.8625,
-          "duration": 0.125
-        },
-        {
-          "text": "narines",
-          "start": 3,
-          "duration": 0.3
-        },
-        {
-          "text": "qui",
-          "start": 3.3125,
-          "duration": 0.15
-        },
-        {
-          "text": "canalisent",
-          "start": 3.475,
-          "duration": 0.4375
-        },
-        {
-          "text": "le",
-          "start": 3.925,
-          "duration": 0.1375
-        },
-        {
-          "text": "choc",
-          "start": 4.075,
-          "duration": 0.225
-        },
-        {
-          "text": "de",
-          "start": 4.3125,
-          "duration": 0.1
-        },
-        {
-          "text": "l'air",
-          "start": 4.425,
-          "duration": 0.375
-        },
-        {
-          "text": "Une",
-          "start": 5.675,
-          "duration": 0.1875
-        },
-        {
-          "text": "technique",
-          "start": 5.875,
-          "duration": 0.4
-        },
-        {
-          "text": "si",
-          "start": 6.2875,
-          "duration": 0.1625
-        },
-        {
-          "text": "incroyable",
-          "start": 6.4625,
-          "duration": 0.5625
-        },
-        {
-          "text": "que",
-          "start": 7.0375,
-          "duration": 0.1
-        },
-        {
-          "text": "la",
-          "start": 7.15,
-          "duration": 0.0625
-        },
-        {
-          "text": "NASA",
-          "start": 7.225,
-          "duration": 0.3
-        },
-        {
-          "text": "s'en",
-          "start": 7.5375,
-          "duration": 0.15
-        },
-        {
-          "text": "est",
-          "start": 7.7,
-          "duration": 0.0875
-        },
-        {
-          "text": "inspirée",
-          "start": 7.8,
-          "duration": 0.525
-        },
-        {
-          "text": "pour",
-          "start": 8.3375,
-          "duration": 0.1625
-        },
-        {
-          "text": "les",
-          "start": 8.5125,
-          "duration": 0.075
-        },
-        {
-          "text": "réacteurs",
-          "start": 8.6,
-          "duration": 0.425
-        },
-        {
-          "text": "d'avions",
-          "start": 9.0375,
-          "duration": 0.375
-        }
-      ],
-      "durationInSeconds": 10.296
+      "durationInSeconds": 14.158367346938775
     },
     {
       "id": 4,
-      "narration": "Et ce n'est pas son seul super-pouvoir. Ajoutez à cela des yeux armés d'une visière transparente, et des serres capables de tout pulvériser à l'impact.",
-      "mediaPath": "scene_4.mp4",
+      "narration": "Pour comprendre, il faut d'abord parler du sommeil paradoxal. C'est cette phase où le cerveau s'emballe, où les yeux bougent rapidement sous les paupières, et où le corps se paralyse pour ne pas qu'on agisse nos rêves. Chez l'humain, c'est là que naissent nos songes les plus vivaces.",
+      "mediaPath": "scene_04_202607210241.jpeg",
       "effects": {
-        "zoom": "in",
-        "transition": "black"
+        "zoom": "none",
+        "transition": "fade"
       },
-      "overlayText": {
-        "text": "Membrane nictitante (Visière intégrée)",
-        "startInSeconds": 1.2
-      },
-      "sounds": [
-        {
-          "src": "sounds/sfx/wood-hit-metal-crash.mp3",
-          "volume": 0.6,
-          "startInSeconds": 3.8
-        }
-      ],
-      "words": [
-        {
-          "text": "Et",
-          "start": 0.1,
-          "duration": 0.15
-        },
-        {
-          "text": "ce",
-          "start": 0.2625,
-          "duration": 0.1125
-        },
-        {
-          "text": "n'est",
-          "start": 0.3875,
-          "duration": 0.1125
-        },
-        {
-          "text": "pas",
-          "start": 0.5125,
-          "duration": 0.1625
-        },
-        {
-          "text": "son",
-          "start": 0.6875,
-          "duration": 0.1625
-        },
-        {
-          "text": "seul",
-          "start": 0.8625,
-          "duration": 0.225
-        },
-        {
-          "text": "super-pouvoir",
-          "start": 1.1,
-          "duration": 0.9375
-        },
-        {
-          "text": "Ajoutez",
-          "start": 2.9125,
-          "duration": 0.4875
-        },
-        {
-          "text": "à",
-          "start": 3.4125,
-          "duration": 0.075
-        },
-        {
-          "text": "cela",
-          "start": 3.5,
-          "duration": 0.25
-        },
-        {
-          "text": "des",
-          "start": 3.7625,
-          "duration": 0.1125
-        },
-        {
-          "text": "yeux",
-          "start": 3.8875,
-          "duration": 0.1625
-        },
-        {
-          "text": "armés",
-          "start": 4.0625,
-          "duration": 0.275
-        },
-        {
-          "text": "d'une",
-          "start": 4.35,
-          "duration": 0.15
-        },
-        {
-          "text": "visière",
-          "start": 4.5125,
-          "duration": 0.3125
-        },
-        {
-          "text": "transparente",
-          "start": 4.8375,
-          "duration": 0.6875
-        },
-        {
-          "text": "et",
-          "start": 5.85,
-          "duration": 0.0375
-        },
-        {
-          "text": "des",
-          "start": 5.9,
-          "duration": 0.125
-        },
-        {
-          "text": "serres",
-          "start": 6.0375,
-          "duration": 0.1875
-        },
-        {
-          "text": "capables",
-          "start": 6.2375,
-          "duration": 0.425
-        },
-        {
-          "text": "de",
-          "start": 6.675,
-          "duration": 0.125
-        },
-        {
-          "text": "tout",
-          "start": 6.8125,
-          "duration": 0.15
-        },
-        {
-          "text": "pulvériser",
-          "start": 6.975,
-          "duration": 0.55
-        },
-        {
-          "text": "à",
-          "start": 7.5375,
-          "duration": 0.0375
-        },
-        {
-          "text": "l'impact",
-          "start": 7.5875,
-          "duration": 0.575
-        }
-      ],
-      "durationInSeconds": 9.024
+      "durationInSeconds": 15.046530612244897
     },
     {
       "id": 5,
-      "narration": "Voilà comment ce missile vivant transforme chaque centimètre du ciel en une arène supersonique.",
-      "mediaPath": "scene_5.mp4",
+      "narration": "Et cette phase n'est pas une exclusivité humaine. Tous les mammifères étudiés jusqu'à présent connaissent cette phase où le cerveau est en pleine ébullition. Des chiens aux chats, des rats aux éléphants, en passant par les chauves-souris qui dorment vingt heures par jour accrochées la tête en bas.",
+      "mediaPath": "scene_05_202607210250.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 16.90122448979592
+    },
+    {
+      "id": 6,
+      "narration": "Mais si le rêve est universel, la façon de se reposer, elle, change radicalement d'une espèce à l'autre. La girafe ne dort que deux heures par jour, par petites siestes de cinq à quinze minutes. Le koala, à l'inverse, dort jusqu'à vingt-deux heures par jour.",
+      "mediaPath": "scene_06_202607210241.jpeg",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 16.013061224489796
+    },
+    {
+      "id": 7,
+      "narration": "Pourquoi de telles différences ? La réponse tient en un mot : la prédation. Les herbivores comme la girafe ne peuvent pas se permettre de sombrer longtemps dans un sommeil profond. Trop vulnérables, ils dorment par fragments, toujours prêts à fuir.",
+      "mediaPath": "scene_07_202607210241.jpeg",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 15.36
+    },
+    {
+      "id": 8,
+      "narration": "Les carnivores comme le lion, eux, peuvent dormir jusqu'à quinze heures par jour. Sans prédateurs naturels, ils s'offrent le luxe de plonger profondément dans le sommeil paradoxal, là où les rêves sont les plus intenses. Mais attendez, car pour certains, dormir est encore plus risqué que pour une girafe.",
+      "mediaPath": "scene_08_202607210255.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 17.397551020408162
+    },
+    {
+      "id": 9,
+      "narration": "Et il n'y a pas que les mammifères. Les oiseaux aussi connaissent cette phase où le cerveau est en pleine ébullition, mais leurs épisodes sont très courts, quelques secondes à peine. Peut-être parce qu'ils doivent rester vigilants, même en dormant.",
+      "mediaPath": "scene_09_202607210255.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 13.557551020408162
+    },
+    {
+      "id": 10,
+      "narration": "Chez les oiseaux chanteurs comme le diamant mandarin, les scientifiques ont découvert quelque chose d'encore plus troublant. Pendant leur sommeil, les neurones de leur chant s'activent exactement dans le même ordre que lorsqu'ils chantent éveillés. Ils répètent leur partition en dormant.",
+      "mediaPath": "scene_10_202607210241.jpeg",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 15.960816326530612
+    },
+    {
+      "id": 11,
+      "narration": "Certains animaux poussent l'adaptation encore plus loin avec le sommeil unihémisphérique — la capacité de dormir avec un seul hémisphère cérébral à la fois. Les dauphins, les oiseaux et même les crocodiles peuvent le faire, gardant un œil ouvert pour surveiller les prédateurs.",
+      "mediaPath": "scene_11_202607210241.jpeg",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 15.490612244897958
+    },
+    {
+      "id": 12,
+      "narration": "Les canards qui dorment en bordure du groupe gardent un œil ouvert et un hémisphère éveillé. Ceux du centre peuvent fermer les deux yeux et dormir profondément. Le cerveau sait exactement quel niveau de vigilance adopter.",
+      "mediaPath": "scene_12_202607210255.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 13.818775510204082
+    },
+    {
+      "id": 13,
+      "narration": "Mais le cas le plus extrême est celui des dauphins. Les nouveau-nés et leurs mères ne dorment pas pendant le premier mois de vie. Littéralement pas une seconde. La mère nage sans cesse pour maintenir son petit à la surface et l'empêcher de se noyer.",
+      "mediaPath": "scene_13_202607210255.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 14.65469387755102
+    },
+    {
+      "id": 14,
+      "narration": "Pendant ce mois sans sommeil, le cerveau du bébé dauphin continue de se développer normalement. C'est un véritable super-pouvoir qui va à l'encontre de tout ce qu'on pensait sur le repos.",
+      "mediaPath": "scene_14_202607210241.jpeg",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 9.874285714285714
+    },
+    {
+      "id": 15,
+      "narration": "Et que dire des poulpes ? En 2023, des chercheurs d'Okinawa ont découvert que ces céphalopodes ont un sommeil à deux phases, comme le nôtre. Pendant leur sommeil actif, leur peau change de couleur en un kaléidoscope frénétique.",
+      "mediaPath": "scene_15_202607210255.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 13.609795918367347
+    },
+    {
+      "id": 16,
+      "narration": "Les scientifiques pensent que ces changements de couleur pourraient être une forme de rêve visuel. Le poulpe rejouerait ses expériences de la journée en les affichant littéralement sur sa peau. Un rêve qu'on peut voir.",
+      "mediaPath": "scene_16_202607210241.jpeg",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 12.06857142857143
+    },
+    {
+      "id": 17,
+      "narration": "Même les araignées sauteuses, ces petites bêtes aux huit yeux, montrent des signes de sommeil paradoxal. Leurs mouvements rétiniens pendant le sommeil ressemblent étrangement aux nôtres.",
+      "mediaPath": "scene_17_202607210241.jpeg",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 10.475102040816326
+    },
+    {
+      "id": 18,
+      "narration": "La capacité à rêver serait bien plus ancienne et répandue qu'on ne l'imaginait. Des méduses sans cerveau aux insectes, en passant par les reptiles, le sommeil est un besoin universel. Même les abeilles ont besoin de dormir pour mémoriser le chemin des fleurs.",
+      "mediaPath": "scene_18_202607210255.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "mediaVolume": 0.12,
+      "durationInSeconds": 14.889795918367346
+    },
+    {
+      "id": 19,
+      "narration": "Alors la prochaine fois que vous verrez votre chien courir en rêve, souvenez-vous : il ne fait pas que dormir. Il rejoue sa journée, consolide ses souvenirs, et vit une seconde vie dans son monde intérieur. Le sommeil animal n'a pas fini de nous surprendre.",
+      "mediaPath": "scene_19_202607210257.mp4",
       "effects": {
         "zoom": "out",
         "transition": "fade"
       },
-      "words": [
-        {
-          "text": "Voilà",
-          "start": 0.1,
-          "duration": 0.3375
-        },
-        {
-          "text": "comment",
-          "start": 0.45,
-          "duration": 0.3
-        },
-        {
-          "text": "ce",
-          "start": 0.7625,
-          "duration": 0.125
-        },
-        {
-          "text": "missile",
-          "start": 0.9,
-          "duration": 0.35
-        },
-        {
-          "text": "vivant",
-          "start": 1.2625,
-          "duration": 0.2625
-        },
-        {
-          "text": "transforme",
-          "start": 1.5375,
-          "duration": 0.4875
-        },
-        {
-          "text": "chaque",
-          "start": 2.0375,
-          "duration": 0.2375
-        },
-        {
-          "text": "centimètre",
-          "start": 2.2875,
-          "duration": 0.575
-        },
-        {
-          "text": "du",
-          "start": 2.875,
-          "duration": 0.125
-        },
-        {
-          "text": "ciel",
-          "start": 3.0125,
-          "duration": 0.2375
-        },
-        {
-          "text": "en",
-          "start": 3.2625,
-          "duration": 0.05
-        },
-        {
-          "text": "une",
-          "start": 3.325,
-          "duration": 0.1625
-        },
-        {
-          "text": "arène",
-          "start": 3.5,
-          "duration": 0.2125
-        },
-        {
-          "text": "supersonique",
-          "start": 3.725,
-          "duration": 0.875
-        }
-      ],
-      "durationInSeconds": 5.472
+      "mediaVolume": 0.12,
+      "durationInSeconds": 15.542857142857143
     }
   ]
 }
