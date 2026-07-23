@@ -1,210 +1,84 @@
 {
-  "title": "Le Sommeil et les Rêves des Animaux : Que se Passe-t-il Vraiment ?",
-  "ratio": "16:9",
-  "voice": "antoni",
+  "title": "Le Poulpe : La Créature la Plus Extraterrestre de la Terre",
+  "ratio": "9:16",
+  "voice": "george",
   "subtitles": true,
-  "subtitleStyle": "cinematic",
-  "music": "sounds/music/fearless-the-soundlings-ruby-jay.mp3",
-  "musicVolume": 0.06,
+  "subtitleStyle": "karaoke",
+  "music": "sounds/music/sleepless-horizon.mp3",
+  "musicVolume": 0.08,
   "scenes": [
     {
       "id": 1,
-      "narration": "Et si je vous disais qu'en ce moment même, votre chien est en train de revivre sa promenade de ce matin ? Ce n'est pas une intuition, c'est ce que la science vient de prouver. Et restez jusqu'à la fin, car vous allez découvrir un animal qui affiche littéralement ses rêves sur sa propre peau.",
-      "mediaPath": "scene_01_202607210247.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 15.542857142857143
+      "narration": "Cet animal a neuf cerveaux, trois cœurs, et du sang bleu glacé. Il n'a même pas d'os pour les protéger.",
+      "mediaPath": "scene_1.mp4",
+      "effects": { "zoom": "in", "transition": "fade" }
     },
     {
       "id": 2,
-      "narration": "En 2001, des chercheurs du MIT ont branché des rats à des électrodes pendant qu'ils couraient dans un labyrinthe. La nuit venue, leur cerveau rejouait exactement le même parcours. Les rats rêvaient de leur labyrinthe.",
-      "mediaPath": "scene_02_202607210241.jpeg",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 12.564897959183673
+      "narration": "Et si je vous disais qu'on dirait une créature tombée d'une autre planète ? Restez jusqu'au bout, la fin va vous glacer le sang.",
+      "mediaPath": "scene_2.mp4",
+      "effects": { "zoom": "none", "transition": "fade" }
     },
     {
       "id": 3,
-      "narration": "Cette expérience a changé notre compréhension du sommeil animal. Pour la première fois, on pouvait littéralement lire dans le cerveau d'un rat endormi et deviner ce qu'il était en train de revivre. Mais cette capacité à rêver est-elle universelle ?",
-      "mediaPath": "scene_03_202607210241.jpeg",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "durationInSeconds": 14.158367346938775
+      "narration": "Deux tiers de ses neurones ne sont pas dans sa tête. Ils sont répartis dans ses huit bras, comme un cerveau éclaté en plusieurs morceaux.",
+      "mediaPath": "scene_3.png",
+      "effects": { "zoom": "in", "transition": "fade" }
     },
     {
       "id": 4,
-      "narration": "Pour comprendre, il faut d'abord parler du sommeil paradoxal. C'est cette phase où le cerveau s'emballe, où les yeux bougent rapidement sous les paupières, et où le corps se paralyse pour ne pas qu'on agisse nos rêves. Chez l'humain, c'est là que naissent nos songes les plus vivaces.",
-      "mediaPath": "scene_04_202607210241.jpeg",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 15.046530612244897
+      "narration": "Alors comment un bras peut-il réfléchir tout seul, sans attendre l'ordre du cerveau central ?",
+      "mediaPath": "scene_4.mp4",
+      "effects": { "zoom": "none", "transition": "wipe" }
     },
     {
       "id": 5,
-      "narration": "Et cette phase n'est pas une exclusivité humaine. Tous les mammifères étudiés jusqu'à présent connaissent cette phase où le cerveau est en pleine ébullition. Des chiens aux chats, des rats aux éléphants, en passant par les chauves-souris qui dorment vingt heures par jour accrochées la tête en bas.",
-      "mediaPath": "scene_05_202607210250.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 16.90122448979592
+      "narration": "Chaque ventouse cache des récepteurs chimiques. Le poulpe ne touche pas un objet : il le goûte, comme une langue à mille bouts de doigts.",
+      "mediaPath": "scene_5.png",
+      "effects": { "zoom": "in", "transition": "fade" }
     },
     {
       "id": 6,
-      "narration": "Mais si le rêve est universel, la façon de se reposer, elle, change radicalement d'une espèce à l'autre. La girafe ne dort que deux heures par jour, par petites siestes de cinq à quinze minutes. Le koala, à l'inverse, dort jusqu'à vingt-deux heures par jour.",
-      "mediaPath": "scene_06_202607210241.jpeg",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 16.013061224489796
+      "narration": "Et son sang ? Il n'est pas rouge. Il est bleu, car il respire grâce au cuivre, et non au fer comme le nôtre.",
+      "mediaPath": "scene_6.mp4",
+      "effects": { "zoom": "in", "transition": "black" }
     },
     {
       "id": 7,
-      "narration": "Pourquoi de telles différences ? La réponse tient en un mot : la prédation. Les herbivores comme la girafe ne peuvent pas se permettre de sombrer longtemps dans un sommeil profond. Trop vulnérables, ils dorment par fragments, toujours prêts à fuir.",
-      "mediaPath": "scene_07_202607210241.jpeg",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "durationInSeconds": 15.36
+      "narration": "Ce sang glacé fonctionne mieux dans le froid et le manque d'oxygène des abysses : un carburant taillé pour l'extrême.",
+      "mediaPath": "scene_7.png",
+      "effects": { "zoom": "none", "transition": "fade" }
     },
     {
       "id": 8,
-      "narration": "Les carnivores comme le lion, eux, peuvent dormir jusqu'à quinze heures par jour. Sans prédateurs naturels, ils s'offrent le luxe de plonger profondément dans le sommeil paradoxal, là où les rêves sont les plus intenses. Mais attendez, car pour certains, dormir est encore plus risqué que pour une girafe.",
-      "mediaPath": "scene_08_202607210255.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 17.397551020408162
+      "narration": "Mais voici le plus troublant : sa peau contient les mêmes capteurs que ses yeux. Le poulpe pourrait littéralement voir sans regarder.",
+      "mediaPath": "scene_8.mp4",
+      "effects": { "zoom": "in", "transition": "wipe" }
     },
     {
       "id": 9,
-      "narration": "Et il n'y a pas que les mammifères. Les oiseaux aussi connaissent cette phase où le cerveau est en pleine ébullition, mais leurs épisodes sont très courts, quelques secondes à peine. Peut-être parce qu'ils doivent rester vigilants, même en dormant.",
-      "mediaPath": "scene_09_202607210255.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 13.557551020408162
+      "narration": "C'est ce qui lui permet de changer de couleur et de texture en une fraction de seconde, sans même observer ce qu'il imite.",
+      "mediaPath": "scene_9.mp4",
+      "effects": { "zoom": "none", "transition": "fade" }
     },
     {
       "id": 10,
-      "narration": "Chez les oiseaux chanteurs comme le diamant mandarin, les scientifiques ont découvert quelque chose d'encore plus troublant. Pendant leur sommeil, les neurones de leur chant s'activent exactement dans le même ordre que lorsqu'ils chantent éveillés. Ils répètent leur partition en dormant.",
-      "mediaPath": "scene_10_202607210241.jpeg",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 15.960816326530612
+      "narration": "Ses trois cœurs, eux, se répartissent le travail. Mais l'un d'eux s'arrête dès qu'il nage, l'épuisant en quelques mètres à peine.",
+      "mediaPath": "scene_10.png",
+      "effects": { "zoom": "in", "transition": "fade" }
     },
     {
       "id": 11,
-      "narration": "Certains animaux poussent l'adaptation encore plus loin avec le sommeil unihémisphérique — la capacité de dormir avec un seul hémisphère cérébral à la fois. Les dauphins, les oiseaux et même les crocodiles peuvent le faire, gardant un œil ouvert pour surveiller les prédateurs.",
-      "mediaPath": "scene_11_202607210241.jpeg",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "durationInSeconds": 15.490612244897958
+      "narration": "Toute cette intelligence... pour une vie d'à peine un an ou deux. Le poulpe apprend, résout des énigmes, puis meurt avant de croiser ses propres petits.",
+      "mediaPath": "scene_11.mp4",
+      "effects": { "zoom": "none", "transition": "black" }
     },
     {
       "id": 12,
-      "narration": "Les canards qui dorment en bordure du groupe gardent un œil ouvert et un hémisphère éveillé. Ceux du centre peuvent fermer les deux yeux et dormir profondément. Le cerveau sait exactement quel niveau de vigilance adopter.",
-      "mediaPath": "scene_12_202607210255.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 13.818775510204082
-    },
-    {
-      "id": 13,
-      "narration": "Mais le cas le plus extrême est celui des dauphins. Les nouveau-nés et leurs mères ne dorment pas pendant le premier mois de vie. Littéralement pas une seconde. La mère nage sans cesse pour maintenir son petit à la surface et l'empêcher de se noyer.",
-      "mediaPath": "scene_13_202607210255.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 14.65469387755102
-    },
-    {
-      "id": 14,
-      "narration": "Pendant ce mois sans sommeil, le cerveau du bébé dauphin continue de se développer normalement. C'est un véritable super-pouvoir qui va à l'encontre de tout ce qu'on pensait sur le repos.",
-      "mediaPath": "scene_14_202607210241.jpeg",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 9.874285714285714
-    },
-    {
-      "id": 15,
-      "narration": "Et que dire des poulpes ? En 2023, des chercheurs d'Okinawa ont découvert que ces céphalopodes ont un sommeil à deux phases, comme le nôtre. Pendant leur sommeil actif, leur peau change de couleur en un kaléidoscope frénétique.",
-      "mediaPath": "scene_15_202607210255.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 13.609795918367347
-    },
-    {
-      "id": 16,
-      "narration": "Les scientifiques pensent que ces changements de couleur pourraient être une forme de rêve visuel. Le poulpe rejouerait ses expériences de la journée en les affichant littéralement sur sa peau. Un rêve qu'on peut voir.",
-      "mediaPath": "scene_16_202607210241.jpeg",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 12.06857142857143
-    },
-    {
-      "id": 17,
-      "narration": "Même les araignées sauteuses, ces petites bêtes aux huit yeux, montrent des signes de sommeil paradoxal. Leurs mouvements rétiniens pendant le sommeil ressemblent étrangement aux nôtres.",
-      "mediaPath": "scene_17_202607210241.jpeg",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "durationInSeconds": 10.475102040816326
-    },
-    {
-      "id": 18,
-      "narration": "La capacité à rêver serait bien plus ancienne et répandue qu'on ne l'imaginait. Des méduses sans cerveau aux insectes, en passant par les reptiles, le sommeil est un besoin universel. Même les abeilles ont besoin de dormir pour mémoriser le chemin des fleurs.",
-      "mediaPath": "scene_18_202607210255.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 14.889795918367346
-    },
-    {
-      "id": 19,
-      "narration": "Alors la prochaine fois que vous verrez votre chien courir en rêve, souvenez-vous : il ne fait pas que dormir. Il rejoue sa journée, consolide ses souvenirs, et vit une seconde vie dans son monde intérieur. Le sommeil animal n'a pas fini de nous surprendre.",
-      "mediaPath": "scene_19_202607210257.mp4",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      },
-      "mediaVolume": 0.12,
-      "durationInSeconds": 15.542857142857143
+      "narration": "Neuf cerveaux. Trois cœurs. Une peau qui voit. Ce n'est pas une créature tombée d'une autre planète... c'est juste un poulpe. Et sur Terre, rien ne lui ressemble.",
+      "mediaPath": "scene_12.mp4",
+      "effects": { "zoom": "out", "transition": "fade" },
+      "overlayText": { "text": "Abonne-toi pour d'autres mystères du vivant 🐙", "startInSeconds": 3 }
     }
   ]
 }
