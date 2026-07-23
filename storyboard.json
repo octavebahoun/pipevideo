@@ -11,74 +11,1514 @@
       "id": 1,
       "narration": "Cet animal a neuf cerveaux, trois cœurs, et du sang bleu glacé. Il n'a même pas d'os pour les protéger.",
       "mediaPath": "scene_1.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Cet",
+          "start": 0,
+          "duration": 0.232
+        },
+        {
+          "text": "animal",
+          "start": 0.29,
+          "duration": 0.337
+        },
+        {
+          "text": "a",
+          "start": 0.685,
+          "duration": 0.023
+        },
+        {
+          "text": "neuf",
+          "start": 0.824,
+          "duration": 0.186
+        },
+        {
+          "text": "cerveaux,",
+          "start": 1.08,
+          "duration": 0.534
+        },
+        {
+          "text": "trois",
+          "start": 1.707,
+          "duration": 0.29
+        },
+        {
+          "text": "cœurs,",
+          "start": 2.02,
+          "duration": 0.499
+        },
+        {
+          "text": "et",
+          "start": 2.728,
+          "duration": 0.128
+        },
+        {
+          "text": "du",
+          "start": 2.891,
+          "duration": 0.093
+        },
+        {
+          "text": "sang",
+          "start": 3.042,
+          "duration": 0.174
+        },
+        {
+          "text": "bleu",
+          "start": 3.262,
+          "duration": 0.186
+        },
+        {
+          "text": "glacé.",
+          "start": 3.495,
+          "duration": 0.592
+        },
+        {
+          "text": "Il",
+          "start": 4.528,
+          "duration": 0.174
+        },
+        {
+          "text": "n'a",
+          "start": 4.748,
+          "duration": 0.082
+        },
+        {
+          "text": "même",
+          "start": 4.888,
+          "duration": 0.174
+        },
+        {
+          "text": "pas",
+          "start": 5.085,
+          "duration": 0.139
+        },
+        {
+          "text": "d'os",
+          "start": 5.271,
+          "duration": 0.209
+        },
+        {
+          "text": "pour",
+          "start": 5.55,
+          "duration": 0.104
+        },
+        {
+          "text": "les",
+          "start": 5.7,
+          "duration": 0.082
+        },
+        {
+          "text": "protéger.",
+          "start": 5.805,
+          "duration": 0.882
+        }
+      ],
+      "durationInSeconds": 6.713469387755102
     },
     {
       "id": 2,
       "narration": "Et si je vous disais qu'on dirait une créature tombée d'une autre planète ? Restez jusqu'au bout, la fin va vous glacer le sang.",
       "mediaPath": "scene_2.mp4",
-      "effects": { "zoom": "none", "transition": "fade" }
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Et",
+          "start": 0,
+          "duration": 0.128
+        },
+        {
+          "text": "si",
+          "start": 0.163,
+          "duration": 0.104
+        },
+        {
+          "text": "je",
+          "start": 0.325,
+          "duration": 0.081
+        },
+        {
+          "text": "vous",
+          "start": 0.441,
+          "duration": 0.116
+        },
+        {
+          "text": "disais",
+          "start": 0.58,
+          "duration": 0.314
+        },
+        {
+          "text": "qu'on",
+          "start": 0.929,
+          "duration": 0.128
+        },
+        {
+          "text": "dirait",
+          "start": 1.091,
+          "duration": 0.244
+        },
+        {
+          "text": "une",
+          "start": 1.405,
+          "duration": 0.081
+        },
+        {
+          "text": "créature",
+          "start": 1.509,
+          "duration": 0.604
+        },
+        {
+          "text": "tombée",
+          "start": 2.136,
+          "duration": 0.314
+        },
+        {
+          "text": "d'une",
+          "start": 2.473,
+          "duration": 0.162
+        },
+        {
+          "text": "autre",
+          "start": 2.659,
+          "duration": 0.22
+        },
+        {
+          "text": "planète",
+          "start": 2.914,
+          "duration": 0.488
+        },
+        {
+          "text": "?",
+          "start": 3.483,
+          "duration": 0.07
+        },
+        {
+          "text": "Restez",
+          "start": 4.249,
+          "duration": 0.383
+        },
+        {
+          "text": "jusqu'au",
+          "start": 4.679,
+          "duration": 0.325
+        },
+        {
+          "text": "bout,",
+          "start": 5.05,
+          "duration": 0.302
+        },
+        {
+          "text": "la",
+          "start": 5.561,
+          "duration": 0.105
+        },
+        {
+          "text": "fin",
+          "start": 5.747,
+          "duration": 0.151
+        },
+        {
+          "text": "va",
+          "start": 5.933,
+          "duration": 0.081
+        },
+        {
+          "text": "vous",
+          "start": 6.06,
+          "duration": 0.128
+        },
+        {
+          "text": "glacer",
+          "start": 6.211,
+          "duration": 0.314
+        },
+        {
+          "text": "le",
+          "start": 6.56,
+          "duration": 0.081
+        },
+        {
+          "text": "sang.",
+          "start": 6.711,
+          "duration": 0.534
+        }
+      ],
+      "durationInSeconds": 7.288163265306123
     },
     {
       "id": 3,
       "narration": "Deux tiers de ses neurones ne sont pas dans sa tête. Ils sont répartis dans ses huit bras, comme un cerveau éclaté en plusieurs morceaux.",
       "mediaPath": "scene_3.png",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Deux",
+          "start": 0,
+          "duration": 0.232
+        },
+        {
+          "text": "tiers",
+          "start": 0.267,
+          "duration": 0.302
+        },
+        {
+          "text": "de",
+          "start": 0.592,
+          "duration": 0.081
+        },
+        {
+          "text": "ses",
+          "start": 0.72,
+          "duration": 0.104
+        },
+        {
+          "text": "neurones",
+          "start": 0.871,
+          "duration": 0.429
+        },
+        {
+          "text": "ne",
+          "start": 1.416,
+          "duration": 0.128
+        },
+        {
+          "text": "sont",
+          "start": 1.591,
+          "duration": 0.15
+        },
+        {
+          "text": "pas",
+          "start": 1.765,
+          "duration": 0.116
+        },
+        {
+          "text": "dans",
+          "start": 1.904,
+          "duration": 0.128
+        },
+        {
+          "text": "sa",
+          "start": 2.055,
+          "duration": 0.093
+        },
+        {
+          "text": "tête.",
+          "start": 2.218,
+          "duration": 0.464
+        },
+        {
+          "text": "Ils",
+          "start": 3.065,
+          "duration": 0.209
+        },
+        {
+          "text": "sont",
+          "start": 3.297,
+          "duration": 0.151
+        },
+        {
+          "text": "répartis",
+          "start": 3.471,
+          "duration": 0.465
+        },
+        {
+          "text": "dans",
+          "start": 3.959,
+          "duration": 0.151
+        },
+        {
+          "text": "ses",
+          "start": 4.133,
+          "duration": 0.116
+        },
+        {
+          "text": "huit",
+          "start": 4.272,
+          "duration": 0.198
+        },
+        {
+          "text": "bras,",
+          "start": 4.551,
+          "duration": 0.395
+        },
+        {
+          "text": "comme",
+          "start": 5.12,
+          "duration": 0.209
+        },
+        {
+          "text": "un",
+          "start": 5.352,
+          "duration": 0.047
+        },
+        {
+          "text": "cerveau",
+          "start": 5.445,
+          "duration": 0.372
+        },
+        {
+          "text": "éclaté",
+          "start": 5.898,
+          "duration": 0.441
+        },
+        {
+          "text": "en",
+          "start": 6.397,
+          "duration": 0.058
+        },
+        {
+          "text": "plusieurs",
+          "start": 6.502,
+          "duration": 0.383
+        },
+        {
+          "text": "morceaux.",
+          "start": 6.908,
+          "duration": 0.755
+        }
+      ],
+      "durationInSeconds": 7.706122448979592
     },
     {
       "id": 4,
       "narration": "Alors comment un bras peut-il réfléchir tout seul, sans attendre l'ordre du cerveau central ?",
       "mediaPath": "scene_4.mp4",
-      "effects": { "zoom": "none", "transition": "wipe" }
+      "effects": {
+        "zoom": "none",
+        "transition": "wipe"
+      },
+      "words": [
+        {
+          "text": "Alors",
+          "start": 0,
+          "duration": 0.325
+        },
+        {
+          "text": "comment",
+          "start": 0.36,
+          "duration": 0.255
+        },
+        {
+          "text": "un",
+          "start": 0.65,
+          "duration": 0.081
+        },
+        {
+          "text": "bras",
+          "start": 0.778,
+          "duration": 0.29
+        },
+        {
+          "text": "peut-il",
+          "start": 1.103,
+          "duration": 0.267
+        },
+        {
+          "text": "réfléchir",
+          "start": 1.44,
+          "duration": 0.464
+        },
+        {
+          "text": "tout",
+          "start": 1.95,
+          "duration": 0.151
+        },
+        {
+          "text": "seul,",
+          "start": 2.125,
+          "duration": 0.36
+        },
+        {
+          "text": "sans",
+          "start": 2.659,
+          "duration": 0.209
+        },
+        {
+          "text": "attendre",
+          "start": 2.926,
+          "duration": 0.383
+        },
+        {
+          "text": "l'ordre",
+          "start": 3.355,
+          "duration": 0.302
+        },
+        {
+          "text": "du",
+          "start": 3.692,
+          "duration": 0.104
+        },
+        {
+          "text": "cerveau",
+          "start": 3.831,
+          "duration": 0.302
+        },
+        {
+          "text": "central",
+          "start": 4.18,
+          "duration": 0.476
+        },
+        {
+          "text": "?",
+          "start": 4.772,
+          "duration": 0.29
+        }
+      ],
+      "durationInSeconds": 5.093877551020408
     },
     {
       "id": 5,
       "narration": "Chaque ventouse cache des récepteurs chimiques. Le poulpe ne touche pas un objet : il le goûte, comme une langue à mille bouts de doigts.",
       "mediaPath": "scene_5.png",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Chaque",
+          "start": 0,
+          "duration": 0.313
+        },
+        {
+          "text": "ventouse",
+          "start": 0.348,
+          "duration": 0.488
+        },
+        {
+          "text": "cache",
+          "start": 0.882,
+          "duration": 0.291
+        },
+        {
+          "text": "des",
+          "start": 1.219,
+          "duration": 0.093
+        },
+        {
+          "text": "récepteurs",
+          "start": 1.358,
+          "duration": 0.558
+        },
+        {
+          "text": "chimiques.",
+          "start": 1.939,
+          "duration": 0.685
+        },
+        {
+          "text": "Le",
+          "start": 3.32,
+          "duration": 0.14
+        },
+        {
+          "text": "poulpe",
+          "start": 3.506,
+          "duration": 0.325
+        },
+        {
+          "text": "ne",
+          "start": 3.866,
+          "duration": 0.081
+        },
+        {
+          "text": "touche",
+          "start": 3.994,
+          "duration": 0.22
+        },
+        {
+          "text": "pas",
+          "start": 4.249,
+          "duration": 0.174
+        },
+        {
+          "text": "un",
+          "start": 4.481,
+          "duration": 0.059
+        },
+        {
+          "text": "objet",
+          "start": 4.598,
+          "duration": 0.394
+        },
+        {
+          "text": ":",
+          "start": 5.074,
+          "duration": 0.046
+        },
+        {
+          "text": "il",
+          "start": 5.213,
+          "duration": 0.151
+        },
+        {
+          "text": "le",
+          "start": 5.422,
+          "duration": 0.081
+        },
+        {
+          "text": "goûte,",
+          "start": 5.561,
+          "duration": 0.43
+        },
+        {
+          "text": "comme",
+          "start": 6.107,
+          "duration": 0.209
+        },
+        {
+          "text": "une",
+          "start": 6.339,
+          "duration": 0.081
+        },
+        {
+          "text": "langue",
+          "start": 6.467,
+          "duration": 0.302
+        },
+        {
+          "text": "à",
+          "start": 6.815,
+          "duration": 0.058
+        },
+        {
+          "text": "mille",
+          "start": 6.966,
+          "duration": 0.232
+        },
+        {
+          "text": "bouts",
+          "start": 7.245,
+          "duration": 0.162
+        },
+        {
+          "text": "de",
+          "start": 7.43,
+          "duration": 0.082
+        },
+        {
+          "text": "doigts.",
+          "start": 7.558,
+          "duration": 0.662
+        }
+      ],
+      "durationInSeconds": 8.25469387755102
     },
     {
       "id": 6,
       "narration": "Et son sang ? Il n'est pas rouge. Il est bleu, car il respire grâce au cuivre, et non au fer comme le nôtre.",
       "mediaPath": "scene_6.mp4",
-      "effects": { "zoom": "in", "transition": "black" }
+      "effects": {
+        "zoom": "in",
+        "transition": "black"
+      },
+      "words": [
+        {
+          "text": "Et",
+          "start": 0,
+          "duration": 0.151
+        },
+        {
+          "text": "son",
+          "start": 0.186,
+          "duration": 0.139
+        },
+        {
+          "text": "sang",
+          "start": 0.395,
+          "duration": 0.209
+        },
+        {
+          "text": "?",
+          "start": 0.685,
+          "duration": 0.046
+        },
+        {
+          "text": "Il",
+          "start": 1.173,
+          "duration": 0.151
+        },
+        {
+          "text": "n'est",
+          "start": 1.358,
+          "duration": 0.14
+        },
+        {
+          "text": "pas",
+          "start": 1.521,
+          "duration": 0.151
+        },
+        {
+          "text": "rouge.",
+          "start": 1.695,
+          "duration": 0.43
+        },
+        {
+          "text": "Il",
+          "start": 2.403,
+          "duration": 0.151
+        },
+        {
+          "text": "est",
+          "start": 2.612,
+          "duration": 0.07
+        },
+        {
+          "text": "bleu,",
+          "start": 2.705,
+          "duration": 0.314
+        },
+        {
+          "text": "car",
+          "start": 3.088,
+          "duration": 0.186
+        },
+        {
+          "text": "il",
+          "start": 3.332,
+          "duration": 0.058
+        },
+        {
+          "text": "respire",
+          "start": 3.46,
+          "duration": 0.441
+        },
+        {
+          "text": "grâce",
+          "start": 3.936,
+          "duration": 0.29
+        },
+        {
+          "text": "au",
+          "start": 4.249,
+          "duration": 0.047
+        },
+        {
+          "text": "cuivre,",
+          "start": 4.342,
+          "duration": 0.557
+        },
+        {
+          "text": "et",
+          "start": 5.108,
+          "duration": 0.14
+        },
+        {
+          "text": "non",
+          "start": 5.294,
+          "duration": 0.116
+        },
+        {
+          "text": "au",
+          "start": 5.48,
+          "duration": 0.058
+        },
+        {
+          "text": "fer",
+          "start": 5.608,
+          "duration": 0.243
+        },
+        {
+          "text": "comme",
+          "start": 5.921,
+          "duration": 0.186
+        },
+        {
+          "text": "le",
+          "start": 6.13,
+          "duration": 0.07
+        },
+        {
+          "text": "nôtre.",
+          "start": 6.246,
+          "duration": 0.674
+        }
+      ],
+      "durationInSeconds": 6.948571428571428
     },
     {
       "id": 7,
       "narration": "Ce sang glacé fonctionne mieux dans le froid et le manque d'oxygène des abysses : un carburant taillé pour l'extrême.",
       "mediaPath": "scene_7.png",
-      "effects": { "zoom": "none", "transition": "fade" }
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Ce",
+          "start": 0,
+          "duration": 0.186
+        },
+        {
+          "text": "sang",
+          "start": 0.232,
+          "duration": 0.174
+        },
+        {
+          "text": "glacé",
+          "start": 0.43,
+          "duration": 0.348
+        },
+        {
+          "text": "fonctionne",
+          "start": 0.859,
+          "duration": 0.43
+        },
+        {
+          "text": "mieux",
+          "start": 1.324,
+          "duration": 0.185
+        },
+        {
+          "text": "dans",
+          "start": 1.544,
+          "duration": 0.116
+        },
+        {
+          "text": "le",
+          "start": 1.683,
+          "duration": 0.058
+        },
+        {
+          "text": "froid",
+          "start": 1.811,
+          "duration": 0.325
+        },
+        {
+          "text": "et",
+          "start": 2.194,
+          "duration": 0.07
+        },
+        {
+          "text": "le",
+          "start": 2.31,
+          "duration": 0.058
+        },
+        {
+          "text": "manque",
+          "start": 2.426,
+          "duration": 0.244
+        },
+        {
+          "text": "d'oxygène",
+          "start": 2.705,
+          "duration": 0.569
+        },
+        {
+          "text": "des",
+          "start": 3.297,
+          "duration": 0.128
+        },
+        {
+          "text": "abysses",
+          "start": 3.495,
+          "duration": 0.406
+        },
+        {
+          "text": ":",
+          "start": 3.994,
+          "duration": 0.058
+        },
+        {
+          "text": "un",
+          "start": 4.296,
+          "duration": 0.093
+        },
+        {
+          "text": "carburant",
+          "start": 4.435,
+          "duration": 0.522
+        },
+        {
+          "text": "taillé",
+          "start": 4.992,
+          "duration": 0.291
+        },
+        {
+          "text": "pour",
+          "start": 5.341,
+          "duration": 0.127
+        },
+        {
+          "text": "l'extrême.",
+          "start": 5.503,
+          "duration": 0.906
+        }
+      ],
+      "durationInSeconds": 6.452244897959184
     },
     {
       "id": 8,
       "narration": "Mais voici le plus troublant : sa peau contient les mêmes capteurs que ses yeux. Le poulpe pourrait littéralement voir sans regarder.",
       "mediaPath": "scene_8.mp4",
-      "effects": { "zoom": "in", "transition": "wipe" }
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "words": [
+        {
+          "text": "Mais",
+          "start": 0,
+          "duration": 0.197
+        },
+        {
+          "text": "voici",
+          "start": 0.232,
+          "duration": 0.279
+        },
+        {
+          "text": "le",
+          "start": 0.569,
+          "duration": 0.07
+        },
+        {
+          "text": "plus",
+          "start": 0.685,
+          "duration": 0.151
+        },
+        {
+          "text": "troublant",
+          "start": 0.859,
+          "duration": 0.465
+        },
+        {
+          "text": ":",
+          "start": 1.382,
+          "duration": 0.092
+        },
+        {
+          "text": "sa",
+          "start": 1.683,
+          "duration": 0.14
+        },
+        {
+          "text": "peau",
+          "start": 1.892,
+          "duration": 0.14
+        },
+        {
+          "text": "contient",
+          "start": 2.067,
+          "duration": 0.418
+        },
+        {
+          "text": "les",
+          "start": 2.508,
+          "duration": 0.104
+        },
+        {
+          "text": "mêmes",
+          "start": 2.647,
+          "duration": 0.232
+        },
+        {
+          "text": "capteurs",
+          "start": 2.902,
+          "duration": 0.511
+        },
+        {
+          "text": "que",
+          "start": 3.437,
+          "duration": 0.104
+        },
+        {
+          "text": "ses",
+          "start": 3.587,
+          "duration": 0.175
+        },
+        {
+          "text": "yeux.",
+          "start": 3.843,
+          "duration": 0.313
+        },
+        {
+          "text": "Le",
+          "start": 4.598,
+          "duration": 0.15
+        },
+        {
+          "text": "poulpe",
+          "start": 4.807,
+          "duration": 0.336
+        },
+        {
+          "text": "pourrait",
+          "start": 5.19,
+          "duration": 0.267
+        },
+        {
+          "text": "littéralement",
+          "start": 5.48,
+          "duration": 0.604
+        },
+        {
+          "text": "voir",
+          "start": 6.118,
+          "duration": 0.384
+        },
+        {
+          "text": "sans",
+          "start": 6.618,
+          "duration": 0.22
+        },
+        {
+          "text": "regarder.",
+          "start": 6.861,
+          "duration": 0.894
+        }
+      ],
+      "durationInSeconds": 7.784489795918367
     },
     {
       "id": 9,
       "narration": "C'est ce qui lui permet de changer de couleur et de texture en une fraction de seconde, sans même observer ce qu'il imite.",
       "mediaPath": "scene_9.mp4",
-      "effects": { "zoom": "none", "transition": "fade" }
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "C'est",
+          "start": 0,
+          "duration": 0.221
+        },
+        {
+          "text": "ce",
+          "start": 0.244,
+          "duration": 0.069
+        },
+        {
+          "text": "qui",
+          "start": 0.372,
+          "duration": 0.081
+        },
+        {
+          "text": "lui",
+          "start": 0.488,
+          "duration": 0.127
+        },
+        {
+          "text": "permet",
+          "start": 0.662,
+          "duration": 0.325
+        },
+        {
+          "text": "de",
+          "start": 1.022,
+          "duration": 0.069
+        },
+        {
+          "text": "changer",
+          "start": 1.138,
+          "duration": 0.302
+        },
+        {
+          "text": "de",
+          "start": 1.474,
+          "duration": 0.07
+        },
+        {
+          "text": "couleur",
+          "start": 1.591,
+          "duration": 0.383
+        },
+        {
+          "text": "et",
+          "start": 2.043,
+          "duration": 0.105
+        },
+        {
+          "text": "de",
+          "start": 2.183,
+          "duration": 0.058
+        },
+        {
+          "text": "texture",
+          "start": 2.287,
+          "duration": 0.615
+        },
+        {
+          "text": "en",
+          "start": 2.961,
+          "duration": 0.185
+        },
+        {
+          "text": "une",
+          "start": 3.216,
+          "duration": 0.093
+        },
+        {
+          "text": "fraction",
+          "start": 3.344,
+          "duration": 0.371
+        },
+        {
+          "text": "de",
+          "start": 3.762,
+          "duration": 0.058
+        },
+        {
+          "text": "seconde,",
+          "start": 3.866,
+          "duration": 0.534
+        },
+        {
+          "text": "sans",
+          "start": 4.574,
+          "duration": 0.174
+        },
+        {
+          "text": "même",
+          "start": 4.772,
+          "duration": 0.185
+        },
+        {
+          "text": "observer",
+          "start": 4.981,
+          "duration": 0.441
+        },
+        {
+          "text": "ce",
+          "start": 5.445,
+          "duration": 0.081
+        },
+        {
+          "text": "qu'il",
+          "start": 5.573,
+          "duration": 0.139
+        },
+        {
+          "text": "imite.",
+          "start": 5.759,
+          "duration": 0.696
+        }
+      ],
+      "durationInSeconds": 6.504489795918367
     },
     {
       "id": 10,
       "narration": "Ses trois cœurs, eux, se répartissent le travail. Mais l'un d'eux s'arrête dès qu'il nage, l'épuisant en quelques mètres à peine.",
       "mediaPath": "scene_10.png",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "words": [
+        {
+          "text": "Ses",
+          "start": 0,
+          "duration": 0.197
+        },
+        {
+          "text": "trois",
+          "start": 0.232,
+          "duration": 0.244
+        },
+        {
+          "text": "cœurs,",
+          "start": 0.499,
+          "duration": 0.395
+        },
+        {
+          "text": "eux,",
+          "start": 0.917,
+          "duration": 0.244
+        },
+        {
+          "text": "se",
+          "start": 1.184,
+          "duration": 0.093
+        },
+        {
+          "text": "répartissent",
+          "start": 1.324,
+          "duration": 0.568
+        },
+        {
+          "text": "le",
+          "start": 1.916,
+          "duration": 0.058
+        },
+        {
+          "text": "travail.",
+          "start": 2.02,
+          "duration": 0.569
+        },
+        {
+          "text": "Mais",
+          "start": 2.914,
+          "duration": 0.151
+        },
+        {
+          "text": "l'un",
+          "start": 3.088,
+          "duration": 0.14
+        },
+        {
+          "text": "d'eux",
+          "start": 3.286,
+          "duration": 0.139
+        },
+        {
+          "text": "s'arrête",
+          "start": 3.46,
+          "duration": 0.418
+        },
+        {
+          "text": "dès",
+          "start": 3.924,
+          "duration": 0.128
+        },
+        {
+          "text": "qu'il",
+          "start": 4.075,
+          "duration": 0.163
+        },
+        {
+          "text": "nage,",
+          "start": 4.319,
+          "duration": 0.441
+        },
+        {
+          "text": "l'épuisant",
+          "start": 4.969,
+          "duration": 0.627
+        },
+        {
+          "text": "en",
+          "start": 5.642,
+          "duration": 0.082
+        },
+        {
+          "text": "quelques",
+          "start": 5.782,
+          "duration": 0.325
+        },
+        {
+          "text": "mètres",
+          "start": 6.13,
+          "duration": 0.279
+        },
+        {
+          "text": "à",
+          "start": 6.478,
+          "duration": 0.024
+        },
+        {
+          "text": "peine.",
+          "start": 6.56,
+          "duration": 0.685
+        }
+      ],
+      "durationInSeconds": 7.288163265306123
     },
     {
       "id": 11,
       "narration": "Toute cette intelligence... pour une vie d'à peine un an ou deux. Le poulpe apprend, résout des énigmes, puis meurt avant de croiser ses propres petits.",
       "mediaPath": "scene_11.mp4",
-      "effects": { "zoom": "none", "transition": "black" }
+      "effects": {
+        "zoom": "none",
+        "transition": "black"
+      },
+      "words": [
+        {
+          "text": "Toute",
+          "start": 0,
+          "duration": 0.29
+        },
+        {
+          "text": "cette",
+          "start": 0.313,
+          "duration": 0.209
+        },
+        {
+          "text": "intelligence...",
+          "start": 0.546,
+          "duration": 0.928
+        },
+        {
+          "text": "pour",
+          "start": 1.916,
+          "duration": 0.174
+        },
+        {
+          "text": "une",
+          "start": 2.148,
+          "duration": 0.104
+        },
+        {
+          "text": "vie",
+          "start": 2.287,
+          "duration": 0.163
+        },
+        {
+          "text": "d'à",
+          "start": 2.473,
+          "duration": 0.104
+        },
+        {
+          "text": "peine",
+          "start": 2.635,
+          "duration": 0.221
+        },
+        {
+          "text": "un",
+          "start": 2.902,
+          "duration": 0.14
+        },
+        {
+          "text": "an",
+          "start": 3.158,
+          "duration": 0.081
+        },
+        {
+          "text": "ou",
+          "start": 3.32,
+          "duration": 0.14
+        },
+        {
+          "text": "deux.",
+          "start": 3.529,
+          "duration": 0.407
+        },
+        {
+          "text": "Le",
+          "start": 4.377,
+          "duration": 0.128
+        },
+        {
+          "text": "poulpe",
+          "start": 4.563,
+          "duration": 0.336
+        },
+        {
+          "text": "apprend,",
+          "start": 4.934,
+          "duration": 0.546
+        },
+        {
+          "text": "résout",
+          "start": 5.654,
+          "duration": 0.302
+        },
+        {
+          "text": "des",
+          "start": 5.979,
+          "duration": 0.128
+        },
+        {
+          "text": "énigmes,",
+          "start": 6.177,
+          "duration": 0.499
+        },
+        {
+          "text": "puis",
+          "start": 6.803,
+          "duration": 0.198
+        },
+        {
+          "text": "meurt",
+          "start": 7.036,
+          "duration": 0.313
+        },
+        {
+          "text": "avant",
+          "start": 7.407,
+          "duration": 0.302
+        },
+        {
+          "text": "de",
+          "start": 7.732,
+          "duration": 0.058
+        },
+        {
+          "text": "croiser",
+          "start": 7.837,
+          "duration": 0.394
+        },
+        {
+          "text": "ses",
+          "start": 8.266,
+          "duration": 0.128
+        },
+        {
+          "text": "propres",
+          "start": 8.429,
+          "duration": 0.337
+        },
+        {
+          "text": "petits.",
+          "start": 8.789,
+          "duration": 0.731
+        }
+      ],
+      "durationInSeconds": 9.560816326530611
     },
     {
       "id": 12,
       "narration": "Neuf cerveaux. Trois cœurs. Une peau qui voit. Ce n'est pas une créature tombée d'une autre planète... c'est juste un poulpe. Et sur Terre, rien ne lui ressemble.",
       "mediaPath": "scene_12.mp4",
-      "effects": { "zoom": "out", "transition": "fade" },
-      "overlayText": { "text": "Abonne-toi pour d'autres mystères du vivant 🐙", "startInSeconds": 3 }
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "overlayText": {
+        "text": "Abonne-toi pour d'autres mystères du vivant 🐙",
+        "startInSeconds": 3
+      },
+      "words": [
+        {
+          "text": "Neuf",
+          "start": 0,
+          "duration": 0.255
+        },
+        {
+          "text": "cerveaux.",
+          "start": 0.313,
+          "duration": 0.535
+        },
+        {
+          "text": "Trois",
+          "start": 1.173,
+          "duration": 0.301
+        },
+        {
+          "text": "cœurs.",
+          "start": 1.498,
+          "duration": 0.545
+        },
+        {
+          "text": "Une",
+          "start": 2.426,
+          "duration": 0.221
+        },
+        {
+          "text": "peau",
+          "start": 2.682,
+          "duration": 0.128
+        },
+        {
+          "text": "qui",
+          "start": 2.868,
+          "duration": 0.104
+        },
+        {
+          "text": "voit.",
+          "start": 3.03,
+          "duration": 0.465
+        },
+        {
+          "text": "Ce",
+          "start": 3.82,
+          "duration": 0.127
+        },
+        {
+          "text": "n'est",
+          "start": 3.994,
+          "duration": 0.128
+        },
+        {
+          "text": "pas",
+          "start": 4.145,
+          "duration": 0.162
+        },
+        {
+          "text": "une",
+          "start": 4.377,
+          "duration": 0.081
+        },
+        {
+          "text": "créature",
+          "start": 4.481,
+          "duration": 0.511
+        },
+        {
+          "text": "tombée",
+          "start": 5.016,
+          "duration": 0.313
+        },
+        {
+          "text": "d'une",
+          "start": 5.352,
+          "duration": 0.163
+        },
+        {
+          "text": "autre",
+          "start": 5.538,
+          "duration": 0.197
+        },
+        {
+          "text": "planète...",
+          "start": 5.782,
+          "duration": 0.615
+        },
+        {
+          "text": "c'est",
+          "start": 6.548,
+          "duration": 0.186
+        },
+        {
+          "text": "juste",
+          "start": 6.78,
+          "duration": 0.267
+        },
+        {
+          "text": "un",
+          "start": 7.07,
+          "duration": 0.047
+        },
+        {
+          "text": "poulpe.",
+          "start": 7.187,
+          "duration": 0.534
+        },
+        {
+          "text": "Et",
+          "start": 7.999,
+          "duration": 0.14
+        },
+        {
+          "text": "sur",
+          "start": 8.173,
+          "duration": 0.151
+        },
+        {
+          "text": "Terre,",
+          "start": 8.394,
+          "duration": 0.453
+        },
+        {
+          "text": "rien",
+          "start": 9.021,
+          "duration": 0.232
+        },
+        {
+          "text": "ne",
+          "start": 9.276,
+          "duration": 0.07
+        },
+        {
+          "text": "lui",
+          "start": 9.381,
+          "duration": 0.116
+        },
+        {
+          "text": "ressemble.",
+          "start": 9.543,
+          "duration": 0.813
+        }
+      ],
+      "durationInSeconds": 10.396734693877551
     }
   ]
 }
