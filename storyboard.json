@@ -9,62 +9,1090 @@
       "id": 1,
       "narration": "Voici l'animal qui peut littéralement reconstruire son propre cerveau.",
       "mediaPath": "scene_1.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 3.996734693877551,
+      "words": [
+        {
+          "text": "Voici",
+          "start": 0,
+          "duration": 0.348
+        },
+        {
+          "text": "l'animal",
+          "start": 0.406,
+          "duration": 0.488
+        },
+        {
+          "text": "qui",
+          "start": 1.068,
+          "duration": 0.139
+        },
+        {
+          "text": "peut",
+          "start": 1.254,
+          "duration": 0.128
+        },
+        {
+          "text": "littéralement",
+          "start": 1.405,
+          "duration": 0.592
+        },
+        {
+          "text": "reconstruire",
+          "start": 2.032,
+          "duration": 0.615
+        },
+        {
+          "text": "son",
+          "start": 2.67,
+          "duration": 0.128
+        },
+        {
+          "text": "propre",
+          "start": 2.844,
+          "duration": 0.302
+        },
+        {
+          "text": "cerveau.",
+          "start": 3.193,
+          "duration": 0.754
+        }
+      ]
     },
     {
       "id": 2,
       "narration": "Il s'appelle l'axolotl. Reste jusqu'au bout, la question finale va te mettre au défi.",
       "mediaPath": "scene_2.mp4",
-      "effects": { "zoom": "none", "transition": "fade" }
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 5.564081632653061,
+      "words": [
+        {
+          "text": "Il",
+          "start": 0,
+          "duration": 0.163
+        },
+        {
+          "text": "s'appelle",
+          "start": 0.221,
+          "duration": 0.464
+        },
+        {
+          "text": "l'axolotl.",
+          "start": 0.801,
+          "duration": 0.882
+        },
+        {
+          "text": "Reste",
+          "start": 2.125,
+          "duration": 0.325
+        },
+        {
+          "text": "jusqu'au",
+          "start": 2.519,
+          "duration": 0.302
+        },
+        {
+          "text": "bout,",
+          "start": 2.868,
+          "duration": 0.243
+        },
+        {
+          "text": "la",
+          "start": 3.228,
+          "duration": 0.081
+        },
+        {
+          "text": "question",
+          "start": 3.367,
+          "duration": 0.325
+        },
+        {
+          "text": "finale",
+          "start": 3.738,
+          "duration": 0.325
+        },
+        {
+          "text": "va",
+          "start": 4.098,
+          "duration": 0.082
+        },
+        {
+          "text": "te",
+          "start": 4.238,
+          "duration": 0.069
+        },
+        {
+          "text": "mettre",
+          "start": 4.365,
+          "duration": 0.244
+        },
+        {
+          "text": "au",
+          "start": 4.632,
+          "duration": 0.116
+        },
+        {
+          "text": "défi.",
+          "start": 4.783,
+          "duration": 0.743
+        }
+      ]
     },
     {
       "id": 3,
       "narration": "Contrairement à nous, qui cicatrisons, l'axolotl transforme ses cellules en une sorte de pâte magique capable de tout reconstruire.",
       "mediaPath": "scene_3.png",
-      "effects": { "zoom": "in", "transition": "wipe" }
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 8.071836734693878,
+      "words": [
+        {
+          "text": "Contrairement",
+          "start": 0,
+          "duration": 0.72
+        },
+        {
+          "text": "à",
+          "start": 0.755,
+          "duration": 0.023
+        },
+        {
+          "text": "nous,",
+          "start": 0.859,
+          "duration": 0.209
+        },
+        {
+          "text": "qui",
+          "start": 1.126,
+          "duration": 0.151
+        },
+        {
+          "text": "cicatrisons,",
+          "start": 1.335,
+          "duration": 0.813
+        },
+        {
+          "text": "l'axolotl",
+          "start": 2.392,
+          "duration": 0.638
+        },
+        {
+          "text": "transforme",
+          "start": 3.088,
+          "duration": 0.558
+        },
+        {
+          "text": "ses",
+          "start": 3.692,
+          "duration": 0.139
+        },
+        {
+          "text": "cellules",
+          "start": 3.855,
+          "duration": 0.476
+        },
+        {
+          "text": "en",
+          "start": 4.447,
+          "duration": 0.197
+        },
+        {
+          "text": "une",
+          "start": 4.725,
+          "duration": 0.105
+        },
+        {
+          "text": "sorte",
+          "start": 4.865,
+          "duration": 0.29
+        },
+        {
+          "text": "de",
+          "start": 5.201,
+          "duration": 0.07
+        },
+        {
+          "text": "pâte",
+          "start": 5.352,
+          "duration": 0.256
+        },
+        {
+          "text": "magique",
+          "start": 5.654,
+          "duration": 0.43
+        },
+        {
+          "text": "capable",
+          "start": 6.142,
+          "duration": 0.476
+        },
+        {
+          "text": "de",
+          "start": 6.664,
+          "duration": 0.081
+        },
+        {
+          "text": "tout",
+          "start": 6.803,
+          "duration": 0.151
+        },
+        {
+          "text": "reconstruire.",
+          "start": 6.978,
+          "duration": 1.056
+        }
+      ]
     },
     {
       "id": 4,
       "narration": "Il reconstruit un membre, un œil, une partie de son cœur ou de sa moelle épinière... sans la moindre cicatrice.",
       "mediaPath": "scene_4.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 7.549387755102041,
+      "words": [
+        {
+          "text": "Il",
+          "start": 0,
+          "duration": 0.163
+        },
+        {
+          "text": "reconstruit",
+          "start": 0.244,
+          "duration": 0.557
+        },
+        {
+          "text": "un",
+          "start": 0.859,
+          "duration": 0.058
+        },
+        {
+          "text": "membre,",
+          "start": 0.975,
+          "duration": 0.476
+        },
+        {
+          "text": "un",
+          "start": 1.567,
+          "duration": 0.14
+        },
+        {
+          "text": "œil,",
+          "start": 1.834,
+          "duration": 0.337
+        },
+        {
+          "text": "une",
+          "start": 2.345,
+          "duration": 0.163
+        },
+        {
+          "text": "partie",
+          "start": 2.543,
+          "duration": 0.313
+        },
+        {
+          "text": "de",
+          "start": 2.891,
+          "duration": 0.07
+        },
+        {
+          "text": "son",
+          "start": 3.007,
+          "duration": 0.151
+        },
+        {
+          "text": "cœur",
+          "start": 3.204,
+          "duration": 0.349
+        },
+        {
+          "text": "ou",
+          "start": 3.704,
+          "duration": 0.139
+        },
+        {
+          "text": "de",
+          "start": 3.901,
+          "duration": 0.07
+        },
+        {
+          "text": "sa",
+          "start": 4.017,
+          "duration": 0.105
+        },
+        {
+          "text": "moelle",
+          "start": 4.18,
+          "duration": 0.267
+        },
+        {
+          "text": "épinière...",
+          "start": 4.493,
+          "duration": 0.836
+        },
+        {
+          "text": "sans",
+          "start": 5.84,
+          "duration": 0.186
+        },
+        {
+          "text": "la",
+          "start": 6.049,
+          "duration": 0.058
+        },
+        {
+          "text": "moindre",
+          "start": 6.165,
+          "duration": 0.325
+        },
+        {
+          "text": "cicatrice.",
+          "start": 6.536,
+          "duration": 0.987
+        }
+      ]
     },
     {
       "id": 5,
       "narration": "Mais comment un simple amphibien peut-il réécrire son propre corps comme ça ? Le secret de ce super-pouvoir ? Il se cache dans un mystère encore plus grand : l'axolotl ne grandit jamais vraiment.",
       "mediaPath": "scene_5.mp4",
-      "effects": { "zoom": "none", "transition": "wipe" }
+      "effects": {
+        "zoom": "none",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 11.781224489795918,
+      "words": [
+        {
+          "text": "Mais",
+          "start": 0,
+          "duration": 0.186
+        },
+        {
+          "text": "comment",
+          "start": 0.209,
+          "duration": 0.255
+        },
+        {
+          "text": "un",
+          "start": 0.499,
+          "duration": 0.058
+        },
+        {
+          "text": "simple",
+          "start": 0.627,
+          "duration": 0.325
+        },
+        {
+          "text": "amphibien",
+          "start": 1.01,
+          "duration": 0.557
+        },
+        {
+          "text": "peut-il",
+          "start": 1.614,
+          "duration": 0.278
+        },
+        {
+          "text": "réécrire",
+          "start": 1.962,
+          "duration": 0.546
+        },
+        {
+          "text": "son",
+          "start": 2.531,
+          "duration": 0.139
+        },
+        {
+          "text": "propre",
+          "start": 2.717,
+          "duration": 0.336
+        },
+        {
+          "text": "corps",
+          "start": 3.1,
+          "duration": 0.29
+        },
+        {
+          "text": "comme",
+          "start": 3.413,
+          "duration": 0.186
+        },
+        {
+          "text": "ça",
+          "start": 3.646,
+          "duration": 0.232
+        },
+        {
+          "text": "?",
+          "start": 3.994,
+          "duration": 0.058
+        },
+        {
+          "text": "Le",
+          "start": 4.493,
+          "duration": 0.128
+        },
+        {
+          "text": "secret",
+          "start": 4.656,
+          "duration": 0.36
+        },
+        {
+          "text": "de",
+          "start": 5.039,
+          "duration": 0.069
+        },
+        {
+          "text": "ce",
+          "start": 5.155,
+          "duration": 0.093
+        },
+        {
+          "text": "super-pouvoir",
+          "start": 5.294,
+          "duration": 0.801
+        },
+        {
+          "text": "?",
+          "start": 6.246,
+          "duration": 0.035
+        },
+        {
+          "text": "Il",
+          "start": 6.722,
+          "duration": 0.163
+        },
+        {
+          "text": "se",
+          "start": 6.954,
+          "duration": 0.093
+        },
+        {
+          "text": "cache",
+          "start": 7.094,
+          "duration": 0.244
+        },
+        {
+          "text": "dans",
+          "start": 7.361,
+          "duration": 0.139
+        },
+        {
+          "text": "un",
+          "start": 7.558,
+          "duration": 0.047
+        },
+        {
+          "text": "mystère",
+          "start": 7.639,
+          "duration": 0.442
+        },
+        {
+          "text": "encore",
+          "start": 8.104,
+          "duration": 0.302
+        },
+        {
+          "text": "plus",
+          "start": 8.429,
+          "duration": 0.174
+        },
+        {
+          "text": "grand",
+          "start": 8.626,
+          "duration": 0.256
+        },
+        {
+          "text": ":",
+          "start": 9.009,
+          "duration": 0.035
+        },
+        {
+          "text": "l'axolotl",
+          "start": 9.427,
+          "duration": 0.65
+        },
+        {
+          "text": "ne",
+          "start": 10.194,
+          "duration": 0.081
+        },
+        {
+          "text": "grandit",
+          "start": 10.321,
+          "duration": 0.349
+        },
+        {
+          "text": "jamais",
+          "start": 10.704,
+          "duration": 0.279
+        },
+        {
+          "text": "vraiment.",
+          "start": 11.006,
+          "duration": 0.743
+        }
+      ]
     },
     {
       "id": 6,
       "narration": "Les scientifiques appellent ça la néoténie : une éternelle larve, coincée pour toujours dans son enfance.",
       "mediaPath": "scene_6.png",
-      "effects": { "zoom": "in", "transition": "black" }
+      "effects": {
+        "zoom": "in",
+        "transition": "black"
+      },
+      "durationInSeconds": 6.347755102040816,
+      "words": [
+        {
+          "text": "Les",
+          "start": 0,
+          "duration": 0.197
+        },
+        {
+          "text": "scientifiques",
+          "start": 0.221,
+          "duration": 0.685
+        },
+        {
+          "text": "appellent",
+          "start": 0.929,
+          "duration": 0.36
+        },
+        {
+          "text": "ça",
+          "start": 1.312,
+          "duration": 0.209
+        },
+        {
+          "text": "la",
+          "start": 1.602,
+          "duration": 0.093
+        },
+        {
+          "text": "néoténie",
+          "start": 1.753,
+          "duration": 0.65
+        },
+        {
+          "text": ":",
+          "start": 2.473,
+          "duration": 0.07
+        },
+        {
+          "text": "une",
+          "start": 2.786,
+          "duration": 0.175
+        },
+        {
+          "text": "éternelle",
+          "start": 2.984,
+          "duration": 0.441
+        },
+        {
+          "text": "larve,",
+          "start": 3.471,
+          "duration": 0.511
+        },
+        {
+          "text": "coincée",
+          "start": 4.156,
+          "duration": 0.418
+        },
+        {
+          "text": "pour",
+          "start": 4.609,
+          "duration": 0.139
+        },
+        {
+          "text": "toujours",
+          "start": 4.807,
+          "duration": 0.336
+        },
+        {
+          "text": "dans",
+          "start": 5.166,
+          "duration": 0.128
+        },
+        {
+          "text": "son",
+          "start": 5.317,
+          "duration": 0.14
+        },
+        {
+          "text": "enfance.",
+          "start": 5.526,
+          "duration": 0.79
+        }
+      ]
     },
     {
       "id": 7,
       "narration": "Il garde ses branchies de bébé toute sa vie, comme s'il refusait de devenir un adulte.",
       "mediaPath": "scene_7.mp4",
-      "effects": { "zoom": "none", "transition": "fade" }
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 4.83265306122449,
+      "words": [
+        {
+          "text": "Il",
+          "start": 0,
+          "duration": 0.163
+        },
+        {
+          "text": "garde",
+          "start": 0.232,
+          "duration": 0.302
+        },
+        {
+          "text": "ses",
+          "start": 0.58,
+          "duration": 0.128
+        },
+        {
+          "text": "branchies",
+          "start": 0.731,
+          "duration": 0.407
+        },
+        {
+          "text": "de",
+          "start": 1.161,
+          "duration": 0.07
+        },
+        {
+          "text": "bébé",
+          "start": 1.277,
+          "duration": 0.302
+        },
+        {
+          "text": "toute",
+          "start": 1.625,
+          "duration": 0.198
+        },
+        {
+          "text": "sa",
+          "start": 1.846,
+          "duration": 0.104
+        },
+        {
+          "text": "vie,",
+          "start": 2.02,
+          "duration": 0.279
+        },
+        {
+          "text": "comme",
+          "start": 2.543,
+          "duration": 0.174
+        },
+        {
+          "text": "s'il",
+          "start": 2.74,
+          "duration": 0.139
+        },
+        {
+          "text": "refusait",
+          "start": 2.949,
+          "duration": 0.383
+        },
+        {
+          "text": "de",
+          "start": 3.367,
+          "duration": 0.058
+        },
+        {
+          "text": "devenir",
+          "start": 3.471,
+          "duration": 0.36
+        },
+        {
+          "text": "un",
+          "start": 3.889,
+          "duration": 0.047
+        },
+        {
+          "text": "adulte.",
+          "start": 4.005,
+          "duration": 0.778
+        }
+      ]
     },
     {
       "id": 8,
       "narration": "Résultat : les scientifiques étudient son ADN pour tenter de soigner des paralysies ou des brûlures graves chez l'humain.",
       "mediaPath": "scene_8.png",
-      "effects": { "zoom": "in", "transition": "wipe" }
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 6.870204081632653,
+      "words": [
+        {
+          "text": "Résultat",
+          "start": 0,
+          "duration": 0.639
+        },
+        {
+          "text": ":",
+          "start": 0.708,
+          "duration": 0.07
+        },
+        {
+          "text": "les",
+          "start": 0.987,
+          "duration": 0.128
+        },
+        {
+          "text": "scientifiques",
+          "start": 1.138,
+          "duration": 0.65
+        },
+        {
+          "text": "étudient",
+          "start": 1.834,
+          "duration": 0.372
+        },
+        {
+          "text": "son",
+          "start": 2.229,
+          "duration": 0.139
+        },
+        {
+          "text": "ADN",
+          "start": 2.438,
+          "duration": 0.337
+        },
+        {
+          "text": "pour",
+          "start": 2.891,
+          "duration": 0.162
+        },
+        {
+          "text": "tenter",
+          "start": 3.1,
+          "duration": 0.255
+        },
+        {
+          "text": "de",
+          "start": 3.39,
+          "duration": 0.07
+        },
+        {
+          "text": "soigner",
+          "start": 3.518,
+          "duration": 0.325
+        },
+        {
+          "text": "des",
+          "start": 3.878,
+          "duration": 0.093
+        },
+        {
+          "text": "paralysies",
+          "start": 3.994,
+          "duration": 0.685
+        },
+        {
+          "text": "ou",
+          "start": 4.83,
+          "duration": 0.139
+        },
+        {
+          "text": "des",
+          "start": 5.027,
+          "duration": 0.081
+        },
+        {
+          "text": "brûlures",
+          "start": 5.143,
+          "duration": 0.395
+        },
+        {
+          "text": "graves",
+          "start": 5.561,
+          "duration": 0.383
+        },
+        {
+          "text": "chez",
+          "start": 5.968,
+          "duration": 0.162
+        },
+        {
+          "text": "l'humain.",
+          "start": 6.165,
+          "duration": 0.662
+        }
+      ]
     },
     {
       "id": 9,
       "narration": "Presque tout son corps peut repousser. Tout. Un bras, un œil, et même son cœur.",
       "mediaPath": "scene_9.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 5.799183673469388,
+      "words": [
+        {
+          "text": "Presque",
+          "start": 0,
+          "duration": 0.406
+        },
+        {
+          "text": "tout",
+          "start": 0.464,
+          "duration": 0.14
+        },
+        {
+          "text": "son",
+          "start": 0.627,
+          "duration": 0.139
+        },
+        {
+          "text": "corps",
+          "start": 0.836,
+          "duration": 0.267
+        },
+        {
+          "text": "peut",
+          "start": 1.126,
+          "duration": 0.151
+        },
+        {
+          "text": "repousser.",
+          "start": 1.324,
+          "duration": 0.719
+        },
+        {
+          "text": "Tout.",
+          "start": 2.485,
+          "duration": 0.417
+        },
+        {
+          "text": "Un",
+          "start": 3.228,
+          "duration": 0.139
+        },
+        {
+          "text": "bras,",
+          "start": 3.402,
+          "duration": 0.325
+        },
+        {
+          "text": "un",
+          "start": 3.773,
+          "duration": 0.14
+        },
+        {
+          "text": "œil,",
+          "start": 4.063,
+          "duration": 0.291
+        },
+        {
+          "text": "et",
+          "start": 4.47,
+          "duration": 0.128
+        },
+        {
+          "text": "même",
+          "start": 4.632,
+          "duration": 0.175
+        },
+        {
+          "text": "son",
+          "start": 4.83,
+          "duration": 0.139
+        },
+        {
+          "text": "cœur.",
+          "start": 5.027,
+          "duration": 0.732
+        }
+      ]
     },
     {
       "id": 10,
       "narration": "Alors, code de triche de la nature ou simple mutant rose ? Si tu pouvais faire repousser un membre, lequel choisirais-tu ? Dis-le en commentaire, et abonne-toi pour d'autres mystères biologiques.",
       "mediaPath": "scene_10.mp4",
-      "effects": { "zoom": "out", "transition": "fade" },
-      "overlayText": { "text": "Abonne-toi pour d'autres mystères biologiques 🧬", "startInSeconds": 3 }
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "overlayText": {
+        "text": "Abonne-toi pour d'autres mystères biologiques 🧬",
+        "startInSeconds": 3
+      },
+      "durationInSeconds": 12.486530612244898,
+      "words": [
+        {
+          "text": "Alors,",
+          "start": 0,
+          "duration": 0.58
+        },
+        {
+          "text": "code",
+          "start": 0.789,
+          "duration": 0.279
+        },
+        {
+          "text": "de",
+          "start": 1.115,
+          "duration": 0.081
+        },
+        {
+          "text": "triche",
+          "start": 1.242,
+          "duration": 0.291
+        },
+        {
+          "text": "de",
+          "start": 1.567,
+          "duration": 0.058
+        },
+        {
+          "text": "la",
+          "start": 1.672,
+          "duration": 0.058
+        },
+        {
+          "text": "nature",
+          "start": 1.788,
+          "duration": 0.522
+        },
+        {
+          "text": "ou",
+          "start": 2.403,
+          "duration": 0.14
+        },
+        {
+          "text": "simple",
+          "start": 2.612,
+          "duration": 0.337
+        },
+        {
+          "text": "mutant",
+          "start": 3.007,
+          "duration": 0.325
+        },
+        {
+          "text": "rose",
+          "start": 3.379,
+          "duration": 0.383
+        },
+        {
+          "text": "?",
+          "start": 3.878,
+          "duration": 0.069
+        },
+        {
+          "text": "Si",
+          "start": 4.551,
+          "duration": 0.151
+        },
+        {
+          "text": "tu",
+          "start": 4.748,
+          "duration": 0.093
+        },
+        {
+          "text": "pouvais",
+          "start": 4.876,
+          "duration": 0.244
+        },
+        {
+          "text": "faire",
+          "start": 5.155,
+          "duration": 0.174
+        },
+        {
+          "text": "repousser",
+          "start": 5.364,
+          "duration": 0.441
+        },
+        {
+          "text": "un",
+          "start": 5.84,
+          "duration": 0.058
+        },
+        {
+          "text": "membre,",
+          "start": 5.944,
+          "duration": 0.5
+        },
+        {
+          "text": "lequel",
+          "start": 6.56,
+          "duration": 0.325
+        },
+        {
+          "text": "choisirais-tu",
+          "start": 6.943,
+          "duration": 0.65
+        },
+        {
+          "text": "?",
+          "start": 7.709,
+          "duration": 0.116
+        },
+        {
+          "text": "Dis-le",
+          "start": 8.522,
+          "duration": 0.313
+        },
+        {
+          "text": "en",
+          "start": 8.882,
+          "duration": 0.058
+        },
+        {
+          "text": "commentaire,",
+          "start": 8.998,
+          "duration": 0.766
+        },
+        {
+          "text": "et",
+          "start": 9.857,
+          "duration": 0.116
+        },
+        {
+          "text": "abonne-toi",
+          "start": 10.031,
+          "duration": 0.499
+        },
+        {
+          "text": "pour",
+          "start": 10.577,
+          "duration": 0.127
+        },
+        {
+          "text": "d'autres",
+          "start": 10.762,
+          "duration": 0.291
+        },
+        {
+          "text": "mystères",
+          "start": 11.076,
+          "duration": 0.418
+        },
+        {
+          "text": "biologiques.",
+          "start": 11.517,
+          "duration": 0.929
+        }
+      ]
     }
   ]
 }
