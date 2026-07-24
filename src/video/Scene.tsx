@@ -20,6 +20,8 @@ interface SceneComponentProps {
   subtitlesEnabled: boolean;
   /** Style des sous-titres. */
   subtitleStyle: 'karaoke' | 'cinematic';
+  /** Multiplicateur global de volume pour les sons additionnels (storyboard.sfxVolume, défaut 1). */
+  sfxVolume: number;
 }
 
 /**
@@ -28,9 +30,10 @@ interface SceneComponentProps {
  * boucler, et avoir des fondus d'entrée/sortie (essentiel pour le sound design :
  * drones qui montent, battement de cœur, glitch, etc.).
  */
-const SceneSounds: React.FC<{ sounds: SceneSound[]; durationInFrames: number }> = ({
+const SceneSounds: React.FC<{ sounds: SceneSound[]; durationInFrames: number; sfxVolume: number }> = ({
   sounds,
   durationInFrames,
+  sfxVolume,
 }) => {
   const { fps } = useVideoConfig();
   return (
@@ -38,7 +41,7 @@ const SceneSounds: React.FC<{ sounds: SceneSound[]; durationInFrames: number }> 
       {sounds.map((sound, i) => {
         const from = Math.round((sound.startInSeconds ?? 0) * fps);
         const localDuration = Math.max(1, durationInFrames - from);
-        const base = sound.volume ?? 0.6;
+        const base = (sound.volume ?? 0.6) * sfxVolume;
         const fadeInFrames = Math.round((sound.fadeInSeconds ?? 0) * fps);
         const fadeOutFrames = Math.round((sound.fadeOutSeconds ?? 0) * fps);
         const hasFade = fadeInFrames > 0 || fadeOutFrames > 0;
@@ -89,6 +92,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   durationInFrames,
   subtitlesEnabled,
   subtitleStyle,
+  sfxVolume,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -248,7 +252,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
 
       {/* Sons additionnels (bruitages / ambiances / musiques) */}
       {scene.sounds && scene.sounds.length > 0 && (
-        <SceneSounds sounds={scene.sounds} durationInFrames={durationInFrames} />
+        <SceneSounds sounds={scene.sounds} durationInFrames={durationInFrames} sfxVolume={sfxVolume} />
       )}
 
       {/* Sous-titres (désactivables par scène ou globalement) */}

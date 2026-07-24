@@ -48,7 +48,15 @@ Champs `music` / `musicVolume` à la racine du storyboard. Pour la retirer, supp
 ```
 
 ### b) Sons additionnels par scène (SFX / ambiance)
-Tableau `sounds` dans une scène (`src/types.ts` → `sceneSoundSchema`). Pour les annuler sur une scène, retirer le champ `sounds` de cette scène (ou le laisser vide/absent). Rendu dans `src/video/Scene.tsx` via le composant `SceneSounds`, uniquement affiché si `scene.sounds` est non vide.
+Tableau `sounds` dans une scène (`src/types.ts` → `sceneSoundSchema`). Pour les annuler sur une scène précise, retirer le champ `sounds` de cette scène (ou le laisser vide/absent). Rendu dans `src/video/Scene.tsx` via le composant `SceneSounds`, uniquement affiché si `scene.sounds` est non vide.
+
+**Couper TOUS les SFX d'un coup sans toucher au code ni supprimer les `sounds` de chaque scène** : champ global `sfxVolume` à la racine du storyboard (même principe que `musicVolume`), multiplicateur appliqué à TOUS les `sounds` de TOUTES les scènes :
+```json
+{ "title": "...", "sfxVolume": 0 }
+```
+- `0` = tous les SFX/ambiances muets, mais restent définis dans le storyboard (faciles à réactiver).
+- `1` (ou absent) = comportement normal, chaque son garde son propre `volume`.
+- Toute autre valeur = multiplicateur (ex: `0.5` = tous les SFX à moitié volume).
 
 ### c) Audio natif du clip vidéo lui-même (embedded)
 Un clip `.mp4` généré par IA peut contenir sa propre bande son (ambiance, souffle, etc.). Ce n'est ni un SFX ni une musique de la bibliothèque : c'est géré par `mediaVolume` (0 à 1, défaut `0`) sur la scène :

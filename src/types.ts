@@ -125,6 +125,14 @@ export const storyboardSchema = z.object({
   music: z.string().optional(),
   /** Volume de la musique de fond (de 0 à 1). Défaut : 0.09. */
   musicVolume: z.number().min(0).max(1).optional(),
+  /**
+   * Multiplicateur GLOBAL appliqué au volume de tous les sons additionnels
+   * (`scene.sounds`, bruitages/SFX/ambiances) de toutes les scènes. Défaut : 1
+   * (inchangé, chaque son garde son propre `volume`). Mettre à 0 pour couper
+   * TOUS les SFX d'un coup depuis le storyboard, sans supprimer les `sounds`
+   * de chaque scène (pratique pour les réactiver plus tard sans repasser par le code).
+   */
+  sfxVolume: z.number().min(0).optional(),
   scenes: z.array(sceneSchema),
 });
 

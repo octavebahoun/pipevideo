@@ -65,6 +65,7 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
           durationInFrames={durationInFrames}
           subtitlesEnabled={subtitlesEnabled}
           subtitleStyle={subtitleStyle}
+          sfxVolume={storyboard.sfxVolume ?? 1}
         />
       </TransitionSeries.Sequence>
     );
