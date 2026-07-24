@@ -9,11 +9,11 @@
       "id": 1,
       "narration": "Cet animal a neuf cerveaux, trois cœurs, et du sang bleu glacé. Il n'a même pas d'os pour les protéger.",
       "mediaPath": "scene_1.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
+      "durationInSeconds": 6.713469387755102,
       "words": [
         {
           "text": "Cet",
@@ -116,17 +116,17 @@
           "duration": 0.882
         }
       ],
-      "durationInSeconds": 6.713469387755102
+      "mediaVolume": 0.7
     },
     {
       "id": 2,
       "narration": "Et si je vous disais qu'on dirait une créature tombée d'une autre planète ? Restez jusqu'au bout, la fin va vous glacer le sang.",
       "mediaPath": "scene_2.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "fade"
       },
+      "durationInSeconds": 7.288163265306123,
       "words": [
         {
           "text": "Et",
@@ -249,17 +249,17 @@
           "duration": 0.534
         }
       ],
-      "durationInSeconds": 7.288163265306123
+      "mediaVolume": 0.7
     },
     {
       "id": 3,
       "narration": "Deux tiers de ses neurones ne sont pas dans sa tête. Ils sont répartis dans ses huit bras, comme un cerveau éclaté en plusieurs morceaux.",
       "mediaPath": "scene_3.jpg",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
+      "durationInSeconds": 7.706122448979592,
       "words": [
         {
           "text": "Deux",
@@ -387,17 +387,17 @@
           "duration": 0.755
         }
       ],
-      "durationInSeconds": 7.706122448979592
+      "mediaVolume": 0.7
     },
     {
       "id": 4,
       "narration": "Alors comment un bras peut-il réfléchir tout seul, sans attendre l'ordre du cerveau central ?",
       "mediaPath": "scene_4.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "wipe"
       },
+      "durationInSeconds": 5.093877551020408,
       "words": [
         {
           "text": "Alors",
@@ -475,17 +475,17 @@
           "duration": 0.29
         }
       ],
-      "durationInSeconds": 5.093877551020408
+      "mediaVolume": 0.7
     },
     {
       "id": 5,
       "narration": "Chaque ventouse cache des récepteurs chimiques. Le poulpe ne touche pas un objet : il le goûte, comme une langue à mille bouts de doigts.",
       "mediaPath": "scene_5.jpg",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
+      "durationInSeconds": 8.25469387755102,
       "words": [
         {
           "text": "Chaque",
@@ -613,17 +613,17 @@
           "duration": 0.662
         }
       ],
-      "durationInSeconds": 8.25469387755102
+      "mediaVolume": 0.7
     },
     {
       "id": 6,
       "narration": "Et son sang ? Il n'est pas rouge. Il est bleu, car il respire grâce au cuivre, et non au fer comme le nôtre.",
       "mediaPath": "scene_6.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "black"
       },
+      "durationInSeconds": 6.948571428571428,
       "words": [
         {
           "text": "Et",
@@ -746,17 +746,17 @@
           "duration": 0.674
         }
       ],
-      "durationInSeconds": 6.948571428571428
+      "mediaVolume": 0.7
     },
     {
       "id": 7,
       "narration": "Ce sang glacé fonctionne mieux dans le froid et le manque d'oxygène des abysses : un carburant taillé pour l'extrême.",
       "mediaPath": "scene_7.jpg",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "fade"
       },
+      "durationInSeconds": 6.452244897959184,
       "words": [
         {
           "text": "Ce",
@@ -859,7 +859,7 @@
           "duration": 0.906
         }
       ],
-      "durationInSeconds": 6.452244897959184
+      "mediaVolume": 0.7
     },
     {
       "id": 8,
@@ -869,7 +869,7 @@
         "zoom": "in",
         "transition": "wipe"
       },
-      "mediaVolume": 0,
+      "durationInSeconds": 7.784489795918367,
       "words": [
         {
           "text": "Mais",
@@ -982,17 +982,17 @@
           "duration": 0.894
         }
       ],
-      "durationInSeconds": 7.784489795918367
+      "mediaVolume": 0
     },
     {
       "id": 9,
       "narration": "C'est ce qui lui permet de changer de couleur et de texture en une fraction de seconde, sans même observer ce qu'il imite.",
       "mediaPath": "scene_9.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "fade"
       },
+      "durationInSeconds": 6.504489795918367,
       "words": [
         {
           "text": "C'est",
@@ -1110,17 +1110,17 @@
           "duration": 0.696
         }
       ],
-      "durationInSeconds": 6.504489795918367
+      "mediaVolume": 0.7
     },
     {
       "id": 10,
       "narration": "Ses trois cœurs, eux, se répartissent le travail. Mais l'un d'eux s'arrête dès qu'il nage, l'épuisant en quelques mètres à peine.",
       "mediaPath": "scene_10.jpg",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
       },
+      "durationInSeconds": 7.288163265306123,
       "words": [
         {
           "text": "Ses",
@@ -1228,17 +1228,17 @@
           "duration": 0.685
         }
       ],
-      "durationInSeconds": 7.288163265306123
+      "mediaVolume": 0.7
     },
     {
       "id": 11,
       "narration": "Toute cette intelligence... pour une vie d'à peine un an ou deux. Le poulpe apprend, résout des énigmes, puis meurt avant de croiser ses propres petits.",
       "mediaPath": "scene_11.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "black"
       },
+      "durationInSeconds": 9.560816326530611,
       "words": [
         {
           "text": "Toute",
@@ -1371,13 +1371,12 @@
           "duration": 0.731
         }
       ],
-      "durationInSeconds": 9.560816326530611
+      "mediaVolume": 0.7
     },
     {
       "id": 12,
       "narration": "Neuf cerveaux. Trois cœurs. Une peau qui voit. Ce n'est pas une créature tombée d'une autre planète... c'est juste un poulpe. Et sur Terre, rien ne lui ressemble.",
       "mediaPath": "scene_12.mp4",
-      "mediaVolume": 0.7,
       "effects": {
         "zoom": "out",
         "transition": "fade"
@@ -1386,6 +1385,7 @@
         "text": "Abonne-toi pour d'autres mystères du vivant 🐙",
         "startInSeconds": 3
       },
+      "durationInSeconds": 10.396734693877551,
       "words": [
         {
           "text": "Neuf",
@@ -1528,7 +1528,7 @@
           "duration": 0.813
         }
       ],
-      "durationInSeconds": 10.396734693877551
+      "mediaVolume": 0.7
     }
   ]
 }
