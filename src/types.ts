@@ -152,8 +152,22 @@ export const MIN_SCENE_FRAMES = 30;
 /** Durée du chevauchement d'une transition (fade/slide) entre deux scènes. */
 export const TRANSITION_FRAMES = 15;
 
+/**
+ * Pause silencieuse ajoutée APRÈS la fin de la voix off d'une scène (le média
+ * continue de s'afficher), pour laisser le temps de digérer l'info avant la
+ * scène suivante. Cette pause DOIT durer plus longtemps que la transition la
+ * plus longue (26 frames pour "black", voir transitionDurationFrames) : ainsi
+ * le chevauchement de TransitionSeries avec la scène suivante tombe entièrement
+ * dans ce silence, et n'entend jamais la voix off suivante par-dessus la
+ * précédente (bug d'audio qui se chevauche entre deux scènes).
+ */
+export const POST_NARRATION_PAUSE_FRAMES = 30; // 1s à 30fps
+
 export function getSceneDurationInFrames(scene: Scene, fps: number = FPS): number {
-  return Math.max(MIN_SCENE_FRAMES, Math.ceil((scene.durationInSeconds ?? 2) * fps));
+  const narrationFrames = Math.ceil((scene.durationInSeconds ?? 2) * fps);
+  // Les cartes de fin (card) n'ont ni voix ni son : pas de pause à ajouter.
+  const pauseFrames = scene.card ? 0 : Math.round((POST_NARRATION_PAUSE_FRAMES / FPS) * fps);
+  return Math.max(MIN_SCENE_FRAMES, narrationFrames + pauseFrames);
 }
 
 /**
