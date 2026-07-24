@@ -4,8 +4,6 @@
   "voice": "george",
   "subtitles": true,
   "subtitleStyle": "karaoke",
-  "music": "sounds/music/sleepless-horizon.mp3",
-  "musicVolume": 0.08,
   "scenes": [
     {
       "id": 1,
@@ -864,6 +862,7 @@
         "zoom": "in",
         "transition": "wipe"
       },
+      "mediaVolume": 0,
       "words": [
         {
           "text": "Mais",
