@@ -252,7 +252,7 @@
     {
       "id": 3,
       "narration": "Deux tiers de ses neurones ne sont pas dans sa tête. Ils sont répartis dans ses huit bras, comme un cerveau éclaté en plusieurs morceaux.",
-      "mediaPath": "scene_3.png",
+      "mediaPath": "scene_3.jpg",
       "effects": {
         "zoom": "in",
         "transition": "fade"
@@ -476,7 +476,7 @@
     {
       "id": 5,
       "narration": "Chaque ventouse cache des récepteurs chimiques. Le poulpe ne touche pas un objet : il le goûte, comme une langue à mille bouts de doigts.",
-      "mediaPath": "scene_5.png",
+      "mediaPath": "scene_5.jpg",
       "effects": {
         "zoom": "in",
         "transition": "fade"
@@ -745,7 +745,7 @@
     {
       "id": 7,
       "narration": "Ce sang glacé fonctionne mieux dans le froid et le manque d'oxygène des abysses : un carburant taillé pour l'extrême.",
-      "mediaPath": "scene_7.png",
+      "mediaPath": "scene_7.jpg",
       "effects": {
         "zoom": "none",
         "transition": "fade"
@@ -1107,7 +1107,7 @@
     {
       "id": 10,
       "narration": "Ses trois cœurs, eux, se répartissent le travail. Mais l'un d'eux s'arrête dès qu'il nage, l'épuisant en quelques mètres à peine.",
-      "mediaPath": "scene_10.png",
+      "mediaPath": "scene_10.jpg",
       "effects": {
         "zoom": "in",
         "transition": "fade"
