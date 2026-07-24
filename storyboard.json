@@ -7,19 +7,19 @@
   "scenes": [
     {
       "id": 1,
-      "narration": "Cet animal possède le code de triche de l'immortalité.",
+      "narration": "Voici l'animal qui peut littéralement reconstruire son propre cerveau.",
       "mediaPath": "scene_1.mp4",
       "effects": { "zoom": "in", "transition": "fade" }
     },
     {
       "id": 2,
-      "narration": "Voici l'axolotl. Il peut littéralement faire repousser son propre cerveau. Reste jusqu'au bout, la question finale va te mettre au défi.",
+      "narration": "Il s'appelle l'axolotl. Reste jusqu'au bout, la question finale va te mettre au défi.",
       "mediaPath": "scene_2.mp4",
       "effects": { "zoom": "none", "transition": "fade" }
     },
     {
       "id": 3,
-      "narration": "Contrairement à nous, qui cicatrisons, l'axolotl transforme ses cellules en cellules souches.",
+      "narration": "Contrairement à nous, qui cicatrisons, l'axolotl transforme ses cellules en une sorte de pâte magique capable de tout reconstruire.",
       "mediaPath": "scene_3.png",
       "effects": { "zoom": "in", "transition": "wipe" }
     },
@@ -31,19 +31,19 @@
     },
     {
       "id": 5,
-      "narration": "Mais comment un simple amphibien peut-il réécrire son propre corps comme ça ?",
+      "narration": "Mais comment un simple amphibien peut-il réécrire son propre corps comme ça ? Le secret de ce super-pouvoir ? Il se cache dans un mystère encore plus grand : l'axolotl ne grandit jamais vraiment.",
       "mediaPath": "scene_5.mp4",
       "effects": { "zoom": "none", "transition": "wipe" }
     },
     {
       "id": 6,
-      "narration": "La réponse tient peut-être à un autre mystère : l'axolotl est une éternelle larve.",
+      "narration": "Les scientifiques appellent ça la néoténie : une éternelle larve, coincée pour toujours dans son enfance.",
       "mediaPath": "scene_6.png",
       "effects": { "zoom": "in", "transition": "black" }
     },
     {
       "id": 7,
-      "narration": "Il refuse de grandir. Il garde ses branchies de bébé toute sa vie, comme si son horloge biologique s'était arrêtée.",
+      "narration": "Il garde ses branchies de bébé toute sa vie, comme s'il refusait de devenir un adulte.",
       "mediaPath": "scene_7.mp4",
       "effects": { "zoom": "none", "transition": "fade" }
     },
@@ -55,7 +55,7 @@
     },
     {
       "id": 9,
-      "narration": "Quatre-vingt-dix pour cent de son corps peut littéralement repousser, un potentiel que la médecine humaine rêve d'exploiter.",
+      "narration": "Presque tout son corps peut repousser. Tout. Un bras, un œil, et même son cœur.",
       "mediaPath": "scene_9.mp4",
       "effects": { "zoom": "in", "transition": "fade" }
     },

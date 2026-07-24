@@ -5,10 +5,10 @@
 
 ---
 
-### 🎥 Scène 1 — HOOK : Le code de triche
+### 🎥 Scène 1 — HOOK direct : reconstruire son cerveau
 - **Fichier cible** : `public/scene_1.mp4`
 - **Type** : 🎬 Vidéo
-- **Narration** : *"Cet animal possède le code de triche de l'immortalité."*
+- **Narration** : *"Voici l'animal qui peut littéralement reconstruire son propre cerveau."*
 - **Prompt** : Extreme macro close-up of a pink axolotl's face, feathery external gills gently undulating in calm aquarium water, soft diffused light, hyper-realistic 8K, vertical 9:16, shallow depth of field, slow creeping zoom.
 
 ---
@@ -30,28 +30,29 @@
 ### 🎥 Scène 4 — Ce qu'il reconstruit
 - **Fichier cible** : `public/scene_4.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Macro cinematic shot of an axolotl's regenerating limb bud, subtle golden cellular-glow overlay pulsing gently over the tissue, soft aquarium light, vertical 9:16, slow motion.
+- **Prompt** : Macro cinematic shot of an axolotl's regenerating limb bud, subtle golden cellular-glow overlay pulsing gently over the tissue, soft aquarium light, vertical 9:16, slow motion. Bake in bold kinetic-typography text overlays timed to appear one after another in sync with the voice-over enumeration — "UN MEMBRE", "UN ŒIL", "LE CŒUR", "LA MOELLE ÉPINIÈRE" — flashing briefly in warm gold sans-serif type over the footage, then fading.
+- **Note** : l'énumération est déjà rythmée mot-à-mot par les sous-titres karaoké (`subtitleStyle: "karaoke"`) ; ce texte cuit dans le clip vient renforcer visuellement chaque élément cité, en plus des sous-titres.
 
 ---
 
-### 🎥 Scène 5 — Curiosity gap
+### 🎥 Scène 5 — Curiosity gap + bridge vers la néoténie
 - **Fichier cible** : `public/scene_5.mp4`
 - **Type** : 🎬 Vidéo
 - **Prompt** : Close-up of a pink axolotl tilting its head and looking directly at the camera with curious dark eyes, soft blue-pink lighting, calm and inquisitive mood, vertical 9:16, slow motion.
 
 ---
 
-### 🖼️ Scène 6 — Éternelle larve (illustration)
+### 🖼️ Scène 6 — La néoténie (illustration)
 - **Fichier cible** : `public/scene_6.png`
 - **Type** : 🖼️ Image
 - **Prompt** : Scientific illustration still of an axolotl silhouette with its feathery gills highlighted in soft gold, a translucent frozen hourglass or stopped clock motif overlaid above it, dark navy background, clean documentary-science aesthetic, vertical 9:16.
 
 ---
 
-### 🎥 Scène 7 — Néoténie
+### 🎥 Scène 7 — Comparatif "reste bébé" vs adulte
 - **Fichier cible** : `public/scene_7.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic shot of an axolotl resting near the bottom of a tank, its external gills waving gently in the water, soft dreamy pink-blue light, tranquil documentary mood, vertical 9:16.
+- **Prompt** : Quick split-screen or cross-fade comparison: on one side a pink neotenic axolotl (aquatic, external feathery gills, staying in water), on the other an adult terrestrial salamander (no external gills, walking on land), clear visual contrast between "forever baby" and "grown adult", soft documentary lighting, vertical 9:16.
 
 ---
 
@@ -62,7 +63,7 @@
 
 ---
 
-### 🎥 Scène 9 — 90% du corps
+### 🎥 Scène 9 — "Tout." (rythme court et punchy)
 - **Fichier cible** : `public/scene_9.mp4`
 - **Type** : 🎬 Vidéo
 - **Prompt** : Extreme macro of an axolotl's regenerating limb tip, faint golden cellular activity glowing beneath the translucent skin, soft aquarium backlight, vertical 9:16, slow zoom.
