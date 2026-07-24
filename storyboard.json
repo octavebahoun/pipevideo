@@ -9,6 +9,7 @@
       "id": 1,
       "narration": "Cet animal a neuf cerveaux, trois cœurs, et du sang bleu glacé. Il n'a même pas d'os pour les protéger.",
       "mediaPath": "scene_1.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
@@ -121,6 +122,7 @@
       "id": 2,
       "narration": "Et si je vous disais qu'on dirait une créature tombée d'une autre planète ? Restez jusqu'au bout, la fin va vous glacer le sang.",
       "mediaPath": "scene_2.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "fade"
@@ -253,6 +255,7 @@
       "id": 3,
       "narration": "Deux tiers de ses neurones ne sont pas dans sa tête. Ils sont répartis dans ses huit bras, comme un cerveau éclaté en plusieurs morceaux.",
       "mediaPath": "scene_3.jpg",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
@@ -390,6 +393,7 @@
       "id": 4,
       "narration": "Alors comment un bras peut-il réfléchir tout seul, sans attendre l'ordre du cerveau central ?",
       "mediaPath": "scene_4.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "wipe"
@@ -477,6 +481,7 @@
       "id": 5,
       "narration": "Chaque ventouse cache des récepteurs chimiques. Le poulpe ne touche pas un objet : il le goûte, comme une langue à mille bouts de doigts.",
       "mediaPath": "scene_5.jpg",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
@@ -614,6 +619,7 @@
       "id": 6,
       "narration": "Et son sang ? Il n'est pas rouge. Il est bleu, car il respire grâce au cuivre, et non au fer comme le nôtre.",
       "mediaPath": "scene_6.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "black"
@@ -746,6 +752,7 @@
       "id": 7,
       "narration": "Ce sang glacé fonctionne mieux dans le froid et le manque d'oxygène des abysses : un carburant taillé pour l'extrême.",
       "mediaPath": "scene_7.jpg",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "fade"
@@ -981,6 +988,7 @@
       "id": 9,
       "narration": "C'est ce qui lui permet de changer de couleur et de texture en une fraction de seconde, sans même observer ce qu'il imite.",
       "mediaPath": "scene_9.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "fade"
@@ -1108,6 +1116,7 @@
       "id": 10,
       "narration": "Ses trois cœurs, eux, se répartissent le travail. Mais l'un d'eux s'arrête dès qu'il nage, l'épuisant en quelques mètres à peine.",
       "mediaPath": "scene_10.jpg",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "in",
         "transition": "fade"
@@ -1225,6 +1234,7 @@
       "id": 11,
       "narration": "Toute cette intelligence... pour une vie d'à peine un an ou deux. Le poulpe apprend, résout des énigmes, puis meurt avant de croiser ses propres petits.",
       "mediaPath": "scene_11.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "none",
         "transition": "black"
@@ -1367,6 +1377,7 @@
       "id": 12,
       "narration": "Neuf cerveaux. Trois cœurs. Une peau qui voit. Ce n'est pas une créature tombée d'une autre planète... c'est juste un poulpe. Et sur Terre, rien ne lui ressemble.",
       "mediaPath": "scene_12.mp4",
+      "mediaVolume": 0.7,
       "effects": {
         "zoom": "out",
         "transition": "fade"

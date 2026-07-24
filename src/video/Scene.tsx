@@ -93,6 +93,9 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
+  const AUDIO_DELAY_FRAMES = 24; // 0.8s de pause avant la voix off
+  const remainingFrames = Math.max(1, durationInFrames - AUDIO_DELAY_FRAMES);
+
   // Effet Ken Burns (zoom lent). Les fondus/slides entre scènes sont gérés
   // par TransitionSeries dans Main.tsx — on ne fait donc PAS de fondu ici
   // (sinon double fondu).
@@ -243,23 +246,19 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
         </div>
       )}
 
-      {/* Voix off (Edge-TTS ou fichier fourni par l'utilisateur) */}
-      <Audio src={staticFile(voiceSrc)} />
+      {/* Voix off et sous-titres décalés de 0.8s pour laisser respirer */}
+      <Sequence from={AUDIO_DELAY_FRAMES} durationInFrames={remainingFrames}>
+        <Audio src={staticFile(voiceSrc)} />
 
-      {/* Sons additionnels (bruitages / ambiances / musiques) */}
-      {scene.sounds && scene.sounds.length > 0 && (
-        <SceneSounds sounds={scene.sounds} durationInFrames={durationInFrames} />
-      )}
-
-      {/* Sous-titres (désactivables par scène ou globalement) */}
-      {showSubtitles && (
-        <Subtitles
-          text={scene.subtitle ?? scene.narration}
-          words={scene.words}
-          durationInFrames={durationInFrames}
-          style={subtitleStyle}
-        />
-      )}
+        {showSubtitles && (
+          <Subtitles
+            text={scene.subtitle ?? scene.narration}
+            words={scene.words}
+            durationInFrames={remainingFrames}
+            style={subtitleStyle}
+          />
+        )}
+      </Sequence>
 
       {/* Texte incrusté (CTA) : apparaît en fondu + léger montée à startInSeconds */}
       {overlayText && (
