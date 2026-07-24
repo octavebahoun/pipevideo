@@ -1,89 +1,75 @@
-# 🎬 Prompts Médias — Le Poulpe : La Créature la Plus Extraterrestre de la Terre
+# 🎬 Prompts Médias — L'Axolotl : Le Mutant de la Vie Réelle
 
 > Format : **9:16** (Short vertical / TikTok / Reels)
-> Direction artistique : Macro sous-marin, bleus profonds et cyan, lumière ponctuelle façon bioluminescence, esthétique docu-science premium (style "Blue Planet" / Arte macro), légère aberration chromatique sur les gros plans pour accentuer le côté "étrange / extraterrestre".
+> Direction artistique : Aquarium/labo doux, tons rose pâle et bleu aqua, lumière tamisée façon documentaire scientifique premium, branchies plumeuses en mouvement, esthétique "mutant attachant" plutôt qu'horrifique.
 
 ---
 
-### 🎥 Scène 1 — HOOK : Neuf cerveaux, trois cœurs, sang bleu
+### 🎥 Scène 1 — HOOK : Le code de triche
 - **Fichier cible** : `public/scene_1.mp4`
 - **Type** : 🎬 Vidéo
-- **Narration** : *"Cet animal a neuf cerveaux, trois cœurs, et du sang bleu glacé..."*
-- **Prompt** : Extreme macro close-up of an octopus eye and mantle, skin rippling through iridescent blue and purple hues, deep ocean darkness, single shaft of cold blue light, hyper-realistic 8K, vertical 9:16, shallow depth of field, slow creeping zoom.
+- **Narration** : *"Cet animal possède le code de triche de l'immortalité."*
+- **Prompt** : Extreme macro close-up of a pink axolotl's face, feathery external gills gently undulating in calm aquarium water, soft diffused light, hyper-realistic 8K, vertical 9:16, shallow depth of field, slow creeping zoom.
 
 ---
 
-### 🎥 Scène 2 — Tease "créature extraterrestre"
+### 🎥 Scène 2 — Présentation + tease
 - **Fichier cible** : `public/scene_2.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Wide macro shot of an octopus unfurling from a dark crevice, tentacles slowly extending toward camera like alien limbs, deep blue-black water, faint bioluminescent particles drifting, documentary style, vertical 9:16.
+- **Prompt** : Wide shot of a pink axolotl swimming slowly toward camera in a softly lit tank, dreamy pink and aqua-blue lighting, gentle bubbles rising, documentary style, vertical 9:16.
 
 ---
 
-### 🖼️ Scène 3 — Cerveau distribué (illustration)
+### 🖼️ Scène 3 — Régénération (illustration)
 - **Fichier cible** : `public/scene_3.png`
 - **Type** : 🖼️ Image
-- **Prompt** : Scientific illustration still of an octopus silhouette with glowing neural clusters distributed along each of its eight arms instead of a single head, thin golden neural pathways connecting them, dark navy background, clean documentary-science aesthetic, vertical 9:16.
+- **Prompt** : Clean scientific illustration still showing three stages of a limb regenerating (stump, cellular bud glowing gold, full limb), dark navy background, minimal documentary-science aesthetic, vertical 9:16.
 
 ---
 
-### 🎥 Scène 4 — Un bras qui pense seul
+### 🎥 Scène 4 — Ce qu'il reconstruit
 - **Fichier cible** : `public/scene_4.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Macro cinematic shot of a single octopus arm independently curling and exploring a coral texture, suction cups flexing individually, rest of the body out of frame, deep blue lighting, vertical 9:16, slow motion.
+- **Prompt** : Macro cinematic shot of an axolotl's regenerating limb bud, subtle golden cellular-glow overlay pulsing gently over the tissue, soft aquarium light, vertical 9:16, slow motion.
 
 ---
 
-### 🖼️ Scène 5 — Ventouses qui goûtent
-- **Fichier cible** : `public/scene_5.png`
-- **Type** : 🖼️ Image
-- **Prompt** : Extreme macro still of octopus suction cups, subtle glowing chemoreceptor dots overlaid on the texture to suggest taste-sensing, cold blue rim light, scientific-illustration realism, vertical 9:16.
-
----
-
-### 🎥 Scène 6 — Sang bleu (révélation)
-- **Fichier cible** : `public/scene_6.mp4`
+### 🎥 Scène 5 — Curiosity gap
+- **Fichier cible** : `public/scene_5.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic macro of translucent blue hemolymph (blood) flowing through a vein-like structure inside an octopus arm, cold cyan backlight, dramatic reveal lighting, vertical 9:16, slow motion.
+- **Prompt** : Close-up of a pink axolotl tilting its head and looking directly at the camera with curious dark eyes, soft blue-pink lighting, calm and inquisitive mood, vertical 9:16, slow motion.
 
 ---
 
-### 🖼️ Scène 7 — Les abysses
-- **Fichier cible** : `public/scene_7.png`
+### 🖼️ Scène 6 — Éternelle larve (illustration)
+- **Fichier cible** : `public/scene_6.png`
 - **Type** : 🖼️ Image
-- **Prompt** : Cinematic still of an octopus resting on the deep ocean floor, near-total darkness pierced by faint bioluminescent particles, cold and hostile atmosphere, documentary style, vertical 9:16.
+- **Prompt** : Scientific illustration still of an axolotl silhouette with its feathery gills highlighted in soft gold, a translucent frozen hourglass or stopped clock motif overlaid above it, dark navy background, clean documentary-science aesthetic, vertical 9:16.
 
 ---
 
-### 🎥 Scène 8 — MID MICRO-FACT : la peau qui voit
-- **Fichier cible** : `public/scene_8.mp4`
+### 🎥 Scène 7 — Néoténie
+- **Fichier cible** : `public/scene_7.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Extreme macro of octopus skin rippling with color-changing chromatophores, a very subtle golden light-sensing pulse animation layered over the texture, deep blue backdrop, otherworldly atmosphere, vertical 9:16, slow zoom.
+- **Prompt** : Cinematic shot of an axolotl resting near the bottom of a tank, its external gills waving gently in the water, soft dreamy pink-blue light, tranquil documentary mood, vertical 9:16.
 
 ---
 
-### 🎥 Scène 9 — Camouflage instantané
+### 🖼️ Scène 8 — Enjeu médical (illustration)
+- **Fichier cible** : `public/scene_8.png`
+- **Type** : 🖼️ Image
+- **Prompt** : Clean split-illustration still: an axolotl's DNA helix glowing gold on one side, a stylized human silhouette (highlighting a limb and spine) on the other, a thin connecting light-beam between them, dark navy background, documentary-science aesthetic, vertical 9:16.
+
+---
+
+### 🎥 Scène 9 — 90% du corps
 - **Fichier cible** : `public/scene_9.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic shot of an octopus instantly camouflaging against a textured coral reef, skin color and texture morphing within a second, natural underwater light, vertical 9:16, real-time speed.
+- **Prompt** : Extreme macro of an axolotl's regenerating limb tip, faint golden cellular activity glowing beneath the translucent skin, soft aquarium backlight, vertical 9:16, slow zoom.
 
 ---
 
-### 🖼️ Scène 10 — Trois cœurs (illustration)
-- **Fichier cible** : `public/scene_10.png`
-- **Type** : 🖼️ Image
-- **Prompt** : Scientific illustration still of an octopus silhouette with three glowing hearts overlaid inside its body, two smaller hearts pulsing fast near the gills and one larger heart dimming, dark navy background, clean documentary-science aesthetic, vertical 9:16.
-
----
-
-### 🎥 Scène 11 — Vie brève, émotion
-- **Fichier cible** : `public/scene_11.mp4`
+### 🎥 Scène 10 — LOOP Final : callback "code de triche"
+- **Fichier cible** : `public/scene_10.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Melancholic cinematic shot of a solitary octopus drifting slowly over a quiet ocean floor, dim fading light, muted blue tones, slow motion, emotional and contemplative mood, vertical 9:16.
-
----
-
-### 🎥 Scène 12 — LOOP Final : callback "extraterrestre"
-- **Fichier cible** : `public/scene_12.mp4`
-- **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic slow zoom-out from an octopus eye (reflecting light like a distant galaxy) to reveal its full body suspended in dark deep-blue water, serene and majestic, documentary finish, vertical 9:16, leave clean space near the bottom third of frame for on-screen CTA text.
+- **Prompt** : Close-up of a pink axolotl looking calmly at the camera, gentle warm-pink color grade, serene and inviting mood, documentary finish, vertical 9:16, slow motion, leave clean space near the bottom third of frame for on-screen CTA text.

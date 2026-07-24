@@ -1,23 +1,19 @@
-Cet animal a neuf cerveaux, trois cœurs, et du sang bleu glacé. Il n'a même pas d'os pour les protéger.
+Cet animal possède le code de triche de l'immortalité.
 
-Et si je vous disais qu'on dirait une créature tombée d'une autre planète ? Restez jusqu'au bout, la fin va vous glacer le sang.
+Voici l'axolotl. Il peut littéralement faire repousser son propre cerveau. Reste jusqu'au bout, la question finale va te mettre au défi.
 
-Deux tiers de ses neurones ne sont pas dans sa tête. Ils sont répartis dans ses huit bras, comme un cerveau éclaté en plusieurs morceaux.
+Contrairement à nous, qui cicatrisons, l'axolotl transforme ses cellules en cellules souches.
 
-Alors comment un bras peut-il réfléchir tout seul, sans attendre l'ordre du cerveau central ?
+Il reconstruit un membre, un œil, une partie de son cœur ou de sa moelle épinière... sans la moindre cicatrice.
 
-Chaque ventouse cache des récepteurs chimiques. Le poulpe ne touche pas un objet : il le goûte, comme une langue à mille bouts de doigts.
+Mais comment un simple amphibien peut-il réécrire son propre corps comme ça ?
 
-Et son sang ? Il n'est pas rouge. Il est bleu, car il respire grâce au cuivre, et non au fer comme le nôtre.
+La réponse tient peut-être à un autre mystère : l'axolotl est une éternelle larve.
 
-Ce sang glacé fonctionne mieux dans le froid et le manque d'oxygène des abysses : un carburant taillé pour l'extrême.
+Il refuse de grandir. Il garde ses branchies de bébé toute sa vie, comme si son horloge biologique s'était arrêtée.
 
-Mais voici le plus troublant : sa peau contient les mêmes capteurs que ses yeux. Le poulpe pourrait littéralement voir sans regarder.
+Résultat : les scientifiques étudient son ADN pour tenter de soigner des paralysies ou des brûlures graves chez l'humain.
 
-C'est ce qui lui permet de changer de couleur et de texture en une fraction de seconde, sans même observer ce qu'il imite.
+Quatre-vingt-dix pour cent de son corps peut littéralement repousser, un potentiel que la médecine humaine rêve d'exploiter.
 
-Ses trois cœurs, eux, se répartissent le travail. Mais l'un d'eux s'arrête dès qu'il nage, l'épuisant en quelques mètres à peine.
-
-Toute cette intelligence... pour une vie d'à peine un an ou deux. Le poulpe apprend, résout des énigmes, puis meurt avant de croiser ses propres petits.
-
-Neuf cerveaux. Trois cœurs. Une peau qui voit. Ce n'est pas une créature tombée d'une autre planète... c'est juste un poulpe. Et sur Terre, rien ne lui ressemble.
+Alors, code de triche de la nature ou simple mutant rose ? Si tu pouvais faire repousser un membre, lequel choisirais-tu ? Dis-le en commentaire, et abonne-toi pour d'autres mystères biologiques.

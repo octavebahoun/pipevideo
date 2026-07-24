@@ -1,12 +1,16 @@
-# 📝 Métadonnées de Publication — Le Poulpe : La Créature la Plus Extraterrestre de la Terre
+# 📝 Métadonnées de Publication — L'Axolotl : Le Mutant de la Vie Réelle
 
 ## 📌 Titres optimisés (CTR)
-1. **Le poulpe a 9 cerveaux, 3 cœurs et du sang bleu 🐙🧠** *(Recommandé)*
-2. **Cet animal ressemble à un extraterrestre... et il vit sur Terre 👽**
-3. **Le poulpe : l'animal le plus étrange de l'océan**
+1. **Cet animal est immortel et peut reconstruire son cerveau 😱🧬** *(Recommandé)*
+2. **L'axolotl : le secret de la jeunesse éternelle enfin révélé 🦎✨**
+3. **90 % de son corps peut repousser : le secret de l'axolotl 🧬**
+4. **Pourquoi cet animal refuse-t-il de vieillir ? 🧠🧬**
 
 ## 📄 Description (Short vertical / TikTok / Reels)
-> Neuf cerveaux, trois cœurs, du sang bleu glacé, une peau qui voit sans yeux... Le poulpe est sans doute l'animal le plus étrange de notre planète. Plongez dans les secrets d'une créature qui semble sortie d'un autre monde. 🐙🧠
+> Un membre coupé ? Un œil abîmé ? Même une partie du cerveau ou du cœur ? L'axolotl reconstruit tout, sans la moindre cicatrice. Découvrez le secret de cette "éternelle larve" que les scientifiques étudient pour révolutionner la médecine humaine. 🧬🦎
 
 ## 🏷️ Hashtags & Tags
-`#poulpe` `#octopus` `#animaux` `#science` `#nature` `#biologie` `#cerveau` `#ocean` `#faitscientifique` `#curiosite` `#documentaire` `#shorts`
+`#axolotl` `#biologie` `#science` `#animaux` `#nature` `#genetique` `#faitscientifique` `#curiosite` `#medecine` `#regeneration` `#documentaire` `#shorts`
+
+## 🖼️ Conseil miniature
+Gros plan de la tête d'un axolotl rose avec ses branchies plumeuses. Texte court en jaune vif sur fond bleu eau : **"CERVEAU RÉGÉNÉRÉ ?"** ou **"IMMORTEL ?"**
