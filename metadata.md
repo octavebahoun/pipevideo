@@ -7,7 +7,7 @@
 4. **Le mystère du crâne du pic, enfin résolu en 2022 🔬**
 
 ## 📄 Description (Short vertical / TikTok / Reels)
-> Douze mille coups de bec par jour, des chocs équivalents à 25 fois la vitesse du son... et pourtant, zéro commotion cérébrale. On a longtemps cru que le crâne du pic agissait comme un airbag. Une étude de 2022 a tout remis en question. Découvrez le vrai secret : langue-ceinture, troisième paupière, et un crâne qui inspire aujourd'hui les casques et les boîtes noires d'avion. 🔨🐦🧠
+> Douze mille coups de bec par jour, des chocs qui dépassent 1 200 G de décélération (de quoi écraser un cerveau humain)... et pourtant, zéro commotion cérébrale. On a longtemps cru que le crâne du pic agissait comme un airbag. Une étude de 2022 a tout remis en question. Découvrez le vrai secret : langue-ceinture, troisième paupière, et un crâne qui inspire aujourd'hui les casques et les boîtes noires d'avion. 🔨🐦🧠
 
 ## 🏷️ Hashtags & Tags
 `#pic` `#oiseaux` `#biologie` `#science` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#ingenierie` `#biomimetisme` `#documentaire` `#shorts`

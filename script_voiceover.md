@@ -1,6 +1,6 @@
 Cet oiseau se cogne la tête douze mille fois par jour... et n'a jamais mal au crâne.
 
-Certains chocs équivalent à ce que subirait ton crâne à vingt-cinq fois la vitesse du son.
+Certains chocs lui font subir une pression équivalente à plus de mille fois la gravité terrestre.
 
 On a longtemps pensé que son crâne agissait comme un airbag, absorbant le choc à chaque coup de bec.
 
