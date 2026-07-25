@@ -147,7 +147,7 @@
     {
       "id": 3,
       "narration": "Contrairement à nous, qui cicatrisons, l'axolotl transforme ses cellules en une sorte de pâte magique capable de tout reconstruire.",
-      "mediaPath": "scene_3.png",
+      "mediaPath": "scene_3.jpg",
       "effects": {
         "zoom": "in",
         "transition": "wipe"
@@ -548,7 +548,7 @@
     {
       "id": 6,
       "narration": "Les scientifiques appellent ça la néoténie : une éternelle larve, coincée pour toujours dans son enfance.",
-      "mediaPath": "scene_6.png",
+      "mediaPath": "scene_6.jpg",
       "effects": {
         "zoom": "in",
         "transition": "black"
@@ -732,7 +732,7 @@
     {
       "id": 8,
       "narration": "Résultat : les scientifiques étudient son ADN pour tenter de soigner des paralysies ou des brûlures graves chez l'humain.",
-      "mediaPath": "scene_8.png",
+      "mediaPath": "scene_8.jpg",
       "effects": {
         "zoom": "in",
         "transition": "wipe"
