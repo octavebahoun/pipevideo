@@ -96,14 +96,25 @@ Bibliothèque **réutilisable et déjà fournie** dans `public/sounds/` (bruitag
 - Créer `media-prompts.md` : par scène → **type (🎬 vidéo / 🖼️ image)**, narration, prompt (mouvement décrit pour les vidéos), durée, ratio, style, et **effets à cuire dans le média** (grain, glitch, aberration, split-screen, bandes noires…) que la pipeline ne fait pas.
 - Demander de déposer les fichiers dans `public/` aux bons noms (`.mp4` ou `.png`) et vérifier que `mediaPath` pointe dessus.
 
-### 6. Rendu de la Vidéo Finale
-- Une fois les médias (et voix/sons) en place :
+### 6. Vérification des durées médias — après `npm run tts` ET dépôt des fichiers
+- Une fois les voix générées (`npm run tts`) et les fichiers déposés dans `public/` :
+  ```bash
+  npm run check-video
+  ```
+- Compare la durée RÉELLE de chaque clip à la durée REQUISE par sa scène (narration + pause). Trois verdicts possibles par scène :
+  - ✅ Clip assez long → rien à faire.
+  - 🟡 Clip un peu court, mais l'écart tient dans la transition suivante → probablement invisible, à vérifier au rendu.
+  - 🔴 Clip trop court → `playbackRate` calculé et **injecté automatiquement** dans `storyboard.json` pour un ralenti qui remplit exactement la scène sans bouclage visible.
+- Relancer après tout remplacement de média (les durées changent).
+
+### 7. Rendu de la Vidéo Finale
+- Une fois les médias (et voix/sons) en place, et `npm run check-video` passé sans 🔴 non résolu :
   ```bash
   npm run render
   ```
 - La vidéo finale : `/home/precieux/pipevideo/out/video.mp4`.
 
-### 7. Rendu cloud (AWS Lambda) — optionnel, pour décharger la machine
+### 8. Rendu cloud (AWS Lambda) — optionnel, pour décharger la machine
 ```bash
 npm run render:lambda
 ```
@@ -114,7 +125,8 @@ Miroir cloud de `npm run render` : trouve la fonction Lambda déployée, (re)dé
 ## Scripts npm disponibles
 | Commande | Rôle |
 | --- | --- |
-| `npm run tts` | Génère (ElevenLabs) ou mesure (voix fournie) les voix off + durées + timings karaoké. |
+| `npm run tts` | Génère (ElevenLabs/Edge-TTS selon `.env`) ou mesure (voix fournie) les voix off + durées + timings karaoké. |
+| `npm run check-video` | Compare durée réelle des clips vs durée requise par scène ; injecte `playbackRate` si besoin (voir §6). |
 | `npm run sounds` | Régénère `public/sounds/CATALOG.md` depuis les fiches de la bibliothèque. |
 | `npm run render` | Compile et rend la vidéo finale **en local** dans `out/video.mp4`. |
 | `npm run render:lambda` | Rend la vidéo **sur AWS Lambda** (cloud) et la télécharge dans `out/video.mp4`. |

@@ -136,3 +136,23 @@ Une fois `npm run tts` passé, `storyboard.json` contient la durée RÉELLE de c
 **Cas d'une scène qui dépasse la limite d'une génération (5-10s selon l'outil)** : ne jamais se contenter d'un vague "génère 10s et ça s'étirera". Donner une vraie recommandation exploitable :
 1. Utiliser la fonction "extend" de l'outil de génération (Kling, etc.) pour compléter jusqu'à la durée exacte.
 2. Sinon, calculer et donner le `playbackRate` exact à ajouter sur la scène (`durée du clip généré ÷ durée cible`) pour un ralenti fluide qui remplit exactement la scène sans bouclage visible — sans ce réglage, `Scene.tsx` (`<Loop>`) BOUCLE le clip trop court au lieu de l'étirer, ce qui se voit à l'écran.
+
+## 6. `npm run check-video` — vérification automatique des durées médias
+
+Avant, cette vérification (durée réelle du clip vs durée requise par la scène, calcul du `playbackRate` si besoin) se faisait à la main pour chaque scène — source d'erreurs et de crédits gaspillés (cf. §5). Automatisé dans `src/check-media.ts`.
+
+**Quand le lancer** : après `npm run tts` (durées de narration connues) ET après avoir déposé les fichiers médias dans `public/`. À relancer après tout remplacement de média.
+
+```bash
+npm run check-video
+```
+
+**Logique par scène vidéo** (les images et les cartes de fin sont ignorées, leur durée n'est pas contrainte par un clip) :
+1. Durée requise = `getSceneDurationInFrames` (narration + pause post-narration, voir §1) ÷ FPS.
+2. Durée réelle = mesurée sur le fichier dans `public/` via `music-metadata` (déjà utilisé pour l'audio, fonctionne aussi sur les conteneurs vidéo).
+3. Écart = réelle − requise.
+   - **Écart ≥ 0** : rien à faire (retire un `playbackRate` obsolète si la scène en avait un).
+   - **Écart négatif mais ≤ durée de la transition suivante** : probablement invisible (masqué par le fondu vers la scène suivante) → juste signalé, à vérifier visuellement au rendu, aucune modification.
+   - **Écart négatif au-delà de ce que la transition peut absorber** : `playbackRate` calculé (`durée réelle ÷ durée requise`) et **injecté automatiquement** dans `storyboard.json`, pour un ralenti qui remplit exactement la scène sans que `<Loop>` (dans `Scene.tsx`) ne fasse boucler le clip de façon visible.
+
+Objectif : que l'agent (ou l'utilisateur) sache immédiatement, avant `npm run render`, quelles scènes ont besoin d'un vrai correctif vs lesquelles sont déjà couvertes par le design des transitions — sans recalculer ça à la main à chaque fois.

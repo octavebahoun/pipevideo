@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "tts": "ts-node src/tts.ts",
+    "check-video": "ts-node src/check-media.ts",
     "render": "ts-node src/render.ts",
     "render:lambda": "ts-node src/render-lambda.ts",
     "sounds": "ts-node src/sounds.ts",
