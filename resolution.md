@@ -32,7 +32,19 @@ Avec 30 frames de pause, la transition est **entièrement comprise dans cette se
 
 ➡️ La durée de scène reste toujours pilotée par **l'audio réel mesuré** (`durationInSeconds`, écrit par `npm run tts` à partir du fichier `.mp3` sur le disque), jamais par une valeur arbitraire. Si un fichier audio est remplacé/régénéré manuellement, il FAUT relancer `npm run tts` pour resynchroniser `durationInSeconds` et les timings karaoké (`words`) — sinon le rendu se cale sur l'ancienne durée et coupe le nouvel audio.
 
-## 2. Annuler les sons (SFX / ambiance / musique) sur une vidéo
+## 2. Style de sous-titres/karaoké, centralisé dans le storyboard
+
+Champ `subtitleStyle` à la racine du storyboard (`src/types.ts`, rendu dans `src/video/Subtitles.tsx`), 3 valeurs possibles :
+```json
+{ "title": "...", "subtitleStyle": "fondant" }
+```
+- `"karaoke"` (défaut) : mots en MAJUSCULES, pop dur (scale + bascule instantanée blanc/or), contours noirs épais. Pour un sujet punchy/agressif.
+- `"fondant"` : karaoké doux — chaque mot s'illumine **progressivement** (fondu autour de son instant de prononciation, pas de bascule instantanée), casse normale, contours légers. Pour un sujet qui doit paraître calme/attachant (ex: axolotl).
+- `"cinematic"` : phrase sobre sans surlignage mot-à-mot, pour un essai/documentaire 16:9.
+
+Un seul champ dans le storyboard suffit à changer l'ambiance visuelle des sous-titres d'une vidéo à l'autre, sans toucher au code.
+
+## 3. Annuler les sons (SFX / ambiance / musique) sur une vidéo
 
 Il y a deux couches de son distinctes dans le storyboard, à ne pas confondre :
 

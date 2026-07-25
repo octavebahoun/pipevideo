@@ -19,7 +19,7 @@ interface SceneComponentProps {
   /** Sous-titres activés par défaut (valeur globale du storyboard). */
   subtitlesEnabled: boolean;
   /** Style des sous-titres. */
-  subtitleStyle: 'karaoke' | 'cinematic';
+  subtitleStyle: 'karaoke' | 'fondant' | 'cinematic';
   /** Multiplicateur global de volume pour les sons additionnels (storyboard.sfxVolume, défaut 1). */
   sfxVolume: number;
 }

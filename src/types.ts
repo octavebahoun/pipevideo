@@ -117,10 +117,14 @@ export const storyboardSchema = z.object({
   subtitles: z.boolean().optional(),
   /**
    * Style des sous-titres :
-   *  - "karaoke"   : gros mots MAJUSCULES surlignés au fil de la voix (shorts verticaux, défaut).
-   *  - "cinematic" : phrase discrète et sobre centrée en bas (essai / documentaire 16:9).
+   *  - "karaoke"   : gros mots MAJUSCULES surlignés au fil de la voix, pop dur et contours
+   *                  épais (shorts verticaux punchy/agressifs, défaut).
+   *  - "fondant"   : karaoké doux — les mots s'illuminent progressivement (fondu, pas de pop
+   *                  brutal ni de contours épais), casse normale. Pour un sujet plus calme/attachant.
+   *  - "cinematic" : phrase discrète et sobre centrée en bas, sans surlignage mot-à-mot
+   *                  (essai / documentaire 16:9).
    */
-  subtitleStyle: z.enum(['karaoke', 'cinematic']).optional(),
+  subtitleStyle: z.enum(['karaoke', 'fondant', 'cinematic']).optional(),
   /** Musique de fond optionnelle : nom de fichier dans public/ (ex: "music.mp3"). */
   music: z.string().optional(),
   /** Volume de la musique de fond (de 0 à 1). Défaut : 0.09. */
