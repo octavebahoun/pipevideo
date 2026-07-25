@@ -218,7 +218,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
               <OffthreadVideo
                 src={staticFile(mediaPath)}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                volume={scene.mediaVolume ?? 0}
+                volume={scene.mediaVolume ?? 0.7}
                 playbackRate={scene.playbackRate ?? 1}
               />
             </Loop>

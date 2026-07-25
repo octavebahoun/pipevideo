@@ -95,7 +95,7 @@ export const sceneSchema = z.object({
   durationInSeconds: z.number().optional(),
   /** Timings mot-à-mot pour le karaoké. Injectés automatiquement par tts.ts (ne pas écrire à la main). */
   words: z.array(wordTimingSchema).optional(),
-  /** Volume du média vidéo (audio original du clip). 0 = muet, 1 = plein volume. Défaut : 0. */
+  /** Volume du média vidéo (audio original du clip). 0 = muet, 1 = plein volume. Défaut : 0.7 (audible par défaut ; mettre 0 pour couper explicitement une scène). */
   mediaVolume: z.number().min(0).max(1).optional(),
   /** Sons additionnels (bruitages, ambiances, musiques) joués pendant la scène. */
   sounds: z.array(sceneSoundSchema).optional(),

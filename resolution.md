@@ -85,13 +85,14 @@ Tableau `sounds` dans une scène (`src/types.ts` → `sceneSoundSchema`). Pour l
 - Toute autre valeur = multiplicateur (ex: `0.5` = tous les SFX à moitié volume).
 
 ### c) Audio natif du clip vidéo lui-même (embedded)
-Un clip `.mp4` généré par IA peut contenir sa propre bande son (ambiance, souffle, etc.). Ce n'est ni un SFX ni une musique de la bibliothèque : c'est géré par `mediaVolume` (0 à 1, défaut `0`) sur la scène :
+Un clip `.mp4` généré par IA peut contenir sa propre bande son (ambiance, souffle, etc.). Ce n'est ni un SFX ni une musique de la bibliothèque : c'est géré par `mediaVolume` (0 à 1) sur la scène, rendu dans `src/video/Scene.tsx` (`volume={scene.mediaVolume ?? 0.7}`) :
 ```json
 { "mediaPath": "scene_8.mp4", "mediaVolume": 0 }
 ```
-- `0` = clip totalement muet (par défaut).
-- `> 0` (ex: `0.7`) = le son natif du clip est audible à ce volume, en plus de la voix off.
+- **Défaut : `0.7`** (audible) si `mediaVolume` est absent — décision prise après avoir remarqué que le son natif des clips n'était pris en compte que si on le demandait explicitement scène par scène (comportement contre-intuitif). Toutes les vidéos entendent maintenant leur son natif par défaut.
+- `0` = clip explicitement muet sur cette scène (mettre la clé à `0` pour la faire taire).
+- Toute autre valeur (0 à 1) = volume du son natif, en plus de la voix off.
 
-**Pour couper le son natif sur une scène précise sans toucher aux autres** : mettre `"mediaVolume": 0` uniquement sur cette scène, laisser les autres telles quelles.
+**Pour couper le son natif sur une scène précise sans toucher aux autres** : mettre `"mediaVolume": 0` uniquement sur cette scène.
 
-**Pour tout couper d'un coup (musique + SFX + audio natif)** : retirer `music`/`musicVolume` au niveau racine, retirer tout tableau `sounds` de chaque scène, et mettre `"mediaVolume": 0` sur toutes les scènes vidéo. Seule la voix off (narration) reste alors audible.
+**Pour tout couper d'un coup (musique + SFX + audio natif)** : retirer `music`/`musicVolume` au niveau racine, retirer tout tableau `sounds` de chaque scène, et mettre `"mediaVolume": 0` sur toutes les scènes vidéo (maintenant nécessaire explicitement partout, puisque `0.7` est le défaut).
