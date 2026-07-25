@@ -7,7 +7,7 @@
 4. **Cet animal peut tuer un loup à coups de sabots 🐺⚔️**
 
 ## 📄 Description (Short vertical / TikTok / Reels)
-> Un radar capable d'entendre à 60 km, une vision à 360° sans bouger la tête, la capacité de charger un loup pour défendre son troupeau, et 30 litres d'eau avalés en 3 minutes... L'âne n'est pas têtu, il est stratège. Découvrez pourquoi cet animal sous-estimé est un vrai génie de la survie. 🧠🫏
+> Radar acoustique à 60 km. Scanner panoramique à 360°. Calculateur de risques en temps réel. Unité de combat contre les prédateurs. L'âne n'est pas têtu : c'est une machine de survie ultra-sophistiquée, un vrai chef-d'œuvre d'évolution. 🧠🫏
 
 ## 🏷️ Hashtags & Tags
 `#ane` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#ferme` `#biologie` `#survie` `#documentaire` `#shorts`

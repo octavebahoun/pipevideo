@@ -43,6 +43,8 @@ Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voi
 
 > **Auto-check obligatoire** : les 5 cases cochées, sinon réécrire. (Réf. : l'audit du short « miel » est passé de **1/5 → 5/5** grâce à ces règles.)
 
+**Variante « HUD futuriste »** : quand l'utilisateur demande explicitement ce style (vocabulaire technologique/militaire plaqué sur des faits naturels réels, ex: « radar », « scanner », « unité de combat »), suivre le template dédié dans `resolution.md` (§ 5) pour le script ET pour les prompts médias (surcouche HUD holographique cyan/néon). Ne pas l'appliquer par défaut — seulement sur demande.
+
 - Effets par scène : `zoom: in|out|none`, `transition: fade|slide|none|black|wipe`.
   - `black` = fondu **au noir** (fermeture cinéma), `wipe` = **révélation**. S'en servir pour rythmer et masquer un point de boucle.
 - **Clip vidéo IA ~10 s** : si la scène (voix) est plus longue, la pipeline **étire le clip en ralenti** (`playbackRate`, calculé après les durées) ou le boucle → **préférer le ralenti** (mouvement continu, effet ciné). Une `card` (écran noir + texte, sans audio) sert de carte de fin.

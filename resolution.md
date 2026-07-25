@@ -96,3 +96,26 @@ Un clip `.mp4` généré par IA peut contenir sa propre bande son (ambiance, sou
 **Pour couper le son natif sur une scène précise sans toucher aux autres** : mettre `"mediaVolume": 0` uniquement sur cette scène.
 
 **Pour tout couper d'un coup (musique + SFX + audio natif)** : retirer `music`/`musicVolume` au niveau racine, retirer tout tableau `sounds` de chaque scène, et mettre `"mediaVolume": 0` sur toutes les scènes vidéo (maintenant nécessaire explicitement partout, puisque `0.7` est le défaut).
+
+## 5. Template "HUD futuriste" — script + prompts visuels (réutilisable)
+
+Style demandé pour toute vidéo qui doit sonner "épique, scientifique et captivant" en habillant des faits naturels réels d'un vocabulaire technologique/militaire. À appliquer quand le sujet s'y prête (pas systématique — voir avec l'utilisateur au cas par cas).
+
+### Structure du script (3 blocs)
+
+1. **Accroche (0-5s)** : casser une idée reçue → *« Vous pensez que [Sujet] est [banal/faible/inutile] ? FAUX ! »*, puis enchaîner immédiatement sur un terme fort (« machine de guerre », « génie de la nature », « survivant ultime »).
+2. **Corps (3 à 4 faits)** : vocabulaire technologique/militaire/futuriste plaqué sur des faits biologiques réels (« radar », « bouclier », « scanner optique », « stabilisateur »). Chiffres marquants en analogie concrète (« l'équivalent de... », « une pression de X bars »...). Phrases très courtes et rythmées, adaptées à une voix-off rapide.
+3. **Conclusion (50-60s)** : récapitulatif ultra-rapide des mots-clés/fonctions mentionnées, puis phrase de clôture qui réaffirme la fascination (« Ce n'est pas juste un [Sujet], c'est un chef-d'œuvre d'évolution »).
+
+**Référence** (script Âne, `video/ane-genie-survie`) :
+> *"Vous pensez que l'âne est stupide et têtu ? FAUX. C'est une machine de survie ultra-sophistiquée. Ses oreilles ? Un radar acoustique longue portée. [...] Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. [...] Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution."*
+
+### Structure du prompt visuel (HUD)
+
+```
+Cinematic shot of [SUJET], glowing futuristic [ÉLÉMENT HUD ex: holographic target reticle / glowing 3D scan / digital overlay interface], glowing cyan blue and neon accents, sleek high-tech graphic UI, photorealistic 8k, atmospheric lighting, hyper-detailed --ar 9:16
+```
+
+- Le sujet réel (animal, objet...) reste photoréaliste ; seule une **surcouche HUD holographique cyan/néon** est ajoutée (radar, scanner, réticule, data readouts) pour illustrer le fait technique du moment.
+- `--ar 9:16` gardé tel quel (syntaxe flag façon Midjourney) plutôt que traduit en prose — format attendu par l'outil de génération de l'utilisateur.
+- Chaque scène du corps a SON PROPRE élément HUD, cohérent avec le fait qu'elle illustre (radar pour l'ouïe, scanner panoramique pour la vision, réticule de menace pour l'analyse de risque, lignes de trajectoire pour le combat...).

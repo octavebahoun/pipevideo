@@ -1,11 +1,11 @@
-Vous pensez que l'âne est bête et têtu ? En réalité, c'est un véritable génie tactique du règne animal !
+Vous pensez que l'âne est stupide et têtu ? FAUX. C'est une machine de survie ultra-sophistiquée.
 
-Ses immenses oreilles ne servent pas qu'à réguler sa température : elles agissent comme un radar capable d'entendre un autre âne à soixante kilomètres !
+Ses oreilles ? Un radar acoustique longue portée. Portée d'écoute : soixante kilomètres.
 
-Grâce à la position de ses yeux, il peut voir ses quatre sabots en même temps sans bouger la tête, pour éviter les faux pas.
+Ses yeux ? Un scanner panoramique à trois cent soixante degrés. Aucun angle mort, même au bord d'une falaise.
 
-S'il refuse d'avancer, ce n'est pas par bêtise : contrairement au cheval qui panique, l'âne s'arrête, calcule les risques et analyse le danger.
+Face au danger, son cerveau active un calcul tactique instantané. Pas de panique. Juste de l'analyse de risque, en temps réel.
 
-Et face aux prédateurs comme les loups ou les coyotes, il n'hésite pas à les charger et à les écraser à coups de sabots pour défendre son territoire !
+Contre un prédateur, il devient une unité de combat. Charge frontale. Impact. Sabots en armes.
 
-Capable de survivre dans des conditions extrêmes et de boire trente litres d'eau en trois minutes, l'âne est un vrai guerrier. Dis-moi en commentaire si tu le savais, et abonne-toi pour plus de découvertes !
+Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Capable d'avaler trente litres d'eau en trois minutes. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.
