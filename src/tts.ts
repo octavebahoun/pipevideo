@@ -17,11 +17,15 @@ const MEDIA_DIR = path.join(process.cwd(), 'public');
  * Le champ storyboard.voice reste le même levier dans les deux cas, mais son
  * vocabulaire diffère selon le moteur (voir VOICE_MAP / EDGE_VOICE_MAP ci-dessous).
  */
-const TTS_PROVIDER = (process.env.TTS_PROVIDER || 'elevenlabs').toLowerCase();
-if (TTS_PROVIDER !== 'elevenlabs' && TTS_PROVIDER !== 'edge') {
-  console.log(`⚠️  TTS_PROVIDER inconnu ("${TTS_PROVIDER}"). Utilisation d'ElevenLabs par défaut.`);
+// Normalisation tolérante : accepte "edge", "edge-tts", "edgetts", "Edge-TTS", "EDGE_TTS"...
+const rawProvider = process.env.TTS_PROVIDER || 'elevenlabs';
+const normalizedProvider = rawProvider.toLowerCase().replace(/[^a-z]/g, '');
+const isElevenLabsProvider = normalizedProvider === '' || normalizedProvider === 'elevenlabs' || normalizedProvider === 'eleven';
+const isEdgeProvider = normalizedProvider === 'edge' || normalizedProvider === 'edgetts';
+if (!isElevenLabsProvider && !isEdgeProvider) {
+  console.log(`⚠️  TTS_PROVIDER inconnu ("${rawProvider}"). Utilisation d'ElevenLabs par défaut.`);
 }
-const useEdge = TTS_PROVIDER === 'edge';
+const useEdge = isEdgeProvider;
 
 const DEFAULT_API_KEY = '';
 const apiKey = process.env.ELEVENLABS_API_KEY || DEFAULT_API_KEY;
