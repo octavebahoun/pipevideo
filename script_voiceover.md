@@ -1,19 +1,19 @@
-Voici l'animal qui peut littéralement reconstruire son propre cerveau.
+Cet oiseau se cogne la tête douze mille fois par jour... et n'a jamais mal au crâne.
 
-Il s'appelle l'axolotl. Reste jusqu'au bout, la question finale va te mettre au défi.
+Certains chocs équivalent à ce que subirait ton crâne à vingt-cinq fois la vitesse du son. Reste jusqu'au bout, la vraie explication va tout changer.
 
-Contrairement à nous, qui cicatrisons, l'axolotl transforme ses cellules en une sorte de pâte magique capable de tout reconstruire.
+On a longtemps pensé que son crâne agissait comme un airbag, absorbant le choc à chaque coup de bec.
 
-Il reconstruit un membre, un œil, une partie de son cœur ou de sa moelle épinière... sans la moindre cicatrice.
+Mais en 2022, des chercheurs ont filmé ses coups au ralenti extrême... et rien ne collait.
 
-Mais comment un simple amphibien peut-il réécrire son propre corps comme ça ? Le secret de ce super-pouvoir ? Il se cache dans un mystère encore plus grand : l'axolotl ne grandit jamais vraiment.
+Son crâne n'amortit presque rien. Il fonctionne comme un marteau rigide, pas comme un coussin.
 
-Les scientifiques appellent ça la néoténie : une éternelle larve, coincée pour toujours dans son enfance.
+Un vrai amortisseur ralentirait chaque coup de bec, inutile pour creuser le bois. La nature a choisi l'efficacité, pas le confort.
 
-Il garde ses branchies de bébé toute sa vie, comme s'il refusait de devenir un adulte.
+Alors comment son cerveau survit ? D'abord, sa langue. Elle s'enroule littéralement autour de tout son crâne, comme une ceinture de sécurité interne.
 
-Résultat : les scientifiques étudient son ADN pour tenter de soigner des paralysies ou des brûlures graves chez l'humain.
+Une milliseconde avant l'impact, une troisième paupière se ferme pour empêcher ses yeux de sortir de leurs orbites.
 
-Presque tout son corps peut repousser. Tout. Un bras, un œil, et même son cœur.
+Aujourd'hui, des ingénieurs étudient ce crâne pour concevoir de meilleurs casques de sport et des boîtes noires d'avion plus résistantes.
 
-Alors, code de triche de la nature ou simple mutant rose ? Si tu pouvais faire repousser un membre, lequel choisirais-tu ? Dis-le en commentaire, et abonne-toi pour d'autres mystères biologiques.
+Douze mille impacts par jour, zéro commotion. La prochaine fois que tu entendras ce bruit dans un arbre, tu sauras que la vraie prouesse n'est pas d'encaisser le choc... mais de ne jamais avoir besoin de l'absorber.
