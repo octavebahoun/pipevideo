@@ -9,62 +9,105 @@
       "id": 1,
       "narration": "Cet oiseau se cogne la tête douze mille fois par jour... et n'a jamais mal au crâne.",
       "mediaPath": "scene_1.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 3.996734693877551
     },
     {
       "id": 2,
       "narration": "Certains chocs lui font subir une pression équivalente à plus de mille fois la gravité terrestre.",
       "mediaPath": "scene_2.mp4",
-      "effects": { "zoom": "none", "transition": "fade" }
+      "effects": {
+        "zoom": "none",
+        "transition": "fade"
+      },
+      "durationInSeconds": 5.564081632653061
     },
     {
       "id": 3,
       "narration": "On a longtemps pensé que son crâne agissait comme un airbag, absorbant le choc à chaque coup de bec.",
       "mediaPath": "scene_3.jpg",
-      "effects": { "zoom": "in", "transition": "wipe" }
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 8.071836734693878
     },
     {
       "id": 4,
       "narration": "Mais en 2022, des chercheurs ont filmé ses coups au ralenti extrême... et rien ne collait.",
       "mediaPath": "scene_4.mp4",
-      "effects": { "zoom": "none", "transition": "wipe" }
+      "effects": {
+        "zoom": "none",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 7.549387755102041
     },
     {
       "id": 5,
       "narration": "Son crâne n'amortit presque rien. Il fonctionne comme un marteau rigide, pas comme un coussin.",
       "mediaPath": "scene_5.jpg",
-      "effects": { "zoom": "in", "transition": "black" }
+      "effects": {
+        "zoom": "in",
+        "transition": "black"
+      },
+      "durationInSeconds": 11.781224489795918
     },
     {
       "id": 6,
       "narration": "Un vrai amortisseur ralentirait chaque coup de bec, inutile pour creuser le bois. La nature a choisi l'efficacité, pas le confort.",
       "mediaPath": "scene_6.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 6.347755102040816
     },
     {
       "id": 7,
       "narration": "Alors comment son cerveau survit ? D'abord, sa langue. Elle s'enroule littéralement autour de tout son crâne, comme une ceinture de sécurité interne.",
       "mediaPath": "scene_7.jpg",
-      "effects": { "zoom": "in", "transition": "wipe" }
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 4.83265306122449
     },
     {
       "id": 8,
       "narration": "Une milliseconde avant l'impact, une troisième paupière se ferme pour empêcher ses yeux de sortir de leurs orbites.",
       "mediaPath": "scene_8.mp4",
-      "effects": { "zoom": "in", "transition": "fade" }
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "durationInSeconds": 6.870204081632653
     },
     {
       "id": 9,
       "narration": "Aujourd'hui, des ingénieurs étudient ce crâne pour concevoir de meilleurs casques de sport et des boîtes noires d'avion plus résistantes.",
       "mediaPath": "scene_9.jpg",
-      "effects": { "zoom": "in", "transition": "wipe" }
+      "effects": {
+        "zoom": "in",
+        "transition": "wipe"
+      },
+      "durationInSeconds": 5.799183673469388
     },
     {
       "id": 10,
       "narration": "Douze mille impacts par jour, zéro commotion. La prochaine fois que tu entendras ce bruit dans un arbre, tu sauras que la vraie prouesse n'est pas d'encaisser le choc... mais de ne jamais avoir besoin de l'absorber.",
       "mediaPath": "scene_10.mp4",
-      "effects": { "zoom": "out", "transition": "fade" },
-      "overlayText": { "text": "Abonne-toi pour d'autres mystères sous tes yeux 🔨🐦", "startInSeconds": 3 }
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "overlayText": {
+        "text": "Abonne-toi pour d'autres mystères sous tes yeux 🔨🐦",
+        "startInSeconds": 3
+      },
+      "durationInSeconds": 12.486530612244898
     }
   ]
 }
