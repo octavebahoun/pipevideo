@@ -113,10 +113,18 @@ Style demandé pour toute vidéo qui doit sonner "épique, scientifique et capti
 
 ### Structure du prompt visuel (HUD)
 
+⚠️ **Erreur vécue (crédits Kling gaspillés)** : une première version de ce template restait abstraite (« glowing futuristic HUD overlay ») — bien trop court pour qu'un modèle génératif (Kling, etc.) produise le niveau de détail voulu (réticule avec pourcentage qui grimpe, horloge digitale incrustée, scan avec labels techniques reliés par des fines lignes, cf. référence @DétenteDécouverte fournie par l'utilisateur). **Un modèle génératif a besoin d'une description PRÉCISE de chaque élément d'UI, pas d'un adjectif vague.** Et le prompt doit aussi décrire le SON à embarquer dans le clip généré — sinon la vidéo sort muette et il faut regénérer (= crédits perdus deux fois).
+
+**Gabarit complet, avec DEUX blocs obligatoires (visuel détaillé + audio embarqué) :**
+
 ```
-Cinematic shot of [SUJET], glowing futuristic [ÉLÉMENT HUD ex: holographic target reticle / glowing 3D scan / digital overlay interface], glowing cyan blue and neon accents, sleek high-tech graphic UI, photorealistic 8k, atmospheric lighting, hyper-detailed --ar 9:16
+Cinematic [type de plan] of [SUJET, pose/action précise], with a detailed futuristic HUD overlay: [ÉLÉMENT HUD EXACT — type précis (réticule à crochets d'angle / cadran radar rotatif / jauge verticale / scan anatomique en X-ray), animation/comportement (pourcentage qui grimpe de 0 à X%, aiguille qui balaie, jauge qui se remplit), texte/chiffres EXACTS affichés à l'écran, position], thin glowing cyan-white leader lines connecting to small monospace technical data-readout labels, faint scanning grid lines, semi-transparent dark UI panels with tick marks, photorealistic 8k, atmospheric lighting, hyper-detailed, sharp focus --ar 9:16
+
+Embedded audio in the generated clip: [SFX PRÉCIS ET DESCRIPTIF — ex: soft electronic targeting-lock beep rising in pitch as the reticle locks, low synth scanning hum, sharp digital confirmation chime, subtle mechanical whir]
 ```
 
-- Le sujet réel (animal, objet...) reste photoréaliste ; seule une **surcouche HUD holographique cyan/néon** est ajoutée (radar, scanner, réticule, data readouts) pour illustrer le fait technique du moment.
+- Le sujet réel (animal, objet...) reste photoréaliste ; seule une **surcouche HUD holographique cyan/néon** est ajoutée, mais celle-ci doit être décrite comme un vrai graphiste la spécifierait : type d'élément, comportement d'animation, texte/chiffres qui apparaissent réellement à l'écran (pas juste « des données » — écrire le texte exact, ex: `"RANGE: 60KM ACQUIRED"`, `"RISK: 12%"`, `"30L / 03:00"`).
+- **Le son n'est jamais optionnel** : chaque prompt DOIT inclure sa propre description de SFX (bips électroniques, hum de scan, chime de confirmation, impact mécanique...) cohérente avec l'animation HUD décrite juste avant, pour que le clip généré embarque déjà l'audio adapté et n'ait pas besoin d'un second passage.
 - `--ar 9:16` gardé tel quel (syntaxe flag façon Midjourney) plutôt que traduit en prose — format attendu par l'outil de génération de l'utilisateur.
-- Chaque scène du corps a SON PROPRE élément HUD, cohérent avec le fait qu'elle illustre (radar pour l'ouïe, scanner panoramique pour la vision, réticule de menace pour l'analyse de risque, lignes de trajectoire pour le combat...).
+- Chaque scène du corps a SON PROPRE élément HUD ET son propre SFX, cohérents avec le fait qu'elle illustre (radar + bip sonar pour l'ouïe, scanner rotatif + chime pour la vision, jauge + bip de remplissage pour une capacité chiffrée, réticule de combat + clunk d'impact pour une charge...).
+- **Lien avec §4c** : ce son est embarqué DANS le clip généré (`scene_X.mp4`), pas ajouté après coup via `sounds`/`music`. Comme `mediaVolume` vaut `0.7` par défaut, ces SFX générés seront automatiquement audibles au rendu sans rien configurer de plus dans le storyboard.
