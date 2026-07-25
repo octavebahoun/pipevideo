@@ -35,6 +35,7 @@ Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voi
 **RÈGLES D'ÉCRITURE — NON NÉGOCIABLES.** Un script plat, linéaire ou encyclopédique est un **ÉCHEC** : le réécrire. Chaque script DOIT cocher les 5 points ci-dessous, et l'agent doit **s'auto-auditer AVANT `npm run tts`** :
 
 1. **HOOK (0–3 s)** — accroche immédiate. ❌ Interdit : « un abonné m'a demandé… », une définition, un « aujourd'hui on va voir… ». ✅ Choisir un angle fort : **Choc** (« techniquement, du vomi d'abeille »), **Exploit** (« 4 millions de fleurs pour UN pot »), ou **Mystère** (« le seul aliment qui ne périme jamais »).
+   - ❌ **Interdit aussi** : « reste jusqu'au bout », « regarde jusqu'à la fin » et toute variante qui promet une révélation plus tard sans rien livrer tout de suite. Constaté à l'usage (drop-off net juste après cette phrase) : le spectateur qui doit *attendre* pour avoir de la valeur décroche. Livrer de l'info nouvelle en continu, scène après scène, fait tout le travail de rétention — pas besoin de le demander explicitement.
 2. **ÉTAPE MANQUANTE (curiosity gap)** — ne pas tout révéler d'un coup. Poser une question ouverte au milieu (« mais comment ce liquide devient une pâte dorée ? ») AVANT d'expliquer.
 3. **TERMES VISUELS / MÉTAPHORES** — nommer les choses de façon imagée (« l'estomac social », « la danse de la ventilation »), jamais plat (« un estomac », « elles battent des ailes »).
 4. **MICRO-FACTS AU MILIEU** — glisser un fait marquant vers le **milieu** pour relancer l'attention (pas seulement à la fin).

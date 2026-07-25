@@ -13,7 +13,7 @@
 
 ---
 
-### 🎥 Scène 2 — Escalade + tease
+### 🎥 Scène 2 — Escalade (info directe, sans tease)
 - **Fichier cible** : `public/scene_2.mp4`
 - **Type** : 🎬 Vidéo
 - **Prompt** : Extreme slow-motion of a woodpecker's beak striking a tree trunk, tiny bark particles flying in the air, dramatic freeze-like motion blur, vertical 9:16, cinematic slow motion.

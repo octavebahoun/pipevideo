@@ -1,6 +1,6 @@
 Cet oiseau se cogne la tête douze mille fois par jour... et n'a jamais mal au crâne.
 
-Certains chocs équivalent à ce que subirait ton crâne à vingt-cinq fois la vitesse du son. Reste jusqu'au bout, la vraie explication va tout changer.
+Certains chocs équivalent à ce que subirait ton crâne à vingt-cinq fois la vitesse du son.
 
 On a longtemps pensé que son crâne agissait comme un airbag, absorbant le choc à chaque coup de bec.
 

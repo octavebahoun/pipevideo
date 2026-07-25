@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "narration": "Certains chocs équivalent à ce que subirait ton crâne à vingt-cinq fois la vitesse du son. Reste jusqu'au bout, la vraie explication va tout changer.",
+      "narration": "Certains chocs équivalent à ce que subirait ton crâne à vingt-cinq fois la vitesse du son.",
       "mediaPath": "scene_2.mp4",
       "effects": { "zoom": "none", "transition": "fade" }
     },
