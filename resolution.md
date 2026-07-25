@@ -128,3 +128,11 @@ Embedded audio in the generated clip: [SFX PRÉCIS ET DESCRIPTIF — ex: soft el
 - `--ar 9:16` gardé tel quel (syntaxe flag façon Midjourney) plutôt que traduit en prose — format attendu par l'outil de génération de l'utilisateur.
 - Chaque scène du corps a SON PROPRE élément HUD ET son propre SFX, cohérents avec le fait qu'elle illustre (radar + bip sonar pour l'ouïe, scanner rotatif + chime pour la vision, jauge + bip de remplissage pour une capacité chiffrée, réticule de combat + clunk d'impact pour une charge...).
 - **Lien avec §4c** : ce son est embarqué DANS le clip généré (`scene_X.mp4`), pas ajouté après coup via `sounds`/`music`. Comme `mediaVolume` vaut `0.7` par défaut, ces SFX générés seront automatiquement audibles au rendu sans rien configurer de plus dans le storyboard.
+
+### Toujours donner la durée cible, précisément (pas d'approximation)
+
+Une fois `npm run tts` passé, `storyboard.json` contient la durée RÉELLE de chaque scène (`durationInSeconds`, mesurée sur l'audio généré). `media-prompts.md` doit toujours reprendre cette valeur précise (ex: `6,71 s`, pas `"6-7s"` ni `"~7s"`) pour chaque scène, sous forme d'une ligne `Durée cible (audio réel généré)`. Générer un clip de la mauvaise longueur = crédits perdus à régénérer.
+
+**Cas d'une scène qui dépasse la limite d'une génération (5-10s selon l'outil)** : ne jamais se contenter d'un vague "génère 10s et ça s'étirera". Donner une vraie recommandation exploitable :
+1. Utiliser la fonction "extend" de l'outil de génération (Kling, etc.) pour compléter jusqu'à la durée exacte.
+2. Sinon, calculer et donner le `playbackRate` exact à ajouter sur la scène (`durée du clip généré ÷ durée cible`) pour un ralenti fluide qui remplit exactement la scène sans bouclage visible — sans ce réglage, `Scene.tsx` (`<Loop>`) BOUCLE le clip trop court au lieu de l'étirer, ce qui se voit à l'écran.
