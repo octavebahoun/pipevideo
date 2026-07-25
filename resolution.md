@@ -44,6 +44,7 @@ TTS_PROVIDER=edge         # gratuit : Edge-TTS (Microsoft)
 - `storyboard.voice` reste le seul champ à éditer dans le storyboard pour choisir la voix, quel que soit le moteur — seul le vocabulaire des noms courts change (`george`/`liam`/... pour ElevenLabs, `henri`/`denise`/... pour Edge, voir `docs/VOICES.md`).
 - Tout le reste de `tts.ts` (cas carte de fin, voix fournie par l'utilisateur, réutilisation d'un audio déjà généré) est **commun aux deux moteurs** : seule l'étape de synthèse elle-même (`useEdge ? ... : ...`) branche vers l'un ou l'autre.
 - Basculer d'un moteur à l'autre ne nécessite AUCUN changement de code, uniquement `.env`.
+- **Détection tolérante** : `TTS_PROVIDER` est normalisé (minuscules, tirets/underscores retirés) avant comparaison, donc `edge`, `edge-tts`, `edgetts`, `EDGE_TTS`... sont tous reconnus comme Edge-TTS. Bug vécu : une comparaison stricte sur `"edge"` uniquement rejetait `"edge-tts"` (pourtant le nom le plus naturel à taper) et retombait silencieusement sur ElevenLabs — toujours normaliser l'entrée utilisateur sur ce genre de switch `.env`, jamais une égalité stricte.
 
 ## 3. Style de sous-titres/karaoké, centralisé dans le storyboard
 
