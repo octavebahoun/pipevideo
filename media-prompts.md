@@ -1,75 +1,53 @@
-# 🎬 Prompts Médias — Le Pic : L'Oiseau qui se Cogne la Tête 12 000 Fois par Jour
+# 🎬 Prompts Médias — Pourquoi l'Âne est un Génie de la Survie
 
 > Format : **9:16** (Short vertical / TikTok / Reels)
-> Direction artistique : Forêt naturelle, lumière du jour douce/dorée, contraste entre plans organiques (oiseau, bois, écorce) et plans scientifiques épurés (illustrations crâne/ingénierie, fond bleu marine, glow doré), esthétique docu-science premium.
+> Direction artistique : Extérieur naturel (ferme, montagne, savane sèche selon la scène), lumière naturelle contrastée, rythme rapide et punchy, texte à l'écran en surimpression (géré par `overlayText` dans le storyboard, pas besoin de le cuire dans le clip).
 
 ---
 
-### 🎥 Scène 1 — HOOK : 12 000 impacts par jour
+### 🎥 Scène 1 — HOOK : "L'âne est-il vraiment stupide ?"
 - **Fichier cible** : `public/scene_1.mp4`
 - **Type** : 🎬 Vidéo
-- **Narration** : *"Cet oiseau se cogne la tête douze mille fois par jour... et n'a jamais mal au crâne."*
-- **Prompt** : Extreme close-up of a woodpecker's head hammering rapidly into a tree trunk, feathers slightly blurred with speed, warm forest daylight, hyper-realistic 8K, vertical 9:16, shallow depth of field.
+- **Narration** : *"Vous pensez que l'âne est bête et têtu ? En réalité, c'est un véritable génie tactique du règne animal !"*
+- **Prompt** : Extreme close-up of a donkey's face looking directly at camera, calm and knowing expression, warm natural daylight, hyper-realistic 8K, vertical 9:16, shallow depth of field.
 
 ---
 
-### 🎥 Scène 2 — Escalade (info directe, sans tease)
+### 🎥 Scène 2 — Radar à 60 km
 - **Fichier cible** : `public/scene_2.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Extreme slow-motion of a woodpecker's beak striking a tree trunk, tiny bark particles flying in the air, dramatic freeze-like motion blur, vertical 9:16, cinematic slow motion.
+- **Prompt** : Macro zoom on a donkey's large ears rotating and twitching to catch distant sounds, subtle radar-sweep graphic motif glowing faintly around the ears, warm farm daylight, vertical 9:16, slow motion.
 
 ---
 
-### 🖼️ Scène 3 — Théorie de l'airbag (illustration)
-- **Fichier cible** : `public/scene_3.jpg`
-- **Type** : 🖼️ Image
-- **Prompt** : Clean scientific illustration still of a woodpecker skull cross-section, a soft cushioned padding highlighted in blue glow around the brain area suggesting a shock-absorbing airbag theory, dark navy background, documentary-science aesthetic, vertical 9:16.
+### 🎥 Scène 3 — Vision à 360°
+- **Fichier cible** : `public/scene_3.mp4`
+- **Type** : 🎬 Vidéo
+- **Prompt** : Cinematic shot of a donkey walking steadily along a narrow rocky mountain trail, sure-footed steps, dramatic cliffside landscape, natural daylight, vertical 9:16.
 
 ---
 
-### 🎥 Scène 4 — Curiosity gap : l'étude de 2022
+### 🎥 Scène 4 — Têtu ou trop intelligent ?
 - **Fichier cible** : `public/scene_4.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic shot styled like high-speed scientific lab footage of a woodpecker pecking a tree, subtle measurement grid or motion-tracking overlay suggesting a research camera setup, vertical 9:16, slow motion.
+- **Prompt** : Split contrast sequence: a horse bolting and fleeing in panic on one side, cross-fading to a calm donkey standing perfectly still, observing and assessing the situation with a steady gaze, natural outdoor light, vertical 9:16.
 
 ---
 
-### 🖼️ Scène 5 — Reveal : le marteau rigide (illustration)
-- **Fichier cible** : `public/scene_5.jpg`
-- **Type** : 🖼️ Image
-- **Prompt** : Scientific illustration still of the same woodpecker skull cross-section, now showing dense rigid bone structure in stark metallic-grey tones, hammer silhouette motif subtly overlaid, dark navy background, sharp contrast with the softer "airbag" visual of scene 3, vertical 9:16.
+### 🎥 Scène 5 — Protecteur de troupeau
+- **Fichier cible** : `public/scene_5.mp4`
+- **Type** : 🎬 Vidéo
+- **Prompt** : Dynamic cinematic shot of a donkey aggressively charging and kicking to fend off a wolf near a herd of sheep, dust kicked up, dramatic action, dusk lighting, vertical 9:16.
 
 ---
 
-### 🎥 Scène 6 — Efficacité vs confort
+### 🎥 Scène 6 — LOOP Final : 30L d'eau en 3 min
 - **Fichier cible** : `public/scene_6.mp4`
 - **Type** : 🎬 Vidéo
-- **Prompt** : Macro cinematic shot of a woodpecker's beak striking wood, small wood splinters flying, visible rigid force transfer into the trunk, warm natural forest light, vertical 9:16, slow motion.
+- **Prompt** : Cinematic shot of a donkey drinking water rapidly from a trough, water droplets catching the light, warm golden hour lighting, serene documentary finish, vertical 9:16, leave clean space near the bottom third of frame for on-screen CTA text.
 
 ---
 
-### 🖼️ Scène 7 — La langue-ceinture (illustration)
-- **Fichier cible** : `public/scene_7.jpg`
-- **Type** : 🖼️ Image
-- **Prompt** : Scientific illustration still of a woodpecker skull in profile, a thin glowing gold line (the hyoid/tongue apparatus) tracing a path from the beak, wrapping entirely around the back of the skull like a seatbelt, dark navy background, clean documentary-science aesthetic, vertical 9:16.
+## 🔊 Note son / musique
 
----
-
-### 🎥 Scène 8 — La 3e paupière
-- **Fichier cible** : `public/scene_8.mp4`
-- **Type** : 🎬 Vidéo
-- **Prompt** : Extreme macro slow-motion of a woodpecker's eye, a translucent nictitating membrane closing just before impact, soft forest backlight, vertical 9:16, ultra slow motion.
-
----
-
-### 🖼️ Scène 9 — Application ingénierie (illustration)
-- **Fichier cible** : `public/scene_9.jpg`
-- **Type** : 🖼️ Image
-- **Prompt** : Clean split-illustration still: a woodpecker skull cross-section on one side, a sports helmet and an airplane black box flight recorder on the other, thin connecting engineering-diagram lines between them, dark navy background, documentary-science aesthetic, vertical 9:16.
-
----
-
-### 🎥 Scène 10 — LOOP Final : callback "zéro commotion"
-- **Fichier cible** : `public/scene_10.mp4`
-- **Type** : 🎬 Vidéo
-- **Prompt** : Calm cinematic shot of a woodpecker pausing on a branch, looking toward the camera, soft golden forest light, serene documentary finish, vertical 9:16, slow motion, leave clean space near the bottom third of frame for on-screen CTA text.
+Pas de musique de fond ni de SFX de bibliothèque sur ce projet (préférence actuelle : voix off seule). Un rythme aussi punchy que celui-ci (textes à l'écran qui claquent, transitions rapides) bénéficierait normalement d'un fond musical énergique et rythmé pour appuyer les coupes — si l'envie change plus tard, `sounds/music/fearless-the-soundlings-ruby-jay.mp3` (énergique, moderne, catalogue existant) serait un bon candidat. Pour l'instant : `music`/`musicVolume` absents du storyboard, aucun tableau `sounds` sur les scènes.

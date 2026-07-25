@@ -1,16 +1,16 @@
-# 📝 Métadonnées de Publication — Le Pic : L'Oiseau qui se Cogne la Tête 12 000 Fois par Jour
+# 📝 Métadonnées de Publication — Pourquoi l'Âne est un Génie de la Survie
 
 ## 📌 Titres optimisés (CTR)
-1. **Cet oiseau se cogne la tête 12 000 fois par jour 🔨🐦** *(Recommandé)*
-2. **La vraie raison pour laquelle le pic n'a jamais de commotion 🧠😱**
-3. **Cet animal a inspiré les meilleurs casques du monde 🪖🐦**
-4. **Le mystère du crâne du pic, enfin résolu en 2022 🔬**
+1. **L'âne est-il VRAIMENT stupide ? 🧠🫏** *(Recommandé)*
+2. **Ce que cache le "radar" de l'âne va vous surprendre 📡**
+3. **Têtu ou trop intelligent ? La vérité sur l'âne 🧠**
+4. **Cet animal peut tuer un loup à coups de sabots 🐺⚔️**
 
 ## 📄 Description (Short vertical / TikTok / Reels)
-> Douze mille coups de bec par jour, des chocs qui dépassent 1 200 G de décélération (de quoi écraser un cerveau humain)... et pourtant, zéro commotion cérébrale. On a longtemps cru que le crâne du pic agissait comme un airbag. Une étude de 2022 a tout remis en question. Découvrez le vrai secret : langue-ceinture, troisième paupière, et un crâne qui inspire aujourd'hui les casques et les boîtes noires d'avion. 🔨🐦🧠
+> Un radar capable d'entendre à 60 km, une vision à 360° sans bouger la tête, la capacité de charger un loup pour défendre son troupeau, et 30 litres d'eau avalés en 3 minutes... L'âne n'est pas têtu, il est stratège. Découvrez pourquoi cet animal sous-estimé est un vrai génie de la survie. 🧠🫏
 
 ## 🏷️ Hashtags & Tags
-`#pic` `#oiseaux` `#biologie` `#science` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#ingenierie` `#biomimetisme` `#documentaire` `#shorts`
+`#ane` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#ferme` `#biologie` `#survie` `#documentaire` `#shorts`
 
 ## 🖼️ Conseil miniature
-Gros plan extrême de la tête d'un pic en plein impact sur un tronc, avec un léger flou de mouvement. Texte court en jaune vif sur fond bois/vert forêt : **"12 000 CHOCS/JOUR ?"** ou **"ZÉRO COMMOTION ?"**
+Gros plan sur la tête d'un âne au regard calme et déterminé. Texte court en jaune vif : **"VRAIMENT STUPIDE ?"** ou **"RADAR À 60 KM ?"**
