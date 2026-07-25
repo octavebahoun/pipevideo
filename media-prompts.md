@@ -42,8 +42,15 @@
 
 ---
 
-### 🎥 Scène 6 — LOOP Final : chef-d'œuvre d'évolution
+### 🎥 Scène 6 — Réservoir haute capacité
 - **Fichier cible** : `public/scene_6.mp4`
+- **Type** : 🎬 Vidéo
+- **Prompt** : Cinematic shot of a donkey drinking rapidly from a water trough, glowing futuristic capacity-gauge HUD overlay filling up like a tank/reservoir readout beside it, glowing cyan blue and neon accents, sleek high-tech graphic UI, photorealistic 8k, atmospheric lighting, hyper-detailed --ar 9:16
+
+---
+
+### 🎥 Scène 7 — LOOP Final : chef-d'œuvre d'évolution
+- **Fichier cible** : `public/scene_7.mp4`
 - **Type** : 🎬 Vidéo
 - **Prompt** : Cinematic shot of a donkey standing majestically at golden hour, glowing futuristic evolutionary-masterpiece HUD overlay with holographic stat readouts orbiting its silhouette, glowing cyan blue and neon accents, sleek high-tech graphic UI, photorealistic 8k, atmospheric lighting, hyper-detailed --ar 9:16, leave clean space near the bottom third of frame for on-screen CTA text.
 

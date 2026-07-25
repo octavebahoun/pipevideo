@@ -104,7 +104,8 @@ Style demandé pour toute vidéo qui doit sonner "épique, scientifique et capti
 ### Structure du script (3 blocs)
 
 1. **Accroche (0-5s)** : casser une idée reçue → *« Vous pensez que [Sujet] est [banal/faible/inutile] ? FAUX ! »*, puis enchaîner immédiatement sur un terme fort (« machine de guerre », « génie de la nature », « survivant ultime »).
-2. **Corps (3 à 4 faits)** : vocabulaire technologique/militaire/futuriste plaqué sur des faits biologiques réels (« radar », « bouclier », « scanner optique », « stabilisateur »). Chiffres marquants en analogie concrète (« l'équivalent de... », « une pression de X bars »...). Phrases très courtes et rythmées, adaptées à une voix-off rapide.
+2. **Corps (autant de faits que nécessaire)** : vocabulaire technologique/militaire/futuriste plaqué sur des faits biologiques réels (« radar », « bouclier », « scanner optique », « stabilisateur »). Chiffres marquants en analogie concrète (« l'équivalent de... », « une pression de X bars »...). Phrases très courtes et rythmées, adaptées à une voix-off rapide.
+   - ⚠️ **Pas de nombre de scènes imposé.** "3 à 4 faits" n'est qu'un point de départ, pas un plafond : si le sujet a plus de faits marquants et précis à offrir, les inclure tous plutôt que d'en compresser plusieurs dans une seule scène (ex: recaser un fait distinct dans la conclusion juste pour tenir un total de 6 scènes). Seule règle : chaque scène ajoutée doit apporter un fait réel et précis — jamais de remplissage ou de redite pour gonfler la durée.
 3. **Conclusion (50-60s)** : récapitulatif ultra-rapide des mots-clés/fonctions mentionnées, puis phrase de clôture qui réaffirme la fascination (« Ce n'est pas juste un [Sujet], c'est un chef-d'œuvre d'évolution »).
 
 **Référence** (script Âne, `video/ane-genie-survie`) :

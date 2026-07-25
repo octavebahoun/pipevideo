@@ -42,8 +42,15 @@
     },
     {
       "id": 6,
-      "narration": "Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Capable d'avaler trente litres d'eau en trois minutes. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.",
+      "narration": "Son réservoir ? Une capacité de trente litres d'eau absorbés en à peine trois minutes. De quoi survivre aux conditions les plus extrêmes, là où d'autres s'effondrent.",
       "mediaPath": "scene_6.mp4",
+      "effects": { "zoom": "in", "transition": "wipe" },
+      "overlayText": { "text": "💧 RÉSERVOIR : 30L/3MIN", "startInSeconds": 0.3 }
+    },
+    {
+      "id": 7,
+      "narration": "Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Réservoir haute capacité. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.",
+      "mediaPath": "scene_7.mp4",
       "effects": { "zoom": "out", "transition": "fade" },
       "overlayText": { "text": "🏆 CHEF-D'ŒUVRE D'ÉVOLUTION", "startInSeconds": 0.3 }
     }

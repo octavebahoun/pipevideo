@@ -8,4 +8,6 @@ Face au danger, son cerveau active un calcul tactique instantané. Pas de paniqu
 
 Contre un prédateur, il devient une unité de combat. Charge frontale. Impact. Sabots en armes.
 
-Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Capable d'avaler trente litres d'eau en trois minutes. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.
+Son réservoir ? Une capacité de trente litres d'eau absorbés en à peine trois minutes. De quoi survivre aux conditions les plus extrêmes, là où d'autres s'effondrent.
+
+Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Réservoir haute capacité. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.
