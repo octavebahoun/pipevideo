@@ -1,10 +1,23 @@
-# Guide des Voix ElevenLabs dans Pipevideo
+# Guide des Voix dans Pipevideo
 
 Ce document référence les voix configurées dans l'orchestrateur TTS (`src/tts.ts`), leurs identifiants d'origine et des recommandations sur quand les utiliser selon le genre et le ton de vos vidéos.
 
 ---
 
-## 🎙️ Liste des Voix Configurées
+## 🔀 Choisir le moteur TTS (ElevenLabs ou Edge-TTS)
+
+Le moteur est choisi via la variable `TTS_PROVIDER` dans `.env` (voir `.env.example`) :
+
+```bash
+TTS_PROVIDER=elevenlabs   # défaut : payant, voix les plus naturelles
+TTS_PROVIDER=edge         # gratuit : Edge-TTS (Microsoft), qualité correcte
+```
+
+Le champ `storyboard.voice` reste le seul levier dans les deux cas, mais son vocabulaire (les noms courts acceptés) diffère selon le moteur actif — voir les deux tableaux ci-dessous. Aucun changement de code n'est nécessaire pour basculer d'un moteur à l'autre : uniquement `.env`.
+
+---
+
+## 🎙️ Voix ElevenLabs (`TTS_PROVIDER=elevenlabs`, défaut)
 
 | Nom dans `storyboard.json` | Voice ID | Genre | Ton & Style | Idéal pour... |
 | :--- | :--- | :--- | :--- | :--- |
@@ -28,12 +41,27 @@ Dans votre fichier `storyboard.json`, vous pouvez indiquer directement le nom co
 }
 ```
 
-Si le champ `"voice"` est omis ou si une ancienne voix Edge-TTS (comme `fr-FR-HenriNeural`) est présente, le système bascule automatiquement sur la voix **`george`** par défaut.
+Si le champ `"voice"` est omis, ou si son nom n'est pas reconnu (ex: une voix Edge-TTS comme `fr-FR-HenriNeural` alors que `TTS_PROVIDER=elevenlabs`), le système bascule automatiquement sur la voix **`george`** par défaut.
+
+---
+
+## 🎙️ Voix Edge-TTS (`TTS_PROVIDER=edge`)
+
+| Nom dans `storyboard.json` | Voix Edge-TTS | Genre | Idéal pour... |
+| :--- | :--- | :--- | :--- |
+| **`henri`** *(Défaut)* | `fr-FR-HenriNeural` | Masculin | Voix polyvalente, ton neutre/documentaire |
+| **`denise`** | `fr-FR-DeniseNeural` | Féminin | Claire, posée |
+| **`eloise`** | `fr-FR-EloiseNeural` | Féminin | Douce, jeune |
+| **`vivienne`** | `fr-FR-VivienneMultilingualNeural` | Féminin | Multilingue, moderne |
+| **`remy`** | `fr-FR-RemyMultilingualNeural` | Masculin | Multilingue, dynamique |
+
+Si `"voice"` est omis ou non reconnu avec `TTS_PROVIDER=edge`, le système bascule sur **`henri`** par défaut. Un identifiant Edge complet (ex: `en-US-GuyNeural`) peut aussi être passé directement.
 
 ---
 
 ## ⚙️ Modèle & Timestamps Karaoké
 
-Toutes ces voix utilisent le moteur **`eleven_multilingual_v2`** couplé à la méthode `convertWithTimestamps`.
-* **Rendu naturel** : L'intonation et l'accent français sont restitués naturellement sans effet robotique.
-* **Karaoké instantané** : Les horodatages au mot près (`scene.words`) sont recalculés automatiquement à chaque exécution de `npm run tts`.
+* **ElevenLabs** : moteur `eleven_multilingual_v2`, méthode `convertWithTimestamps`. Intonation et accent français très naturels.
+* **Edge-TTS** : timestamps mot-à-mot capturés via les événements `WordBoundary` du flux Edge (gratuit, qualité correcte, légèrement plus robotique qu'ElevenLabs).
+
+Dans les deux cas, les horodatages au mot près (`scene.words`) sont recalculés automatiquement à chaque exécution de `npm run tts`, et la durée réelle (`scene.durationInSeconds`) est mesurée sur le fichier audio généré.

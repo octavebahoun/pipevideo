@@ -32,7 +32,20 @@ Avec 30 frames de pause, la transition est **entièrement comprise dans cette se
 
 ➡️ La durée de scène reste toujours pilotée par **l'audio réel mesuré** (`durationInSeconds`, écrit par `npm run tts` à partir du fichier `.mp3` sur le disque), jamais par une valeur arbitraire. Si un fichier audio est remplacé/régénéré manuellement, il FAUT relancer `npm run tts` pour resynchroniser `durationInSeconds` et les timings karaoké (`words`) — sinon le rendu se cale sur l'ancienne durée et coupe le nouvel audio.
 
-## 2. Style de sous-titres/karaoké, centralisé dans le storyboard
+## 2. Choix du moteur TTS (ElevenLabs / Edge-TTS), centralisé dans .env
+
+Edge-TTS avait été entièrement retiré du pipeline (remplacé par ElevenLabs, voir historique git avant le commit `692d333`), mais la dépendance `edge-tts-universal` était restée dans `package.json`. Remis en place dans `src/tts.ts`, cette fois **sans dupliquer le script** : un seul `npm run tts`, le moteur est choisi via `.env` :
+
+```bash
+TTS_PROVIDER=elevenlabs   # défaut : payant, voix les plus naturelles
+TTS_PROVIDER=edge         # gratuit : Edge-TTS (Microsoft)
+```
+
+- `storyboard.voice` reste le seul champ à éditer dans le storyboard pour choisir la voix, quel que soit le moteur — seul le vocabulaire des noms courts change (`george`/`liam`/... pour ElevenLabs, `henri`/`denise`/... pour Edge, voir `docs/VOICES.md`).
+- Tout le reste de `tts.ts` (cas carte de fin, voix fournie par l'utilisateur, réutilisation d'un audio déjà généré) est **commun aux deux moteurs** : seule l'étape de synthèse elle-même (`useEdge ? ... : ...`) branche vers l'un ou l'autre.
+- Basculer d'un moteur à l'autre ne nécessite AUCUN changement de code, uniquement `.env`.
+
+## 3. Style de sous-titres/karaoké, centralisé dans le storyboard
 
 Champ `subtitleStyle` à la racine du storyboard (`src/types.ts`, rendu dans `src/video/Subtitles.tsx`), 3 valeurs possibles :
 ```json
@@ -44,7 +57,7 @@ Champ `subtitleStyle` à la racine du storyboard (`src/types.ts`, rendu dans `sr
 
 Un seul champ dans le storyboard suffit à changer l'ambiance visuelle des sous-titres d'une vidéo à l'autre, sans toucher au code.
 
-## 3. Annuler les sons (SFX / ambiance / musique) sur une vidéo
+## 4. Annuler les sons (SFX / ambiance / musique) sur une vidéo
 
 Il y a deux couches de son distinctes dans le storyboard, à ne pas confondre :
 
