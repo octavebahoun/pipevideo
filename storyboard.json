@@ -129,7 +129,8 @@
           "start": 5.515,
           "duration": 0.754
         }
-      ]
+      ],
+      "playbackRate": 0.827
     },
     {
       "id": 2,
@@ -401,7 +402,8 @@
           "start": 10.24,
           "duration": 0.859
         }
-      ]
+      ],
+      "playbackRate": 0.826
     },
     {
       "id": 4,
@@ -482,7 +484,8 @@
           "start": 3.564,
           "duration": 0.662
         }
-      ]
+      ],
+      "playbackRate": 0.766
     },
     {
       "id": 5,
@@ -825,7 +828,8 @@
           "start": 15.975,
           "duration": 0.743
         }
-      ]
+      ],
+      "playbackRate": 0.564
     }
   ]
 }
