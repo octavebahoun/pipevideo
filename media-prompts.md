@@ -53,18 +53,19 @@
 
 ---
 
-### 🖼️ Scène 6 — Pause : rapport système (image fixe, remplace la scène redondante)
+### 🖼️ Scène 6 — Pause : rapport système (image fixe, absorbe la majorité de la conclusion)
 - **Fichier cible** : `public/scene_6.jpg`
-- **Durée cible (audio réel généré)** : **1,33 s** — image fixe, aucune contrainte de clip.
+- **Durée cible** : **~8,2 s** (estimée sur les timings de l'ancien audio scène 7 : "Analyse terminée. [...] Ce n'est pas un simple charognard." s'arrêtait à 8,17s dans la version précédente à 1 seule scène) — à confirmer après régénération. Une image n'a AUCUNE contrainte de longueur de clip, contrairement à une vidéo IA : c'est pour ça qu'on lui fait porter la majorité du texte de conclusion plutôt qu'à la scène 7.
 - **Type** : 🖼️ Image — plan volontairement statique, sert de respiration avant le CTA (voir règle vidéo/image du skill content-factory : une scène qui doit "laisser attendre" est une candidate naturelle à l'image fixe plutôt qu'à un 3e plan de vocalisation redondant avec les scènes 4 et 5).
 - **Prompt** : Clean futuristic HUD infographic still: a dark navy interface panel displaying a system diagnostic checklist with three items, each with a glowing cyan checkmark — a compass icon labeled "MAGNETIC SENSE", a target-reticle icon labeled "70% HUNTING SUCCESS (N-E)", a soundwave icon labeled "HUMAN-LIKE SCREAM" — a bold header at the top reading "SYSTEM ANALYSIS COMPLETE", faint scanning grid lines, a blurred silhouette of a red fox faintly visible behind the semi-transparent panel, photorealistic 8k render, hyper-detailed, sharp focus --ar 9:16
-- **Pas de bloc audio embarqué** : c'est une image fixe (pas de piste vidéo/audio propre), le silence porté par la narration courte ("Analyse terminée.") suffit à faire respirer le montage.
+- **Pas de bloc audio embarqué** : c'est une image fixe (pas de piste vidéo/audio propre) — la voix off porte maintenant tout le récap ("Analyse terminée. Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard.") pendant que l'image reste affichée.
 
 ---
 
-### 🎥 Scène 7 — LOOP Final : mission accomplie
+### 🎥 Scène 7 — LOOP Final : mission accomplie (allégée, ~8s au lieu de 16,7s)
 - **Fichier cible** : `public/scene_7.mp4`
-- **Durée cible (audio réel généré)** : **16,74 s** ⚠️ — dépasse largement une génération standard (5-10s). Utilise l'extend Kling pour ajouter ~6,7s exactement, ou ajoute `"playbackRate": 0.597` sur la scène si tu génères seulement 10s (10 ÷ 16,74) — ralenti assez marqué, l'extend est préférable ici pour un rendu plus naturel.
+- **Durée cible** : **~8,3 s** (estimée sur les timings de l'ancien audio : "C'est un système de chasse..." démarrait à 8,42s et finissait à 16,72s) — à confirmer après régénération. Rentre maintenant dans une génération Kling standard, plus besoin d'extend ni de `playbackRate`.
+- **Narration restante** : *"C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées."*
 - **Type** : 🎬 Vidéo
 - **Prompt** : Cinematic shot of a red fox sitting calmly at the edge of an urban park at dusk, blurred city lights in the background, with a detailed futuristic HUD overlay: four small holographic icons (compass dial, target reticle, waveform analyzer, checklist) orbiting slowly around its silhouette before converging and stamping into a final glowing seal reading "MISSION COMPLETE", thin glowing cyan-white leader lines linking each icon briefly before it converges, faint scanning grid lines fading out, photorealistic 8k, atmospheric dusk city lighting, hyper-detailed, sharp focus --ar 9:16, leave clean space near the bottom third of frame for on-screen CTA text.
 - **Embedded audio in the generated clip** : rising warm synth swell as the icons orbit, each icon passing with a soft chime, resolving into a single deep confirmation "stamp" sound when the seal completes.

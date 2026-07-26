@@ -597,7 +597,7 @@
     },
     {
       "id": 6,
-      "narration": "Analyse terminée.",
+      "narration": "Analyse terminée. Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard.",
       "mediaPath": "scene_6.jpg",
       "effects": {
         "zoom": "none",
@@ -606,24 +606,11 @@
       "overlayText": {
         "text": "📋 SYSTEM REPORT",
         "startInSeconds": 0.3
-      },
-      "durationInSeconds": 1.3322448979591837,
-      "words": [
-        {
-          "text": "Analyse",
-          "start": 0,
-          "duration": 0.464
-        },
-        {
-          "text": "terminée.",
-          "start": 0.499,
-          "duration": 0.801
-        }
-      ]
+      }
     },
     {
       "id": 7,
-      "narration": "Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.",
+      "narration": "C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.",
       "mediaPath": "scene_7.mp4",
       "effects": {
         "zoom": "out",
@@ -632,200 +619,7 @@
       "overlayText": {
         "text": "✅ MISSION COMPLETE",
         "startInSeconds": 0.3
-      },
-      "durationInSeconds": 16.744489795918366,
-      "words": [
-        {
-          "text": "Boussole",
-          "start": 0,
-          "duration": 0.499
-        },
-        {
-          "text": "invisible.",
-          "start": 0.546,
-          "duration": 0.766
-        },
-        {
-          "text": "Bonds",
-          "start": 1.591,
-          "duration": 0.243
-        },
-        {
-          "text": "calculés",
-          "start": 1.858,
-          "duration": 0.476
-        },
-        {
-          "text": "au",
-          "start": 2.357,
-          "duration": 0.058
-        },
-        {
-          "text": "nord-est.",
-          "start": 2.461,
-          "duration": 0.674
-        },
-        {
-          "text": "Signal",
-          "start": 3.344,
-          "duration": 0.418
-        },
-        {
-          "text": "vocal",
-          "start": 3.82,
-          "duration": 0.394
-        },
-        {
-          "text": "qui",
-          "start": 4.284,
-          "duration": 0.105
-        },
-        {
-          "text": "trompe",
-          "start": 4.447,
-          "duration": 0.301
-        },
-        {
-          "text": "l'oreille",
-          "start": 4.783,
-          "duration": 0.302
-        },
-        {
-          "text": "humaine.",
-          "start": 5.12,
-          "duration": 0.604
-        },
-        {
-          "text": "Ce",
-          "start": 6.235,
-          "duration": 0.15
-        },
-        {
-          "text": "n'est",
-          "start": 6.432,
-          "duration": 0.128
-        },
-        {
-          "text": "pas",
-          "start": 6.594,
-          "duration": 0.209
-        },
-        {
-          "text": "un",
-          "start": 6.861,
-          "duration": 0.059
-        },
-        {
-          "text": "simple",
-          "start": 7.001,
-          "duration": 0.325
-        },
-        {
-          "text": "charognard.",
-          "start": 7.372,
-          "duration": 0.801
-        },
-        {
-          "text": "C'est",
-          "start": 8.417,
-          "duration": 0.198
-        },
-        {
-          "text": "un",
-          "start": 8.673,
-          "duration": 0.058
-        },
-        {
-          "text": "système",
-          "start": 8.789,
-          "duration": 0.371
-        },
-        {
-          "text": "de",
-          "start": 9.195,
-          "duration": 0.081
-        },
-        {
-          "text": "chasse",
-          "start": 9.334,
-          "duration": 0.302
-        },
-        {
-          "text": "ultra-perfectionné,",
-          "start": 9.706,
-          "duration": 1.196
-        },
-        {
-          "text": "terré",
-          "start": 11.018,
-          "duration": 0.29
-        },
-        {
-          "text": "en",
-          "start": 11.366,
-          "duration": 0.058
-        },
-        {
-          "text": "pleine",
-          "start": 11.471,
-          "duration": 0.232
-        },
-        {
-          "text": "ville.",
-          "start": 11.738,
-          "duration": 0.464
-        },
-        {
-          "text": "Abonne-toi",
-          "start": 12.899,
-          "duration": 0.592
-        },
-        {
-          "text": "pour",
-          "start": 13.537,
-          "duration": 0.14
-        },
-        {
-          "text": "découvrir",
-          "start": 13.735,
-          "duration": 0.487
-        },
-        {
-          "text": "d'autres",
-          "start": 14.28,
-          "duration": 0.325
-        },
-        {
-          "text": "machines",
-          "start": 14.629,
-          "duration": 0.534
-        },
-        {
-          "text": "que",
-          "start": 15.244,
-          "duration": 0.116
-        },
-        {
-          "text": "la",
-          "start": 15.395,
-          "duration": 0.058
-        },
-        {
-          "text": "nature",
-          "start": 15.511,
-          "duration": 0.371
-        },
-        {
-          "text": "a",
-          "start": 15.906,
-          "duration": 0.023
-        },
-        {
-          "text": "créées.",
-          "start": 15.975,
-          "duration": 0.743
-        }
-      ]
+      }
     }
   ]
 }
