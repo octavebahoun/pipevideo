@@ -222,7 +222,7 @@ async function main() {
       let words: WordTiming[];
 
       if (useEdge) {
-        const tts = new EdgeTTS(scene.narration, edgeVoice!);
+        const tts = new EdgeTTS(scene.narration!, edgeVoice!);
         const result = await tts.synthesize();
         audioBuffer = Buffer.from(await result.audio.arrayBuffer());
         // offset/duration en unités de 100 ns (ticks Windows) → conversion en secondes.
@@ -236,7 +236,7 @@ async function main() {
             : [];
       } else {
         const response = await client.textToSpeech.convertWithTimestamps(voiceId!, {
-          text: scene.narration,
+          text: scene.narration!,
           model_id: 'eleven_multilingual_v2',
           output_format: 'mp3_44100_128',
         });

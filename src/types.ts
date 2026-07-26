@@ -35,10 +35,10 @@ export const sceneSoundSchema = z.object({
   trimEnd: z.number().min(0).optional(),
 });
 
-export const sceneSchema = z.object({
+const sceneSchemaBase = z.object({
   id: z.number(),
-  /** Texte lu par la voix off (Edge-TTS). */
-  narration: z.string(),
+  /** Texte lu par la voix off (Edge-TTS). Optionnel uniquement si `card` est défini. */
+  narration: z.string().optional(),
   /** Texte affiché en sous-titre. Par défaut : la narration. */
   subtitle: z.string().optional(),
   /**
@@ -100,6 +100,12 @@ export const sceneSchema = z.object({
   /** Sons additionnels (bruitages, ambiances, musiques) joués pendant la scène. */
   sounds: z.array(sceneSoundSchema).optional(),
 });
+
+/** `narration` est requis pour toute scène normale ; seules les `card` (écran de texte, sans voix) peuvent l'omettre. */
+export const sceneSchema = sceneSchemaBase.refine(
+  (scene) => Boolean(scene.card) || Boolean(scene.narration && scene.narration.length > 0),
+  { message: 'narration est requis (sauf si la scène est une "card")', path: ['narration'] }
+);
 
 export const storyboardSchema = z.object({
   title: z.string(),

@@ -242,7 +242,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
         >
           [ Dépose scene_{scene.id}.png ou scene_{scene.id}.mp4 dans le dossier public ]
           <div style={{ fontSize: '1.2rem', marginTop: 20, opacity: 0.7 }}>
-            Prompt suggéré : {scene.narration}
+            Prompt suggéré : {scene.narration ?? ''}
           </div>
         </div>
       )}
@@ -258,7 +258,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
       {/* Sous-titres (désactivables par scène ou globalement) */}
       {showSubtitles && (
         <Subtitles
-          text={scene.subtitle ?? scene.narration}
+          text={scene.subtitle ?? scene.narration!}
           words={scene.words}
           durationInFrames={durationInFrames}
           style={subtitleStyle}
