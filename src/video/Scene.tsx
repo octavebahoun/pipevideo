@@ -122,15 +122,6 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   const mediaPath = scene.mediaPath;
   const isVideo = mediaPath ? /\.(mp4|mkv|webm|mov|avi)$/i.test(mediaPath) : false;
 
-  // ⚠️ EXCEPTION SPÉCIFIQUE À CETTE BRANCHE (video/renard-hud) — NE PAS MERGER TEL QUEL.
-  // La narration de la scène 7 (16,74s) reste UNIQUE et continue (pas splittée, pas
-  // régénérée en TTS). Le clip Kling généré ne fait que 10s : on fait donc patienter
-  // avec une image fixe (remplacement.jpg) pendant les 6 premières secondes, puis on
-  // fondu-enchaîne vers la vraie vidéo, sans jamais couper l'unique piste <Audio>.
-  const isLeadInHack = scene.id === 7 && mediaPath === 'scene_7.mp4';
-  const leadInFrames = Math.round(6 * fps);
-  const crossfadeFrames = Math.round(0.5 * fps);
-
   // Voix off : fichier fourni par l'utilisateur (audioPath) sinon la sortie TTS.
   const voiceSrc = scene.audioPath ?? `scene_${scene.id}.mp3`;
 
@@ -222,46 +213,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
             transformOrigin: 'center center',
           }}
         >
-          {isLeadInHack ? (
-            <>
-              <Sequence from={0} durationInFrames={leadInFrames + crossfadeFrames}>
-                <Img
-                  src={staticFile('remplacement.jpg')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: interpolate(
-                      frame,
-                      [leadInFrames, leadInFrames + crossfadeFrames],
-                      [1, 0],
-                      { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
-                    ),
-                  }}
-                />
-              </Sequence>
-              <Sequence from={leadInFrames} durationInFrames={durationInFrames - leadInFrames}>
-                <Loop durationInFrames={durationInFrames - leadInFrames}>
-                  <OffthreadVideo
-                    src={staticFile(mediaPath)}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      opacity: interpolate(
-                        frame,
-                        [leadInFrames, leadInFrames + crossfadeFrames],
-                        [0, 1],
-                        { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
-                      ),
-                    }}
-                    volume={scene.mediaVolume ?? 0.6}
-                    playbackRate={scene.playbackRate ?? 1}
-                  />
-                </Loop>
-              </Sequence>
-            </>
-          ) : isVideo ? (
+          {isVideo ? (
             <Loop durationInFrames={durationInFrames}>
               <OffthreadVideo
                 src={staticFile(mediaPath)}
