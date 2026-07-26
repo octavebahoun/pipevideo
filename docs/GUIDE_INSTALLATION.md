@@ -1,6 +1,6 @@
 # 🛠️ Guide 1 — Installation & premier rendu distant (AWS Lambda)
 
-Ce guide t'emmène de zéro (dépôt pas encore cloné) jusqu'à un **premier rendu réussi sur AWS Lambda** — sans encore créer de vraie vidéo. L'objectif est de vérifier que toute la mécanique technique (dépendances, `.env`, AWS) fonctionne, sur la **même configuration que le compte principal** (même compte AWS, même fonction Lambda déjà déployée, même bucket S3).
+Ce guide t'emmène de zéro (dépôt pas encore cloné) jusqu'à une **configuration AWS Lambda opérationnelle** — sans encore créer de vraie vidéo. L'objectif est de vérifier que toute la mécanique technique (dépendances, `.env`, AWS) fonctionne, sur la **même configuration que le compte principal** (même compte AWS, même fonction Lambda déjà déployée, même bucket S3).
 
 Pour créer ta vraie première vidéo une fois cette étape validée, passe à `docs/GUIDE_PREMIERE_VIDEO.md`.
 
@@ -95,38 +95,19 @@ Tu dois voir apparaître une fonction existante — **ne lance PAS** `npx remoti
 
 ⚠️ **Versions Remotion figées, pas de `^`** : `package.json` épingle `@remotion/*` sur une version exacte (pas de plage `^x.y.z`), pour que ton install corresponde TOUJOURS exactement à la version embarquée dans la fonction Lambda partagée (`compatibleOnly: true` exige une correspondance stricte). Ne touche pas ces versions toi-même, même pour les mettre à jour — un décalage, même mineur (ex: `4.0.491` vs `4.0.498`), rend la fonction invisible pour `npm run render:lambda`.
 
-## 8. Premier rendu distant — test "à blanc" (sans média)
+## 8. Premier rendu distant
 
-Avant de créer une vraie vidéo, on vérifie que toute la chaîne (S3 + Lambda + téléchargement) fonctionne, avec un storyboard minimal qui ne nécessite **aucun média ni aucune voix off** (une simple carte de texte) :
-
-Remplace temporairement le contenu de `storyboard.json` par :
-```json
-{
-  "title": "Test de rendu AWS",
-  "ratio": "9:16",
-  "scenes": [
-    {
-      "id": 1,
-      "card": {
-        "text": "Test de rendu réussi !",
-        "subtext": "La configuration AWS fonctionne."
-      }
-    }
-  ]
-}
-```
-
-Puis :
 ```bash
-npm run tts            # rien à générer ici (carte de texte), juste une vérification
+npm run tts
 npm run render:lambda
 ```
 
-Si tout est bien configuré, tu verras la progression du rendu (`Rendu Lambda : 100%`) puis un fichier `out/video.mp4` téléchargé — une courte vidéo noire avec le texte de test. **C'est le signal que ta configuration AWS est opérationnelle.**
+Le `storyboard.json` présent dans le dépôt est l'exemple "le vol de la graine de pissenlit" (voir `docs/GUIDE_PREMIERE_VIDEO.md`) — il référence des fichiers médias (`scene_1.mp4`, etc.) qui ne sont pas encore dans `public/`, puisque personne ne les a générés. C'est **normal et attendu** que `npm run render:lambda` échoue à ce stade avec une erreur du type *"Assets référencés introuvables dans public/"* : ça confirme que la chaîne AWS (S3 + Lambda) est atteinte et fonctionne — il ne manque que les médias, pas la configuration.
 
 - Erreur `Aucune fonction Lambda compatible` → vérifie `REMOTION_AWS_REGION` dans `.env` (doit correspondre exactement à la région où la fonction partagée est déployée), et vérifie que ton `npm install` a bien pris les versions exactes de `package.json` (`npx remotion versions` pour voir ce qui est réellement résolu).
 - Erreur de credentials → revérifie `aws configure` (étape 6).
+- Erreur "Assets référencés introuvables dans public/" → normal à ce stade (voir ci-dessus), pas un bug de configuration.
 
 ## 9. Étape suivante
 
-Une fois ce test réussi, passe à **`docs/GUIDE_PREMIERE_VIDEO.md`** pour créer ta vraie première vidéo, du sujet jusqu'au rendu.
+Passe à **`docs/GUIDE_PREMIERE_VIDEO.md`** pour déposer de vrais médias et créer ta vraie première vidéo, du sujet jusqu'au rendu.
