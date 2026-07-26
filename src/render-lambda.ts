@@ -242,6 +242,7 @@ async function main() {
 }
 
 main().catch((err: any) => {
-  console.error('\n❌ Erreur render:lambda :', err.message);
+  console.error('\n❌ Erreur render:lambda :', err?.message || err?.name || String(err));
+  if (err?.stack) console.error(err.stack);
   process.exit(1);
 });
