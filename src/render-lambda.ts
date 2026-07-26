@@ -111,7 +111,7 @@ async function stageAssets(assets: string[]): Promise<string> {
 
 async function main() {
   await loadDotenv();
-  const region = (process.env.REMOTION_AWS_REGION || 'eu-west-3') as AwsRegion;
+  const region = (process.env.REMOTION_AWS_REGION || 'us-east-1') as AwsRegion;
 
   const storyboard = await loadStoryboard(STORYBOARD_PATH);
   console.log(`Projet : "${storyboard.title}" | région : ${region}`);

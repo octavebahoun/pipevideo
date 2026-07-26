@@ -49,7 +49,7 @@ CHROME_EXECUTABLE_PATH=false
 
 # Région AWS où la fonction Lambda partagée est déployée — garde EXACTEMENT la même
 # région que moi, sinon `npm run render:lambda` ne trouvera pas la fonction.
-REMOTION_AWS_REGION=eu-west-3
+REMOTION_AWS_REGION=us-east-1
 ```
 
 ## 5. Installer AWS CLI
@@ -74,7 +74,7 @@ Il va te demander 4 choses — tu as déjà tout, puisqu'on est sur le même com
 ```
 AWS Access Key ID [None]: <ta Access Key ID>
 AWS Secret Access Key [None]: <ta Secret Access Key>
-Default region name [None]: eu-west-3
+Default region name [None]: us-east-1
 Default output format [None]: json
 ```
 
@@ -91,9 +91,9 @@ Vérifie aussi que la fonction Lambda partagée est bien visible depuis ta machi
 ```bash
 npx remotion lambda functions ls
 ```
-Tu dois voir apparaître une fonction existante — **ne lance PAS** `npx remotion lambda functions deploy` toi-même (elle est déjà déployée, en redéployer une nouvelle par erreur créerait une fonction en double et des coûts inutiles).
+Tu dois voir apparaître une fonction existante — **ne lance PAS** `npx remotion lambda functions deploy` toi-même (en redéployer une nouvelle par erreur créerait une fonction en double et des coûts inutiles). Si tu vois une erreur "Aucune fonction Lambda compatible", c'est presque toujours soit la région (`REMOTION_AWS_REGION`, étape 4), soit une version Remotion différente entre `package.json` et la fonction déployée — dans les deux cas, préviens plutôt que de déployer toi-même.
 
-**Timeout de la fonction : 10 minutes.** La fonction partagée est configurée avec un timeout de 600s (10 min) plutôt que le défaut plus court de Remotion, pour laisser de la marge si une connexion un peu lente ralentit l'upload des assets ou allonge un rendu. C'est un réglage de la fonction elle-même (géré côté compte principal, pas à refaire de ton côté) — si jamais tu vois un rendu échouer avec une erreur de type "timeout" côté Lambda malgré tout, préviens plutôt que de redéployer une fonction toi-même.
+⚠️ **Versions Remotion figées, pas de `^`** : `package.json` épingle `@remotion/*` sur une version exacte (pas de plage `^x.y.z`), pour que ton install corresponde TOUJOURS exactement à la version embarquée dans la fonction Lambda partagée (`compatibleOnly: true` exige une correspondance stricte). Ne touche pas ces versions toi-même, même pour les mettre à jour — un décalage, même mineur (ex: `4.0.491` vs `4.0.498`), rend la fonction invisible pour `npm run render:lambda`.
 
 ## 8. Premier rendu distant — test "à blanc" (sans média)
 
@@ -124,7 +124,7 @@ npm run render:lambda
 
 Si tout est bien configuré, tu verras la progression du rendu (`Rendu Lambda : 100%`) puis un fichier `out/video.mp4` téléchargé — une courte vidéo noire avec le texte de test. **C'est le signal que ta configuration AWS est opérationnelle.**
 
-- Erreur `Aucune fonction Lambda compatible` → vérifie `REMOTION_AWS_REGION` dans `.env` (doit correspondre exactement à la région où la fonction partagée est déployée).
+- Erreur `Aucune fonction Lambda compatible` → vérifie `REMOTION_AWS_REGION` dans `.env` (doit correspondre exactement à la région où la fonction partagée est déployée), et vérifie que ton `npm install` a bien pris les versions exactes de `package.json` (`npx remotion versions` pour voir ce qui est réellement résolu).
 - Erreur de credentials → revérifie `aws configure` (étape 6).
 
 ## 9. Étape suivante

@@ -14,17 +14,17 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@remotion/bundler": "^4.0.491",
-    "@remotion/cli": "^4.0.491",
-    "@remotion/lambda": "^4.0.491",
-    "@remotion/renderer": "^4.0.491",
-    "@remotion/transitions": "4.0.491",
+    "@remotion/bundler": "4.0.498",
+    "@remotion/cli": "4.0.498",
+    "@remotion/lambda": "4.0.498",
+    "@remotion/renderer": "4.0.498",
+    "@remotion/transitions": "4.0.498",
     "edge-tts-universal": "^1.1.1",
     "elevenlabs": "^1.59.0",
     "music-metadata": "^7.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "remotion": "^4.0.491"
+    "remotion": "4.0.498"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
