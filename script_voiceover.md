@@ -1,13 +1,13 @@
-Vous pensez que l'âne est stupide et têtu ? FAUX. C'est une machine de survie ultra-sophistiquée.
+Vous pensez que le renard chasse au hasard ? FAUX. Il possède un sens que la science commence à peine à percer.
 
-Ses oreilles ? Un radar acoustique longue portée. Portée d'écoute : soixante kilomètres.
+Certaines études suggèrent qu'il perçoit le champ magnétique terrestre, comme une boussole invisible qui l'aide à calculer chaque bond.
 
-Ses yeux ? Un scanner panoramique à trois cent soixante degrés. Aucun angle mort, même au bord d'une falaise.
+Sous la neige, invisible, une proie n'a presque aucune chance. Les chercheurs ont observé un chiffre étonnant : jusqu'à sept bonds sur dix réussissent quand il vise plein nord-est.
 
-Face au danger, son cerveau active un calcul tactique instantané. Pas de panique. Juste de l'analyse de risque, en temps réel.
+Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.
 
-Contre un prédateur, il devient une unité de combat. Charge frontale. Impact. Sabots en armes.
+La nuit, son cri est si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse.
 
-Son réservoir ? Une capacité de trente litres d'eau absorbés en à peine trois minutes. De quoi survivre aux conditions les plus extrêmes, là où d'autres s'effondrent.
+Analyse terminée.
 
-Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Réservoir haute capacité. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.
+Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.

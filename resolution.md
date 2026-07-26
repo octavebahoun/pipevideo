@@ -137,6 +137,23 @@ Une fois `npm run tts` passé, `storyboard.json` contient la durée RÉELLE de c
 1. Utiliser la fonction "extend" de l'outil de génération (Kling, etc.) pour compléter jusqu'à la durée exacte.
 2. Sinon, calculer et donner le `playbackRate` exact à ajouter sur la scène (`durée du clip généré ÷ durée cible`) pour un ralenti fluide qui remplit exactement la scène sans bouclage visible — sans ce réglage, `Scene.tsx` (`<Loop>`) BOUCLE le clip trop court au lieu de l'étirer, ce qui se voit à l'écran.
 
+### Rigueur scientifique (le style HUD ne dispense pas de vérifier les faits)
+
+Le ton "spec militaire" du template rend les affirmations très faciles à sur-vendre (ex: "capteur magnétique intégré", "système de guidage balistique", "verrouillé plein nord-est" pour un mécanisme dont la science n'a en réalité qu'observé une corrélation statistique, pas prouvé le mécanisme biologique). Erreur constatée sur le script Renard, corrigée après retour utilisateur.
+
+**Règle** : reformuler tout ce qui affirme un mécanisme/organe comme prouvé alors que la source ne montre qu'une observation/hypothèse — sans perdre le côté spectaculaire :
+- ❌ "Capteur magnétique intégré" / "Système de guidage balistique" (affirme un organe et un mécanisme prouvés) → ✅ "Une boussole invisible" / "Il **semble** percevoir..." / "Certaines études **suggèrent**..."
+- ❌ "Verrouillés plein nord-est" (implique une précision mécanique garantie) → ✅ "Les chercheurs ont observé... quand il vise plein nord-est" (décrit l'observation, pas un mécanisme).
+- ❌ Un chiffre/effet non sourcé présenté comme un fait établi (ex: "des appels à la police chaque année") → ✅ Reformuler en constat qualitatif plausible et invérifiable-mais-raisonnable ("son cri est régulièrement pris pour...").
+
+Les phrases de RÉCAPITULATIF en conclusion (qui reprennent des mots-clés déjà posés plus tôt) ont plus de latitude créative que les affirmations initiales — mais rester cohérent avec la formulation déjà adoptée dans le corps (ex: si la scène 2 dit "boussole invisible", la conclusion doit reprendre "boussole invisible", pas repasser à "intégrée").
+
+### Le HUD n'annule pas la règle vidéo/image (§5 du skill content-factory)
+
+Piège vécu : en se concentrant sur le détail du HUD, il est facile d'oublier la règle de fond du skill ("🎬 VIDÉO par défaut, 🖼️ image par exception") et de proposer une vidéo **tout en clips vidéo**, y compris pour des scènes qui n'ont besoin d'aucun mouvement (un récapitulatif, une pause avant le CTA, un plan de transition). Une **image fixe** (infographie HUD, illustration) reste le bon choix par défaut dès qu'une scène doit "laisser respirer" le montage plutôt que montrer une action — la règle s'applique identiquement en HUD, elle ne se limite pas au style documentaire calme.
+
+**Bonus redondance** : une image de récap (« SYSTEM REPORT » avec checklist des faits déjà montrés) est aussi le bon outil pour éviter de répéter 2-3 fois la même action filmée (ex: montrer l'animal vocaliser dans 3 scènes d'affilée) — elle referme le sujet visuellement sans ajouter un 4e plan quasi identique.
+
 ## 6. `npm run check-video` — vérification automatique des durées médias
 
 Avant, cette vérification (durée réelle du clip vs durée requise par la scène, calcul du `playbackRate` si besoin) se faisait à la main pour chaque scène — source d'erreurs et de crédits gaspillés (cf. §5). Automatisé dans `src/check-media.ts`.
