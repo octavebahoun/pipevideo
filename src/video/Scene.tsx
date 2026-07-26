@@ -265,12 +265,14 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
         />
       )}
 
-      {/* Texte incrusté (CTA) : apparaît en fondu + léger montée à startInSeconds */}
+      {/* Texte incrusté (CTA / label HUD) : en HAUT de l'image pour ne jamais chevaucher
+          les sous-titres karaoké (positionnés en bas, voir Subtitles.tsx). Apparaît en
+          fondu + léger descente à startInSeconds. */}
       {overlayText && (
         <div
           style={{
             position: 'absolute',
-            bottom: '14%',
+            top: '8%',
             left: '8%',
             right: '8%',
             display: 'flex',
@@ -287,7 +289,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
               transform: `translateY(${interpolate(
                 frame,
                 [overlayStart, overlayStart + 18],
-                [16, 0],
+                [-16, 0],
                 { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
               )}px)`,
               color: '#fff',

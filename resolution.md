@@ -156,3 +156,11 @@ npm run check-video
    - **Écart négatif au-delà de ce que la transition peut absorber** : `playbackRate` calculé (`durée réelle ÷ durée requise`) et **injecté automatiquement** dans `storyboard.json`, pour un ralenti qui remplit exactement la scène sans que `<Loop>` (dans `Scene.tsx`) ne fasse boucler le clip de façon visible.
 
 Objectif : que l'agent (ou l'utilisateur) sache immédiatement, avant `npm run render`, quelles scènes ont besoin d'un vrai correctif vs lesquelles sont déjà couvertes par le design des transitions — sans recalculer ça à la main à chaque fois.
+
+## 7. `overlayText` en HAUT de l'image (pas en bas, pour ne pas chevaucher le karaoké)
+
+**Problème constaté** : `overlayText` (texte incrusté / labels HUD façon `"📡 RADAR : 60 KM"`) était positionné en bas (`bottom: '14%'`), trop proche des sous-titres karaoké (`bottom: '10%'`, voir `Subtitles.tsx`) → chevauchement visuel sur les deux textes.
+
+**Résolution** : dans `src/video/Scene.tsx`, le conteneur `overlayText` est passé en haut de l'image (`top: '8%'` au lieu de `bottom: '14%'`), avec une animation d'entrée qui descend légèrement (`translateY` de `-16px` à `0`) plutôt que de monter. Les sous-titres karaoké restent en bas comme avant — les deux textes ne se croisent plus jamais.
+
+S'applique automatiquement à toutes les scènes de toutes les vidéos qui utilisent `overlayText` (aucun changement de storyboard nécessaire).
