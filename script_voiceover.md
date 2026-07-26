@@ -1,13 +1,13 @@
-Vous pensez que le renard chasse au hasard ? FAUX. C'est un prédateur équipé d'un système de guidage que même l'armée n'a pas.
+Vous pensez que le renard chasse au hasard ? FAUX. Il possède un sens que la science commence à peine à percer.
 
-Son arme secrète ? Un capteur magnétique intégré. Il aligne chaque bond sur le champ magnétique terrestre, comme un système de guidage balistique.
+Certaines études suggèrent qu'il perçoit le champ magnétique terrestre, comme une boussole invisible qui l'aide à calculer chaque bond.
 
-Sous la neige, invisible, une proie n'a presque aucune chance. Taux de réussite : jusqu'à sept bonds sur dix, verrouillés plein nord-est.
+Sous la neige, invisible, une proie n'a presque aucune chance. Les chercheurs ont observé un chiffre étonnant : jusqu'à sept bonds sur dix réussissent quand il vise plein nord-est.
 
 Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.
 
-La nuit, il émet un signal sonore si proche du cri humain que des appels au secours sont envoyés à la police chaque année, pour rien.
+La nuit, son cri est si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse.
 
-Plus de quarante sons différents dans son répertoire. Un système de communication presque aussi riche que le nôtre.
+Analyse terminée.
 
-Boussole intégrée. Précision de tir redoutable. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.
+Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.

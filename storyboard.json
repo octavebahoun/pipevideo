@@ -7,52 +7,52 @@
   "scenes": [
     {
       "id": 1,
-      "narration": "Vous pensez que le renard chasse au hasard ? FAUX. C'est un prédateur équipé d'un système de guidage que même l'armée n'a pas.",
+      "narration": "Vous pensez que le renard chasse au hasard ? FAUX. Il possède un sens que la science commence à peine à percer.",
       "mediaPath": "scene_1.mp4",
       "effects": { "zoom": "in", "transition": "fade" },
-      "overlayText": { "text": "🎯 SYSTÈME : GUIDAGE INCONNU", "startInSeconds": 0.3 }
+      "overlayText": { "text": "🔍 SCAN", "startInSeconds": 0.3 }
     },
     {
       "id": 2,
-      "narration": "Son arme secrète ? Un capteur magnétique intégré. Il aligne chaque bond sur le champ magnétique terrestre, comme un système de guidage balistique.",
+      "narration": "Certaines études suggèrent qu'il perçoit le champ magnétique terrestre, comme une boussole invisible qui l'aide à calculer chaque bond.",
       "mediaPath": "scene_2.mp4",
       "effects": { "zoom": "in", "transition": "wipe" },
-      "overlayText": { "text": "🧭 BOUSSOLE : ACTIVE", "startInSeconds": 0.3 }
+      "overlayText": { "text": "📊 ANALYSIS", "startInSeconds": 0.3 }
     },
     {
       "id": 3,
-      "narration": "Sous la neige, invisible, une proie n'a presque aucune chance. Taux de réussite : jusqu'à sept bonds sur dix, verrouillés plein nord-est.",
+      "narration": "Sous la neige, invisible, une proie n'a presque aucune chance. Les chercheurs ont observé un chiffre étonnant : jusqu'à sept bonds sur dix réussissent quand il vise plein nord-est.",
       "mediaPath": "scene_3.mp4",
       "effects": { "zoom": "in", "transition": "fade" },
-      "overlayText": { "text": "🎯 PRÉCISION : 70%", "startInSeconds": 0.3 }
+      "overlayText": { "text": "🎯 TARGET LOCK", "startInSeconds": 0.3 }
     },
     {
       "id": 4,
       "narration": "Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.",
       "mediaPath": "scene_4.mp4",
-      "effects": { "zoom": "none", "transition": "black" },
-      "overlayText": { "text": "⚠️ ARME SECONDAIRE DÉTECTÉE", "startInSeconds": 0.3 }
+      "effects": { "zoom": "in", "transition": "black" },
+      "overlayText": { "text": "⚠️ WARNING", "startInSeconds": 0.3 }
     },
     {
       "id": 5,
-      "narration": "La nuit, il émet un signal sonore si proche du cri humain que des appels au secours sont envoyés à la police chaque année, pour rien.",
+      "narration": "La nuit, son cri est si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse.",
       "mediaPath": "scene_5.mp4",
       "effects": { "zoom": "in", "transition": "wipe" },
-      "overlayText": { "text": "🔊 SIGNAL : ANOMALIE HUMAINE", "startInSeconds": 0.3 }
+      "overlayText": { "text": "🔊 SIGNAL ANALYSIS", "startInSeconds": 0.3 }
     },
     {
       "id": 6,
-      "narration": "Plus de quarante sons différents dans son répertoire. Un système de communication presque aussi riche que le nôtre.",
-      "mediaPath": "scene_6.mp4",
-      "effects": { "zoom": "none", "transition": "fade" },
-      "overlayText": { "text": "📡 RÉPERTOIRE : 40+ SIGNAUX", "startInSeconds": 0.3 }
+      "narration": "Analyse terminée.",
+      "mediaPath": "scene_6.jpg",
+      "effects": { "zoom": "none", "transition": "wipe" },
+      "overlayText": { "text": "📋 SYSTEM REPORT", "startInSeconds": 0.3 }
     },
     {
       "id": 7,
-      "narration": "Boussole intégrée. Précision de tir redoutable. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.",
+      "narration": "Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.",
       "mediaPath": "scene_7.mp4",
       "effects": { "zoom": "out", "transition": "fade" },
-      "overlayText": { "text": "🏆 SYSTÈME DE CHASSE ULTIME", "startInSeconds": 0.3 }
+      "overlayText": { "text": "✅ MISSION COMPLETE", "startInSeconds": 0.3 }
     }
   ]
 }
