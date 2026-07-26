@@ -20,7 +20,7 @@ async function main() {
   const initialStoryboard: Storyboard = {
     title: subject,
     ratio: '9:16',
-    voice: 'remy',
+    voice: 'henri',
     subtitleStyle: 'fondant',
     scenes: [
       {
@@ -46,7 +46,7 @@ async function main() {
     console.log(`⚠️ ATTENTION AGENT : Tu DOIS consulter et appliquer STRICTEMENT le skill`);
     console.log(`   "content-factory-nature" (fichier .agents/skills/content-factory-nature/SKILL.md)`);
     console.log(`   ainsi que les best-practices Remotion. Tu ne dois JAMAIS ignorer ces règles.`);
-    console.log(`   Génère le script dans storyboard.json avec des voix Edge-TTS (ex: "remy", "henri")`);
+    console.log(`   Génère le script dans storyboard.json avec des voix Edge-TTS (ex: "henri", "remy")`);
     console.log(`   et lance "npm run tts".`);
     console.log(`--------------------------------------------------------------------------------\n`);
 

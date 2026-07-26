@@ -63,7 +63,7 @@ const EDGE_VOICE_MAP: Record<string, string> = {
 };
 
 function resolveEdgeVoice(voiceInput?: string): string {
-  if (!voiceInput) return EDGE_VOICE_MAP.remy;
+  if (!voiceInput) return EDGE_VOICE_MAP.henri;
   const normalized = voiceInput.toLowerCase().trim();
   if (EDGE_VOICE_MAP[normalized]) {
     return EDGE_VOICE_MAP[normalized];
@@ -72,8 +72,8 @@ function resolveEdgeVoice(voiceInput?: string): string {
   if (/^[a-z]{2}-[A-Z]{2}-[A-Za-z]+Neural$/.test(voiceInput)) {
     return voiceInput;
   }
-  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de la voix Remy par défaut.`);
-  return EDGE_VOICE_MAP.remy;
+  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de la voix Henri par défaut.`);
+  return EDGE_VOICE_MAP.henri;
 }
 
 interface ElevenLabsAlignment {

@@ -11,7 +11,7 @@ triggers:
 
 > [!IMPORTANT]
 > **CONSIGNE STRICTEMENT OBLIGATOIRE POUR TOUT AGENT IA** :
-> Vous DEVEZ LIRE ET APPLIQUER STRICTEMENT l'ensemble des règles de ce skill (Content Factory) ainsi que des skills Remotion associés (`remotion-best-practices`) avant toute action. Ne pas ignorer ni déroger aux voix disponibles (Edge-TTS par défaut : `remy`, `henri`, `denise`, `eloise`, `vivienne` ; ElevenLabs sur demande : `george`, `anais`, `liam`, `rachel`, `antoni`), aux formats de sous-titres, et aux procédures de synchronisation TTS (`npm run tts`).
+> Vous DEVEZ LIRE ET APPLIQUER STRICTEMENT l'ensemble des règles de ce skill (Content Factory) ainsi que des skills Remotion associés (`remotion-best-practices`) avant toute action. Ne pas ignorer ni déroger aux voix disponibles (Edge-TTS par défaut : `henri`, `denise`, `eloise`, `vivienne`, `remy` ; ElevenLabs sur demande : `george`, `anais`, `liam`, `rachel`, `antoni`), aux formats de sous-titres, et aux procédures de synchronisation TTS (`npm run tts`).
 
 Ce skill permet à l'IA d'orchestrer la génération automatisée de vidéos de A à Z en local.
 
@@ -54,7 +54,7 @@ La voix off est TOUJOURS produite/mesurée par `npm run tts` :
 ```bash
 npm run tts
 ```
-- **Mode A — Edge-TTS (défaut, gratuit)** : la voix est générée depuis `narration` via **Edge-TTS (Microsoft)**, moteur choisi via `.env` (`TTS_PROVIDER=edge`, défaut si absent). Voix par défaut : `"remy"`. Les voix disponibles (`remy`, `henri`, `denise`, `eloise`, `vivienne`) et leur guide d'utilisation sont documentés dans `docs/VOICES.md`.
+- **Mode A — Edge-TTS (défaut, gratuit)** : la voix est générée depuis `narration` via **Edge-TTS (Microsoft)**, moteur choisi via `.env` (`TTS_PROVIDER=edge`, défaut si absent). Voix par défaut : `"henri"`. Les voix disponibles (`henri`, `denise`, `eloise`, `vivienne`, `remy`) et leur guide d'utilisation sont documentés dans `docs/VOICES.md`.
   - `TTS_PROVIDER=elevenlabs` reste disponible (payant, voix plus naturelles) si besoin ponctuel — voir `resolution.md` §2. Dans ce cas, `voice` par défaut devient `"george"`.
   - Les timings mot-à-mot (karaoké) sont capturés automatiquement (événements `WordBoundary` pour Edge, `convertWithTimestamps` pour ElevenLabs), et `durationInSeconds` est réajustée.
 - **Mode B — Voix FOURNIE par l'utilisateur** : quand l'utilisateur veut sa propre voix (ton intime, narration humaine…).

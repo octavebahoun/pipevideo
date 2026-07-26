@@ -21,13 +21,13 @@ Le champ `storyboard.voice` reste le seul levier dans les deux cas, mais son voc
 
 | Nom dans `storyboard.json` | Voix Edge-TTS | Genre | Idéal pour... |
 | :--- | :--- | :--- | :--- |
-| **`remy`** *(Défaut)* | `fr-FR-RemyMultilingualNeural` | Masculin | Multilingue, dynamique |
-| **`henri`** | `fr-FR-HenriNeural` | Masculin | Voix polyvalente, ton neutre/documentaire |
+| **`henri`** *(Défaut)* | `fr-FR-HenriNeural` | Masculin | Voix polyvalente, ton neutre/documentaire |
 | **`denise`** | `fr-FR-DeniseNeural` | Féminin | Claire, posée |
 | **`eloise`** | `fr-FR-EloiseNeural` | Féminin | Douce, jeune |
 | **`vivienne`** | `fr-FR-VivienneMultilingualNeural` | Féminin | Multilingue, moderne |
+| **`remy`** | `fr-FR-RemyMultilingualNeural` | Masculin | Multilingue, dynamique |
 
-Si `"voice"` est omis ou non reconnu avec `TTS_PROVIDER=edge`, le système bascule sur **`remy`** par défaut. Un identifiant Edge complet (ex: `en-US-GuyNeural`) peut aussi être passé directement.
+Si `"voice"` est omis ou non reconnu avec `TTS_PROVIDER=edge`, le système bascule sur **`henri`** par défaut. Un identifiant Edge complet (ex: `en-US-GuyNeural`) peut aussi être passé directement.
 
 ---
 
@@ -55,7 +55,7 @@ Dans votre fichier `storyboard.json`, vous pouvez indiquer directement le nom co
 }
 ```
 
-Si le champ `"voice"` est omis, ou si son nom n'est pas reconnu (ex: un nom ElevenLabs comme `george` alors que `TTS_PROVIDER=edge`, le défaut), le système bascule automatiquement sur la voix **`remy`** (Edge-TTS) ou **`george`** (ElevenLabs), selon le moteur actif.
+Si le champ `"voice"` est omis, ou si son nom n'est pas reconnu (ex: un nom ElevenLabs comme `george` alors que `TTS_PROVIDER=edge`, le défaut), le système bascule automatiquement sur la voix **`henri`** (Edge-TTS) ou **`george`** (ElevenLabs), selon le moteur actif.
 
 ---
 

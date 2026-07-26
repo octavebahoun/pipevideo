@@ -37,7 +37,7 @@ cp .env.example .env
 Champs à connaître (`.env` n'est jamais commité, chacun a le sien) :
 
 ```bash
-# Moteur TTS : "edge" est déjà le défaut de cette branche (gratuit, voix "remy" par défaut).
+# Moteur TTS : "edge" est déjà le défaut de cette branche (gratuit, voix "henri" par défaut).
 # Tu peux laisser cette ligne telle quelle, ou la retirer entièrement.
 TTS_PROVIDER=edge
 

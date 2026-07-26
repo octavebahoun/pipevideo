@@ -32,7 +32,7 @@ Génère les vidéos/images avec ton outil IA (Kling ou autre) à partir des pro
 ```bash
 npm run tts
 ```
-Voix Edge-TTS par défaut (`remy`), gratuite. Ça mesure aussi la durée réelle de chaque scène et capture les timings pour les sous-titres.
+Voix Edge-TTS par défaut (`henri`), gratuite. Ça mesure aussi la durée réelle de chaque scène et capture les timings pour les sous-titres.
 
 ### 7. (Optionnel mais recommandé) Musique de fond calme
 Si tu as un morceau calme à ajouter, dépose-le dans `public/sounds/music/` et référence-le dans le champ global `music` du storyboard (`musicVolume` bas, ≈ 0.15–0.25). Voir le skill pour le détail.

@@ -37,11 +37,11 @@ Avec 30 frames de pause, la transition est **entièrement comprise dans cette se
 Edge-TTS avait été entièrement retiré du pipeline (remplacé par ElevenLabs, voir historique git avant le commit `692d333`), mais la dépendance `edge-tts-universal` était restée dans `package.json`. Remis en place dans `src/tts.ts`, cette fois **sans dupliquer le script** : un seul `npm run tts`, le moteur est choisi via `.env` :
 
 ```bash
-TTS_PROVIDER=edge         # défaut : gratuit, Edge-TTS (Microsoft), voix par défaut "remy"
+TTS_PROVIDER=edge         # défaut : gratuit, Edge-TTS (Microsoft), voix par défaut "henri"
 TTS_PROVIDER=elevenlabs   # payant, voix les plus naturelles — toujours disponible si besoin
 ```
 
-**Changement de défaut** : ElevenLabs (payant) était le moteur par défaut à l'origine ; Edge-TTS (gratuit) est désormais le défaut du pipeline, avec `"remy"` comme voix par défaut. ElevenLabs reste entièrement fonctionnel, à activer explicitement via `TTS_PROVIDER=elevenlabs` dans `.env` quand une vidéo a besoin de sa qualité vocale supérieure.
+**Changement de défaut** : ElevenLabs (payant) était le moteur par défaut à l'origine ; Edge-TTS (gratuit) est désormais le défaut du pipeline, avec `"henri"` comme voix par défaut. ElevenLabs reste entièrement fonctionnel, à activer explicitement via `TTS_PROVIDER=elevenlabs` dans `.env` quand une vidéo a besoin de sa qualité vocale supérieure.
 
 - `storyboard.voice` reste le seul champ à éditer dans le storyboard pour choisir la voix, quel que soit le moteur — seul le vocabulaire des noms courts change (`george`/`liam`/... pour ElevenLabs, `henri`/`denise`/... pour Edge, voir `docs/VOICES.md`).
 - Tout le reste de `tts.ts` (cas carte de fin, voix fournie par l'utilisateur, réutilisation d'un audio déjà généré) est **commun aux deux moteurs** : seule l'étape de synthèse elle-même (`useEdge ? ... : ...`) branche vers l'un ou l'autre.
