@@ -1,13 +1,13 @@
-Vous pensez que l'âne est stupide et têtu ? FAUX. C'est une machine de survie ultra-sophistiquée.
+Vous pensez que le renard chasse au hasard ? FAUX. C'est un prédateur équipé d'un système de guidage que même l'armée n'a pas.
 
-Ses oreilles ? Un radar acoustique longue portée. Portée d'écoute : soixante kilomètres.
+Son arme secrète ? Un capteur magnétique intégré. Il aligne chaque bond sur le champ magnétique terrestre, comme un système de guidage balistique.
 
-Ses yeux ? Un scanner panoramique à trois cent soixante degrés. Aucun angle mort, même au bord d'une falaise.
+Sous la neige, invisible, une proie n'a presque aucune chance. Taux de réussite : jusqu'à sept bonds sur dix, verrouillés plein nord-est.
 
-Face au danger, son cerveau active un calcul tactique instantané. Pas de panique. Juste de l'analyse de risque, en temps réel.
+Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.
 
-Contre un prédateur, il devient une unité de combat. Charge frontale. Impact. Sabots en armes.
+La nuit, il émet un signal sonore si proche du cri humain que des appels au secours sont envoyés à la police chaque année, pour rien.
 
-Son réservoir ? Une capacité de trente litres d'eau absorbés en à peine trois minutes. De quoi survivre aux conditions les plus extrêmes, là où d'autres s'effondrent.
+Plus de quarante sons différents dans son répertoire. Un système de communication presque aussi riche que le nôtre.
 
-Radar longue portée. Scanner à 360°. Calculateur de risques. Unité de combat. Réservoir haute capacité. Ce n'est pas un âne. C'est un chef-d'œuvre d'évolution. Abonne-toi pour découvrir d'autres machines de survie que la nature a créées.
+Boussole intégrée. Précision de tir redoutable. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.

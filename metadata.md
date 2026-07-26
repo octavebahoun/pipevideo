@@ -1,16 +1,16 @@
-# 📝 Métadonnées de Publication — Pourquoi l'Âne est un Génie de la Survie
+# 📝 Métadonnées de Publication — Le Renard : Le Système de Chasse le Plus Sophistiqué de la Nature
 
 ## 📌 Titres optimisés (CTR)
-1. **Cet âne cache une machine de survie ultra-sophistiquée 🧠🫏** *(Recommandé)*
-2. **Radar, scanner 360°, unité de combat : le vrai visage de l'âne 📡🐺**
-3. **L'âne est-il VRAIMENT stupide ? La réponse va vous surprendre 🧠**
-4. **30 litres d'eau en 3 minutes : le réservoir caché de l'âne 💧**
+1. **Le renard a un système de guidage que l'armée n'a pas 🧭🦊** *(Recommandé)*
+2. **Ce cri de renard a fait appeler la police des centaines de fois 😱🔊**
+3. **Comment le renard vise sous la neige sans jamais voir sa proie 🎯**
+4. **Le cri le plus terrifiant de la forêt... vient d'un renard 🌙**
 
 ## 📄 Description (Short vertical / TikTok / Reels)
-> Radar acoustique à 60 km. Scanner panoramique à 360°. Calculateur de risques en temps réel. Unité de combat contre les prédateurs. Réservoir capable d'absorber 30 litres d'eau en 3 minutes. L'âne n'est pas têtu : c'est une machine de survie ultra-sophistiquée, un vrai chef-d'œuvre d'évolution. 🧠🫏
+> Une boussole magnétique intégrée pour viser sous la neige avec 70% de réussite. Un cri nocturne si proche d'un hurlement humain qu'il déclenche de vrais appels au secours. Plus de 40 sons différents dans son répertoire. Le renard n'est pas qu'un charognard rusé : c'est un système de chasse ultra-perfectionné, terré en pleine ville. 🧭🦊🔊
 
 ## 🏷️ Hashtags & Tags
-`#ane` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#ferme` `#biologie` `#survie` `#documentaire` `#shorts`
+`#renard` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#biologie` `#foret` `#mystere` `#documentaire` `#shorts`
 
 ## 🖼️ Conseil miniature
-Gros plan sur la tête d'un âne au regard calme et déterminé, réticule HUD cyan discret en surimpression. Texte court en jaune vif : **"VRAIMENT STUPIDE ?"** ou **"RADAR À 60 KM ?"**
+Gros plan sur un renard au regard perçant la nuit, réticule HUD cyan discret en surimpression façon viseur. Texte court en jaune vif : **"BOUSSOLE INTÉGRÉE ?"** ou **"CE CRI EST-IL HUMAIN ?"**
