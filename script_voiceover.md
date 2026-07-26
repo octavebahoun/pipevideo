@@ -1,13 +1,7 @@
-Vous pensez que le renard chasse au hasard ? FAUX. Il possède un sens que la science commence à peine à percer.
+On pense qu'une graine de pissenlit s'envole au hasard, portée par le vent. En réalité, elle embarque un mécanisme que les physiciens n'ont décrit que récemment.
 
-Certaines études suggèrent qu'il perçoit le champ magnétique terrestre, comme une boussole invisible qui l'aide à calculer chaque bond.
+Mais comment reste-t-elle en l'air aussi longtemps ? Une centaine de filaments forment un halo invisible juste au-dessus de la graine.
 
-Sous la neige, invisible, une proie n'a presque aucune chance. Les chercheurs ont observé un chiffre étonnant : jusqu'à sept bonds sur dix réussissent quand il vise plein nord-est.
+Un vortex d'air se forme derrière ce halo, comme une bulle qui maintient la graine en suspension bien plus longtemps qu'un simple flocon.
 
-Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.
-
-La nuit, son cri est si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse.
-
-Analyse terminée.
-
-Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.
+Ce halo minuscule peut porter la graine sur plus d'un kilomètre. Une graine, un vortex, un vol presque éternel : la nature invente déjà nos meilleures technologies.
