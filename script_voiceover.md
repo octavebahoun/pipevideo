@@ -8,6 +8,6 @@ Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.
 
 La nuit, son cri est si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse.
 
-Analyse terminée. Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard.
+Analyse terminée.
 
-C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.
+Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.
