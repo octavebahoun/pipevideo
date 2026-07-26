@@ -12,20 +12,20 @@ const MEDIA_DIR = path.join(process.cwd(), 'public');
 
 /**
  * Choix du moteur TTS, centralisé dans .env (TTS_PROVIDER) :
- *  - "elevenlabs" (défaut) : payant, voix les plus naturelles, karaoké précis au mot.
- *  - "edge"                : gratuit (Edge-TTS Microsoft), qualité correcte, aussi karaoké au mot.
+ *  - "edge"       (défaut) : gratuit (Edge-TTS Microsoft), qualité correcte, karaoké au mot.
+ *  - "elevenlabs"          : payant, voix les plus naturelles, toujours disponible via .env si besoin.
  * Le champ storyboard.voice reste le même levier dans les deux cas, mais son
  * vocabulaire diffère selon le moteur (voir VOICE_MAP / EDGE_VOICE_MAP ci-dessous).
  */
 // Normalisation tolérante : accepte "edge", "edge-tts", "edgetts", "Edge-TTS", "EDGE_TTS"...
-const rawProvider = process.env.TTS_PROVIDER || 'elevenlabs';
+const rawProvider = process.env.TTS_PROVIDER || 'edge';
 const normalizedProvider = rawProvider.toLowerCase().replace(/[^a-z]/g, '');
-const isElevenLabsProvider = normalizedProvider === '' || normalizedProvider === 'elevenlabs' || normalizedProvider === 'eleven';
-const isEdgeProvider = normalizedProvider === 'edge' || normalizedProvider === 'edgetts';
+const isEdgeProvider = normalizedProvider === '' || normalizedProvider === 'edge' || normalizedProvider === 'edgetts';
+const isElevenLabsProvider = normalizedProvider === 'elevenlabs' || normalizedProvider === 'eleven';
 if (!isElevenLabsProvider && !isEdgeProvider) {
-  console.log(`⚠️  TTS_PROVIDER inconnu ("${rawProvider}"). Utilisation d'ElevenLabs par défaut.`);
+  console.log(`⚠️  TTS_PROVIDER inconnu ("${rawProvider}"). Utilisation d'Edge-TTS par défaut.`);
 }
-const useEdge = isEdgeProvider;
+const useEdge = !isElevenLabsProvider;
 
 const DEFAULT_API_KEY = '';
 const apiKey = process.env.ELEVENLABS_API_KEY || DEFAULT_API_KEY;
@@ -63,7 +63,7 @@ const EDGE_VOICE_MAP: Record<string, string> = {
 };
 
 function resolveEdgeVoice(voiceInput?: string): string {
-  if (!voiceInput) return EDGE_VOICE_MAP.henri;
+  if (!voiceInput) return EDGE_VOICE_MAP.remy;
   const normalized = voiceInput.toLowerCase().trim();
   if (EDGE_VOICE_MAP[normalized]) {
     return EDGE_VOICE_MAP[normalized];
@@ -72,8 +72,8 @@ function resolveEdgeVoice(voiceInput?: string): string {
   if (/^[a-z]{2}-[A-Z]{2}-[A-Za-z]+Neural$/.test(voiceInput)) {
     return voiceInput;
   }
-  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de la voix Henri par défaut.`);
-  return EDGE_VOICE_MAP.henri;
+  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de la voix Remy par défaut.`);
+  return EDGE_VOICE_MAP.remy;
 }
 
 interface ElevenLabsAlignment {
