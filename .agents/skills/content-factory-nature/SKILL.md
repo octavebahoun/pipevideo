@@ -105,3 +105,7 @@ Pour le détail technique (pourquoi la pause d'1s entre scènes existe, comment 
 
 ## Fichiers de démarrage
 Un exemple complet (storyboard, prompts médias, script voix-off, métadonnées de publication) sur le sujet "le vol de la graine de pissenlit" est fourni à la racine du dépôt (`storyboard.json`, `media-prompts.md`, `script_voiceover.md`, `metadata.md`), à titre de modèle. Remplace son contenu par ton propre sujet dès que tu démarres un vrai projet — utilise `npm run new-video "Ton Sujet"` pour l'archiver proprement et repartir d'un squelette vierge.
+
+## Guides pas à pas
+- **`docs/GUIDE_INSTALLATION.md`** — installation complète, configuration AWS (`aws configure` avec ta clé, compte partagé déjà déployé) et premier rendu distant de test.
+- **`docs/GUIDE_PREMIERE_VIDEO.md`** — créer ta première vraie vidéo, du sujet jusqu'au rendu, étape par étape, avec l'option de laisser directement ton agent IA dérouler tout le processus en lui disant simplement "crée une nouvelle vidéo sur [sujet]".
