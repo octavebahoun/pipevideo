@@ -91,7 +91,9 @@ Vérifie aussi que la fonction Lambda partagée est bien visible depuis ta machi
 ```bash
 npx remotion lambda functions ls
 ```
-Tu dois voir apparaître une fonction existante — **ne lance PAS** `npx remotion lambda functions deploy` (elle est déjà déployée, en redéployer une nouvelle par erreur créerait une fonction en double et des coûts inutiles).
+Tu dois voir apparaître une fonction existante — **ne lance PAS** `npx remotion lambda functions deploy` toi-même (elle est déjà déployée, en redéployer une nouvelle par erreur créerait une fonction en double et des coûts inutiles).
+
+**Timeout de la fonction : 10 minutes.** La fonction partagée est configurée avec un timeout de 600s (10 min) plutôt que le défaut plus court de Remotion, pour laisser de la marge si une connexion un peu lente ralentit l'upload des assets ou allonge un rendu. C'est un réglage de la fonction elle-même (géré côté compte principal, pas à refaire de ton côté) — si jamais tu vois un rendu échouer avec une erreur de type "timeout" côté Lambda malgré tout, préviens plutôt que de redéployer une fonction toi-même.
 
 ## 8. Premier rendu distant — test "à blanc" (sans média)
 
