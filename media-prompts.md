@@ -70,6 +70,11 @@
 - **Prompt** : Cinematic shot of a red fox sitting calmly at the edge of an urban park at dusk, blurred city lights in the background, with a detailed futuristic HUD overlay: four small holographic icons (compass dial, target reticle, waveform analyzer, checklist) orbiting slowly around its silhouette before converging and stamping into a final glowing seal reading "MISSION COMPLETE", thin glowing cyan-white leader lines linking each icon briefly before it converges, faint scanning grid lines fading out, photorealistic 8k, atmospheric dusk city lighting, hyper-detailed, sharp focus --ar 9:16, leave clean space near the bottom third of frame for on-screen CTA text.
 - **Embedded audio in the generated clip** : rising warm synth swell as the icons orbit, each icon passing with a soft chime, resolving into a single deep confirmation "stamp" sound when the seal completes.
 
+#### 🖼️ `public/remplacement.jpg` — image de patience (0-6s de la scène 7, voir exception de code dans `Scene.tsx`)
+- **Rôle** : couvre les ~6 premières secondes de la scène 7 pendant que la narration récite le récap ("Boussole invisible... Bonds... Signal vocal... charognard."), avant le fondu-enchaîné vers la vraie vidéo. Décor urbain crépusculaire identique à la vidéo ci-dessus pour un raccord visuel fluide au fondu.
+- **Prompt** : Futuristic HUD data-compilation screen: a dark navy translucent interface panel overlaying a blurred red fox silhouette standing at the edge of an urban park at dusk, soft city lights glowing in the background, three glowing cyan report icons stacked vertically — a compass icon labeled "MAGNETIC SENSE", a target-reticle icon labeled "70% SUCCESS (N-E)", a soundwave icon labeled "HUMAN-LIKE SCREAM" — thin glowing cyan-white leader lines connecting each icon to the fox's silhouette, a horizontal progress bar along the bottom filling toward a label reading "COMPILING FINAL REPORT...", faint scanning grid lines, photorealistic 8k render, atmospheric dusk city lighting, hyper-detailed, sharp focus --ar 9:16
+- **Pas de bloc audio embarqué** : image fixe.
+
 ---
 
 ## 🔊 Note son / musique de bibliothèque
