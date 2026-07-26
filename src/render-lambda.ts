@@ -81,6 +81,10 @@ function collectReferencedAssets(storyboard: Storyboard): string[] {
     set.add(scene.audioPath ?? `scene_${scene.id}.mp3`); // voix off
     for (const s of scene.sounds ?? []) set.add(s.src);
   }
+  // ⚠️ EXCEPTION SPÉCIFIQUE À CETTE BRANCHE (video/renard-hud) — NE PAS MERGER TEL QUEL.
+  // Image du hack de lead-in scène 7 (voir Scene.tsx) : pas référencée dans le storyboard,
+  // donc invisible pour ce scan — il faut l'ajouter à la main pour qu'elle soit uploadée.
+  set.add('remplacement.jpg');
   return [...set];
 }
 
