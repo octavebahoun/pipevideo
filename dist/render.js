@@ -33,6 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv/config");
 const bundler_1 = require("@remotion/bundler");
 const renderer_1 = require("@remotion/renderer");
 const fs = __importStar(require("fs/promises"));
@@ -42,6 +43,14 @@ const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const ENTRY_POINT = path.join(process.cwd(), 'src/video/index.tsx');
 const OUTPUT_DIR = path.join(process.cwd(), 'out');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'video.mp4');
+/**
+ * Chemin d'un Chrome/Chromium déjà installé sur la machine (ex: variable
+ * CHROME_EXECUTABLE_PATH dans .env). Si absente ou explicitement "false",
+ * on laisse `browserExecutable` à `undefined` : Remotion télécharge et
+ * gère alors lui-même son propre Chromium headless (comportement par défaut).
+ */
+const CHROME_EXECUTABLE_PATH = process.env.CHROME_EXECUTABLE_PATH;
+const browserExecutable = CHROME_EXECUTABLE_PATH && CHROME_EXECUTABLE_PATH !== 'false' ? CHROME_EXECUTABLE_PATH : undefined;
 async function main() {
     try {
         // 1. Lire et valider le storyboard.json
@@ -55,13 +64,16 @@ async function main() {
             entryPoint: ENTRY_POINT,
         });
         console.log('Sélection de la composition...');
+        console.log(browserExecutable
+            ? `Navigateur : ${browserExecutable} (CHROME_EXECUTABLE_PATH)`
+            : 'Navigateur : Chromium géré par Remotion (téléchargement automatique si besoin)');
         const composition = await (0, renderer_1.selectComposition)({
             serveUrl: bundleLocation,
             id: 'ContentFactory',
             inputProps: {
                 storyboard,
             },
-            browserExecutable: '/usr/bin/google-chrome-stable',
+            browserExecutable,
         });
         console.log(`Lancement du rendu vidéo :`);
         console.log(`- Résolution : ${composition.width}x${composition.height}`);
@@ -76,7 +88,7 @@ async function main() {
             inputProps: {
                 storyboard,
             },
-            browserExecutable: '/usr/bin/google-chrome-stable',
+            browserExecutable,
             onProgress: ({ progress, renderedFrames }) => {
                 const percent = Math.floor(progress * 100);
                 process.stdout.write(`\rRendu en cours : ${percent}% (${renderedFrames}/${composition.durationInFrames} images)`);

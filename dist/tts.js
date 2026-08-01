@@ -35,12 +35,29 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const elevenlabs_1 = require("elevenlabs");
+const edge_tts_universal_1 = require("edge-tts-universal");
 const music_metadata_1 = require("music-metadata");
 const fs = __importStar(require("fs/promises"));
 const path = __importStar(require("path"));
 const storyboard_1 = require("./storyboard");
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
+/**
+ * Choix du moteur TTS, centralisé dans .env (TTS_PROVIDER) :
+ *  - "elevenlabs" (défaut) : payant, voix les plus naturelles, karaoké précis au mot.
+ *  - "edge"                : gratuit (Edge-TTS Microsoft), qualité correcte, aussi karaoké au mot.
+ * Le champ storyboard.voice reste le même levier dans les deux cas, mais son
+ * vocabulaire diffère selon le moteur (voir VOICE_MAP / EDGE_VOICE_MAP ci-dessous).
+ */
+// Normalisation tolérante : accepte "edge", "edge-tts", "edgetts", "Edge-TTS", "EDGE_TTS"...
+const rawProvider = process.env.TTS_PROVIDER || 'elevenlabs';
+const normalizedProvider = rawProvider.toLowerCase().replace(/[^a-z]/g, '');
+const isElevenLabsProvider = normalizedProvider === '' || normalizedProvider === 'elevenlabs' || normalizedProvider === 'eleven';
+const isEdgeProvider = normalizedProvider === 'edge' || normalizedProvider === 'edgetts';
+if (!isElevenLabsProvider && !isEdgeProvider) {
+    console.log(`⚠️  TTS_PROVIDER inconnu ("${rawProvider}"). Utilisation d'ElevenLabs par défaut.`);
+}
+const useEdge = isEdgeProvider;
 const DEFAULT_API_KEY = '';
 const apiKey = process.env.ELEVENLABS_API_KEY || DEFAULT_API_KEY;
 const client = new elevenlabs_1.ElevenLabsClient({ apiKey });
@@ -64,6 +81,28 @@ function resolveVoiceId(voiceInput) {
     }
     console.log(`⚠️  Voix inconnue ou ancienne voix Edge-TTS ("${voiceInput}"). Utilisation de la voix George par défaut.`);
     return VOICE_MAP.george;
+}
+/** Voix Edge-TTS (Microsoft) françaises courantes, référencées par un nom court. */
+const EDGE_VOICE_MAP = {
+    henri: 'fr-FR-HenriNeural',
+    denise: 'fr-FR-DeniseNeural',
+    eloise: 'fr-FR-EloiseNeural',
+    vivienne: 'fr-FR-VivienneMultilingualNeural',
+    remy: 'fr-FR-RemyMultilingualNeural',
+};
+function resolveEdgeVoice(voiceInput) {
+    if (!voiceInput)
+        return EDGE_VOICE_MAP.henri;
+    const normalized = voiceInput.toLowerCase().trim();
+    if (EDGE_VOICE_MAP[normalized]) {
+        return EDGE_VOICE_MAP[normalized];
+    }
+    // Nom de voix Edge déjà complet (ex: "fr-FR-HenriNeural", "en-US-GuyNeural")
+    if (/^[a-z]{2}-[A-Z]{2}-[A-Za-z]+Neural$/.test(voiceInput)) {
+        return voiceInput;
+    }
+    console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de la voix Henri par défaut.`);
+    return EDGE_VOICE_MAP.henri;
 }
 function parseElevenLabsAlignment(alignment) {
     const words = [];
@@ -124,8 +163,11 @@ async function main() {
         const storyboard = await (0, storyboard_1.loadStoryboard)(STORYBOARD_PATH);
         // 2. Créer le dossier media s'il n'existe pas
         await fs.mkdir(MEDIA_DIR, { recursive: true });
-        const voiceId = resolveVoiceId(storyboard.voice);
-        console.log(`Moteur TTS : ElevenLabs Multilingual v2 | Voice ID : ${voiceId}`);
+        const voiceId = useEdge ? undefined : resolveVoiceId(storyboard.voice);
+        const edgeVoice = useEdge ? resolveEdgeVoice(storyboard.voice) : undefined;
+        console.log(useEdge
+            ? `Moteur TTS : Edge-TTS (gratuit) | Voix : ${edgeVoice}`
+            : `Moteur TTS : ElevenLabs Multilingual v2 | Voice ID : ${voiceId}`);
         // 3. Parcourir et générer la voix-off pour chaque scène
         for (const scene of storyboard.scenes) {
             console.log(`\nTraitement de la scène ${scene.id}...`);
@@ -156,20 +198,55 @@ async function main() {
                 scene.durationInSeconds = duration;
                 continue;
             }
-            // --- Cas 2 : génération ElevenLabs avec timestamps mot-à-mot ---
+            // --- Cas 2 : génération TTS (ElevenLabs ou Edge-TTS selon TTS_PROVIDER) avec timestamps mot-à-mot ---
             console.log(`Texte : "${scene.narration}"`);
             const audioFileName = `scene_${scene.id}.mp3`;
             const audioFilePath = path.join(MEDIA_DIR, audioFileName);
-            const response = await client.textToSpeech.convertWithTimestamps(voiceId, {
-                text: scene.narration,
-                model_id: 'eleven_multilingual_v2',
-                output_format: 'mp3_44100_128',
-            });
-            const audioBuffer = Buffer.from(response.audio_base64, 'base64');
+            // Si le fichier audio existe déjà et est valide, on réutilise (économise les crédits ElevenLabs ; Edge-TTS est gratuit de toute façon)
+            if (await fileExists(audioFilePath)) {
+                try {
+                    const metadata = await (0, music_metadata_1.parseFile)(audioFilePath);
+                    const duration = metadata.format.duration;
+                    if (duration !== undefined) {
+                        console.log(`⚡ Audio déjà existant dans public/${audioFileName} — Réutilisation (0 régénération)`);
+                        console.log(`Durée mesurée : ${duration.toFixed(2)} secondes`);
+                        scene.durationInSeconds = duration;
+                        await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
+                        continue;
+                    }
+                }
+                catch {
+                    console.log(`⚠️  Fichier ${audioFileName} corrompu, régénération...`);
+                }
+            }
+            let audioBuffer;
+            let words;
+            if (useEdge) {
+                const tts = new edge_tts_universal_1.EdgeTTS(scene.narration, edgeVoice);
+                const result = await tts.synthesize();
+                audioBuffer = Buffer.from(await result.audio.arrayBuffer());
+                // offset/duration en unités de 100 ns (ticks Windows) → conversion en secondes.
+                words =
+                    Array.isArray(result.subtitle) && result.subtitle.length > 0
+                        ? result.subtitle.map((wb) => ({
+                            text: wb.text,
+                            start: wb.offset / 10_000_000,
+                            duration: wb.duration / 10_000_000,
+                        }))
+                        : [];
+            }
+            else {
+                const response = await client.textToSpeech.convertWithTimestamps(voiceId, {
+                    text: scene.narration,
+                    model_id: 'eleven_multilingual_v2',
+                    output_format: 'mp3_44100_128',
+                });
+                audioBuffer = Buffer.from(response.audio_base64, 'base64');
+                words = parseElevenLabsAlignment(response.alignment);
+            }
             await fs.writeFile(audioFilePath, audioBuffer);
             console.log(`Audio généré et sauvegardé dans : ${audioFilePath}`);
             // Capturer les timings mot-à-mot pour le karaoké Remotion
-            const words = parseElevenLabsAlignment(response.alignment);
             if (words.length > 0) {
                 scene.words = words;
                 console.log(`Timings karaoké : ${scene.words.length} mots capturés avec succès`);
@@ -185,10 +262,12 @@ async function main() {
             }
             console.log(`Durée calculée : ${duration.toFixed(2)} secondes`);
             scene.durationInSeconds = duration;
+            // Sauvegarde progressive après chaque scène
+            await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
         }
-        // 4. Sauvegarder le storyboard mis à jour
+        // 4. Sauvegarder le storyboard final
         await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
-        console.log(`\n✅ Storyboard synchronisé avec succès avec ElevenLabs !`);
+        console.log(`\n✅ Storyboard synchronisé avec succès (${useEdge ? 'Edge-TTS' : 'ElevenLabs'}) !`);
     }
     catch (error) {
         console.error('❌ Une erreur est survenue lors de la génération TTS :', error.message);

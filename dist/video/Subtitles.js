@@ -8,7 +8,7 @@ const Subtitles = ({ text, words, durationInFrames, style = 'karaoke', }) => {
     const { fps } = (0, remotion_1.useVideoConfig)();
     const timeInSeconds = frame / fps;
     // Le style cinéma affiche des groupes plus longs (lecture posée) ;
-    // le karaoké des groupes courts et punchy.
+    // karaoke/fondant des groupes courts et punchy.
     const chunkSize = style === 'cinematic' ? 8 : 5;
     // Soit les vrais timings d'Edge-TTS (karaoké précis), soit une répartition
     // régulière du texte sur la durée de la scène (fallback si pas de timings —
@@ -76,6 +76,46 @@ const Subtitles = ({ text, words, durationInFrames, style = 'karaoke', }) => {
                     maxWidth: '100%',
                     textShadow: '0px 2px 8px rgba(0, 0, 0, 0.9)',
                 }, children: activeChunk.map((w) => w.text).join(' ') }) }));
+    }
+    if (style === 'fondant') {
+        // Karaoké doux : chaque mot s'illumine PROGRESSIVEMENT (fondu doux autour de
+        // son instant de prononciation), pas de "pop" brutal ni de contours épais,
+        // casse normale. Pour un sujet qui doit paraître calme/attachant.
+        const groupOpacity = (0, remotion_1.interpolate)(spr, [0, 1], [0, 1]);
+        return ((0, jsx_runtime_1.jsx)("div", { style: {
+                position: 'absolute',
+                bottom: '10%',
+                left: '6%',
+                right: '6%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                pointerEvents: 'none',
+            }, children: (0, jsx_runtime_1.jsx)("div", { style: {
+                    opacity: groupOpacity,
+                    fontFamily: '"Outfit", "Inter", "Helvetica", sans-serif',
+                    fontSize: '3.6rem',
+                    fontWeight: 600,
+                    textAlign: 'center',
+                    letterSpacing: '0.3px',
+                    lineHeight: '1.3',
+                    maxWidth: '92%',
+                    textShadow: '0px 2px 14px rgba(0, 0, 0, 0.55)',
+                }, children: activeChunk.map((word, index) => {
+                    // Lueur douce : monte avant le mot, culmine au centre, redescend après —
+                    // jamais de bascule instantanée blanc/or comme en "karaoke".
+                    const center = word.start + word.duration / 2;
+                    const glow = (0, remotion_1.interpolate)(timeInSeconds, [center - 0.4, center, center + 0.6], [0, 1, 0.25], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+                    const g = Math.round(255 - glow * 45);
+                    const b = Math.round(255 - glow * 150);
+                    return ((0, jsx_runtime_1.jsx)("span", { style: {
+                            color: `rgb(255, ${g}, ${b})`,
+                            marginRight: '10px',
+                            display: 'inline-block',
+                            opacity: 0.72 + glow * 0.28,
+                            transform: `scale(${1 + glow * 0.045})`,
+                        }, children: word.text }, index));
+                }) }) }));
     }
     // Style "karaoke" (défaut) — inchangé.
     const popScale = (0, remotion_1.interpolate)(spr, [0, 1], [0.92, 1]);

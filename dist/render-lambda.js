@@ -171,15 +171,36 @@ async function main() {
         await fs.rm(stagingDir, { recursive: true, force: true });
     }
     console.log(`Site     : ${serveUrl}`);
-    // 1. framesPerLambda petit (~40 images/chunk) pour qu'aucune Lambda ne dépasse le timeout de 120s.
-    // 2. concurrency passé à renderMediaOnLambda pour borner le nombre de Lambdas simultanées sur AWS.
-    const maxConcurrency = Number(process.env.RENDER_MAX_LAMBDAS || 10);
+    // Découpage en chunks piloté par le QUOTA DE CONCURRENCE du compte AWS.
+    // Contexte : dépasser le quota est FATAL et NON retenté (18 renderers sur un quota
+    // de 10 ⇒ « Rate Exceeded » immédiat). Et la fonction "launch" attend TOUS les
+    // chunks : au-delà d'une vague, elle dépasse son propre timeout de 600 s.
+    // Stratégie : tout rendre en UNE SEULE vague qui tient dans le quota.
+    //  - RENDER_MAX_LAMBDAS = quota de concurrence Lambda du compte (ici 10).
+    //  - On réserve 1 slot pour la fonction "launch" + 1 slot de marge (invocations
+    //    transitoires de Remotion) ⇒ renderers = quota - 2.
+    //  - chunks = renderers (1 vague), donc les plus petits chunks possibles sans
+    //    dépasser le quota → sûr à la fois côté "Rate Exceeded" et côté timeout.
+    // Après une hausse du quota AWS (Service Quotas), augmenter RENDER_MAX_LAMBDAS :
+    // plus de renderers ⇒ chunks plus petits ⇒ rendu plus rapide et vidéos plus longues.
+    const awsConcurrencyQuota = Number(process.env.RENDER_MAX_LAMBDAS || 10);
+    const maxRenderers = Math.max(1, awsConcurrencyQuota - 2);
     const totalFrames = (0, types_1.getTotalDurationInFrames)(storyboard);
-    const framesPerLambda = 40;
+    const framesPerLambda = Math.max(60, Math.ceil(totalFrames / maxRenderers));
     const estChunks = Math.ceil(totalFrames / framesPerLambda);
+    // Garde-fou timeout : un chunk de ~1586 frames frôlait déjà les 600 s au 1er essai.
+    // Au-delà de ce seuil, la vidéo est trop longue pour ce quota → relever le quota AWS.
+    const SAFE_MAX_FRAMES = 1500;
+    if (framesPerLambda > SAFE_MAX_FRAMES) {
+        throw new Error(`Vidéo trop longue (${totalFrames} frames ≈ ${(totalFrames / (types_1.FPS * 60)).toFixed(1)} min) ` +
+            `pour un quota de ${awsConcurrencyQuota} Lambdas : ${framesPerLambda} frames/chunk ` +
+            `dépasseraient le timeout de 600 s.\n` +
+            `→ Fais relever le quota de concurrence Lambda AWS (Service Quotas > Lambda > ` +
+            `« Concurrent executions »), puis augmente RENDER_MAX_LAMBDAS.`);
+    }
     // 3. Lancer le rendu sur Lambda. (Un retry peut, en cas de timeout APRÈS invoke
     //    réussi, lancer un 2e rendu — surcoût négligeable, on garde le dernier renderId.)
-    console.log(`Lancement du rendu sur Lambda… (${estChunks} chunks de ${framesPerLambda} frames, concurrence max=${maxConcurrency})`);
+    console.log(`Lancement du rendu sur Lambda… (${estChunks} chunks de ${framesPerLambda} frames)`);
     const { renderId } = await withRetry('lancement du rendu', () => (0, lambda_1.renderMediaOnLambda)({
         region,
         functionName,
@@ -188,7 +209,7 @@ async function main() {
         inputProps: { storyboard },
         codec: 'h264',
         privacy: 'no-acl',
-        concurrency: maxConcurrency,
+        framesPerLambda,
     }), 5);
     console.log(`Rendu lancé : ${renderId}`);
     // 4. Suivre la progression (chaque sondage est résilient aux coupures).

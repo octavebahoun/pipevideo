@@ -60,9 +60,44 @@ export const sceneSchema = z.object({
   effects: z
     .object({
       zoom: z.enum(['in', 'out', 'none']).optional(),
-      transition: z.enum(['fade', 'slide', 'none', 'black', 'wipe']).optional(),
+      transition: z.enum(['fade', 'slide', 'none', 'black', 'wipe', 'zoomPunch', 'whipPan', 'glitchCut', 'particleDissolve']).optional(),
       /** Léger tremblement de caméra (tension / effort). */
       shake: z.boolean().optional(),
+      /**
+       * Contrainte pour l'étape « Pause Média » : quand vrai, le média de CETTE
+       * scène doit être choisi de sorte que sa composition / posture du sujet
+       * RACORDE avec la fin de la scène précédente (match cut). N'a aucun impact
+       * sur le rendu technique — c'est une directive pour l'agent ou l'utilisateur
+       * qui sélectionne les visuels.
+       */
+      matchCut: z.boolean().optional(),
+      /**
+       * Mouvement de caméra suggéré pour cette scène. N'affecte PAS le rendu
+       * Remotion (pas de caméra 3D), mais sert de directive pour la génération
+       * du prompt visuel (étape 1 du skill) : l'agent doit inclure ce mouvement
+       * dans le prompt destiné aux outils IA (Freepik, Kling, etc.) pour que le
+       * média produit ait le bon cadrage / dynamique.
+       *
+       * - "orbit"   : la caméra tourne autour du sujet (plan cinématique)
+       * - "dolly"   : la caméra avance ou recule (travelling avant/arrière)
+       * - "pan"     : la caméra pivote horizontalement (panoramique)
+       * - "static"  : plan fixe, pas de mouvement de caméra (défaut implicite)
+       */
+      cameraMotion: z.enum(['orbit', 'dolly', 'pan', 'static']).optional(),
+      /**
+       * Flash lumineux plein écran, bref (type flash photo), pour souligner un
+       * instant d'éblouissement/révélation (ex: sonoluminescence, explosion).
+       */
+      flash: z
+        .object({
+          /** Décalage avant le flash, en secondes depuis le début de la scène. Défaut : 0. */
+          startInSeconds: z.number().min(0).optional(),
+          /** Durée totale du flash (montée + descente), en secondes. Défaut : 0.35. */
+          durationInSeconds: z.number().positive().optional(),
+          /** Couleur du flash. Défaut : blanc. */
+          color: z.string().optional(),
+        })
+        .optional(),
     })
     .optional(),
   /**
@@ -73,6 +108,43 @@ export const sceneSchema = z.object({
     .object({
       text: z.string(),
       startInSeconds: z.number().min(0).optional(),
+    })
+    .optional(),
+  /**
+   * Titre animé mot par mot (kinetic typography). Alternative plus dynamique à
+   * overlayText : chaque mot apparaît en stagger avec flou + translation,
+   * et les mots entourés de `*astérisques*` sont mis en avant (couleur, poids).
+   * N'affecte pas les sous-titres — c'est un habillage visuel autonome.
+   */
+  kineticTitle: z
+    .object({
+      text: z.string(),
+      /** Décalage avant le début de l'animation (en secondes). Défaut : 0. */
+      startInSeconds: z.number().min(0).optional(),
+      /** Durée totale de l'animation d'entrée d'un mot (frames). Défaut : 60. */
+      animationDuration: z.number().positive().optional(),
+      /** Délai entre chaque mot (frames). Défaut : 4. */
+      staggerDelay: z.number().positive().optional(),
+      /** Couleur des mots surlignés (`*mot*`). Défaut : #ffd700. */
+      highlightColor: z.string().optional(),
+      /** Taille de police (n'importe quelle valeur CSS valide). Défaut : 4.5rem. */
+      fontSize: z.string().optional(),
+      /** Position verticale : 'bottom' (CTA, défaut) ou 'center' (titre plein écran). */
+      position: z.enum(['bottom', 'center']).optional(),
+      /**
+       * Variante visuelle :
+       * - "reveal" : mot par mot avec flou + translation (défaut)
+       * - "neon"   : texte lumineux avec glow (text-shadow étagé)
+       * - "icon"   : icône + label thématique (ex: logo + "MONTAGE")
+       * - "pin"    : marqueur qui tombe avec rebond + texte
+       */
+      variant: z.enum(['reveal', 'neon', 'icon', 'pin']).optional(),
+      /** Chemin du fichier icône dans public/ (ex: "icons/premiere.svg"). Utilisé si variant="icon". */
+      icon: z.string().optional(),
+      /** Texte du label pour la variante icon (affiché sous l'icône). Si absent, utilise text. */
+      iconLabel: z.string().optional(),
+      /** Couleur du glow néon (variante "neon"). Défaut : highlightColor. */
+      glowColor: z.string().optional(),
     })
     .optional(),
   /**
@@ -183,21 +255,26 @@ export function getSceneDurationInFrames(scene: Scene, fps: number = FPS): numbe
 }
 
 /**
- * Frames de transition consommées AVANT une scène (chevauchement avec la précédente).
- * La première scène n'a pas de transition entrante.
- */
-/**
  * Durée (en frames) d'une transition selon son type.
  * Le fondu au noir a besoin de respirer un peu plus (effet cinéma).
+ * Le glitchCut est volontairement très court (8 frames = ~0.27s).
  */
 export function transitionDurationFrames(transition?: string): number {
   switch (transition) {
     case 'none':
       return 0;
     case 'black':
-      return 26; // fondu AU NOIR : plus long pour « fermer » puis rouvrir
+      return 26;
     case 'wipe':
       return 20;
+    case 'zoomPunch':
+      return 18;
+    case 'whipPan':
+      return 20;
+    case 'glitchCut':
+      return 8;
+    case 'particleDissolve':
+      return 40;
     default:
       return TRANSITION_FRAMES; // fade, slide
   }

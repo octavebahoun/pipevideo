@@ -14,7 +14,7 @@ import {
   transitionDurationFrames,
 } from '../types';
 import { SceneComponent } from './Scene';
-import { fadeThroughBlack } from './transitions';
+import { fadeThroughBlack, zoomPunch, whipPan, glitchCut, particleDissolve } from './transitions';
 
 type MainProps = z.infer<typeof mainPropsSchema>;
 
@@ -24,6 +24,14 @@ function presentationForScene(scene: Scene): TransitionPresentation<any> {
   switch (transition) {
     case 'black':
       return fadeThroughBlack();
+    case 'zoomPunch':
+      return zoomPunch();
+    case 'whipPan':
+      return whipPan();
+    case 'glitchCut':
+      return glitchCut();
+    case 'particleDissolve':
+      return particleDissolve();
     case 'wipe':
       return wipe();
     case 'slide':

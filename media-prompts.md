@@ -1,82 +1,168 @@
-# 🎬 Prompts Médias — Le Renard : Le Système de Chasse le Plus Sophistiqué de la Nature
+# 🎬 Media Prompts — L'ornithorynque, cet animal de plusieurs espèces
 
-> Format : **9:16** (Short vertical / TikTok / Reels)
-> Direction artistique : **HUD futuriste / militaire**, progression cohérente d'une seule analyse (SCAN → ANALYSIS → TARGET LOCK → WARNING → SIGNAL ANALYSIS → SYSTEM REPORT → MISSION COMPLETE, voir `overlayText` de chaque scène dans `storyboard.json`). Réticules à crochets, cadrans, jauges, labels reliés par des fines lignes cyan, tons cyan néon sur fond photoréaliste. Campagne/forêt hivernale, puis lisière urbaine au crépuscule pour la scène finale.
-> Template complet (visuel + audio) : voir `resolution.md` § 5. **Chaque prompt vidéo a 2 blocs : le plan + son HUD détaillé, puis le son à embarquer dans le clip généré.** Durées cibles à compléter après `npm run tts` (voir `resolution.md` § 6, `npm run check-video`).
-> ⚠️ **Précision scientifique** : formulations volontairement prudentes (« suggèrent », « chercheurs ont observé », pas de terme affirmant un organe/mécanisme prouvé) — voir `resolution.md` § 5 note sur la rigueur scientifique du template HUD.
+> ⚠️ Durées de clip limitées : 4 / 6 / 8 / 10 s max — choisir la durée la plus proche supérieure à la narration.
 
----
+## Scène 1 — Hook : l'animal Frankenstein (5.28s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Montage insolite : bec de canard, queue de castor, pattes palmées de loutre sur un corps d'ornithorynque |
+| Prompt | Ornithorynque curieux émergeant d'une rivière australienne au lever du soleil. Gros plan sur son bec de canard en plastron, sa queue plate et large de castor, ses pattes palmées de loutre. L'eau coule le long de son pelage brun foncé. Lumière dorée chaude, reflets dans l'eau, ambiance documentaire naturaliste cinématographique. |
+| Mouvement caméra | Dolly avant lent — la caméra se rapproche du sujet pour révéler chaque détail hybride |
+| Effets | Légère profondeur de champ, reflets d'eau, brume matinale |
 
-### 🎥 Scène 1 — HOOK : scan initial
-- **Fichier cible** : `public/scene_1.mp4`
-- **Durée cible (audio réel généré)** : **6,30 s** — génère un clip de 6-7s
-- **Type** : 🎬 Vidéo
-- **Narration** : *"Vous pensez que le renard chasse au hasard ? FAUX. Il possède un sens que la science commence à peine à percer."*
-- **Prompt** : Cinematic shot of a red fox standing alert in a snowy field at dusk, ears perked toward the camera, with a detailed futuristic HUD overlay: a circular target-lock reticle with four corner brackets scanning slowly across its body, a small readout panel reading "SENSE: UNIDENTIFIED" with a blinking question-mark icon, thin glowing cyan-white leader lines connecting to a data label reading "SUBJECT: PREDATOR CLASS", faint scanning grid lines sweeping across the frame, semi-transparent dark UI panel with tick marks along the bottom edge, photorealistic 8k, atmospheric dusk lighting, hyper-detailed, sharp focus --ar 9:16
-- **Embedded audio in the generated clip** : soft electronic scanning beep sweeping left to right across the frame, a low rising synth tension underneath, distant winter wind ambience.
+## Scène 2 — Plusieurs espèces en un corps (6.82s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 8s |
+| Ratio | 9:16 vertical |
+| Sujet | Ornithorynque vu de profil, plan complet, l'eau au fond |
+| Prompt | Plan large d'un ornithorynque nageant paisiblement dans une rivière cristalline d'Australie. On distingue parfaitement son corps fusionné : bec de canard, corps de loutre poilu, queue plate de castor qui émerge de l'eau. Arrière-plan : eucalyptus et forêt tropicale humide. Lumière naturelle douce, ambiance sereine, esthétique documentaire animalier premium. |
+| Mouvement caméra | Pan latéral lent suivant la nage de l'animal |
+| Effets | Eau cristalline, reflets naturels, profondeur de champ |
 
----
+## Scène 3 — 1799 : la supercherie présumée (7.94s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 8s |
+| Ratio | 9:16 vertical |
+| Sujet | Scène historique : scientifiques européens du XIXe siècle examinant une peau d'ornithorynque |
+| Prompt | Scène de reconstitution historique en 1799 : des naturalistes européens en costumes d'époque se penchent avec stupéfaction sur une peau d'ornithorynque posée sur une table en bois, l'un d'eux brandit une loupe, un autre une plume. Pièce éclairée aux chandelles, papiers et croquis d'animaux sur les murs. Ambiance cabinet de curiosités, ton sépia, éclairage chaud dramatique. |
+| Mouvement caméra | Dolly avant lent vers la table d'examen |
+| Effets | Éclairage chandelles, ton sépia vintage, grain de film léger |
 
-### 🎥 Scène 2 — Boussole invisible (hypothèse scientifique)
-- **Fichier cible** : `public/scene_2.mp4`
-- **Durée cible (audio réel généré)** : **7,34 s** — génère un clip de 7-8s
-- **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic close-up of a red fox's head in profile, ears twitching, with a detailed futuristic HUD overlay: a rotating compass-dial HUD centered above its head, a glowing needle swinging and gently settling toward "N-E" on a circular bearing scale, a readout beneath reading "MAGNETIC SENSE: SUSPECTED", thin glowing cyan-white leader lines from the dial to the fox's eyes, faint scanning grid lines, photorealistic 8k, cold winter daylight, hyper-detailed, sharp focus --ar 9:16
-- **Embedded audio in the generated clip** : soft mechanical compass-needle click settling into place, a gentle electronic hum resolving into a soft confirmation beep, faint winter wind underneath.
+## Scène 4 — Le scalpel (4.49s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Main gantée avec scalpel examinant le bec d'ornithorynque |
+| Prompt | Gros plan serré sur les mains d'un scientifique du XIXe siècle tenant un scalpel et examinant méticuleusement la jonction du bec de canard sur la fourrure d'un ornithorynque. Le bec apparaît parfaitement cousu à la peau, aucun signe de couture. Lumière chaude de chandelle, ambiance de doute et de suspicion, ton sépia, macro détaillée. |
+| Mouvement caméra | Plan fixe avec très léger zoom avant sur le scalpel |
+| Effets | Grain vintage, éclairage dramatique, macro |
 
----
+## Scène 5 — Un mammifère qui pond des œufs (5.09s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Ornithorynque couvé avec œufs dans son terrier |
+| Prompt | Intérieur d'un terrier douillet au bord de l'eau : une femelle ornithorynque enroulée autour de deux petits œufs blancs et ronds, son corps poilu brun les protégeant. Terre sombre, racines apparentes, lumière douce filtrant de l'entrée du terrier. Scène tendre et intime, ambiance documentaire animalier, photoréaliste. |
+| Mouvement caméra | Dolly avant très lent vers le nid |
+| Effets | Lumière douce tamisée, profondeur de champ |
 
-### 🎥 Scène 3 — Meilleur plan : le bond (preuve visuelle)
-- **Fichier cible** : `public/scene_3.mp4`
-- **Durée cible (audio réel généré)** : **11,13 s** ⚠️ — dépasse une génération standard (5-10s). Utilise l'extend Kling pour ajouter ~1,1s, ou ajoute `"playbackRate": 0.898` sur la scène si tu génères seulement 10s (10 ÷ 11,13).
-- **Type** : 🎬 Vidéo
-- **Prompt** : Dynamic cinematic shot of a red fox leaping high in an arc and diving headfirst into deep snow, with a detailed futuristic HUD overlay: a targeting reticle tracking the arc of the leap, a thin glowing trajectory line curving down to the point of impact, a percentage counter climbing rapidly to "SUCCESS RATE: 70% (N-E BEARING)" beside the impact point, faint scanning grid lines, photorealistic 8k, bright winter daylight, hyper-detailed, sharp focus --ar 9:16
-- **Embedded audio in the generated clip** : sharp electronic targeting-lock beep as the leap begins, a soft whoosh through the air, a muffled snow-impact thump, ending on a digital confirmation chime as "70%" appears.
+## Scène 6 — Les monotrèmes (5.56s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Échidné à côté d'un ornithorynque |
+| Prompt | Deux monotrèmes réunis dans une scène de forêt humide australienne : un échidné couvert de piquants et un ornithorynque au bec de canard, face à face avec curiosité. Sol de mousse verte, fougères, lumière naturelle douce filtrée par la canopée. Ambiance documentaire scientifique, photoréaliste. |
+| Mouvement caméra | Pan lent horizontal entre les deux animaux |
+| Effets | Lumière naturelle filtrée, verts profonds |
 
----
+## Scène 7 — L'éperon venimeux (4.73s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Gros plan sur l'éperon venimeux de la patte arrière |
+| Prompt | Macro dramatique sur la patte arrière d'un ornithorynque mâle, révélant l'éperon pointu et tranchant comme une lame sur la cheville, entouré de fourrure humide. Gouttelette de venin à la pointe, reflet menaçant. Fond sombre flou, éclairage latéral dramatique soulignant la dangerosité, ambiance documentaire à suspense. |
+| Mouvement caméra | Orbite lente autour de l'éperon |
+| Effets | Contraste marqué, éclairage dramatique, macro |
 
-### 🎥 Scène 4 — Bridge dramatique : avertissement
-- **Fichier cible** : `public/scene_4.mp4`
-- **Durée cible (audio réel généré)** : **4,26 s** — génère un clip de 5s
-- **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic wide shot of a red fox standing atop a moonlit ridge at dusk, silhouetted against a darkening sky, slowly turning its head toward camera as the shot dramatically pushes in, with a detailed futuristic HUD overlay: an angular red-orange warning panel flashing "SECONDARY WEAPON DETECTED" across the frame, faint radiating soundwave rings beginning to emanate from its silhouette, thin glowing cyan-white leader lines, faint scanning grid lines pulsing red, photorealistic 8k, dramatic moonlit atmospheric lighting with rim light on the fox's silhouette, hyper-detailed, sharp focus --ar 9:16
-- **Embedded audio in the generated clip** : a low ominous synth rise building in intensity, a sharp digital alert blip synced to "DETECTED" flashing on screen, distant wind and quiet nocturnal ambience underneath, ending on a tense held note.
+## Scène 8 — Douleurs atroces (5.98s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 8s |
+| Ratio | 9:16 vertical |
+| Sujet | Ornithorynque mâle menaçant, éperon dressé |
+| Prompt | Ornithorynque mâle en posture défensive dans une rivière peu profonde, patte arrière levée laissant apparaître l'éperon venimeux acéré. Éclaboussures d'eau, expression déterminée, corps prêt à frapper. Éclairage dramatique du coucher de soleil, ambiance tendue et impressionnante, photoréaliste. |
+| Mouvement caméra | Orbite lente autour de l'animal en posture |
+| Effets | Coucher de soleil dramatique, éclaboussures dynamiques |
 
----
+## Scène 9 — Le bec-sonar (4.91s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Macro sur le bec couvert de capteurs électriques |
+| Prompt | Macro extrême sur le bec d'un ornithorynque émergeant de l'eau, surface lisse et luisante du bec parsemée de minuscules pores et capteurs électriques visibles. Gouttes d'eau perlant sur le bec, reflets scintillants. Fond de rivière flou, lumière naturelle, ambiance scientifique, photoréaliste. |
+| Mouvement caméra | Pan lent le long du bec |
+| Effets | Macro, gouttes d'eau, reflets lumineux |
 
-### 🎥 Scène 5 — Le cri (cœur du twist)
-- **Fichier cible** : `public/scene_5.mp4`
-- **Durée cible (audio réel généré)** : **5,56 s** — génère un clip de 6s
-- **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic shot of a red fox screaming into the night, silhouetted against the moon on a rooftop or open field, with a detailed futuristic HUD overlay: a waveform-analyzer panel comparing two overlapping soundwave graphs labeled "FOX" and "HUMAN", a readout reading "SIGNAL SIMILARITY: HIGH", thin glowing cyan-white leader lines connecting the waveform to the fox, faint scanning grid lines, photorealistic 8k, moody moonlit lighting, hyper-detailed, sharp focus --ar 9:16
-- **Embedded audio in the generated clip** : the fox's real eerie vixen-scream cry, layered with a subtle electronic analysis beep and a soft waveform-scan tone underneath.
+## Scène 10 — Chasse les yeux fermés (5.80s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Ornithorynque nageant sous l'eau, yeux fermés, chassant |
+| Prompt | Scène sous-marine : un ornithorynque nage avec grâce dans une rivière claire, yeux fermés, bec fouillant le fond boueux à la recherche de proies. Bulles d'air, petits crustacés et vers au fond, particules en suspension scintillant dans la lumière. Eau émeraude, ambiance paisible et fascinante, documentaire premium. |
+| Mouvement caméra | Suivi latéral de la nage sous l'eau |
+| Effets | Particules en suspension, eau claire, bulles |
 
----
+## Scène 11 — Pas d'estomac, pas de dents (3.66s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 4s |
+| Ratio | 9:16 vertical |
+| Sujet | Graviers et petit poisson dans une rivière |
+| Prompt | Plan macro au fond d'une rivière australienne : petits graviers polis et minuscules poissons entourant le bec d'un ornithorynque qui fouille le lit de la rivière. Gros plan sur le bec râpant les graviers, coquilles et vers. Eau claire, lumière naturelle perçant la surface, ambiance documentaire naturaliste. |
+| Mouvement caméra | Plan fixe rapproché, très léger zoom avant |
+| Effets | Macro, eau claire, reflets |
 
-### 🖼️ Scène 6 — Pause : rapport système (image fixe, courte)
-- **Fichier cible** : `public/scene_6.jpg`
-- **Durée cible (audio réel généré)** : **1,33 s** — image fixe, aucune contrainte de clip.
-- **Type** : 🖼️ Image — plan volontairement statique, sert de respiration avant le CTA (voir règle vidéo/image du skill content-factory : une scène qui doit "laisser attendre" est une candidate naturelle à l'image fixe plutôt qu'à un 3e plan de vocalisation redondant avec les scènes 4 et 5).
-- **Prompt** : Clean futuristic HUD infographic still: a dark navy interface panel displaying a system diagnostic checklist with three items, each with a glowing cyan checkmark — a compass icon labeled "MAGNETIC SENSE", a target-reticle icon labeled "70% HUNTING SUCCESS (N-E)", a soundwave icon labeled "HUMAN-LIKE SCREAM" — a bold header at the top reading "SYSTEM ANALYSIS COMPLETE", faint scanning grid lines, a blurred silhouette of a red fox faintly visible behind the semi-transparent panel, photorealistic 8k render, hyper-detailed, sharp focus --ar 9:16
-- **Pas de bloc audio embarqué** : c'est une image fixe.
+## Scène 12 — Lait comme de la sueur (5.69s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Bébé ornithorynque tétant le lait s'écoulant par la peau de sa mère |
+| Prompt | Scène tendre : un bébé ornithorynque se nourrissant du lait qui s'écoule par les pores de la peau du ventre de sa mère, comme de fines gouttelettes perlantes. La mère lèche son petit dans un terrier douillet au bord de l'eau. Lumière chaude et douce, ambiance intime et émouvante, photoréaliste, documentaire animalier. |
+| Mouvement caméra | Dolly avant très lent vers la scène |
+| Effets | Lumière chaude tamisée, ambiance intime |
 
----
+## Scène 13 — Fluorescent sous UV (5.33s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Pelage d'ornithorynque fluorescent bleu-vert sous lumière UV |
+| Prompt | Ornithorynque dans l'obscurité d'une grotte éclairé par une lampe UV : son pelage brille d'une étonnante fluorescence bleu-vert électrique. Fourrure luminescente parsemée de motifs étranges, contraste entre l'obscurité totale et le corps phosphorescent. Ambiance mystérieuse et surnaturelle, style scientifique de pointe, photoréaliste. |
+| Mouvement caméra | Orbite lente autour de l'animal fluorescent |
+| Effets | Fluorescence bleu-vert, obscurité, halo lumineux |
 
-### 🎥 Scène 7 — LOOP Final : mission accomplie
-- **Fichier cible** : `public/scene_7.mp4`
-- **Durée cible (audio réel généré)** : **16,74 s** ⚠️ — dépasse largement une génération Kling standard.
-- **⚠️ Gestion spéciale (exception de code, propre à cette branche, non mergée sur main)** : la narration reste **unique et continue** (pas splittée, pas régénérée). Le clip Kling ne fait que **10s**, donc `src/video/Scene.tsx` affiche `public/remplacement.jpg` pendant les 6 premières secondes de la scène 7, puis fondu-enchaîne vers `scene_7.mp4` pour le reste, sans jamais couper l'unique piste audio. **Dépose `remplacement.jpg` dans `public/`** (même format 9:16) avant de rendre. La vidéo (10s) est un peu plus courte que la fenêtre qui lui reste (~11,7s) : elle boucle légèrement en fin de scène (`<Loop>`) — si la boucle est visible au rendu, ajouter un `playbackRate` sur la scène pour l'étirer proprement.
-- **Type** : 🎬 Vidéo
-- **Prompt** : Cinematic shot of a red fox sitting calmly at the edge of an urban park at dusk, blurred city lights in the background, with a detailed futuristic HUD overlay: four small holographic icons (compass dial, target reticle, waveform analyzer, checklist) orbiting slowly around its silhouette before converging and stamping into a final glowing seal reading "MISSION COMPLETE", thin glowing cyan-white leader lines linking each icon briefly before it converges, faint scanning grid lines fading out, photorealistic 8k, atmospheric dusk city lighting, hyper-detailed, sharp focus --ar 9:16, leave clean space near the bottom third of frame for on-screen CTA text.
-- **Embedded audio in the generated clip** : rising warm synth swell as the icons orbit, each icon passing with a soft chime, resolving into a single deep confirmation "stamp" sound when the seal completes.
+## Scène 14 — Plusieurs animaux en un corps (5.04s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 6s |
+| Ratio | 9:16 vertical |
+| Sujet | Ornithorynque majestueux, plan héroïque |
+| Prompt | Plan héroïque d'un ornithorynque sortant de l'eau, silhouette impressionnante au premier plan, gouttes d'eau cascadant de son pelage. Son bec de canard, sa queue de castor et ses pattes palmées visibles distinctement. Coucher de soleil spectaculaire en arrière-plan, nuages dorés. Ambiance épique et triomphante, photoréaliste. |
+| Mouvement caméra | Dolly arrière lent révélant le paysage |
+| Effets | Coucher de soleil spectaculaire, gouttes d'eau, silhouette héroïque |
 
-#### 🖼️ `public/remplacement.jpg` — image de patience (0-6s de la scène 7, voir exception de code dans `Scene.tsx`)
-- **Rôle** : couvre les ~6 premières secondes de la scène 7 pendant que la narration récite le récap ("Boussole invisible... Bonds... Signal vocal... charognard."), avant le fondu-enchaîné vers la vraie vidéo. Décor urbain crépusculaire identique à la vidéo ci-dessus pour un raccord visuel fluide au fondu.
-- **Prompt** : Futuristic HUD data-compilation screen: a dark navy translucent interface panel overlaying a blurred red fox silhouette standing at the edge of an urban park at dusk, soft city lights glowing in the background, three glowing cyan report icons stacked vertically — a compass icon labeled "MAGNETIC SENSE", a target-reticle icon labeled "70% SUCCESS (N-E)", a soundwave icon labeled "HUMAN-LIKE SCREAM" — thin glowing cyan-white leader lines connecting each icon to the fox's silhouette, a horizontal progress bar along the bottom filling toward a label reading "COMPILING FINAL REPORT...", faint scanning grid lines, photorealistic 8k render, atmospheric dusk city lighting, hyper-detailed, sharp focus --ar 9:16
-- **Pas de bloc audio embarqué** : image fixe.
-
----
-
-## 🔊 Note son / musique de bibliothèque
-
-Toujours sans musique de fond ni SFX de bibliothèque (`music`/`sounds` du storyboard) sur ce projet — le son des scènes vidéo est **embarqué directement dans chaque clip généré** (voir blocs "Embedded audio" ci-dessus), pas ajouté après coup dans Remotion. `mediaVolume` par défaut (`0.6`) rendra ce son audible automatiquement au rendu. La scène 6 (image) n'a pas de son embarqué par nature.
+## Scène 15 — Conclusion (3.66s)
+| Champ | Valeur |
+|---|---|
+| Type | 🎬 vidéo |
+| Durée clip | 4s |
+| Ratio | 9:16 vertical |
+| Sujet | Plan final : ornithorynque paisible au crépuscule |
+| Prompt | Dernier plan contemplatif : un ornithorynque nageant tranquillement sur une rivière miroir au crépuscule, traînée d'eau derrière lui, ciel violet et orange reflété parfaitement. Ambiance paisible et poétique, clôture du documentaire, esthétique cinématographique premium. |
+| Mouvement caméra | Dolly avant lent très doux |
+| Effets | Ciel crépusculaire, reflets miroir, sérénité |

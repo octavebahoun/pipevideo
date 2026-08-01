@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TRANSITION_FRAMES = exports.MIN_SCENE_FRAMES = exports.FPS = exports.mainPropsSchema = exports.storyboardSchema = exports.sceneSchema = exports.sceneSoundSchema = exports.wordTimingSchema = void 0;
+exports.POST_NARRATION_PAUSE_FRAMES = exports.TRANSITION_FRAMES = exports.MIN_SCENE_FRAMES = exports.FPS = exports.mainPropsSchema = exports.storyboardSchema = exports.sceneSchema = exports.sceneSoundSchema = exports.wordTimingSchema = void 0;
 exports.getSceneDurationInFrames = getSceneDurationInFrames;
 exports.transitionDurationFrames = transitionDurationFrames;
 exports.getTransitionFramesBefore = getTransitionFramesBefore;
@@ -65,9 +65,44 @@ exports.sceneSchema = zod_1.z.object({
     effects: zod_1.z
         .object({
         zoom: zod_1.z.enum(['in', 'out', 'none']).optional(),
-        transition: zod_1.z.enum(['fade', 'slide', 'none', 'black', 'wipe']).optional(),
+        transition: zod_1.z.enum(['fade', 'slide', 'none', 'black', 'wipe', 'zoomPunch', 'whipPan', 'glitchCut', 'particleDissolve']).optional(),
         /** Léger tremblement de caméra (tension / effort). */
         shake: zod_1.z.boolean().optional(),
+        /**
+         * Contrainte pour l'étape « Pause Média » : quand vrai, le média de CETTE
+         * scène doit être choisi de sorte que sa composition / posture du sujet
+         * RACORDE avec la fin de la scène précédente (match cut). N'a aucun impact
+         * sur le rendu technique — c'est une directive pour l'agent ou l'utilisateur
+         * qui sélectionne les visuels.
+         */
+        matchCut: zod_1.z.boolean().optional(),
+        /**
+         * Mouvement de caméra suggéré pour cette scène. N'affecte PAS le rendu
+         * Remotion (pas de caméra 3D), mais sert de directive pour la génération
+         * du prompt visuel (étape 1 du skill) : l'agent doit inclure ce mouvement
+         * dans le prompt destiné aux outils IA (Freepik, Kling, etc.) pour que le
+         * média produit ait le bon cadrage / dynamique.
+         *
+         * - "orbit"   : la caméra tourne autour du sujet (plan cinématique)
+         * - "dolly"   : la caméra avance ou recule (travelling avant/arrière)
+         * - "pan"     : la caméra pivote horizontalement (panoramique)
+         * - "static"  : plan fixe, pas de mouvement de caméra (défaut implicite)
+         */
+        cameraMotion: zod_1.z.enum(['orbit', 'dolly', 'pan', 'static']).optional(),
+        /**
+         * Flash lumineux plein écran, bref (type flash photo), pour souligner un
+         * instant d'éblouissement/révélation (ex: sonoluminescence, explosion).
+         */
+        flash: zod_1.z
+            .object({
+            /** Décalage avant le flash, en secondes depuis le début de la scène. Défaut : 0. */
+            startInSeconds: zod_1.z.number().min(0).optional(),
+            /** Durée totale du flash (montée + descente), en secondes. Défaut : 0.35. */
+            durationInSeconds: zod_1.z.number().positive().optional(),
+            /** Couleur du flash. Défaut : blanc. */
+            color: zod_1.z.string().optional(),
+        })
+            .optional(),
     })
         .optional(),
     /**
@@ -78,6 +113,43 @@ exports.sceneSchema = zod_1.z.object({
         .object({
         text: zod_1.z.string(),
         startInSeconds: zod_1.z.number().min(0).optional(),
+    })
+        .optional(),
+    /**
+     * Titre animé mot par mot (kinetic typography). Alternative plus dynamique à
+     * overlayText : chaque mot apparaît en stagger avec flou + translation,
+     * et les mots entourés de `*astérisques*` sont mis en avant (couleur, poids).
+     * N'affecte pas les sous-titres — c'est un habillage visuel autonome.
+     */
+    kineticTitle: zod_1.z
+        .object({
+        text: zod_1.z.string(),
+        /** Décalage avant le début de l'animation (en secondes). Défaut : 0. */
+        startInSeconds: zod_1.z.number().min(0).optional(),
+        /** Durée totale de l'animation d'entrée d'un mot (frames). Défaut : 60. */
+        animationDuration: zod_1.z.number().positive().optional(),
+        /** Délai entre chaque mot (frames). Défaut : 4. */
+        staggerDelay: zod_1.z.number().positive().optional(),
+        /** Couleur des mots surlignés (`*mot*`). Défaut : #ffd700. */
+        highlightColor: zod_1.z.string().optional(),
+        /** Taille de police (n'importe quelle valeur CSS valide). Défaut : 4.5rem. */
+        fontSize: zod_1.z.string().optional(),
+        /** Position verticale : 'bottom' (CTA, défaut) ou 'center' (titre plein écran). */
+        position: zod_1.z.enum(['bottom', 'center']).optional(),
+        /**
+         * Variante visuelle :
+         * - "reveal" : mot par mot avec flou + translation (défaut)
+         * - "neon"   : texte lumineux avec glow (text-shadow étagé)
+         * - "icon"   : icône + label thématique (ex: logo + "MONTAGE")
+         * - "pin"    : marqueur qui tombe avec rebond + texte
+         */
+        variant: zod_1.z.enum(['reveal', 'neon', 'icon', 'pin']).optional(),
+        /** Chemin du fichier icône dans public/ (ex: "icons/premiere.svg"). Utilisé si variant="icon". */
+        icon: zod_1.z.string().optional(),
+        /** Texte du label pour la variante icon (affiché sous l'icône). Si absent, utilise text. */
+        iconLabel: zod_1.z.string().optional(),
+        /** Couleur du glow néon (variante "neon"). Défaut : highlightColor. */
+        glowColor: zod_1.z.string().optional(),
     })
         .optional(),
     /**
@@ -100,17 +172,19 @@ exports.sceneSchema = zod_1.z.object({
     durationInSeconds: zod_1.z.number().optional(),
     /** Timings mot-à-mot pour le karaoké. Injectés automatiquement par tts.ts (ne pas écrire à la main). */
     words: zod_1.z.array(exports.wordTimingSchema).optional(),
+    /** Volume du média vidéo (audio original du clip). 0 = muet, 1 = plein volume. Défaut : 0.6 (audible par défaut ; mettre 0 pour couper explicitement une scène). */
+    mediaVolume: zod_1.z.number().min(0).max(1).optional(),
     /** Sons additionnels (bruitages, ambiances, musiques) joués pendant la scène. */
     sounds: zod_1.z.array(exports.sceneSoundSchema).optional(),
 });
 exports.storyboardSchema = zod_1.z.object({
     title: zod_1.z.string(),
     ratio: zod_1.z.enum(['16:9', '9:16']),
-    /** Voix Edge-TTS. Par défaut : fr-FR-HenriNeural. */
+    /** Voix ElevenLabs (ex: "george", "anais", "liam", "rachel"). Par défaut : george. */
     voice: zod_1.z.string().optional(),
     /**
      * Utiliser des voix off FOURNIES par l'utilisateur pour TOUTES les scènes
-     * (skip Edge-TTS global). `npm run tts` se contente alors de mesurer la durée
+     * (skip ElevenLabs global). `npm run tts` se contente alors de mesurer la durée
      * des fichiers public/scene_<id>.mp3 (ou du `audioPath` de chaque scène).
      * Une scène peut toujours surcharger avec son propre `audioPath`. Défaut : false.
      */
@@ -119,14 +193,26 @@ exports.storyboardSchema = zod_1.z.object({
     subtitles: zod_1.z.boolean().optional(),
     /**
      * Style des sous-titres :
-     *  - "karaoke"   : gros mots MAJUSCULES surlignés au fil de la voix (shorts verticaux, défaut).
-     *  - "cinematic" : phrase discrète et sobre centrée en bas (essai / documentaire 16:9).
+     *  - "karaoke"   : gros mots MAJUSCULES surlignés au fil de la voix, pop dur et contours
+     *                  épais (shorts verticaux punchy/agressifs, défaut).
+     *  - "fondant"   : karaoké doux — les mots s'illuminent progressivement (fondu, pas de pop
+     *                  brutal ni de contours épais), casse normale. Pour un sujet plus calme/attachant.
+     *  - "cinematic" : phrase discrète et sobre centrée en bas, sans surlignage mot-à-mot
+     *                  (essai / documentaire 16:9).
      */
-    subtitleStyle: zod_1.z.enum(['karaoke', 'cinematic']).optional(),
+    subtitleStyle: zod_1.z.enum(['karaoke', 'fondant', 'cinematic']).optional(),
     /** Musique de fond optionnelle : nom de fichier dans public/ (ex: "music.mp3"). */
     music: zod_1.z.string().optional(),
     /** Volume de la musique de fond (de 0 à 1). Défaut : 0.09. */
     musicVolume: zod_1.z.number().min(0).max(1).optional(),
+    /**
+     * Multiplicateur GLOBAL appliqué au volume de tous les sons additionnels
+     * (`scene.sounds`, bruitages/SFX/ambiances) de toutes les scènes. Défaut : 1
+     * (inchangé, chaque son garde son propre `volume`). Mettre à 0 pour couper
+     * TOUS les SFX d'un coup depuis le storyboard, sans supprimer les `sounds`
+     * de chaque scène (pratique pour les réactiver plus tard sans repasser par le code).
+     */
+    sfxVolume: zod_1.z.number().min(0).optional(),
     scenes: zod_1.z.array(exports.sceneSchema),
 });
 /** Props du composant racine Remotion (utilisé aussi comme schéma de Composition). */
@@ -143,25 +229,43 @@ exports.FPS = 30;
 exports.MIN_SCENE_FRAMES = 30;
 /** Durée du chevauchement d'une transition (fade/slide) entre deux scènes. */
 exports.TRANSITION_FRAMES = 15;
-function getSceneDurationInFrames(scene, fps = exports.FPS) {
-    return Math.max(exports.MIN_SCENE_FRAMES, Math.ceil((scene.durationInSeconds ?? 2) * fps));
-}
 /**
- * Frames de transition consommées AVANT une scène (chevauchement avec la précédente).
- * La première scène n'a pas de transition entrante.
+ * Pause silencieuse ajoutée APRÈS la fin de la voix off d'une scène (le média
+ * continue de s'afficher), pour laisser le temps de digérer l'info avant la
+ * scène suivante. Cette pause DOIT durer plus longtemps que la transition la
+ * plus longue (26 frames pour "black", voir transitionDurationFrames) : ainsi
+ * le chevauchement de TransitionSeries avec la scène suivante tombe entièrement
+ * dans ce silence, et n'entend jamais la voix off suivante par-dessus la
+ * précédente (bug d'audio qui se chevauche entre deux scènes).
  */
+exports.POST_NARRATION_PAUSE_FRAMES = 30; // 1s à 30fps
+function getSceneDurationInFrames(scene, fps = exports.FPS) {
+    const narrationFrames = Math.ceil((scene.durationInSeconds ?? 2) * fps);
+    // Les cartes de fin (card) n'ont ni voix ni son : pas de pause à ajouter.
+    const pauseFrames = scene.card ? 0 : Math.round((exports.POST_NARRATION_PAUSE_FRAMES / exports.FPS) * fps);
+    return Math.max(exports.MIN_SCENE_FRAMES, narrationFrames + pauseFrames);
+}
 /**
  * Durée (en frames) d'une transition selon son type.
  * Le fondu au noir a besoin de respirer un peu plus (effet cinéma).
+ * Le glitchCut est volontairement très court (8 frames = ~0.27s).
  */
 function transitionDurationFrames(transition) {
     switch (transition) {
         case 'none':
             return 0;
         case 'black':
-            return 26; // fondu AU NOIR : plus long pour « fermer » puis rouvrir
+            return 26;
         case 'wipe':
             return 20;
+        case 'zoomPunch':
+            return 18;
+        case 'whipPan':
+            return 20;
+        case 'glitchCut':
+            return 8;
+        case 'particleDissolve':
+            return 40;
         default:
             return exports.TRANSITION_FRAMES; // fade, slide
     }

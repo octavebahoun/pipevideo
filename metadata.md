@@ -1,16 +1,30 @@
-# 📝 Métadonnées de Publication — Le Renard : Le Système de Chasse le Plus Sophistiqué de la Nature
+# 🎬 L'ornithorynque, cet animal de plusieurs espèces
 
-## 📌 Titres optimisés (CTR)
-1. **Le renard perçoit un sens que la science commence à peine à comprendre 🧭🦊** *(Recommandé)*
-2. **Ce cri de renard est souvent pris pour un appel humain 😱🔊**
-3. **Comment le renard vise sous la neige sans jamais voir sa proie 🎯**
-4. **Le cri le plus troublant de la forêt... vient d'un renard 🌙**
+## 📌 YouTube
 
-## 📄 Description (Short vertical / TikTok / Reels)
-> Une boussole invisible qui l'aiderait à viser sous la neige avec jusqu'à 70% de réussite plein nord-est. Un cri nocturne si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse. Le renard n'est pas qu'un charognard rusé : c'est un système de chasse ultra-perfectionné, terré en pleine ville. 🧭🦊🔊
+**Titre** : L'ornithorynque, cet animal de plusieurs espèces 🦆🦫
 
-## 🏷️ Hashtags & Tags
-`#renard` `#animaux` `#nature` `#faitscientifique` `#curiosite` `#biologie` `#foret` `#mystere` `#documentaire` `#shorts`
+**Description** :
 
-## 🖼️ Conseil miniature
-Gros plan sur un renard au regard perçant la nuit, réticule HUD cyan discret en surimpression façon viseur. Texte court en jaune vif : **"UNE BOUSSOLE CACHÉE ?"** ou **"CE CRI EST-IL HUMAIN ?"**
+Bec de canard, queue de castor, pattes de loutre… et des œufs de reptile. L'ornithorynque est-il un animal fabriqué à partir de plusieurs espèces ? Et si c'était l'un des animaux les plus extraordinaires de la planète ?
+
+Dans cette vidéo, découvrez :
+- 🥚 Le mammifère qui pond des œufs (les monotrèmes)
+- ☠️ Son éperon venimeux aux douleurs atroces
+- 📡 Son bec-sonar qui détecte les signaux électriques sous l'eau
+- 🧬 Son corps qui défie la biologie : pas d'estomac, lait qui suinte par la peau
+- 💚 Son pelage fluorescent sous lumière UV
+
+L'ornithorynque a longtemps fait passer ses découvreurs pour des farceurs. Aujourd'hui encore, il n'a pas fini de nous surprendre.
+
+👉 Si vous aimez les animaux extraordinaires, abonnez-vous pour ne rien manquer !
+
+**Tags** : ornithorynque, animaux bizarres, animaux australie, monotrème, documentaire animalier, nature incroyable, animal venimeux, curiosités nature, platypus
+
+## 📱 Shorts / Reels / TikTok
+
+**Titre** : Le mammifère qui pond des œufs ?! 🦆🥚
+
+**Description** : Bec de canard, queue de castor, poison dans les pattes… L'ornithorynque est-il un animal de plusieurs espèces ? 🐾 Et toi, tu connaissais l'ornithorynque ? 👀
+
+**Hashtags** : #ornithorynque #animaux #nature #australie #animauxbizarres #documentaire #sciences #curiosites #faune #natureincroyable

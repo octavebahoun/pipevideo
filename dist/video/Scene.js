@@ -4,18 +4,19 @@ exports.SceneComponent = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const remotion_1 = require("remotion");
 const Subtitles_1 = require("./Subtitles");
+const KineticTitle_1 = require("./KineticTitle");
 /**
  * Couche de sons additionnels (bruitages/SFX, ambiances, musiques) jouée pendant
  * la scène, EN PLUS de la voix off. Chaque son peut démarrer avec un décalage,
  * boucler, et avoir des fondus d'entrée/sortie (essentiel pour le sound design :
  * drones qui montent, battement de cœur, glitch, etc.).
  */
-const SceneSounds = ({ sounds, durationInFrames, }) => {
+const SceneSounds = ({ sounds, durationInFrames, sfxVolume, }) => {
     const { fps } = (0, remotion_1.useVideoConfig)();
     return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: sounds.map((sound, i) => {
             const from = Math.round((sound.startInSeconds ?? 0) * fps);
             const localDuration = Math.max(1, durationInFrames - from);
-            const base = sound.volume ?? 0.6;
+            const base = (sound.volume ?? 0.6) * sfxVolume;
             const fadeInFrames = Math.round((sound.fadeInSeconds ?? 0) * fps);
             const fadeOutFrames = Math.round((sound.fadeOutSeconds ?? 0) * fps);
             const hasFade = fadeInFrames > 0 || fadeOutFrames > 0;
@@ -39,7 +40,7 @@ const SceneSounds = ({ sounds, durationInFrames, }) => {
                         : base }) }, `${sound.src}-${i}`));
         }) }));
 };
-const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleStyle, }) => {
+const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleStyle, sfxVolume, }) => {
     const frame = (0, remotion_1.useCurrentFrame)();
     const { fps } = (0, remotion_1.useVideoConfig)();
     // Effet Ken Burns (zoom lent). Les fondus/slides entre scènes sont gérés
@@ -72,6 +73,16 @@ const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleSty
     // Texte incrusté (CTA) éventuel.
     const overlayText = scene.overlayText;
     const overlayStart = (overlayText?.startInSeconds ?? 0) * fps;
+    // Flash lumineux plein écran (ex: sonoluminescence) : montée quasi instantanée
+    // puis décroissance, façon flash photo.
+    const flash = scene.effects?.flash;
+    let flashOpacity = 0;
+    if (flash) {
+        const flashStart = (flash.startInSeconds ?? 0) * fps;
+        const flashDuration = Math.max(1, Math.round((flash.durationInSeconds ?? 0.35) * fps));
+        const riseFrames = Math.max(1, Math.round(flashDuration * 0.25));
+        flashOpacity = (0, remotion_1.interpolate)(frame, [flashStart, flashStart + riseFrames, flashStart + flashDuration], [0, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+    }
     // Carte texte (ex: fin) : écran noir + texte centré, SANS média / voix / son.
     if (scene.card) {
         const appearIn = (0, remotion_1.interpolate)(frame, [8, 28], [0, 1], {
@@ -126,7 +137,7 @@ const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleSty
                     height: '100%',
                     transform: `translate(${dx}px, ${dy}px) scale(${scale * shakeScale})`,
                     transformOrigin: 'center center',
-                }, children: isVideo ? ((0, jsx_runtime_1.jsx)(remotion_1.Loop, { durationInFrames: durationInFrames, children: (0, jsx_runtime_1.jsx)(remotion_1.OffthreadVideo, { src: (0, remotion_1.staticFile)(mediaPath), style: { width: '100%', height: '100%', objectFit: 'cover' }, muted: true, playbackRate: scene.playbackRate ?? 1 }) })) : ((0, jsx_runtime_1.jsx)(remotion_1.Img, { src: (0, remotion_1.staticFile)(mediaPath), style: { width: '100%', height: '100%', objectFit: 'cover' } })) })) : (
+                }, children: isVideo ? ((0, jsx_runtime_1.jsx)(remotion_1.Loop, { durationInFrames: durationInFrames, children: (0, jsx_runtime_1.jsx)(remotion_1.OffthreadVideo, { src: (0, remotion_1.staticFile)(mediaPath), style: { width: '100%', height: '100%', objectFit: 'cover' }, volume: scene.mediaVolume ?? 0.6, playbackRate: scene.playbackRate ?? 1 }) })) : ((0, jsx_runtime_1.jsx)(remotion_1.Img, { src: (0, remotion_1.staticFile)(mediaPath), style: { width: '100%', height: '100%', objectFit: 'cover' } })) })) : (
             /* Fallback si l'utilisateur n'a pas encore déposé de média */
             (0, jsx_runtime_1.jsxs)("div", { style: {
                     textAlign: 'center',
@@ -134,9 +145,9 @@ const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleSty
                     fontSize: '2.5rem',
                     fontFamily: 'system-ui, sans-serif',
                     padding: 40,
-                }, children: ["[ D\u00E9pose scene_", scene.id, ".png ou scene_", scene.id, ".mp4 dans le dossier public ]", (0, jsx_runtime_1.jsxs)("div", { style: { fontSize: '1.2rem', marginTop: 20, opacity: 0.7 }, children: ["Prompt sugg\u00E9r\u00E9 : ", scene.narration] })] })), (0, jsx_runtime_1.jsx)(remotion_1.Audio, { src: (0, remotion_1.staticFile)(voiceSrc) }), scene.sounds && scene.sounds.length > 0 && ((0, jsx_runtime_1.jsx)(SceneSounds, { sounds: scene.sounds, durationInFrames: durationInFrames })), showSubtitles && ((0, jsx_runtime_1.jsx)(Subtitles_1.Subtitles, { text: scene.subtitle ?? scene.narration, words: scene.words, durationInFrames: durationInFrames, style: subtitleStyle })), overlayText && ((0, jsx_runtime_1.jsx)("div", { style: {
+                }, children: ["[ D\u00E9pose scene_", scene.id, ".png ou scene_", scene.id, ".mp4 dans le dossier public ]", (0, jsx_runtime_1.jsxs)("div", { style: { fontSize: '1.2rem', marginTop: 20, opacity: 0.7 }, children: ["Prompt sugg\u00E9r\u00E9 : ", scene.narration] })] })), (0, jsx_runtime_1.jsx)(remotion_1.Audio, { src: (0, remotion_1.staticFile)(voiceSrc) }), scene.sounds && scene.sounds.length > 0 && ((0, jsx_runtime_1.jsx)(SceneSounds, { sounds: scene.sounds, durationInFrames: durationInFrames, sfxVolume: sfxVolume })), showSubtitles && ((0, jsx_runtime_1.jsx)(Subtitles_1.Subtitles, { text: scene.subtitle ?? scene.narration, words: scene.words, durationInFrames: durationInFrames, style: subtitleStyle })), scene.kineticTitle ? ((0, jsx_runtime_1.jsx)(KineticTitle_1.KineticTitle, { text: scene.kineticTitle.text, startInSeconds: scene.kineticTitle.startInSeconds, animationDuration: scene.kineticTitle.animationDuration, staggerDelay: scene.kineticTitle.staggerDelay, highlightColor: scene.kineticTitle.highlightColor, fontSize: scene.kineticTitle.fontSize, position: scene.kineticTitle.position, variant: scene.kineticTitle.variant, icon: scene.kineticTitle.icon, iconLabel: scene.kineticTitle.iconLabel, glowColor: scene.kineticTitle.glowColor })) : (overlayText && ((0, jsx_runtime_1.jsx)("div", { style: {
                     position: 'absolute',
-                    bottom: '14%',
+                    top: '8%',
                     left: '8%',
                     right: '8%',
                     display: 'flex',
@@ -147,7 +158,7 @@ const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleSty
                             extrapolateLeft: 'clamp',
                             extrapolateRight: 'clamp',
                         }),
-                        transform: `translateY(${(0, remotion_1.interpolate)(frame, [overlayStart, overlayStart + 18], [16, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}px)`,
+                        transform: `translateY(${(0, remotion_1.interpolate)(frame, [overlayStart, overlayStart + 18], [-16, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}px)`,
                         color: '#fff',
                         fontFamily: '"Inter", "Helvetica", sans-serif',
                         fontSize: '2.4rem',
@@ -155,6 +166,12 @@ const SceneComponent = ({ scene, durationInFrames, subtitlesEnabled, subtitleSty
                         letterSpacing: '0.5px',
                         textAlign: 'center',
                         textShadow: '0 2px 12px rgba(0, 0, 0, 0.9)',
-                    }, children: overlayText.text }) }))] }));
+                    }, children: overlayText.text }) }))), flash && ((0, jsx_runtime_1.jsx)("div", { style: {
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: flash.color ?? '#ffffff',
+                    opacity: flashOpacity,
+                    pointerEvents: 'none',
+                } }))] }));
 };
 exports.SceneComponent = SceneComponent;

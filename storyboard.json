@@ -1,5 +1,5 @@
 {
-  "title": "Le Renard : Le Système de Chasse le Plus Sophistiqué de la Nature",
+  "title": "L'ornithorynque cet animal de plusieur espece",
   "ratio": "9:16",
   "voice": "george",
   "subtitles": true,
@@ -7,27 +7,1274 @@
   "scenes": [
     {
       "id": 1,
-      "narration": "Vous pensez que le renard chasse au hasard ? FAUX. Il possède un sens que la science commence à peine à percer.",
+      "narration": "Un bec de canard. Une queue de castor. Des pattes de loutre. Et des oeufs de reptile.",
       "mediaPath": "scene_1.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade"
+        "transition": "fade",
+        "cameraMotion": "dolly"
       },
-      "overlayText": {
-        "text": "🔍 SCAN",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 6.295510204081633,
       "words": [
         {
-          "text": "Vous",
+          "text": "Un",
+          "start": 0,
+          "duration": 0.151
+        },
+        {
+          "text": "bec",
+          "start": 0.209,
+          "duration": 0.174
+        },
+        {
+          "text": "de",
+          "start": 0.453,
+          "duration": 0.069
+        },
+        {
+          "text": "canard.",
+          "start": 0.569,
+          "duration": 0.546
+        },
+        {
+          "text": "Une",
+          "start": 1.265,
+          "duration": 0.175
+        },
+        {
+          "text": "queue",
+          "start": 1.474,
+          "duration": 0.151
+        },
+        {
+          "text": "de",
+          "start": 1.649,
+          "duration": 0.058
+        },
+        {
+          "text": "castor.",
+          "start": 1.753,
+          "duration": 0.627
+        },
+        {
+          "text": "Des",
+          "start": 2.554,
+          "duration": 0.14
+        },
+        {
+          "text": "pattes",
+          "start": 2.728,
+          "duration": 0.267
+        },
+        {
+          "text": "de",
+          "start": 3.019,
+          "duration": 0.069
+        },
+        {
+          "text": "loutre.",
+          "start": 3.135,
+          "duration": 0.429
+        },
+        {
+          "text": "Et",
+          "start": 3.738,
+          "duration": 0.14
+        },
+        {
+          "text": "des",
+          "start": 3.913,
+          "duration": 0.15
+        },
+        {
+          "text": "oeufs",
+          "start": 4.145,
+          "duration": 0.127
+        },
+        {
+          "text": "de",
+          "start": 4.296,
+          "duration": 0.058
+        },
+        {
+          "text": "reptile.",
+          "start": 4.4,
+          "duration": 0.848
+        }
+      ],
+      "durationInSeconds": 5.276734693877551
+    },
+    {
+      "id": 2,
+      "narration": "L'ornithorynque ressemble à un animal fabriqué à partir de plusieurs espèces. Et pourtant, il est bien réel.",
+      "mediaPath": "scene_2.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "L'ornithorynque",
+          "start": 0,
+          "duration": 0.836
+        },
+        {
+          "text": "ressemble",
+          "start": 0.882,
+          "duration": 0.465
+        },
+        {
+          "text": "à",
+          "start": 1.393,
+          "duration": 0.023
+        },
+        {
+          "text": "un",
+          "start": 1.486,
+          "duration": 0.058
+        },
+        {
+          "text": "animal",
+          "start": 1.602,
+          "duration": 0.348
+        },
+        {
+          "text": "fabriqué",
+          "start": 2.032,
+          "duration": 0.464
+        },
+        {
+          "text": "à",
+          "start": 2.554,
+          "duration": 0.035
+        },
+        {
+          "text": "partir",
+          "start": 2.659,
+          "duration": 0.336
+        },
+        {
+          "text": "de",
+          "start": 3.053,
+          "duration": 0.07
+        },
+        {
+          "text": "plusieurs",
+          "start": 3.17,
+          "duration": 0.383
+        },
+        {
+          "text": "espèces.",
+          "start": 3.611,
+          "duration": 0.661
+        },
+        {
+          "text": "Et",
+          "start": 4.656,
+          "duration": 0.127
+        },
+        {
+          "text": "pourtant,",
+          "start": 4.818,
+          "duration": 0.499
+        },
+        {
+          "text": "il",
+          "start": 5.492,
+          "duration": 0.127
+        },
+        {
+          "text": "est",
+          "start": 5.677,
+          "duration": 0.07
+        },
+        {
+          "text": "bien",
+          "start": 5.77,
+          "duration": 0.186
+        },
+        {
+          "text": "réel.",
+          "start": 6.002,
+          "duration": 0.778
+        }
+      ],
+      "durationInSeconds": 6.817959183673469
+    },
+    {
+      "id": 3,
+      "narration": "En 1799, les scientifiques européens pensent à une blague. Quelqu'un aurait cousu un bec de canard sur un animal poilu.",
+      "mediaPath": "scene_3.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "slide",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "En",
+          "start": 0,
+          "duration": 0.151
+        },
+        {
+          "text": "1799,",
+          "start": 0.197,
+          "duration": 1.347
+        },
+        {
+          "text": "les",
+          "start": 1.66,
+          "duration": 0.14
+        },
+        {
+          "text": "scientifiques",
+          "start": 1.823,
+          "duration": 0.615
+        },
+        {
+          "text": "européens",
+          "start": 2.485,
+          "duration": 0.499
+        },
+        {
+          "text": "pensent",
+          "start": 3.042,
+          "duration": 0.337
+        },
+        {
+          "text": "à",
+          "start": 3.425,
+          "duration": 0.023
+        },
+        {
+          "text": "une",
+          "start": 3.495,
+          "duration": 0.104
+        },
+        {
+          "text": "blague.",
+          "start": 3.634,
+          "duration": 0.522
+        },
+        {
+          "text": "Quelqu'un",
+          "start": 4.481,
+          "duration": 0.407
+        },
+        {
+          "text": "aurait",
+          "start": 4.934,
+          "duration": 0.244
+        },
+        {
+          "text": "cousu",
+          "start": 5.201,
+          "duration": 0.349
+        },
+        {
+          "text": "un",
+          "start": 5.642,
+          "duration": 0.047
+        },
+        {
+          "text": "bec",
+          "start": 5.759,
+          "duration": 0.162
+        },
+        {
+          "text": "de",
+          "start": 5.991,
+          "duration": 0.069
+        },
+        {
+          "text": "canard",
+          "start": 6.107,
+          "duration": 0.383
+        },
+        {
+          "text": "sur",
+          "start": 6.525,
+          "duration": 0.128
+        },
+        {
+          "text": "un",
+          "start": 6.699,
+          "duration": 0.046
+        },
+        {
+          "text": "animal",
+          "start": 6.815,
+          "duration": 0.302
+        },
+        {
+          "text": "poilu.",
+          "start": 7.175,
+          "duration": 0.72
+        }
+      ],
+      "durationInSeconds": 7.9412244897959186
+    },
+    {
+      "id": 4,
+      "narration": "Ils ont même essayé de couper le bec au scalpel, pour prouver la supercherie.",
+      "mediaPath": "scene_4.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "Ils",
+          "start": 0,
+          "duration": 0.197
+        },
+        {
+          "text": "ont",
+          "start": 0.267,
+          "duration": 0.081
+        },
+        {
+          "text": "même",
+          "start": 0.372,
+          "duration": 0.208
+        },
+        {
+          "text": "essayé",
+          "start": 0.639,
+          "duration": 0.359
+        },
+        {
+          "text": "de",
+          "start": 1.045,
+          "duration": 0.07
+        },
+        {
+          "text": "couper",
+          "start": 1.161,
+          "duration": 0.255
+        },
+        {
+          "text": "le",
+          "start": 1.451,
+          "duration": 0.07
+        },
+        {
+          "text": "bec",
+          "start": 1.591,
+          "duration": 0.197
+        },
+        {
+          "text": "au",
+          "start": 1.834,
+          "duration": 0.047
+        },
+        {
+          "text": "scalpel,",
+          "start": 1.916,
+          "duration": 0.696
+        },
+        {
+          "text": "pour",
+          "start": 2.821,
+          "duration": 0.151
+        },
+        {
+          "text": "prouver",
+          "start": 3.019,
+          "duration": 0.301
+        },
+        {
+          "text": "la",
+          "start": 3.344,
+          "duration": 0.069
+        },
+        {
+          "text": "supercherie.",
+          "start": 3.46,
+          "duration": 0.998
+        }
+      ],
+      "durationInSeconds": 4.493061224489796
+    },
+    {
+      "id": 5,
+      "narration": "Mais l'ornithorynque est bien un vrai mammifère. Un mammifère qui pond des oeufs.",
+      "mediaPath": "scene_5.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "Mais",
+          "start": 0,
+          "duration": 0.186
+        },
+        {
+          "text": "l'ornithorynque",
+          "start": 0.209,
+          "duration": 0.789
+        },
+        {
+          "text": "est",
+          "start": 1.068,
+          "duration": 0.163
+        },
+        {
+          "text": "bien",
+          "start": 1.254,
+          "duration": 0.197
+        },
+        {
+          "text": "un",
+          "start": 1.521,
+          "duration": 0.046
+        },
+        {
+          "text": "vrai",
+          "start": 1.591,
+          "duration": 0.162
+        },
+        {
+          "text": "mammifère.",
+          "start": 1.788,
+          "duration": 0.766
+        },
+        {
+          "text": "Un",
+          "start": 3.251,
+          "duration": 0.116
+        },
+        {
+          "text": "mammifère",
+          "start": 3.39,
+          "duration": 0.511
+        },
+        {
+          "text": "qui",
+          "start": 3.936,
+          "duration": 0.104
+        },
+        {
+          "text": "pond",
+          "start": 4.098,
+          "duration": 0.186
+        },
+        {
+          "text": "des",
+          "start": 4.307,
+          "duration": 0.151
+        },
+        {
+          "text": "oeufs.",
+          "start": 4.574,
+          "duration": 0.488
+        }
+      ],
+      "durationInSeconds": 5.093877551020408
+    },
+    {
+      "id": 6,
+      "narration": "Avec l'échidné, il fait partie des monotrèmes. Les seuls mammifères au monde à pondre des oeufs.",
+      "mediaPath": "scene_6.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade",
+        "cameraMotion": "pan"
+      },
+      "words": [
+        {
+          "text": "Avec",
+          "start": 0,
+          "duration": 0.279
+        },
+        {
+          "text": "l'échidné,",
+          "start": 0.348,
+          "duration": 0.616
+        },
+        {
+          "text": "il",
+          "start": 1.01,
+          "duration": 0.116
+        },
+        {
+          "text": "fait",
+          "start": 1.184,
+          "duration": 0.116
+        },
+        {
+          "text": "partie",
+          "start": 1.324,
+          "duration": 0.29
+        },
+        {
+          "text": "des",
+          "start": 1.649,
+          "duration": 0.092
+        },
+        {
+          "text": "monotrèmes.",
+          "start": 1.765,
+          "duration": 0.778
+        },
+        {
+          "text": "Les",
+          "start": 2.926,
+          "duration": 0.162
+        },
+        {
+          "text": "seuls",
+          "start": 3.123,
+          "duration": 0.221
+        },
+        {
+          "text": "mammifères",
+          "start": 3.379,
+          "duration": 0.51
+        },
+        {
+          "text": "au",
+          "start": 3.913,
+          "duration": 0.046
+        },
+        {
+          "text": "monde",
+          "start": 4.005,
+          "duration": 0.314
+        },
+        {
+          "text": "à",
+          "start": 4.377,
+          "duration": 0.058
+        },
+        {
+          "text": "pondre",
+          "start": 4.516,
+          "duration": 0.302
+        },
+        {
+          "text": "des",
+          "start": 4.865,
+          "duration": 0.151
+        },
+        {
+          "text": "oeufs.",
+          "start": 5.132,
+          "duration": 0.394
+        }
+      ],
+      "durationInSeconds": 5.564081632653061
+    },
+    {
+      "id": 7,
+      "narration": "Et ce n'est pas tout. Le mâle possède un éperon venimeux sur ses pattes arrière.",
+      "mediaPath": "scene_7.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "orbit"
+      },
+      "words": [
+        {
+          "text": "Et",
+          "start": 0,
+          "duration": 0.139
+        },
+        {
+          "text": "ce",
+          "start": 0.163,
+          "duration": 0.081
+        },
+        {
+          "text": "n'est",
+          "start": 0.302,
+          "duration": 0.128
+        },
+        {
+          "text": "pas",
+          "start": 0.453,
+          "duration": 0.139
+        },
+        {
+          "text": "tout.",
+          "start": 0.627,
+          "duration": 0.337
+        },
+        {
+          "text": "Le",
+          "start": 1.289,
+          "duration": 0.127
+        },
+        {
+          "text": "mâle",
+          "start": 1.474,
+          "duration": 0.233
+        },
+        {
+          "text": "possède",
+          "start": 1.741,
+          "duration": 0.372
+        },
+        {
+          "text": "un",
+          "start": 2.136,
+          "duration": 0.047
+        },
+        {
+          "text": "éperon",
+          "start": 2.252,
+          "duration": 0.267
+        },
+        {
+          "text": "venimeux",
+          "start": 2.589,
+          "duration": 0.441
+        },
+        {
+          "text": "sur",
+          "start": 3.065,
+          "duration": 0.128
+        },
+        {
+          "text": "ses",
+          "start": 3.239,
+          "duration": 0.14
+        },
+        {
+          "text": "pattes",
+          "start": 3.413,
+          "duration": 0.302
+        },
+        {
+          "text": "arrière.",
+          "start": 3.738,
+          "duration": 0.952
+        }
+      ],
+      "durationInSeconds": 4.728163265306122
+    },
+    {
+      "id": 8,
+      "narration": "Une arme capable d'infliger des douleurs atroces. L'un des rares mammifères venimeux de la planète.",
+      "mediaPath": "scene_8.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "orbit"
+      },
+      "words": [
+        {
+          "text": "Une",
+          "start": 0,
+          "duration": 0.221
+        },
+        {
+          "text": "arme",
+          "start": 0.244,
+          "duration": 0.186
+        },
+        {
+          "text": "capable",
+          "start": 0.464,
+          "duration": 0.442
+        },
+        {
+          "text": "d'infliger",
+          "start": 0.952,
+          "duration": 0.546
+        },
+        {
+          "text": "des",
+          "start": 1.544,
+          "duration": 0.093
+        },
+        {
+          "text": "douleurs",
+          "start": 1.66,
+          "duration": 0.337
+        },
+        {
+          "text": "atroces.",
+          "start": 2.02,
+          "duration": 0.639
+        },
+        {
+          "text": "L'un",
+          "start": 3.17,
+          "duration": 0.22
+        },
+        {
+          "text": "des",
+          "start": 3.448,
+          "duration": 0.105
+        },
+        {
+          "text": "rares",
+          "start": 3.599,
+          "duration": 0.256
+        },
+        {
+          "text": "mammifères",
+          "start": 3.878,
+          "duration": 0.545
+        },
+        {
+          "text": "venimeux",
+          "start": 4.447,
+          "duration": 0.441
+        },
+        {
+          "text": "de",
+          "start": 4.923,
+          "duration": 0.058
+        },
+        {
+          "text": "la",
+          "start": 5.016,
+          "duration": 0.069
+        },
+        {
+          "text": "planète.",
+          "start": 5.132,
+          "duration": 0.812
+        }
+      ],
+      "durationInSeconds": 5.98204081632653
+    },
+    {
+      "id": 9,
+      "narration": "Son bec n'est pas fait pour attraper les miettes. Il est couvert de capteurs électriques.",
+      "mediaPath": "scene_9.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "pan"
+      },
+      "words": [
+        {
+          "text": "Son",
           "start": 0,
           "duration": 0.209
         },
         {
-          "text": "pensez",
+          "text": "bec",
+          "start": 0.267,
+          "duration": 0.174
+        },
+        {
+          "text": "n'est",
+          "start": 0.511,
+          "duration": 0.128
+        },
+        {
+          "text": "pas",
+          "start": 0.662,
+          "duration": 0.139
+        },
+        {
+          "text": "fait",
+          "start": 0.836,
+          "duration": 0.139
+        },
+        {
+          "text": "pour",
+          "start": 0.998,
+          "duration": 0.14
+        },
+        {
+          "text": "attraper",
+          "start": 1.184,
+          "duration": 0.337
+        },
+        {
+          "text": "les",
+          "start": 1.556,
+          "duration": 0.093
+        },
+        {
+          "text": "miettes.",
+          "start": 1.683,
+          "duration": 0.476
+        },
+        {
+          "text": "Il",
+          "start": 2.485,
+          "duration": 0.139
+        },
+        {
+          "text": "est",
+          "start": 2.682,
+          "duration": 0.07
+        },
+        {
+          "text": "couvert",
+          "start": 2.786,
+          "duration": 0.453
+        },
+        {
+          "text": "de",
+          "start": 3.262,
+          "duration": 0.07
+        },
+        {
+          "text": "capteurs",
+          "start": 3.39,
+          "duration": 0.465
+        },
+        {
+          "text": "électriques.",
+          "start": 3.901,
+          "duration": 0.975
+        }
+      ],
+      "durationInSeconds": 4.911020408163266
+    },
+    {
+      "id": 10,
+      "narration": "Sous l'eau, les yeux fermés, il détecte les signaux électriques de ses proies. Un vrai sonar vivant.",
+      "mediaPath": "scene_10.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "Sous",
+          "start": 0,
+          "duration": 0.221
+        },
+        {
+          "text": "l'eau,",
+          "start": 0.244,
+          "duration": 0.22
+        },
+        {
+          "text": "les",
+          "start": 0.511,
+          "duration": 0.128
+        },
+        {
+          "text": "yeux",
+          "start": 0.72,
+          "duration": 0.116
+        },
+        {
+          "text": "fermés,",
+          "start": 0.871,
+          "duration": 0.453
+        },
+        {
+          "text": "il",
+          "start": 1.44,
+          "duration": 0.151
+        },
+        {
+          "text": "détecte",
+          "start": 1.66,
+          "duration": 0.395
+        },
+        {
+          "text": "les",
+          "start": 2.09,
+          "duration": 0.104
+        },
+        {
+          "text": "signaux",
+          "start": 2.218,
+          "duration": 0.301
+        },
+        {
+          "text": "électriques",
+          "start": 2.577,
+          "duration": 0.465
+        },
+        {
+          "text": "de",
+          "start": 3.065,
+          "duration": 0.07
+        },
+        {
+          "text": "ses",
+          "start": 3.181,
+          "duration": 0.128
+        },
+        {
+          "text": "proies.",
+          "start": 3.344,
+          "duration": 0.499
+        },
+        {
+          "text": "Un",
+          "start": 4.226,
+          "duration": 0.139
+        },
+        {
+          "text": "vrai",
+          "start": 4.412,
+          "duration": 0.197
+        },
+        {
+          "text": "sonar",
+          "start": 4.656,
+          "duration": 0.313
+        },
+        {
+          "text": "vivant.",
+          "start": 5.027,
+          "duration": 0.732
+        }
+      ],
+      "durationInSeconds": 5.799183673469388
+    },
+    {
+      "id": 11,
+      "narration": "Son corps défie la biologie. Pas d'estomac. Pas de dents.",
+      "mediaPath": "scene_11.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "slide",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "Son",
+          "start": 0,
+          "duration": 0.197
+        },
+        {
+          "text": "corps",
+          "start": 0.255,
+          "duration": 0.221
+        },
+        {
+          "text": "défie",
+          "start": 0.499,
+          "duration": 0.337
+        },
+        {
+          "text": "la",
+          "start": 0.859,
+          "duration": 0.07
+        },
+        {
+          "text": "biologie.",
+          "start": 0.987,
+          "duration": 0.662
+        },
+        {
+          "text": "Pas",
+          "start": 1.8,
+          "duration": 0.185
+        },
+        {
+          "text": "d'estomac.",
+          "start": 2.009,
+          "duration": 0.58
+        },
+        {
+          "text": "Pas",
+          "start": 2.74,
+          "duration": 0.186
+        },
+        {
+          "text": "de",
+          "start": 2.949,
+          "duration": 0.081
+        },
+        {
+          "text": "dents.",
+          "start": 3.088,
+          "duration": 0.534
+        }
+      ],
+      "durationInSeconds": 3.657142857142857
+    },
+    {
+      "id": 12,
+      "narration": "Il broie sa nourriture avec des graviers. Et son lait s'écoule par sa peau, comme de la sueur.",
+      "mediaPath": "scene_12.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "static"
+      },
+      "words": [
+        {
+          "text": "Il",
+          "start": 0,
+          "duration": 0.163
+        },
+        {
+          "text": "broie",
           "start": 0.232,
+          "duration": 0.256
+        },
+        {
+          "text": "sa",
+          "start": 0.511,
+          "duration": 0.093
+        },
+        {
+          "text": "nourriture",
+          "start": 0.662,
+          "duration": 0.569
+        },
+        {
+          "text": "avec",
+          "start": 1.277,
+          "duration": 0.209
+        },
+        {
+          "text": "des",
+          "start": 1.544,
+          "duration": 0.081
+        },
+        {
+          "text": "graviers.",
+          "start": 1.649,
+          "duration": 0.58
+        },
+        {
+          "text": "Et",
+          "start": 2.554,
+          "duration": 0.151
+        },
+        {
+          "text": "son",
+          "start": 2.74,
+          "duration": 0.151
+        },
+        {
+          "text": "lait",
+          "start": 2.972,
+          "duration": 0.139
+        },
+        {
+          "text": "s'écoule",
+          "start": 3.158,
+          "duration": 0.464
+        },
+        {
+          "text": "par",
+          "start": 3.657,
+          "duration": 0.139
+        },
+        {
+          "text": "sa",
+          "start": 3.843,
+          "duration": 0.104
+        },
+        {
+          "text": "peau,",
+          "start": 4.017,
           "duration": 0.29
+        },
+        {
+          "text": "comme",
+          "start": 4.423,
+          "duration": 0.186
+        },
+        {
+          "text": "de",
+          "start": 4.632,
+          "duration": 0.058
+        },
+        {
+          "text": "la",
+          "start": 4.725,
+          "duration": 0.082
+        },
+        {
+          "text": "sueur.",
+          "start": 4.876,
+          "duration": 0.79
+        }
+      ],
+      "durationInSeconds": 5.69469387755102
+    },
+    {
+      "id": 13,
+      "narration": "Sous une lampe UV, son pelage devient bleu-vert fluorescent. Personne ne sait pourquoi.",
+      "mediaPath": "scene_13.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade",
+        "flash": {
+          "startInSeconds": 2,
+          "durationInSeconds": 0.35,
+          "color": "#4a90d9"
+        }
+      },
+      "words": [
+        {
+          "text": "Sous",
+          "start": 0,
+          "duration": 0.244
+        },
+        {
+          "text": "une",
+          "start": 0.302,
+          "duration": 0.093
+        },
+        {
+          "text": "lampe",
+          "start": 0.43,
+          "duration": 0.267
+        },
+        {
+          "text": "UV,",
+          "start": 0.755,
+          "duration": 0.51
+        },
+        {
+          "text": "son",
+          "start": 1.382,
+          "duration": 0.162
+        },
+        {
+          "text": "pelage",
+          "start": 1.591,
+          "duration": 0.336
+        },
+        {
+          "text": "devient",
+          "start": 1.95,
+          "duration": 0.314
+        },
+        {
+          "text": "bleu-vert",
+          "start": 2.299,
+          "duration": 0.441
+        },
+        {
+          "text": "fluorescent.",
+          "start": 2.763,
+          "duration": 0.801
+        },
+        {
+          "text": "Personne",
+          "start": 3.843,
+          "duration": 0.429
+        },
+        {
+          "text": "ne",
+          "start": 4.296,
+          "duration": 0.069
+        },
+        {
+          "text": "sait",
+          "start": 4.423,
+          "duration": 0.128
+        },
+        {
+          "text": "pourquoi.",
+          "start": 4.574,
+          "duration": 0.72
+        }
+      ],
+      "durationInSeconds": 5.328979591836735
+    },
+    {
+      "id": 14,
+      "narration": "Plusieurs animaux en un seul corps. L'ornithorynque est une prouesse de la nature.",
+      "mediaPath": "scene_14.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "dolly"
+      },
+      "words": [
+        {
+          "text": "Plusieurs",
+          "start": 0,
+          "duration": 0.499
+        },
+        {
+          "text": "animaux",
+          "start": 0.557,
+          "duration": 0.349
+        },
+        {
+          "text": "en",
+          "start": 0.952,
+          "duration": 0.128
+        },
+        {
+          "text": "un",
+          "start": 1.161,
+          "duration": 0.046
+        },
+        {
+          "text": "seul",
+          "start": 1.265,
+          "duration": 0.163
+        },
+        {
+          "text": "corps.",
+          "start": 1.509,
+          "duration": 0.441
+        },
+        {
+          "text": "L'ornithorynque",
+          "start": 2.334,
+          "duration": 0.789
+        },
+        {
+          "text": "est",
+          "start": 3.181,
+          "duration": 0.105
+        },
+        {
+          "text": "une",
+          "start": 3.355,
+          "duration": 0.093
+        },
+        {
+          "text": "prouesse",
+          "start": 3.483,
+          "duration": 0.372
+        },
+        {
+          "text": "de",
+          "start": 3.889,
+          "duration": 0.07
+        },
+        {
+          "text": "la",
+          "start": 4.005,
+          "duration": 0.058
+        },
+        {
+          "text": "nature.",
+          "start": 4.122,
+          "duration": 0.894
+        }
+      ],
+      "durationInSeconds": 5.0416326530612245
+    },
+    {
+      "id": 15,
+      "narration": "La preuve que le vivant sait mélanger les cartes mieux que personne.",
+      "mediaPath": "scene_15.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "dolly"
+      },
+      "words": [
+        {
+          "text": "La",
+          "start": 0,
+          "duration": 0.163
+        },
+        {
+          "text": "preuve",
+          "start": 0.221,
+          "duration": 0.313
         },
         {
           "text": "que",
@@ -36,796 +1283,51 @@
         },
         {
           "text": "le",
-          "start": 0.685,
-          "duration": 0.046
+          "start": 0.673,
+          "duration": 0.07
         },
         {
-          "text": "renard",
-          "start": 0.789,
-          "duration": 0.337
-        },
-        {
-          "text": "chasse",
-          "start": 1.149,
-          "duration": 0.256
-        },
-        {
-          "text": "au",
-          "start": 1.428,
-          "duration": 0.046
-        },
-        {
-          "text": "hasard",
-          "start": 1.533,
-          "duration": 0.452
-        },
-        {
-          "text": "?",
-          "start": 2.009,
-          "duration": 0.15
-        },
-        {
-          "text": "FAUX.",
-          "start": 2.543,
-          "duration": 0.359
-        },
-        {
-          "text": "Il",
-          "start": 3.181,
-          "duration": 0.174
-        },
-        {
-          "text": "possède",
-          "start": 3.413,
+          "text": "vivant",
+          "start": 0.801,
           "duration": 0.36
         },
         {
-          "text": "un",
-          "start": 3.796,
-          "duration": 0.047
-        },
-        {
-          "text": "sens",
-          "start": 3.924,
-          "duration": 0.267
-        },
-        {
-          "text": "que",
-          "start": 4.238,
-          "duration": 0.081
-        },
-        {
-          "text": "la",
-          "start": 4.354,
-          "duration": 0.081
-        },
-        {
-          "text": "science",
-          "start": 4.493,
-          "duration": 0.302
-        },
-        {
-          "text": "commence",
-          "start": 4.818,
-          "duration": 0.302
-        },
-        {
-          "text": "à",
-          "start": 5.155,
-          "duration": 0.023
-        },
-        {
-          "text": "peine",
-          "start": 5.224,
-          "duration": 0.198
-        },
-        {
-          "text": "à",
-          "start": 5.445,
-          "duration": 0.023
-        },
-        {
-          "text": "percer.",
-          "start": 5.515,
-          "duration": 0.754
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "narration": "Certaines études suggèrent qu'il perçoit le champ magnétique terrestre, comme une boussole invisible qui l'aide à calculer chaque bond.",
-      "mediaPath": "scene_2.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "wipe"
-      },
-      "overlayText": {
-        "text": "📊 ANALYSIS",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 7.340408163265306,
-      "words": [
-        {
-          "text": "Certaines",
-          "start": 0,
-          "duration": 0.511
-        },
-        {
-          "text": "études",
-          "start": 0.58,
-          "duration": 0.36
-        },
-        {
-          "text": "suggèrent",
-          "start": 0.987,
-          "duration": 0.511
-        },
-        {
-          "text": "qu'il",
-          "start": 1.567,
-          "duration": 0.163
-        },
-        {
-          "text": "perçoit",
-          "start": 1.788,
-          "duration": 0.371
-        },
-        {
-          "text": "le",
-          "start": 2.183,
-          "duration": 0.093
-        },
-        {
-          "text": "champ",
-          "start": 2.322,
-          "duration": 0.209
-        },
-        {
-          "text": "magnétique",
-          "start": 2.554,
-          "duration": 0.511
-        },
-        {
-          "text": "terrestre,",
-          "start": 3.088,
-          "duration": 0.662
-        },
-        {
-          "text": "comme",
-          "start": 3.994,
-          "duration": 0.186
-        },
-        {
-          "text": "une",
-          "start": 4.203,
-          "duration": 0.093
-        },
-        {
-          "text": "boussole",
-          "start": 4.319,
-          "duration": 0.406
-        },
-        {
-          "text": "invisible",
-          "start": 4.748,
-          "duration": 0.581
-        },
-        {
-          "text": "qui",
-          "start": 5.503,
-          "duration": 0.128
-        },
-        {
-          "text": "l'aide",
-          "start": 5.689,
-          "duration": 0.209
-        },
-        {
-          "text": "à",
-          "start": 5.921,
-          "duration": 0.023
-        },
-        {
-          "text": "calculer",
-          "start": 5.979,
-          "duration": 0.43
-        },
-        {
-          "text": "chaque",
-          "start": 6.432,
-          "duration": 0.232
-        },
-        {
-          "text": "bond.",
-          "start": 6.687,
-          "duration": 0.604
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "narration": "Sous la neige, invisible, une proie n'a presque aucune chance. Les chercheurs ont observé un chiffre étonnant : jusqu'à sept bonds sur dix réussissent quand il vise plein nord-est.",
-      "mediaPath": "scene_3.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "overlayText": {
-        "text": "🎯 TARGET LOCK",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 11.128163265306123,
-      "words": [
-        {
-          "text": "Sous",
-          "start": 0,
-          "duration": 0.209
-        },
-        {
-          "text": "la",
-          "start": 0.232,
-          "duration": 0.081
-        },
-        {
-          "text": "neige,",
-          "start": 0.383,
-          "duration": 0.418
-        },
-        {
-          "text": "invisible,",
-          "start": 0.824,
-          "duration": 0.755
-        },
-        {
-          "text": "une",
-          "start": 1.637,
-          "duration": 0.186
-        },
-        {
-          "text": "proie",
-          "start": 1.869,
-          "duration": 0.256
-        },
-        {
-          "text": "n'a",
-          "start": 2.148,
-          "duration": 0.093
-        },
-        {
-          "text": "presque",
-          "start": 2.299,
-          "duration": 0.36
-        },
-        {
-          "text": "aucune",
-          "start": 2.694,
-          "duration": 0.348
-        },
-        {
-          "text": "chance.",
-          "start": 3.065,
-          "duration": 0.522
-        },
-        {
-          "text": "Les",
-          "start": 4.029,
-          "duration": 0.162
-        },
-        {
-          "text": "chercheurs",
-          "start": 4.214,
-          "duration": 0.442
-        },
-        {
-          "text": "ont",
-          "start": 4.679,
-          "duration": 0.104
-        },
-        {
-          "text": "observé",
-          "start": 4.853,
-          "duration": 0.464
-        },
-        {
-          "text": "un",
-          "start": 5.352,
-          "duration": 0.058
-        },
-        {
-          "text": "chiffre",
-          "start": 5.468,
-          "duration": 0.349
-        },
-        {
-          "text": "étonnant",
-          "start": 5.875,
-          "duration": 0.476
-        },
-        {
-          "text": ":",
-          "start": 6.467,
-          "duration": 0.046
-        },
-        {
-          "text": "jusqu'à",
-          "start": 6.954,
-          "duration": 0.395
-        },
-        {
-          "text": "sept",
-          "start": 7.419,
-          "duration": 0.186
-        },
-        {
-          "text": "bonds",
-          "start": 7.686,
-          "duration": 0.209
-        },
-        {
-          "text": "sur",
-          "start": 7.918,
-          "duration": 0.163
-        },
-        {
-          "text": "dix",
-          "start": 8.15,
-          "duration": 0.302
-        },
-        {
-          "text": "réussissent",
-          "start": 8.731,
-          "duration": 0.534
-        },
-        {
-          "text": "quand",
-          "start": 9.323,
-          "duration": 0.162
-        },
-        {
-          "text": "il",
-          "start": 9.555,
-          "duration": 0.07
-        },
-        {
-          "text": "vise",
-          "start": 9.706,
-          "duration": 0.255
-        },
-        {
-          "text": "plein",
-          "start": 9.985,
-          "duration": 0.232
-        },
-        {
-          "text": "nord-est.",
-          "start": 10.24,
-          "duration": 0.859
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "narration": "Mais son arme la plus terrifiante n'est pas ses crocs. C'est sa voix.",
-      "mediaPath": "scene_4.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "black"
-      },
-      "overlayText": {
-        "text": "⚠️ WARNING",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 4.25795918367347,
-      "words": [
-        {
-          "text": "Mais",
-          "start": 0,
-          "duration": 0.197
-        },
-        {
-          "text": "son",
-          "start": 0.221,
-          "duration": 0.162
-        },
-        {
-          "text": "arme",
-          "start": 0.453,
-          "duration": 0.22
-        },
-        {
-          "text": "la",
-          "start": 0.708,
-          "duration": 0.07
-        },
-        {
-          "text": "plus",
-          "start": 0.824,
-          "duration": 0.151
-        },
-        {
-          "text": "terrifiante",
-          "start": 1.01,
-          "duration": 0.65
-        },
-        {
-          "text": "n'est",
-          "start": 1.718,
-          "duration": 0.174
-        },
-        {
-          "text": "pas",
-          "start": 1.916,
-          "duration": 0.162
-        },
-        {
-          "text": "ses",
-          "start": 2.101,
-          "duration": 0.128
-        },
-        {
-          "text": "crocs.",
-          "start": 2.264,
-          "duration": 0.406
-        },
-        {
-          "text": "C'est",
-          "start": 3.181,
-          "duration": 0.209
-        },
-        {
-          "text": "sa",
-          "start": 3.413,
-          "duration": 0.105
-        },
-        {
-          "text": "voix.",
-          "start": 3.564,
-          "duration": 0.662
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "narration": "La nuit, son cri est si proche d'un hurlement humain qu'il est régulièrement pris pour un appel de détresse.",
-      "mediaPath": "scene_5.mp4",
-      "effects": {
-        "zoom": "in",
-        "transition": "wipe"
-      },
-      "overlayText": {
-        "text": "🔊 SIGNAL ANALYSIS",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 5.564081632653061,
-      "words": [
-        {
-          "text": "La",
-          "start": 0,
-          "duration": 0.163
-        },
-        {
-          "text": "nuit,",
-          "start": 0.221,
-          "duration": 0.267
-        },
-        {
-          "text": "son",
-          "start": 0.546,
-          "duration": 0.174
-        },
-        {
-          "text": "cri",
-          "start": 0.755,
-          "duration": 0.174
-        },
-        {
-          "text": "est",
-          "start": 0.987,
-          "duration": 0.081
-        },
-        {
-          "text": "si",
-          "start": 1.103,
-          "duration": 0.139
-        },
-        {
-          "text": "proche",
-          "start": 1.3,
-          "duration": 0.314
-        },
-        {
-          "text": "d'un",
-          "start": 1.637,
-          "duration": 0.139
-        },
-        {
-          "text": "hurlement",
-          "start": 1.811,
-          "duration": 0.43
-        },
-        {
-          "text": "humain",
-          "start": 2.264,
-          "duration": 0.313
-        },
-        {
-          "text": "qu'il",
-          "start": 2.821,
-          "duration": 0.186
-        },
-        {
-          "text": "est",
-          "start": 3.053,
-          "duration": 0.07
-        },
-        {
-          "text": "régulièrement",
-          "start": 3.17,
-          "duration": 0.592
-        },
-        {
-          "text": "pris",
-          "start": 3.796,
-          "duration": 0.221
-        },
-        {
-          "text": "pour",
-          "start": 4.052,
-          "duration": 0.128
-        },
-        {
-          "text": "un",
-          "start": 4.214,
-          "duration": 0.047
-        },
-        {
-          "text": "appel",
-          "start": 4.319,
-          "duration": 0.221
-        },
-        {
-          "text": "de",
-          "start": 4.609,
-          "duration": 0.07
-        },
-        {
-          "text": "détresse.",
-          "start": 4.725,
-          "duration": 0.801
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "narration": "Analyse terminée.",
-      "mediaPath": "scene_6.jpg",
-      "effects": {
-        "zoom": "none",
-        "transition": "wipe"
-      },
-      "overlayText": {
-        "text": "📋 SYSTEM REPORT",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 1.3322448979591837,
-      "words": [
-        {
-          "text": "Analyse",
-          "start": 0,
-          "duration": 0.464
-        },
-        {
-          "text": "terminée.",
-          "start": 0.499,
-          "duration": 0.801
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "narration": "Boussole invisible. Bonds calculés au nord-est. Signal vocal qui trompe l'oreille humaine. Ce n'est pas un simple charognard. C'est un système de chasse ultra-perfectionné, terré en pleine ville. Abonne-toi pour découvrir d'autres machines que la nature a créées.",
-      "mediaPath": "scene_7.mp4",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      },
-      "overlayText": {
-        "text": "✅ MISSION COMPLETE",
-        "startInSeconds": 0.3
-      },
-      "durationInSeconds": 16.744489795918366,
-      "words": [
-        {
-          "text": "Boussole",
-          "start": 0,
-          "duration": 0.499
-        },
-        {
-          "text": "invisible.",
-          "start": 0.546,
-          "duration": 0.766
-        },
-        {
-          "text": "Bonds",
-          "start": 1.591,
-          "duration": 0.243
-        },
-        {
-          "text": "calculés",
-          "start": 1.858,
-          "duration": 0.476
-        },
-        {
-          "text": "au",
-          "start": 2.357,
-          "duration": 0.058
-        },
-        {
-          "text": "nord-est.",
-          "start": 2.461,
-          "duration": 0.674
-        },
-        {
-          "text": "Signal",
-          "start": 3.344,
-          "duration": 0.418
-        },
-        {
-          "text": "vocal",
-          "start": 3.82,
-          "duration": 0.394
-        },
-        {
-          "text": "qui",
-          "start": 4.284,
-          "duration": 0.105
-        },
-        {
-          "text": "trompe",
-          "start": 4.447,
-          "duration": 0.301
-        },
-        {
-          "text": "l'oreille",
-          "start": 4.783,
-          "duration": 0.302
-        },
-        {
-          "text": "humaine.",
-          "start": 5.12,
-          "duration": 0.604
-        },
-        {
-          "text": "Ce",
-          "start": 6.235,
-          "duration": 0.15
-        },
-        {
-          "text": "n'est",
-          "start": 6.432,
-          "duration": 0.128
-        },
-        {
-          "text": "pas",
-          "start": 6.594,
-          "duration": 0.209
-        },
-        {
-          "text": "un",
-          "start": 6.861,
-          "duration": 0.059
-        },
-        {
-          "text": "simple",
-          "start": 7.001,
-          "duration": 0.325
-        },
-        {
-          "text": "charognard.",
-          "start": 7.372,
-          "duration": 0.801
-        },
-        {
-          "text": "C'est",
-          "start": 8.417,
-          "duration": 0.198
-        },
-        {
-          "text": "un",
-          "start": 8.673,
-          "duration": 0.058
-        },
-        {
-          "text": "système",
-          "start": 8.789,
-          "duration": 0.371
-        },
-        {
-          "text": "de",
-          "start": 9.195,
-          "duration": 0.081
-        },
-        {
-          "text": "chasse",
-          "start": 9.334,
-          "duration": 0.302
-        },
-        {
-          "text": "ultra-perfectionné,",
-          "start": 9.706,
-          "duration": 1.196
-        },
-        {
-          "text": "terré",
-          "start": 11.018,
-          "duration": 0.29
-        },
-        {
-          "text": "en",
-          "start": 11.366,
-          "duration": 0.058
-        },
-        {
-          "text": "pleine",
-          "start": 11.471,
-          "duration": 0.232
-        },
-        {
-          "text": "ville.",
-          "start": 11.738,
-          "duration": 0.464
-        },
-        {
-          "text": "Abonne-toi",
-          "start": 12.899,
-          "duration": 0.592
-        },
-        {
-          "text": "pour",
-          "start": 13.537,
-          "duration": 0.14
-        },
-        {
-          "text": "découvrir",
-          "start": 13.735,
-          "duration": 0.487
-        },
-        {
-          "text": "d'autres",
-          "start": 14.28,
-          "duration": 0.325
-        },
-        {
-          "text": "machines",
-          "start": 14.629,
-          "duration": 0.534
-        },
-        {
-          "text": "que",
-          "start": 15.244,
+          "text": "sait",
+          "start": 1.219,
           "duration": 0.116
         },
         {
-          "text": "la",
-          "start": 15.395,
-          "duration": 0.058
+          "text": "mélanger",
+          "start": 1.37,
+          "duration": 0.464
         },
         {
-          "text": "nature",
-          "start": 15.511,
+          "text": "les",
+          "start": 1.869,
+          "duration": 0.105
+        },
+        {
+          "text": "cartes",
+          "start": 2.009,
           "duration": 0.371
         },
         {
-          "text": "a",
-          "start": 15.906,
-          "duration": 0.023
+          "text": "mieux",
+          "start": 2.415,
+          "duration": 0.209
         },
         {
-          "text": "créées.",
-          "start": 15.975,
-          "duration": 0.743
+          "text": "que",
+          "start": 2.659,
+          "duration": 0.081
+        },
+        {
+          "text": "personne.",
+          "start": 2.775,
+          "duration": 0.847
         }
-      ]
+      ],
+      "durationInSeconds": 3.657142857142857
     }
   ]
 }
