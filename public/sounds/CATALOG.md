@@ -1,7 +1,7 @@
 # 🎧 Catalogue des sons — GÉNÉRÉ AUTOMATIQUEMENT
 
 > Ne pas éditer à la main. Régénère avec `npm run sounds` après chaque ajout/retrait de son.
-> 48 son(s) référencé(s).
+> 51 son(s) référencé(s).
 
 Pour utiliser un son : copie sa colonne `src` dans un objet du tableau `sounds` d'une scène du storyboard.
 
@@ -19,6 +19,7 @@ Pour utiliser un son : copie sa colonne `src` dans un objet du tableau `sounds` 
 | `shoveling-snow` | ambient | hivernal, physique, répétitif | true | 31s | D Maj | - | - | fond sonore d'activité en extérieur, ambiance de solitude hivernale | `sounds/ambient/shoveling-snow.mp3` |
 | `storm-drain` | ambient | sombre, industriel, lourd | true | 39s | D Min | - | - | fond sonore pour des scènes mystérieuses, industrielles ou oppressantes | `sounds/ambient/storm-drain.mp3` |
 | `water-drains-in-pipe` | ambient | aquatique, industriel, mystérieux | true | 19s | F Maj | - | `[3.0, 13.24, 15.81]` | ambiance sonore de plomberie, de souterrain, de flux ou d'évacuation | `sounds/ambient/water-drains-in-pipe.mp3` |
+| `wind-on-video-camera-mic` | ambient | venteux, sec, désertique, naturel | true | 16.2s | - | - | - | scène de sécheresse, d'estivation, ambiance désertique, période d'assèchement, sensation d'isolement | `sounds/ambient/wind-on-video-camera-mic.mp3` |
 | `windshield-wipers-no-water` | ambient | répétitif, agaçant, tendu | true | 76s | F Maj | - | `[11.7, 13.79, 24.24, 26.33, 32.79]` | ambiance de trajet en voiture sous une fine pluie, ou tension répétitive | `sounds/ambient/windshield-wipers-no-water.mp3` |
 | `beneath-the-heavy-wool` | music | mélancolique, nostalgique, chaleureux | true | 31s | D Min | 89 | `[2.81, 9.15, 20.15, 24.13, 30.46]` | nappe de fond chaleureuse pour introduire un sujet intime ou réconfortant | `sounds/music/beneath-the-heavy-wool.mp3` |
 | `catch22music-mystical-vaporwave` | music | planant, nostalgique, mystique | true | 187s | D Min | 78 | `[12.35, 66.83, 73.89, 123.11, 172.34]` | musique de fond pour des essais documentaires, narration philosophique ou technologique | `sounds/music/catch22music-mystical-vaporwave.mp3` |
@@ -35,8 +36,10 @@ Pour utiliser un son : copie sa colonne `src` dans un objet du tableau `sounds` 
 | `karate-hit` | sfx | dynamique, sec, percutant, martial | false | 8s | - | - | `[2.48]` | bruitage d'impact de coup de poing ou coup de pied de karaté, scène de combat | `sounds/sfx/karate-hit.mp3` |
 | `knife-sharpen` | sfx | tendu, dangereux, tranchant | false | 3s | - | - | `[0.14, 0.86, 1.51, 2.09]` | effet de tension, préparation d'une action, transition tranchante | `sounds/sfx/knife-sharpen.mp3` |
 | `lighter-flick` | sfx | sec, métallique, chaud, déclencheur | false | 11s | - | - | - | bruitage d'un briquet que l'on allume (clic métallique et frotte de molette), idéal pour allumer une cigarette, bougie ou idée | `sounds/sfx/lighter-flick.mp3` |
+| `male-chuckling` | sfx | moqueur, léger, amusé, humain | false | 5.3s | - | - | `[0.5, 2.1, 3.8]` | réaction humoristique, moment absurde, chute drôle, illustrer l'incrédulité face à un fait étonnant | `sounds/sfx/male-chuckling.mp3` |
 | `male-zombie-roar` | sfx | terrifiant, agressif, sombre | false | 4s | - | - | `[0.51, 1.83, 3.11]` | saut de surprise (jumpscare), élément d'horreur ou tension dramatique soudaine | `sounds/sfx/male-zombie-roar.mp3` |
 | `peeling-object` | sfx | organique, frottant, sec | false | 7s | - | - | `[3.23, 5.74]` | bruitage d'épluchage de fruit ou d'arrachage d'un autocollant / scotch | `sounds/sfx/peeling-object.mp3` |
+| `pop` | sfx | sec, dynamique, surprenant | false | 2.8s | - | - | `[0.1]` | apparition d'un chiffre ou d'un mot-clé à l'écran, transition rapide, accentuation d'une information choc | `sounds/sfx/pop.mp3` |
 | `punch-swoosh-series` | sfx | dynamique, rapide, vif, action | false | 8s | - | - | - | série de mouvements rapides de poings ou coups dans l'air, idéal pour des transitions d'action ou des scènes de combat | `sounds/sfx/punch-swoosh-series.mp3` |
 | `put-cap-on-pen` | sfx | sec, précis, final | false | 2s | - | - | - | action d'écrire terminée, prise de décision ou transition rapide | `sounds/sfx/put-cap-on-pen.mp3` |
 | `run-in-dirt` | sfx | rapide, pressé, physique | false | 4s | - | - | - | bruit de pas d'une personne courant précipitamment sur un sol en terre ou poussiéreux | `sounds/sfx/run-in-dirt.mp3` |

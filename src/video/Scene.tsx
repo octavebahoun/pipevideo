@@ -12,6 +12,7 @@ import {
 } from 'remotion';
 import { Scene, SceneSound } from '../types';
 import { Subtitles } from './Subtitles';
+import { KineticTitle } from './KineticTitle';
 
 interface SceneComponentProps {
   scene: Scene;
@@ -127,6 +128,22 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   // Texte incrusté (CTA) éventuel.
   const overlayText = scene.overlayText;
   const overlayStart = (overlayText?.startInSeconds ?? 0) * fps;
+
+  // Flash lumineux plein écran (ex: sonoluminescence) : montée quasi instantanée
+  // puis décroissance, façon flash photo.
+  const flash = scene.effects?.flash;
+  let flashOpacity = 0;
+  if (flash) {
+    const flashStart = (flash.startInSeconds ?? 0) * fps;
+    const flashDuration = Math.max(1, Math.round((flash.durationInSeconds ?? 0.35) * fps));
+    const riseFrames = Math.max(1, Math.round(flashDuration * 0.25));
+    flashOpacity = interpolate(
+      frame,
+      [flashStart, flashStart + riseFrames, flashStart + flashDuration],
+      [0, 1, 0],
+      { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    );
+  }
 
   // Carte texte (ex: fin) : écran noir + texte centré, SANS média / voix / son.
   if (scene.card) {
@@ -261,43 +278,72 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
         />
       )}
 
-      {/* Texte incrusté (CTA) : apparaît en fondu + léger montée à startInSeconds */}
-      {overlayText && (
+      {/* Texte incrusté : KineticTitle (mot par mot) ou overlayText simple (fondu) */}
+      {scene.kineticTitle ? (
+        <KineticTitle
+          text={scene.kineticTitle.text}
+          startInSeconds={scene.kineticTitle.startInSeconds}
+          animationDuration={scene.kineticTitle.animationDuration}
+          staggerDelay={scene.kineticTitle.staggerDelay}
+          highlightColor={scene.kineticTitle.highlightColor}
+          fontSize={scene.kineticTitle.fontSize}
+          position={scene.kineticTitle.position}
+          variant={scene.kineticTitle.variant}
+          icon={scene.kineticTitle.icon}
+          iconLabel={scene.kineticTitle.iconLabel}
+          glowColor={scene.kineticTitle.glowColor}
+        />
+      ) : (
+        overlayText && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '14%',
+              left: '8%',
+              right: '8%',
+              display: 'flex',
+              justifyContent: 'center',
+              pointerEvents: 'none',
+            }}
+          >
+            <div
+              style={{
+                opacity: interpolate(frame, [overlayStart, overlayStart + 18], [0, 1], {
+                  extrapolateLeft: 'clamp',
+                  extrapolateRight: 'clamp',
+                }),
+                transform: `translateY(${interpolate(
+                  frame,
+                  [overlayStart, overlayStart + 18],
+                  [16, 0],
+                  { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+                )}px)`,
+                color: '#fff',
+                fontFamily: '"Inter", "Helvetica", sans-serif',
+                fontSize: '2.4rem',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+                textAlign: 'center',
+                textShadow: '0 2px 12px rgba(0, 0, 0, 0.9)',
+              }}
+            >
+              {overlayText.text}
+            </div>
+          </div>
+        )
+      )}
+
+      {/* Flash lumineux plein écran (ex: sonoluminescence) */}
+      {flash && (
         <div
           style={{
             position: 'absolute',
-            bottom: '14%',
-            left: '8%',
-            right: '8%',
-            display: 'flex',
-            justifyContent: 'center',
+            inset: 0,
+            backgroundColor: flash.color ?? '#ffffff',
+            opacity: flashOpacity,
             pointerEvents: 'none',
           }}
-        >
-          <div
-            style={{
-              opacity: interpolate(frame, [overlayStart, overlayStart + 18], [0, 1], {
-                extrapolateLeft: 'clamp',
-                extrapolateRight: 'clamp',
-              }),
-              transform: `translateY(${interpolate(
-                frame,
-                [overlayStart, overlayStart + 18],
-                [16, 0],
-                { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
-              )}px)`,
-              color: '#fff',
-              fontFamily: '"Inter", "Helvetica", sans-serif',
-              fontSize: '2.4rem',
-              fontWeight: 600,
-              letterSpacing: '0.5px',
-              textAlign: 'center',
-              textShadow: '0 2px 12px rgba(0, 0, 0, 0.9)',
-            }}
-          >
-            {overlayText.text}
-          </div>
-        </div>
+        />
       )}
     </div>
   );
