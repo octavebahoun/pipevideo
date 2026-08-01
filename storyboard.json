@@ -14,6 +14,7 @@
         "transition": "zoomPunch",
         "cameraMotion": "dolly"
       },
+      "durationInSeconds": 5.276734693877551,
       "words": [
         {
           "text": "Un",
@@ -100,8 +101,7 @@
           "start": 4.4,
           "duration": 0.848
         }
-      ],
-      "durationInSeconds": 5.276734693877551
+      ]
     },
     {
       "id": 2,
@@ -112,6 +112,7 @@
         "transition": "whipPan",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 6.817959183673469,
       "words": [
         {
           "text": "L'ornithorynque",
@@ -199,7 +200,7 @@
           "duration": 0.778
         }
       ],
-      "durationInSeconds": 6.817959183673469
+      "mediaVolume": 0
     },
     {
       "id": 3,
@@ -210,6 +211,7 @@
         "transition": "glitchCut",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 7.9412244897959186,
       "words": [
         {
           "text": "En",
@@ -312,7 +314,8 @@
           "duration": 0.72
         }
       ],
-      "durationInSeconds": 7.9412244897959186
+      "playbackRate": 0.895,
+      "mediaVolume": 0
     },
     {
       "id": 4,
@@ -323,6 +326,7 @@
         "transition": "whipPan",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 4.493061224489796,
       "words": [
         {
           "text": "Ils",
@@ -394,8 +398,7 @@
           "start": 3.46,
           "duration": 0.998
         }
-      ],
-      "durationInSeconds": 4.493061224489796
+      ]
     },
     {
       "id": 5,
@@ -406,6 +409,7 @@
         "transition": "fade",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 5.093877551020408,
       "words": [
         {
           "text": "Mais",
@@ -472,8 +476,7 @@
           "start": 4.574,
           "duration": 0.488
         }
-      ],
-      "durationInSeconds": 5.093877551020408
+      ]
     },
     {
       "id": 6,
@@ -484,6 +487,7 @@
         "transition": "fade",
         "cameraMotion": "pan"
       },
+      "durationInSeconds": 5.564081632653061,
       "words": [
         {
           "text": "Avec",
@@ -565,8 +569,7 @@
           "start": 5.132,
           "duration": 0.394
         }
-      ],
-      "durationInSeconds": 5.564081632653061
+      ]
     },
     {
       "id": 7,
@@ -577,6 +580,7 @@
         "transition": "zoomPunch",
         "cameraMotion": "orbit"
       },
+      "durationInSeconds": 4.728163265306122,
       "words": [
         {
           "text": "Et",
@@ -654,7 +658,7 @@
           "duration": 0.952
         }
       ],
-      "durationInSeconds": 4.728163265306122
+      "mediaVolume": 0
     },
     {
       "id": 8,
@@ -665,6 +669,7 @@
         "transition": "black",
         "cameraMotion": "orbit"
       },
+      "durationInSeconds": 5.98204081632653,
       "words": [
         {
           "text": "Une",
@@ -741,8 +746,7 @@
           "start": 5.132,
           "duration": 0.812
         }
-      ],
-      "durationInSeconds": 5.98204081632653
+      ]
     },
     {
       "id": 9,
@@ -753,6 +757,7 @@
         "transition": "whipPan",
         "cameraMotion": "pan"
       },
+      "durationInSeconds": 4.911020408163266,
       "words": [
         {
           "text": "Son",
@@ -829,8 +834,7 @@
           "start": 3.901,
           "duration": 0.975
         }
-      ],
-      "durationInSeconds": 4.911020408163266
+      ]
     },
     {
       "id": 10,
@@ -841,6 +845,7 @@
         "transition": "particleDissolve",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 5.799183673469388,
       "words": [
         {
           "text": "Sous",
@@ -928,7 +933,7 @@
           "duration": 0.732
         }
       ],
-      "durationInSeconds": 5.799183673469388
+      "playbackRate": 0.888
     },
     {
       "id": 11,
@@ -939,6 +944,7 @@
         "transition": "slide",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 3.657142857142857,
       "words": [
         {
           "text": "Son",
@@ -991,7 +997,7 @@
           "duration": 0.534
         }
       ],
-      "durationInSeconds": 3.657142857142857
+      "playbackRate": 0.864
     },
     {
       "id": 12,
@@ -1002,6 +1008,7 @@
         "transition": "fade",
         "cameraMotion": "static"
       },
+      "durationInSeconds": 5.69469387755102,
       "words": [
         {
           "text": "Il",
@@ -1093,8 +1100,7 @@
           "start": 4.876,
           "duration": 0.79
         }
-      ],
-      "durationInSeconds": 5.69469387755102
+      ]
     },
     {
       "id": 13,
@@ -1110,6 +1116,7 @@
           "color": "#4a90d9"
         }
       },
+      "durationInSeconds": 5.328979591836735,
       "words": [
         {
           "text": "Sous",
@@ -1176,8 +1183,7 @@
           "start": 4.574,
           "duration": 0.72
         }
-      ],
-      "durationInSeconds": 5.328979591836735
+      ]
     },
     {
       "id": 14,
@@ -1188,6 +1194,7 @@
         "transition": "zoomPunch",
         "cameraMotion": "dolly"
       },
+      "durationInSeconds": 5.0416326530612245,
       "words": [
         {
           "text": "Plusieurs",
@@ -1254,8 +1261,7 @@
           "start": 4.122,
           "duration": 0.894
         }
-      ],
-      "durationInSeconds": 5.0416326530612245
+      ]
     },
     {
       "id": 15,
@@ -1266,6 +1272,7 @@
         "transition": "particleDissolve",
         "cameraMotion": "dolly"
       },
+      "durationInSeconds": 3.657142857142857,
       "words": [
         {
           "text": "La",
@@ -1328,7 +1335,7 @@
           "duration": 0.847
         }
       ],
-      "durationInSeconds": 3.657142857142857
+      "playbackRate": 0.864
     }
   ]
 }

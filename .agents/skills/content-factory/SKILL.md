@@ -45,8 +45,9 @@ Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voi
 
 **Variante « HUD futuriste »** : quand l'utilisateur demande explicitement ce style (vocabulaire technologique/militaire plaqué sur des faits naturels réels, ex: « radar », « scanner », « unité de combat »), suivre le template dédié dans `resolution.md` (§ 5) pour le script ET pour les prompts médias (surcouche HUD holographique cyan/néon). Ne pas l'appliquer par défaut — seulement sur demande.
 
-- Effets par scène : `zoom: in|out|none`, `transition: fade|slide|none|black|wipe`.
-  - `black` = fondu **au noir** (fermeture cinéma), `wipe` = **révélation**. S'en servir pour rythmer et masquer un point de boucle.
+- Effets par scène : `zoom: in|out|none`, `transition: fade|slide|none|black|wipe|zoomPunch|whipPan|glitchCut|particleDissolve` (voir `docs/TRANSITIONS.md`).
+  - `black` = fondu **au noir** (fermeture cinéma), `wipe` = **révélation**, `glitchCut` = coupe glitchée ultra-courte, `particleDissolve` = dissolution en particules. S'en servir pour rythmer et masquer un point de boucle.
+- **Audio natif d'un clip vidéo** : `mediaVolume` (0→1) par scène, **défaut 0.6 (audible)**. Si le clip généré contient un son parasite (ambiance, souffle IA), le couper explicitement avec `"mediaVolume": 0` sur la scène. Pour muter tous les SFX/bruitages d'un coup : `"sfxVolume": 0` à la racine du storyboard (voir `resolution.md` §4).
 - **Clip vidéo IA ~10 s** : si la scène (voix) est plus longue, la pipeline **étire le clip en ralenti** (`playbackRate`, calculé après les durées) ou le boucle → **préférer le ralenti** (mouvement continu, effet ciné). Une `card` (écran noir + texte, sans audio) sert de carte de fin.
 
 ### 2. Voix off — deux modes
@@ -61,11 +62,22 @@ npm run tts
   - Par scène : renseigner `"audioPath": "scene_3.mp3"` (ou `"voix/scene_3.mp3"`) → cette scène utilise ce fichier, les autres restent en ElevenLabs.
   - ⚠️ Une voix fournie **n'a pas de timings karaoké** → les sous-titres retombent sur une répartition régulière. Pour un essai, préférer alors `subtitleStyle: "cinematic"` ou couper les sous-titres.
   - **Toujours lancer `npm run tts`** même en mode fourni : c'est lui qui écrit `durationInSeconds` (indispensable au rendu).
+- **Choix du moteur** : centralisé dans `.env` (`TTS_PROVIDER=elevenlabs` ou `edge`), pas dans le code ni le storyboard. Voir `docs/VOICES.md` et `resolution.md` §2.
+
+### 2bis. ⏱️ Pause d'1 seconde après chaque narration (règle système)
+`getSceneDurationInFrames` (`src/types.ts`) ajoute **30 frames (1s) de silence après la fin de la voix off** de chaque scène (sauf `card` de fin, sans voix). C'est ce qui empêche les voix off de se chevaucher pendant les transitions (`TransitionSeries`) : la transition d'entrée de la scène suivante tombe entièrement dans ce silence.
+
+- **Règle d'or** : `POST_NARRATION_PAUSE_FRAMES` doit TOUJOURS rester **strictement supérieur** à la transition la plus longue (`transitionDurationFrames`, 26 frames pour `"black"`). Sinon les voix se recroisent.
+- **Ne JAMAIS ajouter un délai supplémentaire avant la voix off** (ex: décaler `<Audio>` dans un `<Sequence>`) en plus de cette pause — ça cumule deux mécanismes et rallonge le silence mort au-delà d'1s (déjà tenté et retiré, commits `2d814f8` → `57bd4f3`).
+- La durée de scène reste toujours pilotée par **l'audio réel mesuré** (`durationInSeconds`, écrit par `npm run tts`) : si un `.mp3` est remplacé/régénéré manuellement, il FAUT relancer `npm run tts` pour resynchroniser durées et timings karaoké. Détails : `resolution.md` §1.
 
 ### 3. Sous-titres — savoir quand les désactiver
 Réglages globaux du storyboard, surchargeables par scène :
 - `"subtitles": true|false` — interrupteur global (défaut `true`).
-- `"subtitleStyle": "karaoke" | "cinematic"` — défaut `"karaoke"`.
+- `"subtitleStyle": "karaoke" | "fondant" | "cinematic"` — défaut `"karaoke"`.
+  - `karaoke` : mots MAJUSCULES, pop dur blanc/or, contours épais — shorts punchy (défaut, rester dessus sauf demande contraire).
+  - `fondant` : karaoké doux, mots qui s'illuminent en fondu progressif — sujet calme/attachant.
+  - `cinematic` : phrase sobre centrée en bas sans surlignage mot-à-mot — essai/documentaire 16:9.
 - Par scène : `"showSubtitles": true|false` — surcharge le global pour cette scène.
 
 Recommandations :
