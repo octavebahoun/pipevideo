@@ -11,7 +11,7 @@
       "mediaPath": "scene_1.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade",
+        "transition": "zoomPunch",
         "cameraMotion": "dolly"
       },
       "words": [
@@ -108,8 +108,8 @@
       "narration": "L'ornithorynque ressemble à un animal fabriqué à partir de plusieurs espèces. Et pourtant, il est bien réel.",
       "mediaPath": "scene_2.mp4",
       "effects": {
-        "zoom": "in",
-        "transition": "fade",
+        "zoom": "none",
+        "transition": "whipPan",
         "cameraMotion": "static"
       },
       "words": [
@@ -206,8 +206,8 @@
       "narration": "En 1799, les scientifiques européens pensent à une blague. Quelqu'un aurait cousu un bec de canard sur un animal poilu.",
       "mediaPath": "scene_3.mp4",
       "effects": {
-        "zoom": "none",
-        "transition": "slide",
+        "zoom": "in",
+        "transition": "glitchCut",
         "cameraMotion": "static"
       },
       "words": [
@@ -320,7 +320,7 @@
       "mediaPath": "scene_4.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade",
+        "transition": "whipPan",
         "cameraMotion": "static"
       },
       "words": [
@@ -574,7 +574,7 @@
       "mediaPath": "scene_7.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade",
+        "transition": "zoomPunch",
         "cameraMotion": "orbit"
       },
       "words": [
@@ -661,8 +661,8 @@
       "narration": "Une arme capable d'infliger des douleurs atroces. L'un des rares mammifères venimeux de la planète.",
       "mediaPath": "scene_8.mp4",
       "effects": {
-        "zoom": "in",
-        "transition": "fade",
+        "zoom": "none",
+        "transition": "black",
         "cameraMotion": "orbit"
       },
       "words": [
@@ -750,7 +750,7 @@
       "mediaPath": "scene_9.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade",
+        "transition": "whipPan",
         "cameraMotion": "pan"
       },
       "words": [
@@ -838,7 +838,7 @@
       "mediaPath": "scene_10.mp4",
       "effects": {
         "zoom": "out",
-        "transition": "fade",
+        "transition": "particleDissolve",
         "cameraMotion": "static"
       },
       "words": [
@@ -1102,7 +1102,8 @@
       "mediaPath": "scene_13.mp4",
       "effects": {
         "zoom": "out",
-        "transition": "fade",
+        "transition": "black",
+        "cameraMotion": "static",
         "flash": {
           "startInSeconds": 2,
           "durationInSeconds": 0.35,
@@ -1184,7 +1185,7 @@
       "mediaPath": "scene_14.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade",
+        "transition": "zoomPunch",
         "cameraMotion": "dolly"
       },
       "words": [
@@ -1262,7 +1263,7 @@
       "mediaPath": "scene_15.mp4",
       "effects": {
         "zoom": "in",
-        "transition": "fade",
+        "transition": "particleDissolve",
         "cameraMotion": "dolly"
       },
       "words": [
