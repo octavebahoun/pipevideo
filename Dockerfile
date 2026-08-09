@@ -15,7 +15,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 # Générer le client Prisma
 RUN npx prisma generate
-RUN npm run build
+RUN npm run next-build
 
 # 3. Étape runner de production
 FROM base AS runner
