@@ -37,11 +37,71 @@ async function saveStoryboardState(storyboard: any): Promise<void> {
         where: { id: videoId },
         data: { storyboard: storyboard as any },
       });
-      console.log(`[Novita] Storyboard mis à jour en base de données pour la vidéo ${videoId}`);
+      console.log(`[Media Gen] Storyboard mis à jour en base de données pour la vidéo ${videoId}`);
     } catch (err: any) {
-      console.error(`[Novita] Erreur lors de la mise à jour du storyboard en base :`, err.message);
+      console.error(`[Media Gen] Erreur lors de la mise à jour du storyboard en base :`, err.message);
     }
   }
+}
+
+async function generateImageWithCloudflare(
+  sceneId: number,
+  prompt: string,
+  ratio: '9:16' | '16:9',
+  accountId: string,
+  apiToken: string,
+  destPath: string
+): Promise<void> {
+  const model = '@cf/black-forest-labs/flux-1-schnell';
+  const url = `https://api.cloudflare.com/client/v4/accounts/${accountId.trim()}/ai/run/${model}`;
+
+  // Dimensions based on ratio
+  let width = 768;
+  let height = 1344;
+  if (ratio === '16:9') {
+    width = 1344;
+    height = 768;
+  }
+
+  const body = {
+    prompt,
+    width,
+    height,
+    num_steps: 4
+  };
+
+  console.log(`[Cloudflare AI] Génération d'image pour Scène ${sceneId} via ${model} (${width}x${height})...`);
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiToken}`
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Cloudflare Workers AI image generation failed: ${response.statusText} - ${errorText}`);
+  }
+
+  const contentType = response.headers.get('content-type') || '';
+  if (contentType.includes('application/json')) {
+    const json = await response.json();
+    const base64Image = json.result?.image || json.image;
+    if (!base64Image) {
+      throw new Error(`Failed to find image in Cloudflare JSON response: ${JSON.stringify(json)}`);
+    }
+    const buffer = Buffer.from(base64Image, 'base64');
+    await fs.writeFile(destPath, buffer);
+  } else {
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    await fs.writeFile(destPath, buffer);
+  }
+
+  console.log(`[Cloudflare AI] Scène ${sceneId} : Image générée et enregistrée dans ${destPath}`);
 }
 
 async function submitVideoTaskForScene(
@@ -155,83 +215,176 @@ async function pollVideoTask(
 
 async function main() {
   const apiKey = process.env.NOVITA_API_KEY;
-  if (!apiKey) {
-    console.log('⚠️ NOVITA_API_KEY n\'est pas configurée dans .env. Génération vidéo passée.');
+  const cfToken = process.env.CLOUDFLARE_API_TOKEN;
+  const cfAccount = process.env.CLOUDFLARE_ACCOUNT_ID || process.env.R2_ACCOUNT_ID;
+
+  if (!apiKey && !cfToken) {
+    console.log('⚠️ Ni NOVITA_API_KEY ni CLOUDFLARE_API_TOKEN n\'est configurée dans .env. Génération de médias passée.');
     process.exit(0);
   }
 
   try {
     if (await checkCancelled()) {
-      console.log('[Novita] Annulation détectée. Arrêt.');
+      console.log('[Media Gen] Annulation détectée. Arrêt.');
       process.exit(0);
     }
-    await updateProgress(5, 'Génération des vidéos IA (Novita)...');
+    await updateProgress(5, 'Génération des médias IA (Novita / Cloudflare Workers AI)...');
 
     const storyboard = await loadStoryboard(STORYBOARD_PATH);
-    console.log(`[Novita] Début de la génération de médias pour le storyboard : "${storyboard.title}"`);
+    console.log(`[Media Gen] Début de la génération de médias pour le storyboard : "${storyboard.title}"`);
 
-    // Phase 1 : Soumission séquentielle pour éviter les conflits de base de données
+    // Phase 1 : Soumission séquentielle (et génération synchrone pour les images Cloudflare Workers AI)
     let storyboardChanged = false;
     for (const scene of storyboard.scenes) {
       if (scene.card) continue; // Pas de média pour les cartes texte
 
-      const mediaFile = `scene_${scene.id}.mp4`;
-      const mediaFullPath = path.join(MEDIA_DIR, mediaFile);
-
-      // Si la tâche n'a pas de novitaTaskId ni de mediaPath, cela signifie que la scène doit être régénérée.
-      // Dans ce cas, on supprime tout média local existant pour forcer la soumission à Novita.
-      if (!scene.novitaTaskId && !scene.mediaPath) {
-        if (await fileExists(mediaFullPath)) {
-          console.log(`[Novita] Nettoyage du fichier média local existant pour Scène ${scene.id} (pas de task ID ni de mediaPath)...`);
-          await fs.unlink(mediaFullPath).catch(() => {});
-        }
-      }
-
-      // Si le fichier média existe déjà localement, on le réutilise pour économiser le budget API
-      if (await fileExists(mediaFullPath)) {
-        continue;
-      }
-
-      // Si la tâche n'a pas encore de Task ID Novita, on la soumet
-      if (!scene.novitaTaskId) {
-        if (await checkCancelled()) {
-          console.log('[Novita] Annulation détectée.');
-          process.exit(0);
-        }
-        const prompt = scene.mediaPrompt || `Cinematic visual for ${scene.narration}`;
-        try {
-          const taskId = await submitVideoTaskForScene(
-            scene.id,
-            prompt,
-            storyboard.ratio || '9:16',
-            apiKey,
-            scene.durationInSeconds
-          );
-          scene.novitaTaskId = taskId;
-          storyboardChanged = true;
-          // Enregistrer immédiatement en base de données
-          await saveStoryboardState(storyboard);
-        } catch (err: any) {
-          console.error(`[Novita] Erreur lors de la soumission de la Scène ${scene.id} :`, err.message);
-          throw err;
-        }
+      const mediaPathVal = scene.mediaPath;
+      let mediaFiles: string[] = [];
+      if (!mediaPathVal) {
+        mediaFiles = [`scene_${scene.id}.mp4`];
+      } else if (Array.isArray(mediaPathVal)) {
+        mediaFiles = mediaPathVal;
       } else {
-        console.log(`[Novita] Scène ${scene.id} : Réutilisation de la tâche active (Task ID : ${scene.novitaTaskId})`);
+        mediaFiles = [mediaPathVal];
+      }
+
+      for (const file of mediaFiles) {
+        const isImage = file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.jpeg');
+        const mediaFullPath = path.join(MEDIA_DIR, file);
+
+        // Si le fichier média existe déjà localement, on le réutilise pour économiser le budget API
+        if (await fileExists(mediaFullPath)) {
+          console.log(`[Media Gen] Scène ${scene.id} : Média ${file} déjà existant localement. Réutilisation.`);
+          continue;
+        }
+
+        if (isImage) {
+          if (!cfToken || !cfAccount) {
+            console.warn(`[Media Gen] ⚠️ Scène ${scene.id} demande une image (${file}), mais CLOUDFLARE_API_TOKEN ou R2_ACCOUNT_ID n'est pas configuré. Ignorée.`);
+            continue;
+          }
+
+          if (await checkCancelled()) {
+            console.log('[Media Gen] Annulation détectée.');
+            process.exit(0);
+          }
+
+          const prompt = scene.mediaPrompt || `Cinematic visual for ${scene.narration}`;
+          try {
+            await generateImageWithCloudflare(
+              scene.id,
+              prompt,
+              storyboard.ratio || '9:16',
+              cfAccount,
+              cfToken,
+              mediaFullPath
+            );
+            
+            // Si on avait un novitaTaskId résiduel, on le nettoie
+            if (scene.novitaTaskId) delete scene.novitaTaskId;
+            
+            // Mettre à jour le mediaPath de la scène pour s'assurer que c'est renseigné
+            if (!scene.mediaPath) {
+              scene.mediaPath = file;
+            }
+            storyboardChanged = true;
+            await saveStoryboardState(storyboard);
+          } catch (err: any) {
+            console.error(`[Media Gen] Erreur lors de la génération de l'image de la Scène ${scene.id} (${file}) :`, err.message);
+            throw err;
+          }
+        } else {
+          // C'est une vidéo (.mp4)
+          if (!apiKey) {
+            console.warn(`[Media Gen] ⚠️ Scène ${scene.id} demande une vidéo (${file}), mais NOVITA_API_KEY n'est pas configuré. Ignorée.`);
+            continue;
+          }
+
+          // Si la tâche n'a pas de novitaTaskId ni de mediaPath, cela signifie que la scène doit être régénérée.
+          // Dans ce cas, on supprime tout média local existant pour forcer la soumission à Novita.
+          if (!scene.novitaTaskId && !scene.mediaPath) {
+            if (await fileExists(mediaFullPath)) {
+              console.log(`[Novita] Nettoyage du fichier média local existant pour Scène ${scene.id} (pas de task ID ni de mediaPath)...`);
+              await fs.unlink(mediaFullPath).catch(() => {});
+            }
+          }
+
+          // Si le fichier média existe déjà localement, on continue
+          if (await fileExists(mediaFullPath)) {
+            continue;
+          }
+
+          // Si la tâche n'a pas encore de Task ID Novita, on la soumet
+          if (!scene.novitaTaskId) {
+            if (await checkCancelled()) {
+              console.log('[Novita] Annulation détectée.');
+              process.exit(0);
+            }
+            const prompt = scene.mediaPrompt || `Cinematic visual for ${scene.narration}`;
+            try {
+              const taskId = await submitVideoTaskForScene(
+                scene.id,
+                prompt,
+                storyboard.ratio || '9:16',
+                apiKey,
+                scene.durationInSeconds
+              );
+              scene.novitaTaskId = taskId;
+              if (!scene.mediaPath) {
+                scene.mediaPath = file;
+              }
+              storyboardChanged = true;
+              await saveStoryboardState(storyboard);
+            } catch (err: any) {
+              console.error(`[Novita] Erreur lors de la soumission de la Scène ${scene.id} :`, err.message);
+              throw err;
+            }
+          } else {
+            console.log(`[Novita] Scène ${scene.id} : Réutilisation de la tâche active (Task ID : ${scene.novitaTaskId})`);
+          }
+        }
       }
     }
 
-    // Phase 2 : Polling et Téléchargement en parallèle
+    // Phase 2 : Polling et Téléchargement en parallèle (uniquement pour les vidéos)
     const generationTasks: Promise<void>[] = [];
-    const scenesToGenerate = storyboard.scenes.filter((s: any) => !s.card);
+    const scenesToGenerate = storyboard.scenes.filter((s: any) => {
+      if (s.card) return false;
+      const mediaPathVal = s.mediaPath;
+      let mediaFiles: string[] = [];
+      if (!mediaPathVal) {
+        mediaFiles = [`scene_${s.id}.mp4`];
+      } else if (Array.isArray(mediaPathVal)) {
+        mediaFiles = mediaPathVal;
+      } else {
+        mediaFiles = [mediaPathVal];
+      }
+      return mediaFiles.some((file: string) => !(file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.jpeg')));
+    });
     const totalScenes = scenesToGenerate.length;
 
-    // Compter le nombre de scènes déjà prêtes
+    // Compter le nombre de scènes vidéo déjà prêtes
     let completedScenes = 0;
-    for (const scene of storyboard.scenes) {
-      if (scene.card) continue;
-      const mediaFile = `scene_${scene.id}.mp4`;
-      const mediaFullPath = path.join(MEDIA_DIR, mediaFile);
-      if (await fileExists(mediaFullPath)) {
+    for (const scene of scenesToGenerate) {
+      const mediaPathVal = scene.mediaPath;
+      let mediaFiles: string[] = [];
+      if (!mediaPathVal) {
+        mediaFiles = [`scene_${scene.id}.mp4`];
+      } else if (Array.isArray(mediaPathVal)) {
+        mediaFiles = mediaPathVal;
+      } else {
+        mediaFiles = [mediaPathVal];
+      }
+      
+      let allReady = true;
+      for (const file of mediaFiles) {
+        const mediaFullPath = path.join(MEDIA_DIR, file);
+        if (!(await fileExists(mediaFullPath))) {
+          allReady = false;
+          break;
+        }
+      }
+      if (allReady) {
         completedScenes++;
       }
     }
@@ -239,8 +392,25 @@ async function main() {
     for (const scene of storyboard.scenes) {
       if (scene.card) continue;
 
-      const mediaFile = `scene_${scene.id}.mp4`;
-      const mediaFullPath = path.join(MEDIA_DIR, mediaFile);
+      const mediaPathVal = scene.mediaPath;
+      let mediaFiles: string[] = [];
+      if (!mediaPathVal) {
+        mediaFiles = [`scene_${scene.id}.mp4`];
+      } else if (Array.isArray(mediaPathVal)) {
+        mediaFiles = mediaPathVal;
+      } else {
+        mediaFiles = [mediaPathVal];
+      }
+
+      const hasVideo = mediaFiles.some((file: string) => !(file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.jpeg')));
+      if (!hasVideo) {
+        continue;
+      }
+
+      const videoFile = mediaFiles.find((file: string) => !(file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.jpeg')));
+      if (!videoFile) continue;
+
+      const mediaFullPath = path.join(MEDIA_DIR, videoFile);
 
       // Si le média existe déjà, pas besoin de poll
       if (await fileExists(mediaFullPath)) {
@@ -258,7 +428,7 @@ async function main() {
           }
 
           console.log(`[Novita] Récupération du résultat de la Scène ${scene.id} (Task ID : ${taskId})...`);
-          const videoUrl = await pollVideoTask(scene.id, taskId, apiKey);
+          const videoUrl = await pollVideoTask(scene.id, taskId, apiKey!);
 
           if (await checkCancelled()) {
             console.log('[Novita] Annulation détectée.');
@@ -267,10 +437,12 @@ async function main() {
 
           console.log(`[Novita] Téléchargement de la vidéo pour Scène ${scene.id}...`);
           await downloadFile(videoUrl, mediaFullPath);
-          console.log(`[Novita] Téléchargement réussi pour Scène ${scene.id} -> public/${mediaFile}`);
+          console.log(`[Novita] Téléchargement réussi pour Scène ${scene.id} -> public/${videoFile}`);
           
           // Mettre à jour le storyboard local
-          scene.mediaPath = mediaFile;
+          if (!scene.mediaPath) {
+            scene.mediaPath = videoFile;
+          }
           // Supprimer le Task ID temporaire une fois téléchargé
           delete scene.novitaTaskId;
 
@@ -290,8 +462,10 @@ async function main() {
     }
 
     if (generationTasks.length === 0) {
-      console.log('[Novita] Tous les médias sont déjà générés ou non requis.');
-      await updateProgress(40, 'Vidéos IA prêtes (déjà en cache)');
+      console.log('[Media Gen] Tous les médias (vidéos et images) sont déjà prêtes ou non requis.');
+      await updateProgress(40, 'Médias IA prêts (déjà en cache)');
+      // S'assurer de sauvegarder le storyboard une dernière fois par sécurité
+      await saveStoryboardState(storyboard);
       process.exit(0);
     }
 
@@ -300,10 +474,10 @@ async function main() {
 
     // Enregistrer le storyboard final mis à jour sans les ID de tâches temporaires
     await saveStoryboardState(storyboard);
-    console.log('[Novita] ✅ Tous les médias ont été générés et mis à jour.');
+    console.log('[Media Gen] ✅ Tous les médias ont été générés et mis à jour.');
 
   } catch (error: any) {
-    console.error('[Novita] ❌ Une erreur est survenue :', error.message);
+    console.error('[Media Gen] ❌ Une erreur est survenue :', error.message);
     process.exit(1);
   }
 }

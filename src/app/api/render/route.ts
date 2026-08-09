@@ -184,7 +184,6 @@ export async function POST(request: Request) {
           } catch (r2Err) {
             console.error('[Render] Failed to upload to Cloudflare R2:', r2Err);
           }
-
           // 3. Determine the final video URL (Priority: R2 -> AWS S3 -> Local path / base URL fallback)
           let finalVideoPath = `out/video-${id}.mp4`;
           let finalVideoUrl = `${baseUrl}/out/video-${id}.mp4`;
@@ -199,11 +198,18 @@ export async function POST(request: Request) {
             console.log(`[Render] Final URL configured to AWS S3: ${s3Url}`);
           } else {
             // No R2 or AWS S3 URL (rendered locally).
-            // Check if NEXT_PUBLIC_SITE_URL is defined to avoid localhost URL in n8n.
-            const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-            if (siteUrl) {
-              const cleanSiteUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
-              finalVideoUrl = `${cleanSiteUrl}/out/video-${id}.mp4`;
+            // Fallback to R2 public domain if configured to prevent sending localhost URL to n8n.
+            const r2PublicDomain = process.env.R2_PUBLIC_DOMAIN || process.env.CLOUDFLARE_R2_PUBLIC_URL;
+            if (r2PublicDomain) {
+              const cleanDomain = r2PublicDomain.endsWith('/') ? r2PublicDomain.slice(0, -1) : r2PublicDomain;
+              finalVideoUrl = `${cleanDomain}/video-${id}.mp4`;
+              console.log(`[Render] Fallback URL configured to R2 domain: ${finalVideoUrl}`);
+            } else {
+              const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+              if (siteUrl) {
+                const cleanSiteUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+                finalVideoUrl = `${cleanSiteUrl}/out/video-${id}.mp4`;
+              }
             }
           }
 
@@ -233,8 +239,13 @@ export async function POST(request: Request) {
                  description: meta.description || '',
                  tags: meta.tags || [],
                  youtubeMetadata: meta,
+                 metadata: {
+                   title: meta.title || video.title || '',
+                   description: meta.description || '',
+                   tags: meta.tags || [],
+                 }
                };
-              
+               
                const notifyRes = await fetch(publishUrl, {
                  method: 'POST',
                  headers: { 'Content-Type': 'application/json' },
