@@ -320,7 +320,7 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
 
                     {video.status === 'COMPLETED' && video.videoPath && (
                       <a 
-                        href={`/${video.videoPath}`} 
+                        href={video.videoPath.startsWith('http') ? video.videoPath : `/${video.videoPath}`} 
                         target="_blank"
                         rel="noreferrer"
                         className="flex items-center justify-center p-2 bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30 border border-emerald-800 rounded-xl transition-colors"

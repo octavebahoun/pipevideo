@@ -48,22 +48,29 @@ async function submitVideoTaskForScene(
   sceneId: number,
   prompt: string,
   ratio: '9:16' | '16:9',
-  apiKey: string
+  apiKey: string,
+  targetDuration?: number
 ): Promise<string> {
   const model = process.env.NOVITA_MODEL || 'seedance-v1.5-pro-t2v';
   const resolution = process.env.NOVITA_RESOLUTION || '480p';
   const url = `https://api.novita.ai/v3/async/${model}`;
 
+  // Calculate dynamic duration between 4 and 12 seconds
+  let duration = 5;
+  if (targetDuration) {
+    duration = Math.max(4, Math.min(12, Math.ceil(targetDuration)));
+  }
+
   const body = {
     prompt,
     fps: 24,
     ratio: ratio,
-    duration: 5,
+    duration: duration,
     resolution: resolution,
     watermark: false
   };
 
-  console.log(`[Novita] Soumission du prompt pour Scène ${sceneId} via le modèle "${model}" (${resolution}) : "${prompt}"...`);
+  console.log(`[Novita] Soumission du prompt pour Scène ${sceneId} via le modèle "${model}" (${resolution}), durée demandée: ${duration}s : "${prompt}"...`);
 
   const response = await fetch(url, {
     method: 'POST',
@@ -183,7 +190,8 @@ async function main() {
             scene.id,
             prompt,
             storyboard.ratio || '9:16',
-            apiKey
+            apiKey,
+            scene.durationInSeconds
           );
           scene.novitaTaskId = taskId;
           storyboardChanged = true;

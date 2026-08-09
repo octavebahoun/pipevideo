@@ -18,6 +18,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1106.0",
     "@prisma/client": "^6.3.0",
     "@remotion/bundler": "^4.0.491",
     "@remotion/cli": "^4.0.491",

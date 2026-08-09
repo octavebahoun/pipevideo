@@ -259,6 +259,11 @@ async function main() {
       if (progress.outputFile) {
         console.log(`\n☁️  Vidéo générée et sauvegardée sur AWS S3 (aucun risque de la perdre !) :`);
         console.log(`   👉 Lien S3 Cloud : ${progress.outputFile}\n`);
+        if (process.env.VIDEO_ID) {
+          const s3UrlPath = path.join(OUTPUT_DIR, `s3-url-${process.env.VIDEO_ID}.txt`);
+          await fs.mkdir(OUTPUT_DIR, { recursive: true });
+          await fs.writeFile(s3UrlPath, progress.outputFile, 'utf-8');
+        }
       }
       break;
     }

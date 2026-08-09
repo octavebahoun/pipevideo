@@ -4,6 +4,7 @@ import { exec } from 'child_process';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { activeRenders } from '@/lib/renderRegistry';
+import { uploadToR2 } from '@/lib/r2';
 
 export async function POST(request: Request) {
   try {
@@ -51,8 +52,8 @@ export async function POST(request: Request) {
 
     const isLambda = process.env.RENDER_ON_LAMBDA === 'true';
     const renderCmd = isLambda
-      ? 'npm run novita && npm run tts && npm run check-video && npm run render:lambda'
-      : 'npm run novita && npm run tts && npm run check-video && npm run render';
+      ? 'npm run tts && npm run novita && npm run check-video && npm run render:lambda'
+      : 'npm run tts && npm run novita && npm run check-video && npm run render';
 
     console.log(`[Render] Starting background process for video ${id} with command: ${renderCmd}...`);
 
@@ -91,48 +92,81 @@ export async function POST(request: Request) {
           }
 
           // Update database to COMPLETED
+          // 1. Retrieve the AWS S3 URL if it was generated on Lambda
+          let s3Url: string | null = null;
+          try {
+            const s3UrlPath = path.join(process.cwd(), 'out', `s3-url-${id}.txt`);
+            s3Url = await fs.readFile(s3UrlPath, 'utf-8');
+            s3Url = s3Url.trim();
+            await fs.unlink(s3UrlPath).catch(() => {});
+          } catch (e) {
+            // Not a Lambda render, or file not created
+          }
+
+          // 2. Upload to Cloudflare R2 if configured
+          let r2Url: string | null = null;
+          try {
+            r2Url = await uploadToR2(finalDestPath, `video-${id}.mp4`);
+          } catch (r2Err) {
+            console.error('[Render] Failed to upload to Cloudflare R2:', r2Err);
+          }
+
+          // 3. Determine the final video URL (Priority: R2 -> AWS S3 -> Local path / base URL fallback)
+          let finalVideoPath = `out/video-${id}.mp4`;
+          let finalVideoUrl = `${baseUrl}/out/video-${id}.mp4`;
+
+          if (r2Url) {
+            finalVideoPath = r2Url;
+            finalVideoUrl = r2Url;
+            console.log(`[Render] Final URL configured to Cloudflare R2: ${r2Url}`);
+          } else if (s3Url) {
+            finalVideoPath = s3Url;
+            finalVideoUrl = s3Url;
+            console.log(`[Render] Final URL configured to AWS S3: ${s3Url}`);
+          } else {
+            // No R2 or AWS S3 URL (rendered locally).
+            // Check if NEXT_PUBLIC_SITE_URL is defined to avoid localhost URL in n8n.
+            const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+            if (siteUrl) {
+              const cleanSiteUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+              finalVideoUrl = `${cleanSiteUrl}/out/video-${id}.mp4`;
+            }
+          }
+
           await prisma.video.update({
             where: { id },
             data: {
               status: 'COMPLETED',
               progress: 100,
               progressStep: 'Terminé',
-              videoPath: `out/video-${id}.mp4`, // accessible via Next.js public directory
+              videoPath: finalVideoPath,
               ...(updatedStoryboard ? { storyboard: updatedStoryboard } : {}),
             },
           });
-          console.log(`[Render] Video ${id} completed successfully! Path: public/out/video-${id}.mp4`);
+          console.log(`[Render] Video ${id} completed successfully! Path stored in DB: ${finalVideoPath}`);
 
           // 4. Notify n8n for publication if N8N_PUBLISH_URL is set
           const publishUrl = process.env.N8N_PUBLISH_URL;
           if (publishUrl) {
             console.log(`[Render] Notifying n8n at ${publishUrl}...`);
             try {
-               const fs = require('fs');
-               const path = require('path');
-               const videoFilePath = path.join(process.cwd(), 'public', 'out', `video-${id}.mp4`);
-               const fileExists = fs.existsSync(videoFilePath);
-               const videoUrl = fileExists 
-                 ? `${baseUrl}/out/video-${id}.mp4`
-                 : `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`;
-
                const meta = updatedStoryboard?.youtubeMetadata || (video.storyboard as any)?.youtubeMetadata || {};
                const payload = {
                  videoId: id,
                  status: 'COMPLETED',
-                 videoUrl,
+                 videoUrl: finalVideoUrl,
                  title: meta.title || video.title || '',
                  description: meta.description || '',
                  tags: meta.tags || [],
                  youtubeMetadata: meta,
                };
               
-              const notifyRes = await fetch(publishUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-              });
-              console.log(`[Render] n8n notified. Response status: ${notifyRes.status}`);
+               const notifyRes = await fetch(publishUrl, {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify(payload),
+               });
+               console.log(`[Render] n8n notified. Response status: ${notifyRes.status}`);
             } catch (notifyErr: any) {
               console.error(`[Render] Failed to notify n8n:`, notifyErr.message || notifyErr);
             }
