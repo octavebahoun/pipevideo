@@ -50,7 +50,8 @@ async function submitVideoTaskForScene(
   ratio: '9:16' | '16:9',
   apiKey: string
 ): Promise<string> {
-  const model = 'seedance-v1.5-pro-t2v';
+  const model = process.env.NOVITA_MODEL || 'seedance-v1.5-pro-t2v';
+  const resolution = process.env.NOVITA_RESOLUTION || '480p';
   const url = `https://api.novita.ai/v3/async/${model}`;
 
   const body = {
@@ -58,11 +59,11 @@ async function submitVideoTaskForScene(
     fps: 24,
     ratio: ratio,
     duration: 5,
-    resolution: '720p',
+    resolution: resolution,
     watermark: false
   };
 
-  console.log(`[Novita] Soumission du prompt pour Scène ${sceneId} via le modèle "${model}" : "${prompt}"...`);
+  console.log(`[Novita] Soumission du prompt pour Scène ${sceneId} via le modèle "${model}" (${resolution}) : "${prompt}"...`);
 
   const response = await fetch(url, {
     method: 'POST',
