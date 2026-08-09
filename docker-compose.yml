@@ -10,9 +10,9 @@ services:
     env_file:
       - .env
     networks:
-      - caddy_network
+      - epitnet_internal
 
 networks:
-  caddy_network:
+  epitnet_internal:
     external: true
-    name: caddy_network
+    name: epitnet_internal
