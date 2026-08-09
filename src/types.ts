@@ -55,8 +55,12 @@ export const sceneSchema = z.object({
    * Mettre à `false` pour les plans purement visuels / cinématiques.
    */
   showSubtitles: z.boolean().optional(),
-  /** Nom du fichier média dans public/ (ex: "scene_1.png" ou "scene_1.mp4"). */
-  mediaPath: z.string().optional(),
+  /** Nom du fichier média dans public/ (ex: "scene_1.png" / "scene_1.mp4").
+   *  Peut être un TABLEAU de fichiers image (ex: ["scene_1a.png","scene_1b.png"])
+   *  : ils sont alors joués en diaporama (fondu croisé + zoom Ken Burns par image). */
+  mediaPath: z.union([z.string(), z.array(z.string())]).optional(),
+  /** Prompt textuel décrivant le contenu visuel pour la génération d'images/vidéos par IA (ex: Novita, Kling). */
+  mediaPrompt: z.string().optional(),
   effects: z
     .object({
       zoom: z.enum(['in', 'out', 'none']).optional(),
@@ -176,6 +180,13 @@ export const sceneSchema = z.object({
 export const storyboardSchema = z.object({
   title: z.string(),
   ratio: z.enum(['16:9', '9:16']),
+  youtubeMetadata: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      tags: z.array(z.string()).optional(),
+    })
+    .optional(),
   /** Voix ElevenLabs (ex: "george", "anais", "liam", "rachel"). Par défaut : george. */
   voice: z.string().optional(),
   /**

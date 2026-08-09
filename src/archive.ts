@@ -122,10 +122,11 @@ export async function archiveCurrentProject(): Promise<boolean> {
       }
 
       // 2. Copier et supprimer l'image/vidéo de la scène
-      if (scene.mediaPath) {
-        const mediaSourcePath = path.join(PUBLIC_DIR, scene.mediaPath);
+      const mediaFiles = Array.isArray(scene.mediaPath) ? scene.mediaPath : scene.mediaPath ? [scene.mediaPath] : [];
+      for (const mediaRel of mediaFiles) {
+        const mediaSourcePath = path.join(PUBLIC_DIR, mediaRel);
         if (await fileExists(mediaSourcePath)) {
-          const destPath = path.join(archivePublicPath, scene.mediaPath);
+          const destPath = path.join(archivePublicPath, mediaRel);
           await fs.mkdir(path.dirname(destPath), { recursive: true });
           await fs.copyFile(mediaSourcePath, destPath);
           await fs.unlink(mediaSourcePath);

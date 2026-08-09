@@ -22,3 +22,8 @@ public/*.jpg
 public/*.jpeg
 public/sounds/**/*.mp3
 public/sounds/**/*.wav
+
+# Next.js build output and cache
+.next/
+*.tsbuildinfo
+.DS_Store

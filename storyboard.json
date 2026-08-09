@@ -1,0 +1,2354 @@
+{
+  "title": "L'anaconda le roi déchu",
+  "ratio": "9:16",
+  "voice": "george",
+  "subtitles": true,
+  "subtitleStyle": "karaoke",
+  "music": "sounds/music/leberch-cinematic-space.mp3",
+  "musicVolume": 0.07,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "On l'appelle le roi des serpents. Le monstre des marais. Mais ce roi serait-il en train de tomber ? Il est le serpent le plus lourd de la planète, capable de dépasser deux cents kilos. Et pourtant, il n'est pas le plus long. Bienvenue dans le monde de l'anaconda, le roi déchu de l'Amazonie.",
+      "mediaPath": "scene_1.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "dolly"
+      },
+      "sounds": [
+        {
+          "src": "sounds/sfx/swoosh.mp3",
+          "volume": 0.3,
+          "startInSeconds": 0,
+          "fadeOutSeconds": 1
+        },
+        {
+          "src": "sounds/sfx/pop.mp3",
+          "volume": 0.45,
+          "startInSeconds": 11
+        }
+      ],
+      "words": [
+        {
+          "text": "On",
+          "start": 0,
+          "duration": 0.139
+        },
+        {
+          "text": "l'appelle",
+          "start": 0.197,
+          "duration": 0.407
+        },
+        {
+          "text": "le",
+          "start": 0.685,
+          "duration": 0.104
+        },
+        {
+          "text": "roi",
+          "start": 0.848,
+          "duration": 0.15
+        },
+        {
+          "text": "des",
+          "start": 1.033,
+          "duration": 0.128
+        },
+        {
+          "text": "serpents.",
+          "start": 1.184,
+          "duration": 0.627
+        },
+        {
+          "text": "Le",
+          "start": 2.02,
+          "duration": 0.128
+        },
+        {
+          "text": "monstre",
+          "start": 2.206,
+          "duration": 0.348
+        },
+        {
+          "text": "des",
+          "start": 2.601,
+          "duration": 0.093
+        },
+        {
+          "text": "marais.",
+          "start": 2.728,
+          "duration": 0.592
+        },
+        {
+          "text": "Mais",
+          "start": 3.704,
+          "duration": 0.151
+        },
+        {
+          "text": "ce",
+          "start": 3.878,
+          "duration": 0.104
+        },
+        {
+          "text": "roi",
+          "start": 4.04,
+          "duration": 0.174
+        },
+        {
+          "text": "serait-il",
+          "start": 4.261,
+          "duration": 0.406
+        },
+        {
+          "text": "en",
+          "start": 4.714,
+          "duration": 0.058
+        },
+        {
+          "text": "train",
+          "start": 4.818,
+          "duration": 0.163
+        },
+        {
+          "text": "de",
+          "start": 5.027,
+          "duration": 0.058
+        },
+        {
+          "text": "tomber",
+          "start": 5.132,
+          "duration": 0.394
+        },
+        {
+          "text": "?",
+          "start": 5.654,
+          "duration": 0.093
+        },
+        {
+          "text": "Il",
+          "start": 6.188,
+          "duration": 0.163
+        },
+        {
+          "text": "est",
+          "start": 6.42,
+          "duration": 0.07
+        },
+        {
+          "text": "le",
+          "start": 6.525,
+          "duration": 0.081
+        },
+        {
+          "text": "serpent",
+          "start": 6.664,
+          "duration": 0.372
+        },
+        {
+          "text": "le",
+          "start": 7.07,
+          "duration": 0.07
+        },
+        {
+          "text": "plus",
+          "start": 7.187,
+          "duration": 0.162
+        },
+        {
+          "text": "lourd",
+          "start": 7.372,
+          "duration": 0.221
+        },
+        {
+          "text": "de",
+          "start": 7.616,
+          "duration": 0.058
+        },
+        {
+          "text": "la",
+          "start": 7.721,
+          "duration": 0.058
+        },
+        {
+          "text": "planète,",
+          "start": 7.825,
+          "duration": 0.534
+        },
+        {
+          "text": "capable",
+          "start": 8.475,
+          "duration": 0.488
+        },
+        {
+          "text": "de",
+          "start": 9.009,
+          "duration": 0.082
+        },
+        {
+          "text": "dépasser",
+          "start": 9.137,
+          "duration": 0.499
+        },
+        {
+          "text": "deux",
+          "start": 9.706,
+          "duration": 0.139
+        },
+        {
+          "text": "cents",
+          "start": 9.88,
+          "duration": 0.186
+        },
+        {
+          "text": "kilos.",
+          "start": 10.089,
+          "duration": 0.534
+        },
+        {
+          "text": "Et",
+          "start": 11.006,
+          "duration": 0.128
+        },
+        {
+          "text": "pourtant,",
+          "start": 11.169,
+          "duration": 0.545
+        },
+        {
+          "text": "il",
+          "start": 11.831,
+          "duration": 0.104
+        },
+        {
+          "text": "n'est",
+          "start": 11.981,
+          "duration": 0.128
+        },
+        {
+          "text": "pas",
+          "start": 12.132,
+          "duration": 0.128
+        },
+        {
+          "text": "le",
+          "start": 12.295,
+          "duration": 0.081
+        },
+        {
+          "text": "plus",
+          "start": 12.423,
+          "duration": 0.174
+        },
+        {
+          "text": "long.",
+          "start": 12.62,
+          "duration": 0.43
+        },
+        {
+          "text": "Bienvenue",
+          "start": 13.433,
+          "duration": 0.545
+        },
+        {
+          "text": "dans",
+          "start": 14.002,
+          "duration": 0.116
+        },
+        {
+          "text": "le",
+          "start": 14.141,
+          "duration": 0.058
+        },
+        {
+          "text": "monde",
+          "start": 14.257,
+          "duration": 0.279
+        },
+        {
+          "text": "de",
+          "start": 14.582,
+          "duration": 0.07
+        },
+        {
+          "text": "l'anaconda,",
+          "start": 14.71,
+          "duration": 0.824
+        },
+        {
+          "text": "le",
+          "start": 15.65,
+          "duration": 0.116
+        },
+        {
+          "text": "roi",
+          "start": 15.824,
+          "duration": 0.186
+        },
+        {
+          "text": "déchu",
+          "start": 16.057,
+          "duration": 0.325
+        },
+        {
+          "text": "de",
+          "start": 16.44,
+          "duration": 0.069
+        },
+        {
+          "text": "l'Amazonie.",
+          "start": 16.544,
+          "duration": 0.964
+        }
+      ],
+      "durationInSeconds": 17.554285714285715
+    },
+    {
+      "id": 2,
+      "narration": "Dans les films, il éclipse tout, plus gros que n'importe quel serpent du monde. La réalité est plus subtile : le titre du plus long revient au python réticulé, qui peut dépasser neuf mètres. Mais la balance, elle, ne ment pas. Une femelle anaconda peut peser plus de deux cents kilos et mesurer plus de six mètres. Il a perdu la couronne de la longueur... mais il garde celle de la masse.",
+      "mediaPath": ["scene_2a.png", "scene_2b.png"],
+      "effects": {
+        "zoom": "none",
+        "transition": "wipe",
+        "cameraMotion": "pan"
+      },
+      "sounds": [
+        {
+          "src": "sounds/sfx/wood-hit-metal-crash.mp3",
+          "volume": 0.5,
+          "startInSeconds": 6
+        }
+      ],
+      "words": [
+        {
+          "text": "Dans",
+          "start": 0,
+          "duration": 0.221
+        },
+        {
+          "text": "les",
+          "start": 0.255,
+          "duration": 0.105
+        },
+        {
+          "text": "films,",
+          "start": 0.406,
+          "duration": 0.407
+        },
+        {
+          "text": "il",
+          "start": 0.929,
+          "duration": 0.151
+        },
+        {
+          "text": "éclipse",
+          "start": 1.149,
+          "duration": 0.407
+        },
+        {
+          "text": "tout,",
+          "start": 1.672,
+          "duration": 0.406
+        },
+        {
+          "text": "plus",
+          "start": 2.357,
+          "duration": 0.22
+        },
+        {
+          "text": "gros",
+          "start": 2.612,
+          "duration": 0.267
+        },
+        {
+          "text": "que",
+          "start": 2.914,
+          "duration": 0.105
+        },
+        {
+          "text": "n'importe",
+          "start": 3.088,
+          "duration": 0.418
+        },
+        {
+          "text": "quel",
+          "start": 3.564,
+          "duration": 0.151
+        },
+        {
+          "text": "serpent",
+          "start": 3.796,
+          "duration": 0.36
+        },
+        {
+          "text": "du",
+          "start": 4.191,
+          "duration": 0.07
+        },
+        {
+          "text": "monde.",
+          "start": 4.319,
+          "duration": 0.557
+        },
+        {
+          "text": "La",
+          "start": 5.317,
+          "duration": 0.14
+        },
+        {
+          "text": "réalité",
+          "start": 5.515,
+          "duration": 0.499
+        },
+        {
+          "text": "est",
+          "start": 6.084,
+          "duration": 0.093
+        },
+        {
+          "text": "plus",
+          "start": 6.2,
+          "duration": 0.174
+        },
+        {
+          "text": "subtile",
+          "start": 6.397,
+          "duration": 0.615
+        },
+        {
+          "text": ":",
+          "start": 7.094,
+          "duration": 0.046
+        },
+        {
+          "text": "le",
+          "start": 7.349,
+          "duration": 0.116
+        },
+        {
+          "text": "titre",
+          "start": 7.523,
+          "duration": 0.314
+        },
+        {
+          "text": "du",
+          "start": 7.872,
+          "duration": 0.104
+        },
+        {
+          "text": "plus",
+          "start": 8.022,
+          "duration": 0.163
+        },
+        {
+          "text": "long",
+          "start": 8.22,
+          "duration": 0.209
+        },
+        {
+          "text": "revient",
+          "start": 8.603,
+          "duration": 0.36
+        },
+        {
+          "text": "au",
+          "start": 9.021,
+          "duration": 0.046
+        },
+        {
+          "text": "python",
+          "start": 9.114,
+          "duration": 0.313
+        },
+        {
+          "text": "réticulé,",
+          "start": 9.497,
+          "duration": 0.801
+        },
+        {
+          "text": "qui",
+          "start": 10.414,
+          "duration": 0.128
+        },
+        {
+          "text": "peut",
+          "start": 10.588,
+          "duration": 0.116
+        },
+        {
+          "text": "dépasser",
+          "start": 10.728,
+          "duration": 0.452
+        },
+        {
+          "text": "neuf",
+          "start": 11.238,
+          "duration": 0.175
+        },
+        {
+          "text": "mètres.",
+          "start": 11.494,
+          "duration": 0.499
+        },
+        {
+          "text": "Mais",
+          "start": 12.318,
+          "duration": 0.151
+        },
+        {
+          "text": "la",
+          "start": 12.492,
+          "duration": 0.07
+        },
+        {
+          "text": "balance,",
+          "start": 12.62,
+          "duration": 0.546
+        },
+        {
+          "text": "elle,",
+          "start": 13.235,
+          "duration": 0.395
+        },
+        {
+          "text": "ne",
+          "start": 13.781,
+          "duration": 0.116
+        },
+        {
+          "text": "ment",
+          "start": 13.955,
+          "duration": 0.151
+        },
+        {
+          "text": "pas.",
+          "start": 14.141,
+          "duration": 0.464
+        },
+        {
+          "text": "Une",
+          "start": 14.93,
+          "duration": 0.209
+        },
+        {
+          "text": "femelle",
+          "start": 15.185,
+          "duration": 0.395
+        },
+        {
+          "text": "anaconda",
+          "start": 15.65,
+          "duration": 0.731
+        },
+        {
+          "text": "peut",
+          "start": 16.532,
+          "duration": 0.174
+        },
+        {
+          "text": "peser",
+          "start": 16.73,
+          "duration": 0.29
+        },
+        {
+          "text": "plus",
+          "start": 17.066,
+          "duration": 0.174
+        },
+        {
+          "text": "de",
+          "start": 17.275,
+          "duration": 0.081
+        },
+        {
+          "text": "deux",
+          "start": 17.449,
+          "duration": 0.175
+        },
+        {
+          "text": "cents",
+          "start": 17.67,
+          "duration": 0.174
+        },
+        {
+          "text": "kilos",
+          "start": 17.867,
+          "duration": 0.442
+        },
+        {
+          "text": "et",
+          "start": 18.459,
+          "duration": 0.117
+        },
+        {
+          "text": "mesurer",
+          "start": 18.622,
+          "duration": 0.406
+        },
+        {
+          "text": "plus",
+          "start": 19.063,
+          "duration": 0.163
+        },
+        {
+          "text": "de",
+          "start": 19.261,
+          "duration": 0.081
+        },
+        {
+          "text": "six",
+          "start": 19.4,
+          "duration": 0.162
+        },
+        {
+          "text": "mètres.",
+          "start": 19.586,
+          "duration": 0.592
+        },
+        {
+          "text": "Il",
+          "start": 20.619,
+          "duration": 0.139
+        },
+        {
+          "text": "a",
+          "start": 20.816,
+          "duration": 0.023
+        },
+        {
+          "text": "perdu",
+          "start": 20.886,
+          "duration": 0.325
+        },
+        {
+          "text": "la",
+          "start": 21.269,
+          "duration": 0.07
+        },
+        {
+          "text": "couronne",
+          "start": 21.397,
+          "duration": 0.441
+        },
+        {
+          "text": "de",
+          "start": 21.861,
+          "duration": 0.07
+        },
+        {
+          "text": "la",
+          "start": 21.977,
+          "duration": 0.07
+        },
+        {
+          "text": "longueur...",
+          "start": 22.093,
+          "duration": 0.755
+        },
+        {
+          "text": "mais",
+          "start": 23.173,
+          "duration": 0.139
+        },
+        {
+          "text": "il",
+          "start": 23.382,
+          "duration": 0.07
+        },
+        {
+          "text": "garde",
+          "start": 23.521,
+          "duration": 0.349
+        },
+        {
+          "text": "celle",
+          "start": 23.928,
+          "duration": 0.255
+        },
+        {
+          "text": "de",
+          "start": 24.218,
+          "duration": 0.07
+        },
+        {
+          "text": "la",
+          "start": 24.334,
+          "duration": 0.07
+        },
+        {
+          "text": "masse.",
+          "start": 24.473,
+          "duration": 0.697
+        }
+      ],
+      "durationInSeconds": 25.208163265306123
+    },
+    {
+      "id": 3,
+      "narration": "Son nom grec, Eunectes, signifie « bon nageur ». Dans les eaux troubles de l'Amazonie, seuls ses yeux et ses narines émergent à la surface, invisibles pour ses proies. Il peut rester plus de dix minutes sous l'eau sans respirer. Pour l'anaconda, l'eau n'est pas un obstacle : c'est son royaume, silencieux et absolu.",
+      "mediaPath": "scene_3.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade",
+        "cameraMotion": "orbit"
+      },
+      "sounds": [
+        {
+          "src": "sounds/ambient/rain-water-dripping-fast.mp3",
+          "volume": 0.15,
+          "startInSeconds": 0,
+          "loop": true,
+          "fadeInSeconds": 1.5,
+          "fadeOutSeconds": 2
+        }
+      ],
+      "words": [
+        {
+          "text": "Son",
+          "start": 0,
+          "duration": 0.232
+        },
+        {
+          "text": "nom",
+          "start": 0.29,
+          "duration": 0.116
+        },
+        {
+          "text": "grec,",
+          "start": 0.464,
+          "duration": 0.395
+        },
+        {
+          "text": "Eunectes,",
+          "start": 0.906,
+          "duration": 0.615
+        },
+        {
+          "text": "signifie",
+          "start": 1.614,
+          "duration": 0.464
+        },
+        {
+          "text": "«",
+          "start": 2.101,
+          "duration": 0.047
+        },
+        {
+          "text": "bon",
+          "start": 2.183,
+          "duration": 0.185
+        },
+        {
+          "text": "nageur",
+          "start": 2.392,
+          "duration": 0.464
+        },
+        {
+          "text": "».",
+          "start": 3.007,
+          "duration": 0.104
+        },
+        {
+          "text": "Dans",
+          "start": 3.715,
+          "duration": 0.174
+        },
+        {
+          "text": "les",
+          "start": 3.913,
+          "duration": 0.139
+        },
+        {
+          "text": "eaux",
+          "start": 4.11,
+          "duration": 0.104
+        },
+        {
+          "text": "troubles",
+          "start": 4.249,
+          "duration": 0.383
+        },
+        {
+          "text": "de",
+          "start": 4.656,
+          "duration": 0.069
+        },
+        {
+          "text": "l'Amazonie,",
+          "start": 4.772,
+          "duration": 0.685
+        },
+        {
+          "text": "seuls",
+          "start": 5.631,
+          "duration": 0.29
+        },
+        {
+          "text": "ses",
+          "start": 5.944,
+          "duration": 0.186
+        },
+        {
+          "text": "yeux",
+          "start": 6.223,
+          "duration": 0.174
+        },
+        {
+          "text": "et",
+          "start": 6.455,
+          "duration": 0.081
+        },
+        {
+          "text": "ses",
+          "start": 6.571,
+          "duration": 0.105
+        },
+        {
+          "text": "narines",
+          "start": 6.711,
+          "duration": 0.418
+        },
+        {
+          "text": "émergent",
+          "start": 7.175,
+          "duration": 0.488
+        },
+        {
+          "text": "à",
+          "start": 7.721,
+          "duration": 0.023
+        },
+        {
+          "text": "la",
+          "start": 7.779,
+          "duration": 0.069
+        },
+        {
+          "text": "surface,",
+          "start": 7.895,
+          "duration": 0.743
+        },
+        {
+          "text": "invisibles",
+          "start": 8.847,
+          "duration": 0.696
+        },
+        {
+          "text": "pour",
+          "start": 9.567,
+          "duration": 0.139
+        },
+        {
+          "text": "ses",
+          "start": 9.764,
+          "duration": 0.116
+        },
+        {
+          "text": "proies.",
+          "start": 9.915,
+          "duration": 0.488
+        },
+        {
+          "text": "Il",
+          "start": 10.913,
+          "duration": 0.175
+        },
+        {
+          "text": "peut",
+          "start": 11.157,
+          "duration": 0.14
+        },
+        {
+          "text": "rester",
+          "start": 11.32,
+          "duration": 0.336
+        },
+        {
+          "text": "plus",
+          "start": 11.691,
+          "duration": 0.151
+        },
+        {
+          "text": "de",
+          "start": 11.865,
+          "duration": 0.082
+        },
+        {
+          "text": "dix",
+          "start": 11.993,
+          "duration": 0.151
+        },
+        {
+          "text": "minutes",
+          "start": 12.167,
+          "duration": 0.325
+        },
+        {
+          "text": "sous",
+          "start": 12.516,
+          "duration": 0.162
+        },
+        {
+          "text": "l'eau",
+          "start": 12.713,
+          "duration": 0.139
+        },
+        {
+          "text": "sans",
+          "start": 12.922,
+          "duration": 0.151
+        },
+        {
+          "text": "respirer.",
+          "start": 13.096,
+          "duration": 0.767
+        },
+        {
+          "text": "Pour",
+          "start": 14.374,
+          "duration": 0.174
+        },
+        {
+          "text": "l'anaconda,",
+          "start": 14.594,
+          "duration": 0.766
+        },
+        {
+          "text": "l'eau",
+          "start": 15.535,
+          "duration": 0.197
+        },
+        {
+          "text": "n'est",
+          "start": 15.778,
+          "duration": 0.128
+        },
+        {
+          "text": "pas",
+          "start": 15.929,
+          "duration": 0.163
+        },
+        {
+          "text": "un",
+          "start": 16.15,
+          "duration": 0.046
+        },
+        {
+          "text": "obstacle",
+          "start": 16.254,
+          "duration": 0.546
+        },
+        {
+          "text": ":",
+          "start": 16.916,
+          "duration": 0.07
+        },
+        {
+          "text": "c'est",
+          "start": 17.195,
+          "duration": 0.197
+        },
+        {
+          "text": "son",
+          "start": 17.415,
+          "duration": 0.151
+        },
+        {
+          "text": "royaume,",
+          "start": 17.624,
+          "duration": 0.604
+        },
+        {
+          "text": "silencieux",
+          "start": 18.344,
+          "duration": 0.697
+        },
+        {
+          "text": "et",
+          "start": 19.157,
+          "duration": 0.151
+        },
+        {
+          "text": "absolu.",
+          "start": 19.354,
+          "duration": 0.848
+        }
+      ],
+      "durationInSeconds": 20.244897959183675
+    },
+    {
+      "id": 4,
+      "narration": "Car l'anaconda ne court presque jamais après ses proies. C'est un maître de l'embuscade. Immobile dans l'eau, il peut attendre des heures. Quand une proie passe à sa portée, il frappe, l'enlace et serre. La constriction ne brise pas les os : elle coupe la circulation du sang. En quelques secondes, le cœur s'arrête. Capybaras, caimans, oiseaux : tout finit englouti.",
+      "mediaPath": ["scene_4a.png", "scene_4b.png", "scene_4c.png"],
+      "effects": {
+        "zoom": "in",
+        "transition": "zoomPunch",
+        "shake": true,
+        "cameraMotion": "static"
+      },
+      "sounds": [
+        {
+          "src": "sounds/sfx/swoosh.mp3",
+          "volume": 0.25,
+          "startInSeconds": 0,
+          "fadeOutSeconds": 1
+        },
+        {
+          "src": "sounds/sfx/wood-hit-metal-crash.mp3",
+          "volume": 0.6,
+          "startInSeconds": 13
+        },
+        {
+          "src": "sounds/sfx/pop.mp3",
+          "volume": 0.5,
+          "startInSeconds": 20
+        }
+      ],
+      "words": [
+        {
+          "text": "Car",
+          "start": 0,
+          "duration": 0.279
+        },
+        {
+          "text": "l'anaconda",
+          "start": 0.325,
+          "duration": 0.523
+        },
+        {
+          "text": "ne",
+          "start": 0.917,
+          "duration": 0.081
+        },
+        {
+          "text": "court",
+          "start": 1.045,
+          "duration": 0.186
+        },
+        {
+          "text": "presque",
+          "start": 1.254,
+          "duration": 0.337
+        },
+        {
+          "text": "jamais",
+          "start": 1.649,
+          "duration": 0.301
+        },
+        {
+          "text": "après",
+          "start": 1.985,
+          "duration": 0.256
+        },
+        {
+          "text": "ses",
+          "start": 2.264,
+          "duration": 0.104
+        },
+        {
+          "text": "proies.",
+          "start": 2.392,
+          "duration": 0.487
+        },
+        {
+          "text": "C'est",
+          "start": 3.204,
+          "duration": 0.209
+        },
+        {
+          "text": "un",
+          "start": 3.471,
+          "duration": 0.058
+        },
+        {
+          "text": "maître",
+          "start": 3.564,
+          "duration": 0.291
+        },
+        {
+          "text": "de",
+          "start": 3.878,
+          "duration": 0.058
+        },
+        {
+          "text": "l'embuscade.",
+          "start": 3.982,
+          "duration": 0.813
+        },
+        {
+          "text": "Immobile",
+          "start": 5.039,
+          "duration": 0.522
+        },
+        {
+          "text": "dans",
+          "start": 5.596,
+          "duration": 0.151
+        },
+        {
+          "text": "l'eau,",
+          "start": 5.77,
+          "duration": 0.325
+        },
+        {
+          "text": "il",
+          "start": 6.165,
+          "duration": 0.151
+        },
+        {
+          "text": "peut",
+          "start": 6.374,
+          "duration": 0.128
+        },
+        {
+          "text": "attendre",
+          "start": 6.56,
+          "duration": 0.371
+        },
+        {
+          "text": "des",
+          "start": 6.966,
+          "duration": 0.163
+        },
+        {
+          "text": "heures.",
+          "start": 7.245,
+          "duration": 0.383
+        },
+        {
+          "text": "Quand",
+          "start": 8.011,
+          "duration": 0.186
+        },
+        {
+          "text": "une",
+          "start": 8.266,
+          "duration": 0.093
+        },
+        {
+          "text": "proie",
+          "start": 8.394,
+          "duration": 0.267
+        },
+        {
+          "text": "passe",
+          "start": 8.684,
+          "duration": 0.244
+        },
+        {
+          "text": "à",
+          "start": 8.951,
+          "duration": 0.024
+        },
+        {
+          "text": "sa",
+          "start": 9.009,
+          "duration": 0.093
+        },
+        {
+          "text": "portée,",
+          "start": 9.16,
+          "duration": 0.534
+        },
+        {
+          "text": "il",
+          "start": 9.845,
+          "duration": 0.128
+        },
+        {
+          "text": "frappe,",
+          "start": 10.066,
+          "duration": 0.453
+        },
+        {
+          "text": "l'enlace",
+          "start": 10.67,
+          "duration": 0.522
+        },
+        {
+          "text": "et",
+          "start": 11.238,
+          "duration": 0.117
+        },
+        {
+          "text": "serre.",
+          "start": 11.413,
+          "duration": 0.51
+        },
+        {
+          "text": "La",
+          "start": 12.365,
+          "duration": 0.116
+        },
+        {
+          "text": "constriction",
+          "start": 12.539,
+          "duration": 0.603
+        },
+        {
+          "text": "ne",
+          "start": 13.177,
+          "duration": 0.07
+        },
+        {
+          "text": "brise",
+          "start": 13.293,
+          "duration": 0.267
+        },
+        {
+          "text": "pas",
+          "start": 13.595,
+          "duration": 0.116
+        },
+        {
+          "text": "les",
+          "start": 13.734,
+          "duration": 0.128
+        },
+        {
+          "text": "os",
+          "start": 14.013,
+          "duration": 0.116
+        },
+        {
+          "text": ":",
+          "start": 14.199,
+          "duration": 0.034
+        },
+        {
+          "text": "elle",
+          "start": 14.408,
+          "duration": 0.209
+        },
+        {
+          "text": "coupe",
+          "start": 14.651,
+          "duration": 0.221
+        },
+        {
+          "text": "la",
+          "start": 14.895,
+          "duration": 0.058
+        },
+        {
+          "text": "circulation",
+          "start": 15,
+          "duration": 0.592
+        },
+        {
+          "text": "du",
+          "start": 15.638,
+          "duration": 0.093
+        },
+        {
+          "text": "sang.",
+          "start": 15.789,
+          "duration": 0.406
+        },
+        {
+          "text": "En",
+          "start": 16.637,
+          "duration": 0.162
+        },
+        {
+          "text": "quelques",
+          "start": 16.857,
+          "duration": 0.325
+        },
+        {
+          "text": "secondes,",
+          "start": 17.206,
+          "duration": 0.534
+        },
+        {
+          "text": "le",
+          "start": 17.856,
+          "duration": 0.116
+        },
+        {
+          "text": "cœur",
+          "start": 17.995,
+          "duration": 0.197
+        },
+        {
+          "text": "s'arrête.",
+          "start": 18.25,
+          "duration": 0.604
+        },
+        {
+          "text": "Capybaras,",
+          "start": 19.133,
+          "duration": 0.917
+        },
+        {
+          "text": "caimans,",
+          "start": 20.096,
+          "duration": 0.534
+        },
+        {
+          "text": "oiseaux",
+          "start": 20.805,
+          "duration": 0.476
+        },
+        {
+          "text": ":",
+          "start": 21.315,
+          "duration": 0.035
+        },
+        {
+          "text": "tout",
+          "start": 21.466,
+          "duration": 0.186
+        },
+        {
+          "text": "finit",
+          "start": 21.699,
+          "duration": 0.278
+        },
+        {
+          "text": "englouti.",
+          "start": 22,
+          "duration": 0.894
+        }
+      ],
+      "durationInSeconds": 22.935510204081634
+    },
+    {
+      "id": 5,
+      "narration": "On s'imagine souvent paresseux, allongé au soleil comme un énorme tuyau. Mais cette lenteur est une stratégie. Sur la terre ferme, son corps massif lui coûte une énergie énorme. Alors il économise, reste caché, n'attaque que lorsqu'il est certain de gagner. Une méthode de grand félin... en version serpent.",
+      "mediaPath": ["scene_5a.png", "scene_5b.png"],
+      "effects": {
+        "zoom": "none",
+        "transition": "slide",
+        "cameraMotion": "static"
+      },
+      "sounds": [
+        {
+          "src": "sounds/sfx/knife-sharpen.mp3",
+          "volume": 0.3,
+          "startInSeconds": 14
+        }
+      ],
+      "words": [
+        {
+          "text": "On",
+          "start": 0,
+          "duration": 0.128
+        },
+        {
+          "text": "s'imagine",
+          "start": 0.174,
+          "duration": 0.488
+        },
+        {
+          "text": "souvent",
+          "start": 0.697,
+          "duration": 0.29
+        },
+        {
+          "text": "paresseux,",
+          "start": 1.01,
+          "duration": 0.65
+        },
+        {
+          "text": "allongé",
+          "start": 1.788,
+          "duration": 0.43
+        },
+        {
+          "text": "au",
+          "start": 2.241,
+          "duration": 0.058
+        },
+        {
+          "text": "soleil",
+          "start": 2.357,
+          "duration": 0.36
+        },
+        {
+          "text": "comme",
+          "start": 2.763,
+          "duration": 0.198
+        },
+        {
+          "text": "un",
+          "start": 2.984,
+          "duration": 0.046
+        },
+        {
+          "text": "énorme",
+          "start": 3.088,
+          "duration": 0.314
+        },
+        {
+          "text": "tuyau.",
+          "start": 3.437,
+          "duration": 0.592
+        },
+        {
+          "text": "Mais",
+          "start": 4.47,
+          "duration": 0.151
+        },
+        {
+          "text": "cette",
+          "start": 4.644,
+          "duration": 0.186
+        },
+        {
+          "text": "lenteur",
+          "start": 4.865,
+          "duration": 0.383
+        },
+        {
+          "text": "est",
+          "start": 5.306,
+          "duration": 0.069
+        },
+        {
+          "text": "une",
+          "start": 5.457,
+          "duration": 0.104
+        },
+        {
+          "text": "stratégie.",
+          "start": 5.584,
+          "duration": 0.778
+        },
+        {
+          "text": "Sur",
+          "start": 6.803,
+          "duration": 0.186
+        },
+        {
+          "text": "la",
+          "start": 7.012,
+          "duration": 0.07
+        },
+        {
+          "text": "terre",
+          "start": 7.14,
+          "duration": 0.186
+        },
+        {
+          "text": "ferme,",
+          "start": 7.349,
+          "duration": 0.418
+        },
+        {
+          "text": "son",
+          "start": 7.848,
+          "duration": 0.163
+        },
+        {
+          "text": "corps",
+          "start": 8.057,
+          "duration": 0.209
+        },
+        {
+          "text": "massif",
+          "start": 8.29,
+          "duration": 0.371
+        },
+        {
+          "text": "lui",
+          "start": 8.719,
+          "duration": 0.116
+        },
+        {
+          "text": "coûte",
+          "start": 8.893,
+          "duration": 0.232
+        },
+        {
+          "text": "une",
+          "start": 9.149,
+          "duration": 0.104
+        },
+        {
+          "text": "énergie",
+          "start": 9.276,
+          "duration": 0.418
+        },
+        {
+          "text": "énorme.",
+          "start": 9.752,
+          "duration": 0.662
+        },
+        {
+          "text": "Alors",
+          "start": 11.018,
+          "duration": 0.313
+        },
+        {
+          "text": "il",
+          "start": 11.366,
+          "duration": 0.07
+        },
+        {
+          "text": "économise,",
+          "start": 11.494,
+          "duration": 0.708
+        },
+        {
+          "text": "reste",
+          "start": 12.33,
+          "duration": 0.302
+        },
+        {
+          "text": "caché,",
+          "start": 12.678,
+          "duration": 0.604
+        },
+        {
+          "text": "n'attaque",
+          "start": 13.526,
+          "duration": 0.441
+        },
+        {
+          "text": "que",
+          "start": 14.002,
+          "duration": 0.104
+        },
+        {
+          "text": "lorsqu'il",
+          "start": 14.141,
+          "duration": 0.337
+        },
+        {
+          "text": "est",
+          "start": 14.524,
+          "duration": 0.07
+        },
+        {
+          "text": "certain",
+          "start": 14.617,
+          "duration": 0.36
+        },
+        {
+          "text": "de",
+          "start": 15.024,
+          "duration": 0.058
+        },
+        {
+          "text": "gagner.",
+          "start": 15.128,
+          "duration": 0.569
+        },
+        {
+          "text": "Une",
+          "start": 16.08,
+          "duration": 0.186
+        },
+        {
+          "text": "méthode",
+          "start": 16.289,
+          "duration": 0.337
+        },
+        {
+          "text": "de",
+          "start": 16.649,
+          "duration": 0.081
+        },
+        {
+          "text": "grand",
+          "start": 16.777,
+          "duration": 0.209
+        },
+        {
+          "text": "félin...",
+          "start": 17.021,
+          "duration": 0.522
+        },
+        {
+          "text": "en",
+          "start": 17.601,
+          "duration": 0.116
+        },
+        {
+          "text": "version",
+          "start": 17.764,
+          "duration": 0.394
+        },
+        {
+          "text": "serpent.",
+          "start": 18.216,
+          "duration": 0.778
+        }
+      ],
+      "durationInSeconds": 19.252244897959184
+    },
+    {
+      "id": 6,
+      "narration": "Et si ce roi cachait encore un secret ? En deux mille vingt-quatre, des chercheurs annoncent une surprise : l'anaconda vert n'est pas une seule espèce. L'analyse ADN dévoile un cousin, l'anaconda vert du Nord, séparé depuis dix millions d'années. Le roi déchu vient de retrouver la moitié de son royaume.",
+      "mediaPath": "scene_6.mp4",
+      "effects": {
+        "zoom": "in",
+        "transition": "particleDissolve",
+        "cameraMotion": "dolly"
+      },
+      "sounds": [
+        {
+          "src": "sounds/sfx/pop.mp3",
+          "volume": 0.5,
+          "startInSeconds": 5
+        }
+      ],
+      "words": [
+        {
+          "text": "Et",
+          "start": 0,
+          "duration": 0.139
+        },
+        {
+          "text": "si",
+          "start": 0.174,
+          "duration": 0.116
+        },
+        {
+          "text": "ce",
+          "start": 0.337,
+          "duration": 0.104
+        },
+        {
+          "text": "roi",
+          "start": 0.499,
+          "duration": 0.232
+        },
+        {
+          "text": "cachait",
+          "start": 0.766,
+          "duration": 0.314
+        },
+        {
+          "text": "encore",
+          "start": 1.138,
+          "duration": 0.313
+        },
+        {
+          "text": "un",
+          "start": 1.474,
+          "duration": 0.047
+        },
+        {
+          "text": "secret",
+          "start": 1.567,
+          "duration": 0.465
+        },
+        {
+          "text": "?",
+          "start": 2.148,
+          "duration": 0.093
+        },
+        {
+          "text": "En",
+          "start": 2.624,
+          "duration": 0.209
+        },
+        {
+          "text": "deux",
+          "start": 2.891,
+          "duration": 0.128
+        },
+        {
+          "text": "mille",
+          "start": 3.042,
+          "duration": 0.174
+        },
+        {
+          "text": "vingt-quatre,",
+          "start": 3.251,
+          "duration": 0.754
+        },
+        {
+          "text": "des",
+          "start": 4.18,
+          "duration": 0.139
+        },
+        {
+          "text": "chercheurs",
+          "start": 4.342,
+          "duration": 0.441
+        },
+        {
+          "text": "annoncent",
+          "start": 4.807,
+          "duration": 0.336
+        },
+        {
+          "text": "une",
+          "start": 5.213,
+          "duration": 0.093
+        },
+        {
+          "text": "surprise",
+          "start": 5.329,
+          "duration": 0.639
+        },
+        {
+          "text": ":",
+          "start": 6.014,
+          "duration": 0.058
+        },
+        {
+          "text": "l'anaconda",
+          "start": 6.397,
+          "duration": 0.592
+        },
+        {
+          "text": "vert",
+          "start": 7.07,
+          "duration": 0.442
+        },
+        {
+          "text": "n'est",
+          "start": 7.628,
+          "duration": 0.174
+        },
+        {
+          "text": "pas",
+          "start": 7.825,
+          "duration": 0.174
+        },
+        {
+          "text": "une",
+          "start": 8.081,
+          "duration": 0.092
+        },
+        {
+          "text": "seule",
+          "start": 8.197,
+          "duration": 0.209
+        },
+        {
+          "text": "espèce.",
+          "start": 8.429,
+          "duration": 0.638
+        },
+        {
+          "text": "L'analyse",
+          "start": 9.764,
+          "duration": 0.534
+        },
+        {
+          "text": "ADN",
+          "start": 10.356,
+          "duration": 0.453
+        },
+        {
+          "text": "dévoile",
+          "start": 10.879,
+          "duration": 0.359
+        },
+        {
+          "text": "un",
+          "start": 11.262,
+          "duration": 0.046
+        },
+        {
+          "text": "cousin,",
+          "start": 11.355,
+          "duration": 0.522
+        },
+        {
+          "text": "l'anaconda",
+          "start": 12.051,
+          "duration": 0.581
+        },
+        {
+          "text": "vert",
+          "start": 12.701,
+          "duration": 0.256
+        },
+        {
+          "text": "du",
+          "start": 12.98,
+          "duration": 0.104
+        },
+        {
+          "text": "Nord,",
+          "start": 13.142,
+          "duration": 0.465
+        },
+        {
+          "text": "séparé",
+          "start": 13.781,
+          "duration": 0.418
+        },
+        {
+          "text": "depuis",
+          "start": 14.245,
+          "duration": 0.279
+        },
+        {
+          "text": "dix",
+          "start": 14.559,
+          "duration": 0.139
+        },
+        {
+          "text": "millions",
+          "start": 14.721,
+          "duration": 0.314
+        },
+        {
+          "text": "d'années.",
+          "start": 15.058,
+          "duration": 0.511
+        },
+        {
+          "text": "Le",
+          "start": 16.08,
+          "duration": 0.128
+        },
+        {
+          "text": "roi",
+          "start": 16.242,
+          "duration": 0.163
+        },
+        {
+          "text": "déchu",
+          "start": 16.451,
+          "duration": 0.43
+        },
+        {
+          "text": "vient",
+          "start": 17.009,
+          "duration": 0.232
+        },
+        {
+          "text": "de",
+          "start": 17.264,
+          "duration": 0.046
+        },
+        {
+          "text": "retrouver",
+          "start": 17.357,
+          "duration": 0.395
+        },
+        {
+          "text": "la",
+          "start": 17.775,
+          "duration": 0.058
+        },
+        {
+          "text": "moitié",
+          "start": 17.891,
+          "duration": 0.313
+        },
+        {
+          "text": "de",
+          "start": 18.251,
+          "duration": 0.07
+        },
+        {
+          "text": "son",
+          "start": 18.367,
+          "duration": 0.116
+        },
+        {
+          "text": "royaume.",
+          "start": 18.541,
+          "duration": 0.824
+        }
+      ],
+      "durationInSeconds": 19.408979591836733
+    },
+    {
+      "id": 7,
+      "narration": "Mais aujourd'hui, un autre détrônement le menace. Déforestation, pollution pétrolière, braconnage : les zones humides où vit l'anaconda rétrécissent chaque année. Le roi des marais pourrait un jour ne plus avoir de trône du tout.",
+      "mediaPath": "scene_7.mp4",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade",
+        "cameraMotion": "pan"
+      },
+      "sounds": [
+        {
+          "src": "sounds/ambient/rain-water-dripping-fast.mp3",
+          "volume": 0.2,
+          "startInSeconds": 0,
+          "loop": true,
+          "fadeInSeconds": 1.5,
+          "fadeOutSeconds": 2
+        }
+      ],
+      "words": [
+        {
+          "text": "Mais",
+          "start": 0,
+          "duration": 0.197
+        },
+        {
+          "text": "aujourd'hui,",
+          "start": 0.221,
+          "duration": 0.696
+        },
+        {
+          "text": "un",
+          "start": 1.045,
+          "duration": 0.128
+        },
+        {
+          "text": "autre",
+          "start": 1.242,
+          "duration": 0.221
+        },
+        {
+          "text": "détrônement",
+          "start": 1.498,
+          "duration": 0.534
+        },
+        {
+          "text": "le",
+          "start": 2.067,
+          "duration": 0.058
+        },
+        {
+          "text": "menace.",
+          "start": 2.171,
+          "duration": 0.639
+        },
+        {
+          "text": "Déforestation,",
+          "start": 3.135,
+          "duration": 1.091
+        },
+        {
+          "text": "pollution",
+          "start": 4.342,
+          "duration": 0.441
+        },
+        {
+          "text": "pétrolière,",
+          "start": 4.83,
+          "duration": 0.87
+        },
+        {
+          "text": "braconnage",
+          "start": 5.828,
+          "duration": 0.836
+        },
+        {
+          "text": ":",
+          "start": 6.722,
+          "duration": 0.047
+        },
+        {
+          "text": "les",
+          "start": 7.094,
+          "duration": 0.151
+        },
+        {
+          "text": "zones",
+          "start": 7.279,
+          "duration": 0.267
+        },
+        {
+          "text": "humides",
+          "start": 7.593,
+          "duration": 0.348
+        },
+        {
+          "text": "où",
+          "start": 7.964,
+          "duration": 0.093
+        },
+        {
+          "text": "vit",
+          "start": 8.104,
+          "duration": 0.139
+        },
+        {
+          "text": "l'anaconda",
+          "start": 8.266,
+          "duration": 0.685
+        },
+        {
+          "text": "rétrécissent",
+          "start": 9.16,
+          "duration": 0.662
+        },
+        {
+          "text": "chaque",
+          "start": 9.845,
+          "duration": 0.267
+        },
+        {
+          "text": "année.",
+          "start": 10.136,
+          "duration": 0.464
+        },
+        {
+          "text": "Le",
+          "start": 11.111,
+          "duration": 0.151
+        },
+        {
+          "text": "roi",
+          "start": 11.308,
+          "duration": 0.163
+        },
+        {
+          "text": "des",
+          "start": 11.517,
+          "duration": 0.093
+        },
+        {
+          "text": "marais",
+          "start": 11.645,
+          "duration": 0.441
+        },
+        {
+          "text": "pourrait",
+          "start": 12.202,
+          "duration": 0.302
+        },
+        {
+          "text": "un",
+          "start": 12.585,
+          "duration": 0.058
+        },
+        {
+          "text": "jour",
+          "start": 12.701,
+          "duration": 0.174
+        },
+        {
+          "text": "ne",
+          "start": 12.934,
+          "duration": 0.069
+        },
+        {
+          "text": "plus",
+          "start": 13.05,
+          "duration": 0.174
+        },
+        {
+          "text": "avoir",
+          "start": 13.282,
+          "duration": 0.22
+        },
+        {
+          "text": "de",
+          "start": 13.56,
+          "duration": 0.082
+        },
+        {
+          "text": "trône",
+          "start": 13.688,
+          "duration": 0.314
+        },
+        {
+          "text": "du",
+          "start": 14.025,
+          "duration": 0.104
+        },
+        {
+          "text": "tout.",
+          "start": 14.187,
+          "duration": 0.534
+        }
+      ],
+      "durationInSeconds": 14.759183673469387
+    },
+    {
+      "id": 8,
+      "narration": "Roi déchu ? Peut-être. Mais aucun serpent n'a jamais fait le poids face à lui. Capable d'attendre des jours à l'affût, de dépasser deux cents kilos et de digérer un caiman entier, l'anaconda reste le maître des eaux de l'Amérique du Sud. Alors, vous, le voyez-vous comme un roi... ou comme un déchu ? Dites-le-moi en commentaire.",
+      "mediaPath": "scene_8.mp4",
+      "effects": {
+        "zoom": "none",
+        "transition": "fade",
+        "cameraMotion": "dolly"
+      },
+      "sounds": [],
+      "words": [
+        {
+          "text": "Roi",
+          "start": 0,
+          "duration": 0.279
+        },
+        {
+          "text": "déchu",
+          "start": 0.325,
+          "duration": 0.383
+        },
+        {
+          "text": "?",
+          "start": 0.824,
+          "duration": 0.058
+        },
+        {
+          "text": "Peut-être.",
+          "start": 1.207,
+          "duration": 0.662
+        },
+        {
+          "text": "Mais",
+          "start": 2.113,
+          "duration": 0.163
+        },
+        {
+          "text": "aucun",
+          "start": 2.299,
+          "duration": 0.302
+        },
+        {
+          "text": "serpent",
+          "start": 2.659,
+          "duration": 0.36
+        },
+        {
+          "text": "n'a",
+          "start": 3.042,
+          "duration": 0.081
+        },
+        {
+          "text": "jamais",
+          "start": 3.181,
+          "duration": 0.244
+        },
+        {
+          "text": "fait",
+          "start": 3.448,
+          "duration": 0.116
+        },
+        {
+          "text": "le",
+          "start": 3.587,
+          "duration": 0.07
+        },
+        {
+          "text": "poids",
+          "start": 3.715,
+          "duration": 0.221
+        },
+        {
+          "text": "face",
+          "start": 3.959,
+          "duration": 0.221
+        },
+        {
+          "text": "à",
+          "start": 4.203,
+          "duration": 0.023
+        },
+        {
+          "text": "lui.",
+          "start": 4.272,
+          "duration": 0.43
+        },
+        {
+          "text": "Capable",
+          "start": 5.213,
+          "duration": 0.441
+        },
+        {
+          "text": "d'attendre",
+          "start": 5.689,
+          "duration": 0.429
+        },
+        {
+          "text": "des",
+          "start": 6.153,
+          "duration": 0.116
+        },
+        {
+          "text": "jours",
+          "start": 6.316,
+          "duration": 0.22
+        },
+        {
+          "text": "à",
+          "start": 6.56,
+          "duration": 0.023
+        },
+        {
+          "text": "l'affût,",
+          "start": 6.618,
+          "duration": 0.522
+        },
+        {
+          "text": "de",
+          "start": 7.314,
+          "duration": 0.093
+        },
+        {
+          "text": "dépasser",
+          "start": 7.465,
+          "duration": 0.453
+        },
+        {
+          "text": "deux",
+          "start": 7.976,
+          "duration": 0.139
+        },
+        {
+          "text": "cents",
+          "start": 8.139,
+          "duration": 0.174
+        },
+        {
+          "text": "kilos",
+          "start": 8.336,
+          "duration": 0.371
+        },
+        {
+          "text": "et",
+          "start": 8.766,
+          "duration": 0.139
+        },
+        {
+          "text": "de",
+          "start": 8.94,
+          "duration": 0.069
+        },
+        {
+          "text": "digérer",
+          "start": 9.056,
+          "duration": 0.441
+        },
+        {
+          "text": "un",
+          "start": 9.532,
+          "duration": 0.069
+        },
+        {
+          "text": "caiman",
+          "start": 9.671,
+          "duration": 0.325
+        },
+        {
+          "text": "entier,",
+          "start": 10.066,
+          "duration": 0.65
+        },
+        {
+          "text": "l'anaconda",
+          "start": 11.157,
+          "duration": 0.604
+        },
+        {
+          "text": "reste",
+          "start": 11.877,
+          "duration": 0.313
+        },
+        {
+          "text": "le",
+          "start": 12.237,
+          "duration": 0.07
+        },
+        {
+          "text": "maître",
+          "start": 12.365,
+          "duration": 0.278
+        },
+        {
+          "text": "des",
+          "start": 12.678,
+          "duration": 0.186
+        },
+        {
+          "text": "eaux",
+          "start": 12.899,
+          "duration": 0.127
+        },
+        {
+          "text": "de",
+          "start": 13.061,
+          "duration": 0.058
+        },
+        {
+          "text": "l'Amérique",
+          "start": 13.154,
+          "duration": 0.394
+        },
+        {
+          "text": "du",
+          "start": 13.572,
+          "duration": 0.092
+        },
+        {
+          "text": "Sud.",
+          "start": 13.723,
+          "duration": 0.522
+        },
+        {
+          "text": "Alors,",
+          "start": 14.849,
+          "duration": 0.522
+        },
+        {
+          "text": "vous,",
+          "start": 15.522,
+          "duration": 0.418
+        },
+        {
+          "text": "le",
+          "start": 16.114,
+          "duration": 0.093
+        },
+        {
+          "text": "voyez-vous",
+          "start": 16.254,
+          "duration": 0.417
+        },
+        {
+          "text": "comme",
+          "start": 16.695,
+          "duration": 0.185
+        },
+        {
+          "text": "un",
+          "start": 16.904,
+          "duration": 0.046
+        },
+        {
+          "text": "roi...",
+          "start": 17.008,
+          "duration": 0.488
+        },
+        {
+          "text": "ou",
+          "start": 18.007,
+          "duration": 0.081
+        },
+        {
+          "text": "comme",
+          "start": 18.146,
+          "duration": 0.186
+        },
+        {
+          "text": "un",
+          "start": 18.355,
+          "duration": 0.046
+        },
+        {
+          "text": "déchu",
+          "start": 18.448,
+          "duration": 0.395
+        },
+        {
+          "text": "?",
+          "start": 18.924,
+          "duration": 0.093
+        },
+        {
+          "text": "Dites-le-moi",
+          "start": 19.342,
+          "duration": 0.522
+        },
+        {
+          "text": "en",
+          "start": 19.887,
+          "duration": 0.058
+        },
+        {
+          "text": "commentaire.",
+          "start": 20.004,
+          "duration": 0.986
+        }
+      ],
+      "durationInSeconds": 21.02857142857143
+    }
+  ]
+}

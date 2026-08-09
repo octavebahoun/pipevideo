@@ -55,6 +55,15 @@ async function main() {
       console.log(`${label} : carte de fin (pas de média) — ignorée.`);
       continue;
     }
+    if (Array.isArray(scene.mediaPath)) {
+      console.log(`${label} : diaporama d'images (${scene.mediaPath.join(', ')}) — durées non contraintes par un clip, ignorée.`);
+      for (const p of scene.mediaPath) {
+        if (!(await fileExists(path.join(MEDIA_DIR, p)))) {
+          console.log(`   ⚠️ Image manquante dans public/ : ${p}`);
+        }
+      }
+      continue;
+    }
     if (!scene.mediaPath || !isVideo(scene.mediaPath)) {
       console.log(`${label} : image ou pas de média — durée non contrainte par un clip, ignorée.`);
       continue;

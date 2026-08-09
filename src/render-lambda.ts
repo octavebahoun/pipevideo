@@ -77,7 +77,13 @@ function collectReferencedAssets(storyboard: Storyboard): string[] {
   if (storyboard.music) set.add(storyboard.music);
   for (const scene of storyboard.scenes) {
     if (scene.card) continue; // carte de fin : ni média, ni voix, ni son
-    if (scene.mediaPath) set.add(scene.mediaPath);
+    if (scene.mediaPath) {
+      if (Array.isArray(scene.mediaPath)) {
+        scene.mediaPath.forEach((p) => set.add(p));
+      } else {
+        set.add(scene.mediaPath);
+      }
+    }
     set.add(scene.audioPath ?? `scene_${scene.id}.mp3`); // voix off
     for (const s of scene.sounds ?? []) set.add(s.src);
   }

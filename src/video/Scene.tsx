@@ -121,7 +121,26 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   const dy = shake ? Math.cos(frame * 1.1) * 4 + Math.cos(frame * 1.7) * 2 : 0;
 
   const mediaPath = scene.mediaPath;
-  const isVideo = mediaPath ? /\.(mp4|mkv|webm|mov|avi)$/i.test(mediaPath) : false;
+  const isVideo = !Array.isArray(mediaPath) && mediaPath != null && /\.(mp4|mkv|webm|mov|avi)$/i.test(mediaPath);
+  const isImageArray = Array.isArray(mediaPath) && mediaPath.length > 0;
+
+  // Zoom par image (diaporama) : chaque image zoome sur sa propre fenêtre.
+  const localZoom = (localFrame: number, segFrames: number) => {
+    if (zoomType === 'in') return interpolate(localFrame, [0, segFrames], [1, 1.12], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+    if (zoomType === 'out') return interpolate(localFrame, [0, segFrames], [1.12, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+    return 1;
+  };
+
+  // Fondu croisé entre images d'un diaporama.
+  const slideOpacity = (i: number, seg: number) => {
+    if ((mediaPath as string[]).length === 1) return 1;
+    const cross = Math.max(1, Math.min(Math.floor(seg * 0.25), 30));
+    const start = i * seg;
+    const end = start + seg;
+    const fadeIn = interpolate(frame, [start, start + cross], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+    const fadeOut = interpolate(frame, [end - cross, end], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+    return Math.min(1, fadeIn) * Math.min(1, fadeOut);
+  };
 
   // Voix off : fichier fourni par l'utilisateur (audioPath) sinon la sortie TTS.
   const voiceSrc = scene.audioPath ?? `scene_${scene.id}.mp3`;
@@ -221,7 +240,36 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
       }}
     >
       {/* Média de fond */}
-      {mediaPath ? (
+      {isImageArray ? (
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            transform: `translate(${dx}px, ${dy}px) scale(${shakeScale})`,
+            transformOrigin: 'center center',
+          }}
+        >
+          {(mediaPath as string[]).map((img, i) => {
+            const seg = durationInFrames / mediaPath.length;
+            const local = frame - i * seg;
+            return (
+              <Img
+                key={img}
+                src={staticFile(img)}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  opacity: slideOpacity(i, seg),
+                  transform: `scale(${localZoom(local, seg)})`,
+                }}
+              />
+            );
+          })}
+        </div>
+      ) : mediaPath ? (
         <div
           style={{
             width: '100%',
@@ -233,7 +281,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
           {isVideo ? (
             <Loop durationInFrames={durationInFrames}>
               <OffthreadVideo
-                src={staticFile(mediaPath)}
+                src={staticFile(mediaPath as string)}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 volume={scene.mediaVolume ?? 0.6}
                 playbackRate={scene.playbackRate ?? 1}
@@ -241,7 +289,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
             </Loop>
           ) : (
             <Img
-              src={staticFile(mediaPath)}
+              src={staticFile(mediaPath as string)}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           )}
