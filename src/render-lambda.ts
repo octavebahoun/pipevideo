@@ -1,6 +1,7 @@
 import * as fs from 'fs/promises';
 import * as os from 'os';
 import * as path from 'path';
+import { updateProgress, checkCancelled } from './lib/progressHelper';
 import {
   deploySite,
   getOrCreateBucket,
@@ -122,6 +123,12 @@ async function main() {
   const storyboard = await loadStoryboard(STORYBOARD_PATH);
   console.log(`Projet : "${storyboard.title}" | région : ${region}`);
 
+  if (await checkCancelled()) {
+    console.log('[Render-Lambda] Annulation détectée. Arrêt.');
+    process.exit(0);
+  }
+  await updateProgress(55, 'Initialisation du rendu AWS Lambda...');
+
   // 1. Retrouver la fonction Lambda déployée (compatible avec cette version).
   const functions = await withRetry('recherche de la fonction', () =>
     getFunctions({ region, compatibleOnly: true })
@@ -154,6 +161,10 @@ async function main() {
           onUploadProgress: (p: { totalSize: number; sizeUploaded: number }) => {
             const pct = Math.round((p.sizeUploaded / (p.totalSize || 1)) * 100);
             process.stdout.write(`\rEnvoi des fichiers sur S3 : ${pct}% (${(p.sizeUploaded / 1_000_000).toFixed(1)} / ${(p.totalSize / 1_000_000).toFixed(1)} Mo)   `);
+            if (pct % 10 === 0) {
+              const dbPercent = 55 + Math.round(pct * 0.1);
+              updateProgress(dbPercent, `Envoi des fichiers sur S3 : ${pct}%`).catch(() => {});
+            }
           },
         },
       })
@@ -162,6 +173,12 @@ async function main() {
     await fs.rm(stagingDir, { recursive: true, force: true });
   }
   console.log(`Site     : ${serveUrl}`);
+
+  if (await checkCancelled()) {
+    console.log('[Render-Lambda] Annulation détectée. Arrêt.');
+    process.exit(0);
+  }
+  await updateProgress(65, 'Préparation de la composition...');
 
   // Découpage en chunks piloté par le QUOTA DE CONCURRENCE du compte AWS.
   // Contexte : dépasser le quota est FATAL et NON retenté (18 renderers sur un quota
@@ -199,6 +216,12 @@ async function main() {
   console.log(
     `Lancement du rendu sur Lambda… (${estChunks} chunks de ${framesPerLambda} frames)`
   );
+  if (await checkCancelled()) {
+    console.log('[Render-Lambda] Annulation détectée. Arrêt.');
+    process.exit(0);
+  }
+  await updateProgress(67, 'Lancement du rendu Lambda...');
+
   const { renderId } = await withRetry(
     'lancement du rendu',
     () =>
@@ -217,7 +240,12 @@ async function main() {
   console.log(`Rendu lancé : ${renderId}`);
 
   // 4. Suivre la progression (chaque sondage est résilient aux coupures).
+  let lastDbPercent = -1;
   while (true) {
+    if (await checkCancelled()) {
+      console.log('\n[Render-Lambda] Annulation détectée en cours de rendu.');
+      process.exit(0);
+    }
     const progress = await withRetry('suivi du rendu', () =>
       getRenderProgress({ renderId, bucketName, functionName, region })
     );
@@ -235,8 +263,20 @@ async function main() {
       break;
     }
     process.stdout.write(`\rRendu Lambda : ${Math.round(progress.overallProgress * 100)}%   `);
+    const pct = Math.round(progress.overallProgress * 100);
+    if (pct !== lastDbPercent) {
+      lastDbPercent = pct;
+      const dbPercent = 70 + Math.round(pct * 0.25);
+      await updateProgress(dbPercent, `Rendu AWS Lambda : ${pct}%`);
+    }
     await new Promise((r) => setTimeout(r, 1500));
   }
+
+  if (await checkCancelled()) {
+    console.log('[Render-Lambda] Annulation détectée. Arrêt.');
+    process.exit(0);
+  }
+  await updateProgress(96, 'Téléchargement de la vidéo finale...');
 
   // 5. Télécharger le résultat dans out/video.mp4.
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -245,6 +285,7 @@ async function main() {
   );
   console.log(`\n✅ Vidéo rendue sur Lambda et téléchargée : ${outputPath}`);
   console.log(`   Taille : ${(sizeInBytes / 1_000_000).toFixed(1)} Mo`);
+  await updateProgress(100, 'Rendu Lambda terminé avec succès !');
 }
 
 main().catch((err: any) => {

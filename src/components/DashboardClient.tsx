@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Video as VideoIcon, 
   Play, 
@@ -30,6 +30,8 @@ interface VideoRecord {
   youtubeId: string | null;
   youtubeStatus: string | null;
   scheduledFor: string | null;
+  progress: number;
+  progressStep: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -46,6 +48,45 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [renderingIds, setRenderingIds] = useState<string[]>([]);
   const [publishingIds, setPublishingIds] = useState<string[]>([]);
+
+  // String identifier of currently rendering videos for polling hook dependency
+  const renderingString = videos
+    .filter(v => v.status === 'RENDERING')
+    .map(v => v.id)
+    .join(',');
+
+  useEffect(() => {
+    if (!renderingString) return;
+    const renderingIdsList = renderingString.split(',');
+
+    const interval = setInterval(async () => {
+      try {
+        const updatedVideos = await Promise.all(
+          renderingIdsList.map(async (id) => {
+            const res = await fetch(`/api/video?id=${id}`);
+            if (res.ok) {
+              return await res.json();
+            }
+            return null;
+          })
+        );
+
+        const validUpdates = updatedVideos.filter((v): v is VideoRecord => v !== null);
+        if (validUpdates.length > 0) {
+          setVideos((prev) =>
+            prev.map((v) => {
+              const match = validUpdates.find((u) => u.id === v.id);
+              return match ? match : v;
+            })
+          );
+        }
+      } catch (err) {
+        console.error('Error polling video progress:', err);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [renderingString]);
 
   // Stats calculation
   const totalVideos = videos.length;
@@ -108,7 +149,31 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
       setRenderingIds(prev => prev.filter(x => x !== id));
     }
   };
+  const handleCancelRender = async (id: string) => {
+    if (!confirm('Voulez-vous vraiment annuler le rendu en cours ?')) return;
 
+    try {
+      const res = await fetch('/api/render/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setVideos(prev => prev.map(v => v.id === id ? { ...v, status: 'DRAFT', progress: 0, progressStep: null } : v));
+        } else {
+          alert("Erreur lors de l'annulation.");
+        }
+      } else {
+        alert("Erreur lors de l'annulation.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Erreur réseau lors de l\'annulation.');
+    }
+  };
   const handlePublishYoutube = async (id: string) => {
     setPublishingIds(prev => [...prev, id]);
     try {
@@ -282,6 +347,32 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
                         </>
                       )}
                     </button>
+                  )}
+
+                  {video.status === 'RENDERING' && (
+                    <div className="space-y-3 w-full">
+                      <div className="flex justify-between items-center text-xs">
+                        <span className="text-zinc-400 truncate max-w-[70%] font-medium">
+                          {video.progressStep || 'Préparation...'}
+                        </span>
+                        <span className="text-purple-400 font-bold">{video.progress || 0}%</span>
+                      </div>
+                      
+                      {/* Progress Bar */}
+                      <div className="w-full h-2 bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/80">
+                        <div 
+                          className="h-full bg-gradient-to-r from-purple-600 to-indigo-500 rounded-full transition-all duration-500 ease-out shadow-[0_0_8px_rgba(168,85,247,0.4)]"
+                          style={{ width: `${video.progress || 0}%` }}
+                        />
+                      </div>
+
+                      <button 
+                        onClick={() => handleCancelRender(video.id)}
+                        className="w-full flex items-center justify-center gap-2 py-2 bg-red-950/40 hover:bg-red-950/80 border border-red-900/50 text-red-200 text-xs font-bold rounded-xl transition-all shadow-sm hover:shadow-md hover:shadow-red-900/10"
+                      >
+                        Annuler le Rendu
+                      </button>
+                    </div>
                   )}
 
                   {video.status === 'COMPLETED' && (

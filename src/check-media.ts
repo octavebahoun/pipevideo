@@ -4,6 +4,7 @@ import * as path from 'path';
 import { parseFile } from 'music-metadata';
 import { loadStoryboard } from './storyboard';
 import { FPS, getSceneDurationInFrames, getTransitionFramesBefore } from './types';
+import { updateProgress, checkCancelled } from './lib/progressHelper';
 
 /**
  * Vérifie, pour chaque scène vidéo, l'écart entre la durée RÉELLE du clip déposé
@@ -39,6 +40,12 @@ function isVideo(mediaPath: string): boolean {
 }
 
 async function main() {
+  if (await checkCancelled()) {
+    console.log('[Check-Media] Annulation détectée. Arrêt.');
+    process.exit(0);
+  }
+  await updateProgress(55, 'Vérification de la validité des médias...');
+
   console.log(`Lecture du storyboard depuis : ${STORYBOARD_PATH}`);
   const storyboard = await loadStoryboard(STORYBOARD_PATH);
 

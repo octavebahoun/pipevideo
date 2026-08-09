@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db';
 import { exec } from 'child_process';
 import * as fs from 'fs/promises';
 import * as path from 'path';
+import { activeRenders } from '@/lib/renderRegistry';
 
 export async function POST(request: Request) {
   try {
@@ -31,7 +32,11 @@ export async function POST(request: Request) {
     // 1. Update status to RENDERING in DB
     const updatedVideo = await prisma.video.update({
       where: { id },
-      data: { status: 'RENDERING' },
+      data: { 
+        status: 'RENDERING',
+        progress: 0,
+        progressStep: 'Préparation du storyboard'
+      },
     });
 
     // 2. Write storyboard to storyboard.json (Remotion expects it at root)
@@ -54,11 +59,21 @@ export async function POST(request: Request) {
     // Run the pipeline chain
     const renderProcess = exec(renderCmd, {
       cwd: process.cwd(),
-      env: { ...process.env },
+      env: { ...process.env, VIDEO_ID: id },
     });
+
+    activeRenders.set(id, renderProcess);
 
     renderProcess.on('close', async (code) => {
       console.log(`[Render] Background process finished with exit code: ${code}`);
+      activeRenders.delete(id);
+
+      // Check current video status in DB before setting to FAILED (in case of manual cancellation)
+      const currentVideo = await prisma.video.findUnique({ where: { id } });
+      if (currentVideo?.status === 'DRAFT') {
+        console.log(`[Render] Video ${id} was canceled. Skipping status update.`);
+        return;
+      }
 
       if (code === 0) {
         try {
@@ -80,6 +95,8 @@ export async function POST(request: Request) {
             where: { id },
             data: {
               status: 'COMPLETED',
+              progress: 100,
+              progressStep: 'Terminé',
               videoPath: `out/video-${id}.mp4`, // accessible via Next.js public directory
               ...(updatedStoryboard ? { storyboard: updatedStoryboard } : {}),
             },
@@ -125,17 +142,23 @@ export async function POST(request: Request) {
 
         } catch (copyErr) {
           console.error('[Render] Error copying final video output:', copyErr);
+          const checkVideo = await prisma.video.findUnique({ where: { id } });
+          if (checkVideo?.status !== 'DRAFT') {
+            await prisma.video.update({
+              where: { id },
+              data: { status: 'FAILED' },
+            });
+          }
+        }
+      } else {
+        console.error(`[Render] Rendering pipeline failed for video ${id}`);
+        const checkVideo = await prisma.video.findUnique({ where: { id } });
+        if (checkVideo?.status !== 'DRAFT') {
           await prisma.video.update({
             where: { id },
             data: { status: 'FAILED' },
           });
         }
-      } else {
-        console.error(`[Render] Rendering pipeline failed for video ${id}`);
-        await prisma.video.update({
-          where: { id },
-          data: { status: 'FAILED' },
-        });
       }
     });
 

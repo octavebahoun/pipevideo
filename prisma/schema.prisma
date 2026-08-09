@@ -19,6 +19,8 @@ model Video {
   youtubeId     String?   // ID of the uploaded YouTube video
   youtubeStatus String?   // PRIVATE, UNLISTED, PUBLIC, SCHEDULED
   scheduledFor  DateTime? // Scheduled publication time
+  progress      Int       @default(0)
+  progressStep  String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }

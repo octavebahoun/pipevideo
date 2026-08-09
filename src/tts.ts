@@ -6,6 +6,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { loadStoryboard } from './storyboard';
 import { WordTiming } from './types';
+import { updateProgress, checkCancelled } from './lib/progressHelper';
 
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
@@ -149,6 +150,12 @@ async function main() {
     // 2. Créer le dossier media s'il n'existe pas
     await fs.mkdir(MEDIA_DIR, { recursive: true });
 
+    if (await checkCancelled()) {
+      console.log('[TTS] Annulation détectée. Arrêt.');
+      process.exit(0);
+    }
+    await updateProgress(40, 'Génération des voix off (TTS)...');
+
     const voiceId = useEdge ? undefined : resolveVoiceId(storyboard.voice);
     const edgeVoice = useEdge ? resolveEdgeVoice(storyboard.voice) : undefined;
     console.log(
@@ -158,7 +165,14 @@ async function main() {
     );
 
     // 3. Parcourir et générer la voix-off pour chaque scène
+    let completedTTS = 0;
+    const totalTTS = storyboard.scenes.length;
+
     for (const scene of storyboard.scenes) {
+      if (await checkCancelled()) {
+        console.log('[TTS] Annulation détectée. Arrêt.');
+        process.exit(0);
+      }
       console.log(`\nTraitement de la scène ${scene.id}...`);
 
       // --- Cas 0 : carte texte (fin) → pas de voix, on garde sa durée manuelle. ---
@@ -268,10 +282,15 @@ async function main() {
 
       // Sauvegarde progressive après chaque scène
       await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
+
+      completedTTS++;
+      const percent = Math.min(40 + Math.round((completedTTS / totalTTS) * 15), 55);
+      await updateProgress(percent, `Voix off générées : ${completedTTS}/${totalTTS}`);
     }
 
     // 4. Sauvegarder le storyboard final
     await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
+    await updateProgress(55, 'Voix off générées avec succès');
     console.log(`\n✅ Storyboard synchronisé avec succès (${useEdge ? 'Edge-TTS' : 'ElevenLabs'}) !`);
 
   } catch (error: any) {

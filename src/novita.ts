@@ -2,6 +2,7 @@ import 'dotenv/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { loadStoryboard } from './storyboard';
+import { updateProgress, checkCancelled } from './lib/progressHelper';
 
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
@@ -68,6 +69,10 @@ async function generateVideoForScene(
   // Polling loop
   let attempts = 0;
   while (attempts < 60) {
+    if (await checkCancelled()) {
+      throw new Error('CANCELLED');
+    }
+
     const statusRes = await fetch(`https://api.novita.ai/v3/async/task-result?task_id=${taskId}`, {
       headers: {
         'Authorization': `Bearer ${apiKey}`
@@ -117,11 +122,20 @@ async function main() {
   }
 
   try {
+    if (await checkCancelled()) {
+      console.log('[Novita] Annulation détectée. Arrêt.');
+      process.exit(0);
+    }
+    await updateProgress(5, 'Génération des vidéos IA (Novita)...');
+
     const storyboard = await loadStoryboard(STORYBOARD_PATH);
     console.log(`[Novita] Début de la génération de médias pour le storyboard : "${storyboard.title}"`);
 
     // Prepare tasks for parallel execution
     const generationTasks: Promise<void>[] = [];
+    const scenesToGenerate = storyboard.scenes.filter((s: any) => !s.card);
+    const totalScenes = scenesToGenerate.length;
+    let completedScenes = 0;
 
     for (const scene of storyboard.scenes) {
       if (scene.card) continue; // Pas de média pour les cartes texte
@@ -132,6 +146,7 @@ async function main() {
       // Si le média existe déjà localement, on ne le régénère pas
       if (await fileExists(mediaFullPath)) {
         console.log(`[Novita] Scène ${scene.id} : ${mediaFile} existe déjà. Passer.`);
+        completedScenes++;
         continue;
       }
 
@@ -139,6 +154,10 @@ async function main() {
       
       const task = (async () => {
         try {
+          if (await checkCancelled()) {
+            console.log('[Novita] Annulation détectée.');
+            process.exit(0);
+          }
           const videoUrl = await generateVideoForScene(
             scene.id,
             prompt,
@@ -150,7 +169,14 @@ async function main() {
           console.log(`[Novita] Téléchargement réussi pour Scène ${scene.id} -> public/${mediaFile}`);
           // Mettre à jour le storyboard localement
           scene.mediaPath = mediaFile;
+
+          completedScenes++;
+          const percent = Math.min(5 + Math.round((completedScenes / totalScenes) * 35), 40);
+          await updateProgress(percent, `Vidéos IA générées : ${completedScenes}/${totalScenes}`);
         } catch (err: any) {
+          if (err.message === 'CANCELLED') {
+            process.exit(0);
+          }
           console.error(`[Novita] Erreur lors de la génération de la Scène ${scene.id} :`, err.message);
           throw err;
         }
@@ -159,8 +185,9 @@ async function main() {
       generationTasks.push(task);
     }
 
-    if (generationTasks.length === 0) {
+    if (generationTasks.length === completedScenes) {
       console.log('[Novita] Tous les médias sont déjà générés ou non requis.');
+      await updateProgress(40, 'Vidéos IA prêtes (déjà en cache)');
       process.exit(0);
     }
 

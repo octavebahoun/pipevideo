@@ -4,6 +4,7 @@ import { renderMedia, selectComposition } from '@remotion/renderer';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { loadStoryboard } from './storyboard';
+import { updateProgress, checkCancelled } from './lib/progressHelper';
 
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const ENTRY_POINT = path.join(process.cwd(), 'src/video/index.tsx');
@@ -22,6 +23,12 @@ const browserExecutable =
 
 async function main() {
   try {
+    if (await checkCancelled()) {
+      console.log('[Render] Annulation détectée. Arrêt.');
+      process.exit(0);
+    }
+    await updateProgress(55, 'Initialisation du rendu local...');
+
     // 1. Lire et valider le storyboard.json
     console.log(`Lecture du storyboard depuis : ${STORYBOARD_PATH}`);
     const storyboard = await loadStoryboard(STORYBOARD_PATH);
@@ -31,6 +38,7 @@ async function main() {
 
     // 2. Compiler le projet Remotion (Webpack bundling)
     console.log('Compilation du projet Remotion (Webpack bundling)...');
+    await updateProgress(57, 'Compilation du projet Remotion (Webpack bundling)...');
     const bundleLocation = await bundle({
       entryPoint: ENTRY_POINT,
     });
@@ -55,6 +63,9 @@ async function main() {
     console.log(`- FPS : ${composition.fps}`);
     console.log(`- Durée : ${(composition.durationInFrames / composition.fps).toFixed(2)}s (${composition.durationInFrames} frames)`);
 
+    let lastDbPercent = -1;
+    let lastCheckTime = 0;
+
     // 3. Effectuer le rendu media
     await renderMedia({
       composition,
@@ -70,11 +81,26 @@ async function main() {
         process.stdout.write(
           `\rRendu en cours : ${percent}% (${renderedFrames}/${composition.durationInFrames} images)`
         );
+
+        const now = Date.now();
+        if (percent !== lastDbPercent && (percent - lastDbPercent >= 5 || now - lastCheckTime > 3000)) {
+          lastDbPercent = percent;
+          lastCheckTime = now;
+          const dbPercent = 60 + Math.round(percent * 0.38);
+          (async () => {
+            if (await checkCancelled()) {
+              console.log('\n[Render] Annulation détectée en cours de rendu.');
+              process.exit(0);
+            }
+            await updateProgress(dbPercent, `Rendu vidéo local : ${percent}%`);
+          })();
+        }
       },
     });
 
     console.log(`\n\n✅ Rendu terminé avec succès !`);
     console.log(`Vidéo finale disponible dans : ${OUTPUT_FILE}`);
+    await updateProgress(100, 'Rendu terminé avec succès !');
 
   } catch (error: any) {
     console.error('\n❌ Une erreur est survenue lors du rendu vidéo :', error.message);

@@ -1,6 +1,30 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json({ error: 'Missing id parameter' }, { status: 400 });
+    }
+
+    const video = await prisma.video.findUnique({
+      where: { id },
+    });
+
+    if (!video) {
+      return NextResponse.json({ error: 'Video not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(video);
+  } catch (error: any) {
+    console.error('Error fetching video:', error);
+    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+  }
+}
+
 export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
