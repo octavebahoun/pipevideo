@@ -37,6 +37,8 @@ export const sceneSoundSchema = z.object({
 
 export const sceneSchema = z.object({
   id: z.number(),
+  /** ID temporaire de la tâche de génération vidéo Novita. */
+  novitaTaskId: z.string().optional(),
   /** Texte lu par la voix off (Edge-TTS). */
   narration: z.string(),
   /** Texte affiché en sous-titre. Par défaut : la narration. */

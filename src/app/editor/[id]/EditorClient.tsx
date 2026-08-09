@@ -20,6 +20,7 @@ import Link from 'next/link';
 
 interface Scene {
   id: number;
+  novitaTaskId?: string;
   narration: string;
   subtitle?: string;
   mediaPath?: string | string[];
@@ -120,9 +121,17 @@ export default function EditorClient({ video }: EditorClientProps) {
   const updateSceneField = (sceneId: number, field: keyof Scene, value: any) => {
     setStoryboard(prev => ({
       ...prev,
-      scenes: prev.scenes.map(scene => 
-        scene.id === sceneId ? { ...scene, [field]: value } : scene
-      )
+      scenes: prev.scenes.map(scene => {
+        if (scene.id === sceneId) {
+          const updatedScene = { ...scene, [field]: value };
+          if (field === 'mediaPrompt' || field === 'narration') {
+            delete updatedScene.mediaPath;
+            delete updatedScene.novitaTaskId;
+          }
+          return updatedScene;
+        }
+        return scene;
+      })
     }));
   };
 
