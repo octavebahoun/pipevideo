@@ -54,13 +54,18 @@ L'objet JSON doit respecter scrupuleusement la structure suivante :
 ### 3. STRUCTURE D'UNE SCÈNE (ARRAY "scenes")
 Chaque scène représente un plan vidéo ou un groupe d'images avec sa narration propre.
 
+#### RÈGLE DE CHOIX DES MÉDIAS (VIDÉO VS IMAGE) :
+- **Vidéo (`.mp4`)** : À utiliser pour les plans nécessitant un mouvement continu et fluide (actions, mouvements de caméra complexes, scènes dynamiques). Ces vidéos seront générées via Novita AI.
+- **Image (`.png`, `.jpg`, `.jpeg`)** : À privilégier pour les scènes statiques (diagrammes, portraits figés, infographies, illustrations) ou pour créer des diaporamas (avec fondu croisé). Les images sont générées via Cloudflare Workers AI (Flux Schnell), ce qui est beaucoup plus rapide et économique.
+- **Diaporama** : Pour utiliser plusieurs images successives dans une même scène, passe un tableau de noms d'images dans `mediaPath` (ex: `["scene_2a.png", "scene_2b.png"]`).
+
 {
   "id": 1, // Entier incrémental commençant à 1
   "narration": "Texte exact lu par la voix off pour cette scène (ne pas dépasser 20-25 mots par scène pour garder du rythme).",
   "subtitle": "Optionnel. Texte alternatif affiché si différent de la narration (laisser vide par défaut).",
   "showSubtitles": true, // false pour couper les sous-titres sur les plans de transition ou contemplatifs
-  "mediaPath": "scene_1.mp4", // Nom du fichier final attendu (ou tableau d'images pour diaporama : ["scene_1a.png", "scene_1b.png"])
-  "mediaPrompt": "Description visuelle DÉTAILLÉE en ANGLAIS pour la génération d'images/vidéos (Seedance 1.5 Pro / FLUX). Doit décrire le sujet, le style, la lumière et le mouvement de caméra.",
+  "mediaPath": "scene_1.mp4", // Fichier attendu (.mp4 pour vidéo, ou .png/.jpg/.jpeg pour image, ou tableau ["scene_1a.png", "scene_1b.png"] pour diaporama)
+  "mediaPrompt": "Description visuelle DÉTAILLÉE en ANGLAIS pour la génération d'images/vidéos (Seedance 1.5 Pro pour les vidéos, FLUX Schnell pour les images). Doit décrire le sujet, le style, la lumière et le mouvement de caméra.",
   "mediaVolume": 0.0, // Volume audio du clip vidéo original. 0 pour couper les bruits parasites de l'IA (recommandé), 0.6 pour garder l'audio d'origine si pertinent.
   "effects": {
     "zoom": "in" (effet Ken Burns zoom avant lent), "out" (zoom arrière lent), ou "none",

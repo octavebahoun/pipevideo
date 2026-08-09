@@ -1,83 +1,218 @@
-# Content Factory — Pipevideo
+# 🎬 Pipevideo — Content Factory Pipeline
 
-Pipeline automatisé de production vidéo par agent IA. Génère des vidéos complètes (shorts 9:16 ou essais 16:9) à partir d'un storyboard JSON, avec voix off ElevenLabs, sous-titres karaoké/cinematic, transitions, sound design et rendu local ou sur AWS Lambda.
+Pipevideo est un pipeline automatisé de production vidéo à haute rétention, piloté par IA. À partir d'un storyboard structuré au format JSON, le système orchestre la génération de voix off réalistes, produit les médias visuels (images et vidéos) via des IA génératives spécialisées, applique des animations complexes (Ken Burns, sous-titres karaoké réactifs, transitions cinématiques, sound design), effectue le rendu (localement ou parallélisé sur AWS Lambda), puis publie la vidéo finale via des webhooks sécurisés.
 
-## Architecture
+---
+
+## 📐 Architecture du Pipeline
+
+Le schéma ci-dessous illustre le parcours de génération d'une vidéo, de l'idée initiale à sa publication automatique :
+
+```mermaid
+graph TD
+    A[n8n Workflow / API] -->|1. Post Storyboard| B(Database: Prisma / Neon)
+    B -->|2. Executer npm run tts| C{TTS Engine}
+    C -->|ElevenLabs| D[Voix Off + Timings Karaoké]
+    C -->|Edge-TTS / Local| E[Voix Off Standard]
+    D & E -->|3. Executer novita.ts| F{Routeur de Médias}
+    F -->|Fichiers .png/.jpg| G[Cloudflare Workers AI <br> Flux Schnell]
+    F -->|Fichiers .mp4| H[Novita AI <br> Seedance t2v]
+    G & H -->|4. Executer check-video| I[Calcul playbackRate si besoin]
+    I -->|5. Executer render / render:lambda| J{Remotion Renderer}
+    J -->|Local| K[Rendu Local avec Chrome]
+    J -->|AWS Lambda| L[Rendu distribué multi-chunks]
+    K & L -->|6. Upload .mp4 final| M[Cloudflare R2 Storage]
+    M -->|7. Post webhook + Metadata| N[n8n Publishing Webhook]
+    N -->|8. Upload automatique| O[YouTube / TikTok / Instagram]
+```
+
+---
+
+## 🌟 Fonctionnalités Clés
+
+*   **Voix Off Synchrone** : Génération de voix ultra-réalistes via **ElevenLabs** (ou **Edge-TTS** pour l'économie) avec extraction automatique des timings mot-à-mot pour des sous-titres karaoké fluides et rythmés.
+*   **Génération Hybride de Médias** :
+    *   **Images / Diaporamas** : Générés via **Cloudflare Workers AI** (Modèle `@cf/black-forest-labs/flux-1-schnell`), ultra-rapide et économique.
+    *   **Vidéos** : Générées via **Novita AI** (Modèle `seedance-v1.5-pro-t2v` de Seedance) pour des plans animés réalistes en 9:16 ou 16:9.
+*   **Ajustement de Vitesse Dynamique** : Analyse automatique de l'audio de chaque scène. Si un clip vidéo est trop court, le système calcule et injecte un `playbackRate` de ralenti pour étirer la vidéo sans gel ni bouclage.
+*   **Édition Remotion Avancée** : Effets de caméra (Ken Burns zoom in/out, tremblements "shake"), transitions variées (`fade`, `slide`, `wipe`, `black`, `whipPan`, `glitchCut`, `particleDissolve`), sound design complexe (musique de fond + bruitages calés à la milliseconde).
+*   **Rendu AWS Lambda Pass-through** : Déploiement incrémental et rendu cloud parallélisé sur des centaines d'instances Lambda pour un rendu ultra-rapide, peu importe la durée de la vidéo.
+*   **Hébergement & Webhook n8n** : Téléversement du résultat sur un bucket **Cloudflare R2** public, puis notification de publication vers n8n incluant le lien de la vidéo et ses métadonnées SEO complètes (`title`, `description`, `tags`).
+
+---
+
+## 📂 Structure du Projet
 
 ```
-storyboard.json          ← script généré/édité par l'agent
+storyboard.json             # Fichier de définition de la vidéo en cours
 src/
-  storyboard.ts           Chargement et validation Zod du storyboard
-  tts.ts                  Génération voix off ElevenLabs (timestamps mot-à-mot)
-  sounds.ts               Catalogue des bruitages/ambiances/musiques
-  render.ts               Rendu vidéo local (Chrome + Remotion)
-  render-lambda.ts        Rendu cloud distribué (Remotion Lambda)
-  new-video.ts            Initialise un nouveau projet vidéo
-  archive.ts              Archive le projet courant dans history/
-  types.ts                Types, schémas Zod, constantes (FPS, dimensions)
-  video/
-    Root.tsx              Point d'entrée Remotion (Composition)
-    Main.tsx              Orchestrateur TransitionSeries (scènes + transitions)
-    Scene.tsx             Composant scène : média, zoom Ken Burns, shake, overlay, sons
-    Subtitles.tsx         Sous-titres karaoké (surlignage mot-à-mot) ou cinematic
-    transitions.tsx       Transition fondu au noir personnalisée
+  ├── app/
+  │   └── api/
+  │       ├── render/       # Route API de rendu local/lambda + notification n8n
+  │       └── webhook/      # Webhook de réception du storyboard depuis n8n
+  ├── video/                # Éléments de montage et compositions Remotion
+  │   ├── Root.tsx          # Point d'entrée de la composition Remotion
+  │   ├── Main.tsx          # Ordonnancement des scènes et transitions
+  │   ├── Scene.tsx         # Rendu individuel (vidéo/diaporama/sons/zoom)
+  │   └── Subtitles.tsx     # Affichage karaoké, fondant, ou cinématique
+  ├── novita.ts             # Orchestrateur de génération d'images/vidéos par IA
+  ├── check-media.ts        # Script de vérification et d'ajustement des vitesses
+  ├── tts.ts                # Générateur de voix off et de synchronisation
+  ├── render.ts             # Script de rendu vidéo local
+  ├── render-lambda.ts      # Script de rendu cloud AWS Lambda
+  ├── types.ts              # Validation de schéma Zod, types et constantes
+  └── lib/
+      └── db.ts             # Client Prisma d'accès à la base de données
 ```
 
-## Workflow
+---
 
-1. **`npm run new-video "sujet"`** — Crée un storyboard vierge et archive l'ancien projet
-2. L'agent IA remplit `storyboard.json` (scènes, narration, médias, effets)
-3. **`npm run tts`** — Génère les voix off ElevenLabs avec timings mot-à-mot
-4. **`npm run sounds`** — Régénère le catalogue public/sounds/CATALOG.md
-5. Déposer les médias (images/vidéos) dans `public/`
-6. **`npm run render`** — Rendu local
-7. **`npm run render:lambda`** — Rendu cloud distribué
+## ⚙️ Configuration de l'Environnement
 
-## Storyboard
+Créez un fichier `.env` à la racine en vous basant sur la configuration suivante :
 
-Le fichier `storyboard.json` décrit l'intégralité de la vidéo : titre, ratio (16:9 ou 9:16), voix, musique de fond, et la liste des scènes avec pour chacune :
+| Variable | Description | Exemple / Valeur |
+| :--- | :--- | :--- |
+| **Général** | | |
+| `CHROME_EXECUTABLE_PATH` | Chemin absolu vers le binaire Chrome (requis pour Remotion local) | `/usr/bin/google-chrome` |
+| `DATABASE_URL` | URL de connexion à la base de données (PostgreSQL / Neon) | `postgresql://...` |
+| **Moteur TTS (Voice)** | | |
+| `TTS_PROVIDER` | Moteur de génération de voix off | `elevenlabs` ou `edge` |
+| `ELEVENLABS_API_KEY` | Clé d'API ElevenLabs | `sk_...` |
+| **Génération Vidéo (Novita)** | | |
+| `NOVITA_API_KEY` | Clé API Novita AI | `sk_...` |
+| `NOVITA_MODEL` | Modèle vidéo Novita utilisé | `seedance-v1.5-pro-t2v` |
+| `NOVITA_RESOLUTION` | Résolution des clips générés par l'IA | `480p` |
+| **Génération Images (Cloudflare)** | | |
+| `CLOUDFLARE_API_TOKEN` | Token d'API Cloudflare avec privilèges Workers AI | `cfat_...` |
+| `R2_ACCOUNT_ID` | Identifiant du compte Cloudflare pour R2 | `5372b2...` |
+| **Stockage Cloudflare R2** | | |
+| `R2_ACCESS_KEY_ID` | Clé d'accès API S3 pour R2 | `71a522...` |
+| `R2_SECRET_ACCESS_KEY` | Clé secrète API S3 pour R2 | `fdf003...` |
+| `R2_BUCKET_NAME` | Nom du bucket R2 accueillant les vidéos finales | `renderx-videos` |
+| `R2_PUBLIC_DOMAIN` | Domaine public ou URL CDN pointant sur le bucket R2 | `https://pub-...r2.dev` |
+| **Rendu AWS Lambda** | | |
+| `REMOTION_AWS_REGION` | Région AWS hébergeant la fonction Lambda Remotion | `eu-west-3` |
+| `RENDER_ON_LAMBDA` | Déclenche le rendu sur Lambda plutôt qu'en local | `true` ou `false` |
+| `RENDER_MAX_LAMBDAS` | Nombre maximal d'instances Lambda s'exécutant en parallèle | `10` |
+| **Webhooks n8n** | | |
+| `N8N_WORKFLOW_URL` | Webhook déclenché lors du lancement de la scénarisation | `https://n8n.../webhook/...` |
+| `N8N_PUBLISH_URL` | Webhook appelé après rendu complet avec la vidéo R2 et les métadonnées | `https://n8n.../webhook/...` |
 
-| Champ | Description |
-|-------|-------------|
-| `narration` | Texte de la voix off |
-| `mediaPath` | Fichier média (image ou vidéo) dans `public/` |
-| `effects.zoom` | Ken Burns : `in`, `out`, `none` |
-| `effects.transition` | `fade`, `slide`, `wipe`, `black`, `none` |
-| `effects.shake` | Tremblement caméra |
-| `sounds` | Bruitages/ambiances depuis `public/sounds/` |
-| `overlayText` | Texte incrusté (CTA) |
-| `card` | Écran de fin (texte centré, pas de voix) |
-| `audioPath` | Voix off fournie (contourne ElevenLabs) |
+---
 
-Validation stricte via Zod dans `src/types.ts`.
+## 🚀 Guide de Démarrage Rapide
 
-## Voix ElevenLabs
+### 1. Installation des dépendances
+```bash
+npm install
+```
 
-Voix disponibles : `george` (défaut), `liam`, `antoni`, `anais`, `rachel` — documentation complète dans `docs/VOICES.md`.
+### 2. Démarrer le serveur de prévisualisation Remotion (UI)
+Pour visualiser en temps réel les animations, sous-titres, et transitions dans le navigateur :
+```bash
+npm run dev
+```
 
-## Sous-titres
+### 3. Cycle complet de production en CLI
 
-- **karaoke** : mots en MAJUSCULES surlignés au fil de la voix (shorts verticaux)
-- **cinematic** : phrase sobre centrée en bas (documentaires 16:9)
+1.  **Initialiser une nouvelle vidéo** :
+    ```bash
+    npm run new-video "Le Secret de l'Atlantide"
+    ```
+    *Cette commande archive le projet précédent dans `history/` et prépare un storyboard.json vierge.*
 
-Les timings mot-à-mot sont extraits automatiquement par ElevenLabs. Si la voix est fournie par l'utilisateur (`audioPath`), les mots sont répartis régulièrement.
+2.  **Générer la Voix Off** :
+    ```bash
+    npm run tts
+    ```
+    *Génère les fichiers audios `.mp3` individuels par scène avec leurs métadonnées temporelles dans `public/`.*
 
-## Sound Design
+3.  **Générer les Médias par IA (Images & Vidéos)** :
+    ```bash
+    npm run media-gen
+    # ou exécuter directement : npx ts-node src/novita.ts
+    ```
+    *Analyse le storyboard.json, envoie les prompts d'images à Cloudflare AI et les vidéos à Novita AI, et télécharge les résultats dans `public/`.*
 
-La bibliothèque `public/sounds/` contient des bruitages (sfx), ambiances et musiques décrits par des fichiers `.md` avec front-matter (type, mood, bouclable, durée, tonalité, BPM, pics d'impact). Le catalogue est généré par `npm run sounds`.
+4.  **Vérifier les durées** :
+    ```bash
+    npm run check-video
+    ```
+    *Calcule si les vidéos IA sont assez longues pour couvrir le temps de la voix off correspondante et ajuste dynamiquement le `playbackRate`.*
 
-## Rendu Cloud (Lambda)
+5.  **Lancer le rendu de la vidéo finale** :
+    *   **En local** :
+        ```bash
+        npm run render
+        ```
+    *   **Sur le Cloud (AWS Lambda)** :
+        ```bash
+        npm run render:lambda
+        ```
 
-`npm run render:lambda` déploie uniquement les assets référencés par le storyboard (staging), coupe les source maps, et rend la vidéo sur AWS Remotion Lambda. Le quota de concurrence Lambda se configure via `RENDER_MAX_LAMBDAS` dans `.env`.
+---
 
-## Scripts npm
+## 📝 Format du Storyboard (`storyboard.json`)
 
-| Script | Description |
-|--------|-------------|
-| `npm run tts` | Génération voix off ElevenLabs |
-| `npm run render` | Rendu vidéo local |
-| `npm run render:lambda` | Rendu cloud AWS Lambda |
-| `npm run sounds` | Génération catalogue sons |
-| `npm run new-video "sujet"` | Nouveau projet vidéo |
-| `npm run archive` | Archive le projet dans history/ |
-| `npm run build` | Compilation TypeScript |
+Le storyboard est l'unique source de vérité du montage. Il est validé strictement par le schéma Zod dans `src/types.ts`.
+
+> [!TIP]
+> Référez-vous au document complet de cadrage des prompts [docs/STORYBOARD_SYSTEM_PROMPT.md](docs/STORYBOARD_SYSTEM_PROMPT.md) pour donner des instructions précises de format au LLM d'automatisation.
+
+### Exemple de structure minimale
+```json
+{
+  "title": "Les abysses marines",
+  "ratio": "9:16",
+  "youtubeMetadata": {
+    "title": "🌊 Les secrets les plus sombres de l'océan !",
+    "description": "Plongez dans les abysses pour découvrir des créatures uniques. #ocean #mystere #decouverte",
+    "tags": ["ocean", "abysses", "decouverte", "nature"]
+  },
+  "voice": "george",
+  "subtitles": true,
+  "subtitleStyle": "karaoke",
+  "music": "sounds/music/leberch-cinematic-space.mp3",
+  "musicVolume": 0.08,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "À onze mille mètres de profondeur, la pression écraserait un sous-marin d'acier.",
+      "mediaPath": "scene_1.mp4",
+      "mediaPrompt": "Vertical cinematic shot of a deep ocean trench, dark murky blue water, glowing bioluminescent creatures floating, photorealistic, 4k.",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade",
+        "cameraMotion": "dolly"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Voici les créatures étranges qui y vivent dans une obscurité totale.",
+      "mediaPath": ["scene_2a.png", "scene_2b.png"],
+      "mediaPrompt": "Close up of a glowing transparent deep sea fish, neon light trails, photorealistic, cinematic lighting.",
+      "effects": {
+        "zoom": "out",
+        "transition": "slide"
+      }
+    }
+  ]
+}
+```
+
+---
+
+## 🛠️ Scripts NPM Disponibles
+
+| Commande | Rôle |
+| :--- | :--- |
+| `npm run dev` | Lance le Remotion Preview Server (UI interactive). |
+| `npm run tts` | Génère/mesure les voix off (ElevenLabs / Edge-TTS) et met à jour les timings. |
+| `npm run check-video` | Valide les durées de vidéos par rapport aux audios et corrige les vitesses. |
+| `npm run sounds` | Génère le fichier catalogue complet `public/sounds/CATALOG.md`. |
+| `npm run render` | Produit la vidéo localement dans `out/video.mp4`. |
+| `npm run render:lambda` | Produit la vidéo sur le cloud AWS Lambda et la télécharge localement. |
+| `npm run new-video "Nom"` | Archive le dossier actif et instancie un nouveau projet. |
+| `npm run archive` | Archive uniquement le projet actif sans en recréer de nouveau. |
+| `npm run build` | Compile le projet TypeScript vers le dossier `dist/`. |
