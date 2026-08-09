@@ -34,13 +34,20 @@ export async function POST(request: Request) {
     const storyboard = video.storyboard as any;
     const youtubeMetadata = storyboard?.youtubeMetadata || {};
 
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    const cleanBaseUrl = siteUrl ? (siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl) : baseUrl;
+
     const fs = require('fs');
     const path = require('path');
     const videoFilePath = path.join(process.cwd(), 'public', 'out', `video-${id}.mp4`);
     const fileExists = fs.existsSync(videoFilePath);
-    const videoUrl = fileExists
-      ? `${baseUrl}/out/video-${id}.mp4`
-      : `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`;
+
+    let videoUrl = video.videoPath;
+    if (!videoUrl || !videoUrl.startsWith('http')) {
+      videoUrl = fileExists
+        ? `${cleanBaseUrl}/out/video-${id}.mp4`
+        : `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`;
+    }
 
     const payload = {
       videoId: id,

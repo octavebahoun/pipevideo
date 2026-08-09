@@ -42,6 +42,80 @@ export async function POST(request: Request) {
 
     // 2. Write storyboard to storyboard.json (Remotion expects it at root)
     const storyboardPath = path.join(process.cwd(), 'storyboard.json');
+
+    // Read old storyboard to compare and clean up stale cache
+    let oldStoryboard: any = null;
+    try {
+      const oldContent = await fs.readFile(storyboardPath, 'utf-8');
+      oldStoryboard = JSON.parse(oldContent);
+    } catch (_) {}
+
+    const lastVideoIdPath = path.join(process.cwd(), 'public/.last_rendered_id');
+    let lastVideoId = '';
+    try {
+      lastVideoId = await fs.readFile(lastVideoIdPath, 'utf-8');
+    } catch (_) {}
+
+    const isDifferentVideo = lastVideoId !== id;
+    const publicDir = path.join(process.cwd(), 'public');
+
+    // Helper to check if file exists
+    const checkFile = async (filePath: string) => {
+      try {
+        await fs.access(filePath);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
+    if (isDifferentVideo) {
+      console.log(`[Render] Different video requested (new: ${id}, old: ${lastVideoId}). Cleaning all scene assets...`);
+      try {
+        const files = await fs.readdir(publicDir);
+        for (const file of files) {
+          if (/^scene_\d+.*\.(mp3|mp4|webm|png|jpg|jpeg)$/.test(file)) {
+            await fs.unlink(path.join(publicDir, file)).catch(() => {});
+          }
+        }
+      } catch (e) {
+        console.error('[Render] Error during public directory cleanup:', e);
+      }
+    } else if (oldStoryboard && oldStoryboard.scenes) {
+      console.log(`[Render] Same video requested (${id}). Checking for updated scenes...`);
+      const newScenes = (video.storyboard as any)?.scenes || [];
+      const oldScenes = oldStoryboard.scenes || [];
+
+      for (const scene of newScenes) {
+        const oldScene = oldScenes.find((s: any) => s.id === scene.id);
+        const audioFile = `scene_${scene.id}.mp3`;
+        const videoFile = `scene_${scene.id}.mp4`;
+        const audioFullPath = path.join(publicDir, audioFile);
+        const videoFullPath = path.join(publicDir, videoFile);
+
+        const narrationChanged = !oldScene || oldScene.narration !== scene.narration;
+        const voiceChanged = oldStoryboard.voice !== (video.storyboard as any)?.voice;
+
+        if (narrationChanged || voiceChanged) {
+          if (await checkFile(audioFullPath)) {
+            console.log(`[Render] Narration/voice changed for Scene ${scene.id}. Deleting ${audioFile}...`);
+            await fs.unlink(audioFullPath).catch(() => {});
+          }
+        }
+
+        const promptChanged = !oldScene || oldScene.mediaPrompt !== scene.mediaPrompt;
+        const noTaskId = !scene.novitaTaskId && !scene.mediaPath;
+
+        if (promptChanged || narrationChanged || noTaskId) {
+          if (await checkFile(videoFullPath)) {
+            console.log(`[Render] Scene ${scene.id} modified or missing task ID. Deleting ${videoFile}...`);
+            await fs.unlink(videoFullPath).catch(() => {});
+          }
+        }
+      }
+    }
+
+    await fs.writeFile(lastVideoIdPath, id, 'utf-8').catch(() => {});
     await fs.writeFile(storyboardPath, JSON.stringify(video.storyboard, null, 2), 'utf-8');
 
     // 3. Trigger rendering in the background (using asynchronous exec)

@@ -64,10 +64,15 @@ async function submitVideoTaskForScene(
   const body = {
     prompt,
     fps: 24,
+    seed: 42,
     ratio: ratio,
     duration: duration,
     resolution: resolution,
-    watermark: false
+    watermark: false,
+    camera_fixed: false,
+    service_tier: 'default',
+    generate_audio: false,
+    execution_expires_after: 172800
   };
 
   console.log(`[Novita] Soumission du prompt pour Scène ${sceneId} via le modèle "${model}" (${resolution}), durée demandée: ${duration}s : "${prompt}"...`);
@@ -173,7 +178,16 @@ async function main() {
       const mediaFile = `scene_${scene.id}.mp4`;
       const mediaFullPath = path.join(MEDIA_DIR, mediaFile);
 
-      // Si le fichier média existe déjà localement, on passe
+      // Si la tâche n'a pas de novitaTaskId ni de mediaPath, cela signifie que la scène doit être régénérée.
+      // Dans ce cas, on supprime tout média local existant pour forcer la soumission à Novita.
+      if (!scene.novitaTaskId && !scene.mediaPath) {
+        if (await fileExists(mediaFullPath)) {
+          console.log(`[Novita] Nettoyage du fichier média local existant pour Scène ${scene.id} (pas de task ID ni de mediaPath)...`);
+          await fs.unlink(mediaFullPath).catch(() => {});
+        }
+      }
+
+      // Si le fichier média existe déjà localement, on le réutilise pour économiser le budget API
       if (await fileExists(mediaFullPath)) {
         continue;
       }

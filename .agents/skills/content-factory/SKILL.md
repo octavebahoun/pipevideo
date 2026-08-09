@@ -30,7 +30,7 @@ Choisir `ratio`, `subtitleStyle` et le mode voix en fonction du genre visé (voi
 
 ### 1. Recherche & Écriture du Script — ⚠️ CRÉATIVITÉ IMPOSÉE
 - Faire des recherches (via `agent-reach` ou connaissances) sur le sujet.
-- Diviser en scènes cohérentes ; enregistrer dans `storyboard.json` (structure `src/types.ts`).
+- Diviser en scènes cohérentes ; enregistrer dans `storyboard.json` (structure `src/types.ts`). Référez-vous impérativement au prompt système détaillé [docs/STORYBOARD_SYSTEM_PROMPT.md](file:///home/precieux/pipevideo/docs/STORYBOARD_SYSTEM_PROMPT.md) pour la structure des champs JSON et la sélection des sons réels.
 
 **RÈGLES D'ÉCRITURE — NON NÉGOCIABLES.** Un script plat, linéaire ou encyclopédique est un **ÉCHEC** : le réécrire. Chaque script DOIT cocher les 5 points ci-dessous, et l'agent doit **s'auto-auditer AVANT `npm run tts`** :
 
