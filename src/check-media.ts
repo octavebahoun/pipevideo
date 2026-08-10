@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { parseFile } from 'music-metadata';
+import { getVideoMetadata } from '@remotion/renderer';
 import { loadStoryboard } from './storyboard';
 import { FPS, getSceneDurationInFrames, getTransitionFramesBefore } from './types';
 import { updateProgress, checkCancelled } from './lib/progressHelper';
@@ -85,15 +85,15 @@ async function main() {
       continue;
     }
 
-    let actualSeconds: number | undefined;
+    let actualSeconds: number | null | undefined;
     try {
-      actualSeconds = (await parseFile(mediaFullPath)).format.duration;
+      actualSeconds = (await getVideoMetadata(mediaFullPath)).durationInSeconds;
     } catch (err: any) {
       console.log(`⚠️  ${label} (${scene.mediaPath}) : impossible de lire le fichier (${err.message}).`);
       hasBlockingIssues = true;
       continue;
     }
-    if (actualSeconds === undefined) {
+    if (actualSeconds === undefined || actualSeconds === null) {
       console.log(`⚠️  ${label} (${scene.mediaPath}) : durée illisible dans ce fichier.`);
       hasBlockingIssues = true;
       continue;
