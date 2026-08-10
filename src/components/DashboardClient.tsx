@@ -1,20 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { 
-  Video as VideoIcon, 
-  Play, 
-  Edit3, 
-  CheckCircle2, 
-  AlertCircle, 
-  Clock, 
-  Plus, 
+import {
+  Video as VideoIcon,
+  Play,
+  Edit3,
+  CheckCircle2,
+  AlertCircle,
+  Clock,
+  Plus,
   Send,
   Trash2,
   Film,
   Sparkles,
   Loader2,
-  Tv
+  Tv,
+  Eye,
+  ThumbsUp,
+  MessageCircle,
+  RefreshCw
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -49,6 +53,8 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
   const [renderingIds, setRenderingIds] = useState<string[]>([]);
   const [publishingIds, setPublishingIds] = useState<string[]>([]);
   const [cacheStatus, setCacheStatus] = useState<Record<string, { totalScenes: number; readyScenes: number }>>({});
+  const [youtubeStats, setYoutubeStats] = useState<Record<string, { viewCount: number; likeCount: number; commentCount: number }>>({});
+  const [loadingStatsIds, setLoadingStatsIds] = useState<string[]>([]);
 
   // String identifier of currently rendering videos for polling hook dependency
   const renderingString = videos
@@ -89,6 +95,36 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
       });
     })();
   }, [failedString]);
+
+  const fetchYoutubeStats = async (id: string) => {
+    setLoadingStatsIds((prev) => [...prev, id]);
+    try {
+      const res = await fetch(`/api/youtube/stats?id=${id}`);
+      if (res.ok) {
+        const data = await res.json();
+        setYoutubeStats((prev) => ({
+          ...prev,
+          [id]: { viewCount: data.viewCount, likeCount: data.likeCount, commentCount: data.commentCount },
+        }));
+      }
+    } catch (err) {
+      console.error('Error fetching YouTube stats:', err);
+    } finally {
+      setLoadingStatsIds((prev) => prev.filter((x) => x !== id));
+    }
+  };
+
+  // Videos with a youtubeId: load stats once on mount (not polled — avoid burning API quota).
+  const publishedWithIdString = videos
+    .filter((v) => v.youtubeId)
+    .map((v) => v.id)
+    .join(',');
+
+  useEffect(() => {
+    if (!publishedWithIdString) return;
+    publishedWithIdString.split(',').forEach((id) => fetchYoutubeStats(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [publishedWithIdString]);
 
   useEffect(() => {
     if (!renderingString) return;
@@ -332,7 +368,7 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {videos.map((video) => (
-              <div key={video.id} className="glass glass-hover p-6 rounded-2xl border border-zinc-800 flex flex-col justify-between h-[280px]">
+              <div key={video.id} className="glass glass-hover p-6 rounded-2xl border border-zinc-800 flex flex-col justify-between min-h-[280px]">
                 <div>
                   <div className="flex justify-between items-start gap-2 mb-3">
                     {getStatusBadge(video.status)}
@@ -465,14 +501,44 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
                   )}
 
                   {(video.status === 'PUBLISHED' || video.youtubeId) && (
-                    <a
-                      href={`https://youtube.com/watch?v=${video.youtubeId}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-bold rounded-xl transition-all border border-zinc-700"
-                    >
-                      <Tv className="w-3.5 h-3.5 text-red-500" /> Voir sur YouTube ({video.youtubeStatus || 'PUBLIC'})
-                    </a>
+                    <div className="space-y-2 w-full">
+                      <a
+                        href={`https://youtube.com/watch?v=${video.youtubeId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-bold rounded-xl transition-all border border-zinc-700"
+                      >
+                        <Tv className="w-3.5 h-3.5 text-red-500" /> Voir sur YouTube ({video.youtubeStatus || 'PUBLIC'})
+                      </a>
+
+                      {video.youtubeId && (
+                        <div className="flex items-center justify-between gap-2 px-1">
+                          {youtubeStats[video.id] ? (
+                            <div className="flex items-center gap-3 text-xs text-zinc-400">
+                              <span className="flex items-center gap-1" title="Vues">
+                                <Eye className="w-3.5 h-3.5" /> {youtubeStats[video.id].viewCount.toLocaleString('fr-FR')}
+                              </span>
+                              <span className="flex items-center gap-1" title="Likes">
+                                <ThumbsUp className="w-3.5 h-3.5" /> {youtubeStats[video.id].likeCount.toLocaleString('fr-FR')}
+                              </span>
+                              <span className="flex items-center gap-1" title="Commentaires">
+                                <MessageCircle className="w-3.5 h-3.5" /> {youtubeStats[video.id].commentCount.toLocaleString('fr-FR')}
+                              </span>
+                            </div>
+                          ) : (
+                            <span className="text-xs text-zinc-600">Statistiques non chargées</span>
+                          )}
+                          <button
+                            onClick={() => fetchYoutubeStats(video.id)}
+                            disabled={loadingStatsIds.includes(video.id)}
+                            className="text-zinc-500 hover:text-zinc-300 p-1 rounded-lg hover:bg-zinc-800 transition-colors"
+                            title="Rafraîchir les statistiques"
+                          >
+                            <RefreshCw className={`w-3.5 h-3.5 ${loadingStatsIds.includes(video.id) ? 'animate-spin' : ''}`} />
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
