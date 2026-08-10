@@ -187,7 +187,20 @@ export async function POST(request: Request) {
           // off to YouTube. The video stays COMPLETED and can be republished via
           // POST /api/publish once R2/S3 storage is fixed and a fresh render exists.
           const publishUrl = process.env.N8N_PUBLISH_URL;
-          if (publishUrl && !hasDurableStorage) {
+          // A future scheduledFor (set in the editor) means the user chose NOT to
+          // publish as soon as the render finishes — src/instrumentation.ts polls
+          // for it and notifies n8n once that date is reached. Re-read from
+          // currentVideo (fetched just above) rather than the `video` fetched at
+          // the start of the request, since the schedule may have been set/changed
+          // by the user while this render was running.
+          const hasFutureSchedule = !!currentVideo?.scheduledFor && new Date(currentVideo.scheduledFor) > new Date();
+
+          if (hasFutureSchedule) {
+            console.log(
+              `[Render] Video ${id} is scheduled for ${currentVideo!.scheduledFor!.toISOString()}; ` +
+                `skipping immediate n8n notification. The scheduler will publish it automatically at that time.`
+            );
+          } else if (publishUrl && !hasDurableStorage) {
             console.error(
               `[Render] Skipping n8n notification for video ${id}: no durable storage available ` +
                 `(R2/S3 upload missing or failed). Fix storage and re-render before publishing.`
