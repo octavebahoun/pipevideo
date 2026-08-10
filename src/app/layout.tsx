@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Content Factory Dashboard',
-  description: 'Orchestrateur automatisé de création et publication de vidéos courtes.',
+  title: 'Content Factory — Automatisez votre chaîne YouTube',
+  description: 'De l\'idée à la publication : générez, montez et publiez des vidéos courtes automatiquement, propulsé par l\'IA.',
 };
 
 export default function RootLayout({
@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className="dark">
-      <body className="antialiased min-h-screen bg-[#09090b]">
+    <html lang="fr">
+      <body className="antialiased min-h-screen bg-[var(--background)]">
         {children}
       </body>
     </html>
