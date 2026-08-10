@@ -15,7 +15,9 @@ import {
   Tv,
   Smile,
   AlertCircle,
-  CalendarClock
+  CalendarClock,
+  Sparkles,
+  X
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -86,6 +88,9 @@ export default function EditorClient({ video }: EditorClientProps) {
   const [topic, setTopic] = useState(video.topic);
   const [isSaving, setIsSaving] = useState(false);
   const [scheduledFor, setScheduledFor] = useState(toDatetimeLocalValue(video.scheduledFor));
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysis, setAnalysis] = useState<string | null>(null);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
 
   // Initialize storyboard with default structure if missing
   const initialStoryboard: Storyboard = {
@@ -260,6 +265,29 @@ export default function EditorClient({ video }: EditorClientProps) {
     }
   };
 
+  const handleAnalyze = async () => {
+    setIsAnalyzing(true);
+    setAnalysisError(null);
+    try {
+      const res = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: video.id }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setAnalysis(data.analysis);
+      } else {
+        setAnalysisError(data.error || 'Erreur lors de l\'analyse.');
+      }
+    } catch (err) {
+      console.error(err);
+      setAnalysisError('Erreur de connexion réseau.');
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
   const activeScene = storyboard.scenes.find(s => s.id === activeSceneId);
 
   return (
@@ -286,14 +314,50 @@ export default function EditorClient({ video }: EditorClientProps) {
           </div>
         </div>
 
-        <button 
-          onClick={handleSave}
-          disabled={isSaving}
-          className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-lg shadow-purple-500/20 transition-all duration-200"
-        >
-          {isSaving ? 'Sauvegarde...' : <><Save className="w-5 h-5" /> Enregistrer</>}
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleAnalyze}
+            disabled={isAnalyzing || storyboard.scenes.length === 0}
+            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 text-white rounded-xl font-medium border border-zinc-800 hover:border-purple-700 transition-all duration-200"
+            title="Analyser le script avec l'IA (OpenRouter)"
+          >
+            {isAnalyzing ? (
+              <><Sparkles className="w-4 h-4 animate-pulse" /> Analyse en cours...</>
+            ) : (
+              <><Sparkles className="w-4 h-4 text-purple-400" /> Analyser avec l'IA</>
+            )}
+          </button>
+          <button
+            onClick={handleSave}
+            disabled={isSaving}
+            className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-lg shadow-purple-500/20 transition-all duration-200"
+          >
+            {isSaving ? 'Sauvegarde...' : <><Save className="w-5 h-5" /> Enregistrer</>}
+          </button>
+        </div>
       </header>
+
+      {/* AI Analysis Result */}
+      {(analysis || analysisError) && (
+        <section className="glass p-6 rounded-2xl border border-purple-900/50 mb-8 relative">
+          <button
+            onClick={() => { setAnalysis(null); setAnalysisError(null); }}
+            className="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 rounded-lg hover:bg-zinc-800 transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
+          <h3 className="text-md font-bold text-white mb-3 flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-purple-400" /> Analyse IA du script
+          </h3>
+          {analysisError ? (
+            <p className="text-sm text-red-300 flex items-center gap-2">
+              <AlertCircle className="w-4 h-4" /> {analysisError}
+            </p>
+          ) : (
+            <div className="text-sm text-zinc-300 whitespace-pre-line leading-relaxed">{analysis}</div>
+          )}
+        </section>
+      )}
 
       {/* Configuration Globale */}
       <section className="glass p-6 rounded-2xl border border-zinc-800 mb-8 grid grid-cols-1 md:grid-cols-4 gap-6">
