@@ -2,19 +2,20 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-  ArrowLeft, 
-  Save, 
-  Plus, 
-  Trash2, 
-  ArrowUp, 
-  ArrowDown, 
-  Settings, 
-  Layers, 
-  Music, 
-  Tv, 
-  Smile, 
-  AlertCircle 
+import {
+  ArrowLeft,
+  Save,
+  Plus,
+  Trash2,
+  ArrowUp,
+  ArrowDown,
+  Settings,
+  Layers,
+  Music,
+  Tv,
+  Smile,
+  AlertCircle,
+  CalendarClock
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -61,6 +62,7 @@ interface VideoRecord {
   voice: string;
   ratio: string;
   storyboard: any;
+  scheduledFor: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -69,11 +71,21 @@ interface EditorClientProps {
   video: VideoRecord;
 }
 
+/** Converts an ISO datetime string to the "YYYY-MM-DDTHH:mm" format expected
+ *  by <input type="datetime-local">, in the browser's local timezone. */
+function toDatetimeLocalValue(iso: string | null): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 export default function EditorClient({ video }: EditorClientProps) {
   const router = useRouter();
   const [title, setTitle] = useState(video.title);
   const [topic, setTopic] = useState(video.topic);
   const [isSaving, setIsSaving] = useState(false);
+  const [scheduledFor, setScheduledFor] = useState(toDatetimeLocalValue(video.scheduledFor));
 
   // Initialize storyboard with default structure if missing
   const initialStoryboard: Storyboard = {
@@ -230,6 +242,7 @@ export default function EditorClient({ video }: EditorClientProps) {
           voice: storyboard.voice,
           ratio: storyboard.ratio,
           storyboard: storyboard,
+          scheduledFor: scheduledFor ? new Date(scheduledFor).toISOString() : null,
         }),
       });
 
@@ -382,14 +395,46 @@ export default function EditorClient({ video }: EditorClientProps) {
             <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
               Description de la vidéo
             </label>
-            <textarea 
-              value={storyboard.youtubeMetadata?.description || ''} 
+            <textarea
+              value={storyboard.youtubeMetadata?.description || ''}
               onChange={(e) => updateYoutubeMetadataField('description', e.target.value)}
               rows={4}
               className="w-full bg-zinc-900 border border-zinc-800 focus:border-purple-500 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 resize-y"
               placeholder="Description optimisée pour YouTube..."
             />
           </div>
+        </div>
+      </section>
+
+      {/* Scheduled Publication */}
+      <section className="glass p-6 rounded-2xl border border-zinc-800 mb-8">
+        <h3 className="text-md font-bold text-white mb-4 flex items-center gap-2">
+          <CalendarClock className="w-5 h-5 text-purple-400" /> Publication programmée
+        </h3>
+        <div className="flex flex-col md:flex-row md:items-end gap-4">
+          <div className="flex-1 max-w-xs">
+            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+              Date et heure de publication
+            </label>
+            <input
+              type="datetime-local"
+              value={scheduledFor}
+              onChange={(e) => setScheduledFor(e.target.value)}
+              className="w-full bg-zinc-900 border border-zinc-800 focus:border-purple-500 rounded-xl px-4 py-2.5 text-sm text-white [color-scheme:dark]"
+            />
+          </div>
+          {scheduledFor && (
+            <button
+              type="button"
+              onClick={() => setScheduledFor('')}
+              className="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white text-xs font-semibold rounded-xl border border-zinc-800 transition-colors"
+            >
+              Annuler la programmation
+            </button>
+          )}
+          <p className="text-xs text-zinc-500 md:max-w-xs">
+            Une fois la vidéo rendue (statut « Rendu terminé »), elle sera publiée automatiquement sur YouTube à cette date.
+          </p>
         </div>
       </section>
 

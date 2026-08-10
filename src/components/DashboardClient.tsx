@@ -18,7 +18,8 @@ import {
   Eye,
   ThumbsUp,
   MessageCircle,
-  RefreshCw
+  RefreshCw,
+  CalendarClock
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -483,21 +484,29 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
                   )}
 
                   {video.status === 'COMPLETED' && (
-                    <button 
-                      onClick={() => handlePublishYoutube(video.id)}
-                      disabled={publishingIds.includes(video.id)}
-                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 disabled:from-red-800 disabled:to-red-950 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-red-500/10"
-                    >
-                      {publishingIds.includes(video.id) ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" /> Publication...
-                        </>
-                      ) : (
-                        <>
-                          <Tv className="w-3.5 h-3.5" /> Publier sur YouTube
-                        </>
+                    <div className="space-y-2 w-full">
+                      {video.scheduledFor && new Date(video.scheduledFor) > new Date() && (
+                        <p className="flex items-center justify-center gap-1.5 text-xs text-purple-300 bg-purple-950/40 border border-purple-900/50 rounded-xl py-1.5">
+                          <CalendarClock className="w-3.5 h-3.5" />
+                          Programmée pour le {new Date(video.scheduledFor).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })}
+                        </p>
                       )}
-                    </button>
+                      <button
+                        onClick={() => handlePublishYoutube(video.id)}
+                        disabled={publishingIds.includes(video.id)}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 disabled:from-red-800 disabled:to-red-950 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-red-500/10"
+                      >
+                        {publishingIds.includes(video.id) ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" /> Publication...
+                          </>
+                        ) : (
+                          <>
+                            <Tv className="w-3.5 h-3.5" /> Publier maintenant sur YouTube
+                          </>
+                        )}
+                      </button>
+                    </div>
                   )}
 
                   {(video.status === 'PUBLISHED' || video.youtubeId) && (

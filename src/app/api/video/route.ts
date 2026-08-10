@@ -70,7 +70,12 @@ export async function PATCH(request: Request) {
         status,
         youtubeId,
         youtubeStatus,
-        scheduledFor: scheduledFor ? new Date(scheduledFor) : undefined,
+        // `scheduledFor` is only touched when the caller explicitly includes the
+        // key in the body — this lets EditorClient send `null` to un-schedule a
+        // video, which `undefined` (Prisma's "don't touch this field") could not.
+        ...('scheduledFor' in body
+          ? { scheduledFor: scheduledFor ? new Date(scheduledFor) : null }
+          : {}),
       },
     });
 

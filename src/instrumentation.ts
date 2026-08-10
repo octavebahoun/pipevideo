@@ -1,3 +1,61 @@
+const SCHEDULED_PUBLISH_CHECK_INTERVAL_MS = 60_000;
+
+/**
+ * Publishes every COMPLETED video whose scheduledFor time has passed and
+ * hasn't been notified to n8n yet. Runs on a plain in-memory interval — no
+ * external cron is set up in this container, and the server runs with
+ * restart:always, so this is "good enough" scheduling without extra infra.
+ * A missed check (server down at the exact scheduled minute) just means the
+ * video publishes on the next check after the server comes back up, since
+ * the query is `scheduledFor <= now`, not `scheduledFor == now`.
+ */
+async function checkScheduledPublications() {
+  const { prisma } = await import('@/lib/db');
+  const { notifyN8nPublish } = await import('@/lib/n8nPublish');
+
+  const dueVideos = await prisma.video.findMany({
+    where: {
+      status: 'COMPLETED',
+      scheduledFor: { lte: new Date() },
+      publishNotifiedAt: null,
+    },
+  });
+
+  for (const video of dueVideos) {
+    if (!video.videoPath || !video.videoPath.startsWith('http')) {
+      console.error(
+        `[Scheduler] Skipping scheduled publish for video ${video.id}: no valid stored URL ` +
+          `(videoPath is missing or not public). Fix storage before it can be published.`
+      );
+      continue;
+    }
+
+    const publishUrl = process.env.N8N_PUBLISH_URL;
+    if (!publishUrl) {
+      console.error(`[Scheduler] Cannot publish video ${video.id}: N8N_PUBLISH_URL is not set.`);
+      continue;
+    }
+
+    const meta = (video.storyboard as any)?.youtubeMetadata || {};
+    console.log(`[Scheduler] Publishing scheduled video ${video.id} (was due at ${video.scheduledFor?.toISOString()})...`);
+    const result = await notifyN8nPublish(publishUrl, {
+      videoId: video.id,
+      status: 'COMPLETED',
+      videoUrl: video.videoPath,
+      title: meta.title || video.title || '',
+      description: meta.description || '',
+      tags: meta.tags || [],
+      youtubeMetadata: meta,
+    });
+
+    if (result.ok) {
+      console.log(`[Scheduler] Video ${video.id} published successfully (status ${result.status}).`);
+    } else {
+      console.error(`[Scheduler] Failed to publish scheduled video ${video.id}: ${result.error}`);
+    }
+  }
+}
+
 export async function register() {
   if (process.env.NEXT_RUNTIME !== 'nodejs') {
     return;
@@ -25,4 +83,10 @@ export async function register() {
   } catch (err) {
     console.error('[Startup] Failed to clean up stale RENDERING videos:', err);
   }
+
+  setInterval(() => {
+    checkScheduledPublications().catch((err) => {
+      console.error('[Scheduler] Error while checking scheduled publications:', err);
+    });
+  }, SCHEDULED_PUBLISH_CHECK_INTERVAL_MS);
 }
