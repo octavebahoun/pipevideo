@@ -48,12 +48,47 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [renderingIds, setRenderingIds] = useState<string[]>([]);
   const [publishingIds, setPublishingIds] = useState<string[]>([]);
+  const [cacheStatus, setCacheStatus] = useState<Record<string, { totalScenes: number; readyScenes: number }>>({});
 
   // String identifier of currently rendering videos for polling hook dependency
   const renderingString = videos
     .filter(v => v.status === 'RENDERING')
     .map(v => v.id)
     .join(',');
+
+  // Failed videos may resume from cached scenes: fetch how many are ready to show it.
+  const failedString = videos
+    .filter(v => v.status === 'FAILED')
+    .map(v => v.id)
+    .join(',');
+
+  useEffect(() => {
+    if (!failedString) return;
+    const failedIdsList = failedString.split(',');
+
+    (async () => {
+      const results = await Promise.all(
+        failedIdsList.map(async (id) => {
+          try {
+            const res = await fetch(`/api/render/status?id=${id}`);
+            if (!res.ok) return null;
+            const data = await res.json();
+            return { id, totalScenes: data.totalScenes, readyScenes: data.readyScenes };
+          } catch {
+            return null;
+          }
+        })
+      );
+
+      setCacheStatus((prev) => {
+        const next = { ...prev };
+        for (const r of results) {
+          if (r) next[r.id] = { totalScenes: r.totalScenes, readyScenes: r.readyScenes };
+        }
+        return next;
+      });
+    })();
+  }, [failedString]);
 
   useEffect(() => {
     if (!renderingString) return;
@@ -123,7 +158,11 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
     }
   };
 
-  const handleTriggerRender = async (id: string) => {
+  const handleTriggerRender = async (id: string, mode: 'resume' | 'fresh' = 'resume') => {
+    if (mode === 'fresh' && !confirm('Recommencer à zéro va régénérer toutes les scènes (voix, images/vidéos IA), même celles déjà réussies. Continuer ?')) {
+      return;
+    }
+
     setRenderingIds(prev => [...prev, id]);
     // Optimistically update status
     setVideos(prev => prev.map(v => v.id === id ? { ...v, status: 'RENDERING' } : v));
@@ -132,7 +171,7 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
       const res = await fetch('/api/render', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id, mode }),
       });
 
       if (res.ok) {
@@ -331,8 +370,8 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
                     )}
                   </div>
 
-                  {(video.status === 'SCRIPTED' || video.status === 'DRAFT' || video.status === 'FAILED') && (
-                    <button 
+                  {(video.status === 'SCRIPTED' || video.status === 'DRAFT') && (
+                    <button
                       onClick={() => handleTriggerRender(video.id)}
                       disabled={renderingIds.includes(video.id)}
                       className="w-full flex items-center justify-center gap-2 py-2.5 bg-purple-600 hover:bg-purple-500 disabled:bg-purple-800 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-purple-500/10"
@@ -347,6 +386,38 @@ export default function DashboardClient({ initialVideos }: DashboardClientProps)
                         </>
                       )}
                     </button>
+                  )}
+
+                  {video.status === 'FAILED' && (
+                    <div className="space-y-2 w-full">
+                      {cacheStatus[video.id] && cacheStatus[video.id].totalScenes > 0 && (
+                        <p className="text-xs text-zinc-400 text-center">
+                          {cacheStatus[video.id].readyScenes}/{cacheStatus[video.id].totalScenes} scènes déjà générées
+                        </p>
+                      )}
+                      <button
+                        onClick={() => handleTriggerRender(video.id, 'resume')}
+                        disabled={renderingIds.includes(video.id)}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 bg-purple-600 hover:bg-purple-500 disabled:bg-purple-800 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-purple-500/10"
+                      >
+                        {renderingIds.includes(video.id) ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" /> Rendu en cours...
+                          </>
+                        ) : (
+                          <>
+                            <Play className="w-3.5 h-3.5" /> Reprendre le rendu
+                          </>
+                        )}
+                      </button>
+                      <button
+                        onClick={() => handleTriggerRender(video.id, 'fresh')}
+                        disabled={renderingIds.includes(video.id)}
+                        className="w-full flex items-center justify-center gap-1.5 py-1.5 text-zinc-500 hover:text-zinc-300 text-xs transition-colors"
+                      >
+                        Recommencer à zéro
+                      </button>
+                    </div>
                   )}
 
                   {video.status === 'RENDERING' && (

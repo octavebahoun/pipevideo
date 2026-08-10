@@ -27,3 +27,7 @@ public/sounds/**/*.wav
 .next/
 *.tsbuildinfo
 .DS_Store
+
+# Google OAuth / API credentials (never commit)
+client_secret_*.json
+**/*.apps.googleusercontent.com.json

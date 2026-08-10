@@ -6,6 +6,7 @@ import * as path from 'path';
 import { activeRenders } from '@/lib/renderRegistry';
 import { uploadToR2 } from '@/lib/r2';
 import { notifyN8nPublish } from '@/lib/n8nPublish';
+import { computeSceneCacheStatus, cleanupStaleSceneFiles, cleanupAllSceneFiles } from '@/lib/renderCache';
 
 export async function POST(request: Request) {
   try {
@@ -13,11 +14,12 @@ export async function POST(request: Request) {
     const baseUrl = `${requestUrl.protocol}//${requestUrl.host}`;
 
     const body = await request.json();
-    const { id } = body;
+    const { id, mode } = body as { id?: string; mode?: 'resume' | 'fresh' };
 
     if (!id) {
       return NextResponse.json({ error: 'Missing id parameter' }, { status: 400 });
     }
+    const renderMode: 'resume' | 'fresh' = mode === 'fresh' ? 'fresh' : 'resume';
 
     const video = await prisma.video.findUnique({
       where: { id },
@@ -43,80 +45,31 @@ export async function POST(request: Request) {
 
     // 2. Write storyboard to storyboard.json (Remotion expects it at root)
     const storyboardPath = path.join(process.cwd(), 'storyboard.json');
-
-    // Read old storyboard to compare and clean up stale cache
-    let oldStoryboard: any = null;
-    try {
-      const oldContent = await fs.readFile(storyboardPath, 'utf-8');
-      oldStoryboard = JSON.parse(oldContent);
-    } catch (_) {}
-
-    const lastVideoIdPath = path.join(process.cwd(), 'public/.last_rendered_id');
-    let lastVideoId = '';
-    try {
-      lastVideoId = await fs.readFile(lastVideoIdPath, 'utf-8');
-    } catch (_) {}
-
-    const isDifferentVideo = lastVideoId !== id;
     const publicDir = path.join(process.cwd(), 'public');
 
-    // Helper to check if file exists
-    const checkFile = async (filePath: string) => {
-      try {
-        await fs.access(filePath);
-        return true;
-      } catch {
-        return false;
-      }
-    };
+    // Per-video snapshot of the storyboard as it was at its own last render attempt.
+    // Comparing against THIS (rather than the global storyboard.json, which reflects
+    // whichever video rendered last) means alternating between videos never wipes
+    // one video's cached scenes just because another one rendered in between.
+    const snapshotPath = path.join(publicDir, `.storyboard-snapshot-${id}.json`);
+    let previousStoryboard: any = null;
+    try {
+      previousStoryboard = JSON.parse(await fs.readFile(snapshotPath, 'utf-8'));
+    } catch (_) {}
 
-    if (isDifferentVideo) {
-      console.log(`[Render] Different video requested (new: ${id}, old: ${lastVideoId}). Cleaning all scene assets...`);
-      try {
-        const files = await fs.readdir(publicDir);
-        for (const file of files) {
-          if (/^scene_\d+.*\.(mp3|mp4|webm|png|jpg|jpeg)$/.test(file)) {
-            await fs.unlink(path.join(publicDir, file)).catch(() => {});
-          }
-        }
-      } catch (e) {
-        console.error('[Render] Error during public directory cleanup:', e);
-      }
-    } else if (oldStoryboard && oldStoryboard.scenes) {
-      console.log(`[Render] Same video requested (${id}). Checking for updated scenes...`);
-      const newScenes = (video.storyboard as any)?.scenes || [];
-      const oldScenes = oldStoryboard.scenes || [];
-
-      for (const scene of newScenes) {
-        const oldScene = oldScenes.find((s: any) => s.id === scene.id);
-        const audioFile = `scene_${scene.id}.mp3`;
-        const videoFile = `scene_${scene.id}.mp4`;
-        const audioFullPath = path.join(publicDir, audioFile);
-        const videoFullPath = path.join(publicDir, videoFile);
-
-        const narrationChanged = !oldScene || oldScene.narration !== scene.narration;
-        const voiceChanged = oldStoryboard.voice !== (video.storyboard as any)?.voice;
-
-        if (narrationChanged || voiceChanged) {
-          if (await checkFile(audioFullPath)) {
-            console.log(`[Render] Narration/voice changed for Scene ${scene.id}. Deleting ${audioFile}...`);
-            await fs.unlink(audioFullPath).catch(() => {});
-          }
-        }
-
-        const promptChanged = !oldScene || oldScene.mediaPrompt !== scene.mediaPrompt;
-        const noTaskId = !scene.novitaTaskId && !scene.mediaPath;
-
-        if (promptChanged || narrationChanged || noTaskId) {
-          if (await checkFile(videoFullPath)) {
-            console.log(`[Render] Scene ${scene.id} modified or missing task ID. Deleting ${videoFile}...`);
-            await fs.unlink(videoFullPath).catch(() => {});
-          }
-        }
-      }
+    if (renderMode === 'fresh') {
+      console.log(`[Render] Fresh render requested for video ${id}. Cleaning all scene assets...`);
+      await cleanupAllSceneFiles();
+    } else {
+      const cacheStatus = await computeSceneCacheStatus(video.storyboard, previousStoryboard);
+      const staleCount = cacheStatus.filter((s) => !s.audioReady || !s.mediaReady).length;
+      console.log(
+        `[Render] Resuming video ${id}: ${cacheStatus.length - staleCount}/${cacheStatus.length} scenes already up to date.`
+      );
+      await cleanupStaleSceneFiles(cacheStatus);
     }
 
-    await fs.writeFile(lastVideoIdPath, id, 'utf-8').catch(() => {});
+    await fs.writeFile(snapshotPath, JSON.stringify(video.storyboard, null, 2), 'utf-8').catch(() => {});
     await fs.writeFile(storyboardPath, JSON.stringify(video.storyboard, null, 2), 'utf-8');
 
     // 3. Trigger rendering in the background (using asynchronous exec)

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import * as fs from 'fs/promises';
+import * as path from 'path';
 
 export async function GET(request: Request) {
   try {
@@ -37,6 +39,9 @@ export async function DELETE(request: Request) {
     await prisma.video.delete({
       where: { id },
     });
+
+    const snapshotPath = path.join(process.cwd(), 'public', `.storyboard-snapshot-${id}.json`);
+    await fs.unlink(snapshotPath).catch(() => {});
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
