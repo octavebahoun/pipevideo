@@ -21,7 +21,7 @@ export const RemotionRoot: React.FC = () => {
       width={1920}
       height={1080}
       defaultProps={{ storyboard: defaultStoryboard as Storyboard }}
-      calculateMetadata={({ props }) => {
+      calculateMetadata={({ props }: { props: { storyboard: Storyboard } }) => {
         const { storyboard } = props;
         const { width, height } = getDimensions(storyboard);
         return {

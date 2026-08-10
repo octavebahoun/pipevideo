@@ -43,7 +43,7 @@ export default function CreateIdeaButton() {
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="flex items-center gap-2 px-5 py-2.5 btn-glossy-red text-white rounded-xl font-medium"
+        className="w-full flex items-center justify-center gap-2 px-5 py-2.5 btn-glossy-red text-white rounded-xl font-medium"
       >
         <Plus className="w-5 h-5" /> Nouvelle Idée
       </button>

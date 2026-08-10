@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Tv, Clock, CalendarClock, BarChart3, LogOut, Film, Menu, X } from 'lucide-react';
+import CreateIdeaButton from '@/components/CreateIdeaButton';
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Vidéos publiées', icon: Tv },
@@ -30,9 +31,13 @@ export default function Sidebar() {
 
   const navContent = (
     <>
-      <div className="flex items-center gap-2 mb-10 px-2">
+      <div className="flex items-center gap-2 mb-8 px-2">
         <Film className="w-6 h-6 text-red-500" />
         <span className="text-lg font-extrabold text-zinc-900 tracking-tight">Content Factory</span>
+      </div>
+
+      <div className="mb-6">
+        <CreateIdeaButton />
       </div>
 
       <nav className="flex-1 space-y-1">
