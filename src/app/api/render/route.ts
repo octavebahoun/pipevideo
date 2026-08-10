@@ -5,6 +5,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { activeRenders } from '@/lib/renderRegistry';
 import { uploadToR2 } from '@/lib/r2';
+import { notifyN8nPublish } from '@/lib/n8nPublish';
 
 export async function POST(request: Request) {
   try {
@@ -184,33 +185,35 @@ export async function POST(request: Request) {
           } catch (r2Err) {
             console.error('[Render] Failed to upload to Cloudflare R2:', r2Err);
           }
-          // 3. Determine the final video URL (Priority: R2 -> AWS S3 -> Local path / base URL fallback)
+          // 3. Determine the final video URL (Priority: R2 -> AWS S3 -> Local path fallback).
+          // Note: we never guess an R2 URL here — it's only used above once uploadToR2()
+          // has actually confirmed the upload succeeded (r2Url). Guessing the public URL
+          // when the upload failed would point n8n at a key that doesn't exist on R2.
           let finalVideoPath = `out/video-${id}.mp4`;
           let finalVideoUrl = `${baseUrl}/out/video-${id}.mp4`;
+          let hasDurableStorage = false;
 
           if (r2Url) {
             finalVideoPath = r2Url;
             finalVideoUrl = r2Url;
+            hasDurableStorage = true;
             console.log(`[Render] Final URL configured to Cloudflare R2: ${r2Url}`);
           } else if (s3Url) {
             finalVideoPath = s3Url;
             finalVideoUrl = s3Url;
+            hasDurableStorage = true;
             console.log(`[Render] Final URL configured to AWS S3: ${s3Url}`);
           } else {
-            // No R2 or AWS S3 URL (rendered locally).
-            // Fallback to R2 public domain if configured to prevent sending localhost URL to n8n.
-            const r2PublicDomain = process.env.R2_PUBLIC_DOMAIN || process.env.CLOUDFLARE_R2_PUBLIC_URL;
-            if (r2PublicDomain) {
-              const cleanDomain = r2PublicDomain.endsWith('/') ? r2PublicDomain.slice(0, -1) : r2PublicDomain;
-              finalVideoUrl = `${cleanDomain}/video-${id}.mp4`;
-              console.log(`[Render] Fallback URL configured to R2 domain: ${finalVideoUrl}`);
-            } else {
-              const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-              if (siteUrl) {
-                const cleanSiteUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
-                finalVideoUrl = `${cleanSiteUrl}/out/video-${id}.mp4`;
-              }
+            const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+            if (siteUrl) {
+              const cleanSiteUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+              finalVideoUrl = `${cleanSiteUrl}/out/video-${id}.mp4`;
             }
+            console.error(
+              `[Render] WARNING: video ${id} has no durable storage (R2 upload failed or not configured, ` +
+                `and this is not a Lambda render). Falling back to a local URL (${finalVideoUrl}) that will ` +
+                `become invalid if this server/container is redeployed or its disk is wiped.`
+            );
           }
 
           await prisma.video.update({
@@ -225,35 +228,40 @@ export async function POST(request: Request) {
           });
           console.log(`[Render] Video ${id} completed successfully! Path stored in DB: ${finalVideoPath}`);
 
-          // 4. Notify n8n for publication if N8N_PUBLISH_URL is set
+          // 4. Notify n8n for publication if N8N_PUBLISH_URL is set.
+          // Skip if the video has no durable storage: the local URL would go stale
+          // as soon as this server/container is redeployed, so it's not safe to hand
+          // off to YouTube. The video stays COMPLETED and can be republished via
+          // POST /api/publish once R2/S3 storage is fixed and a fresh render exists.
           const publishUrl = process.env.N8N_PUBLISH_URL;
-          if (publishUrl) {
-            console.log(`[Render] Notifying n8n at ${publishUrl}...`);
-            try {
-               const meta = updatedStoryboard?.youtubeMetadata || (video.storyboard as any)?.youtubeMetadata || {};
-               const payload = {
-                 videoId: id,
-                 status: 'COMPLETED',
-                 videoUrl: finalVideoUrl,
-                 title: meta.title || video.title || '',
-                 description: meta.description || '',
-                 tags: meta.tags || [],
-                 youtubeMetadata: meta,
-                 metadata: {
-                   title: meta.title || video.title || '',
-                   description: meta.description || '',
-                   tags: meta.tags || [],
-                 }
-               };
-               
-               const notifyRes = await fetch(publishUrl, {
-                 method: 'POST',
-                 headers: { 'Content-Type': 'application/json' },
-                 body: JSON.stringify(payload),
-               });
-               console.log(`[Render] n8n notified. Response status: ${notifyRes.status}`);
-            } catch (notifyErr: any) {
-              console.error(`[Render] Failed to notify n8n:`, notifyErr.message || notifyErr);
+          if (publishUrl && !hasDurableStorage) {
+            console.error(
+              `[Render] Skipping n8n notification for video ${id}: no durable storage available ` +
+                `(R2/S3 upload missing or failed). Fix storage and re-render before publishing.`
+            );
+          } else if (publishUrl) {
+            const meta = updatedStoryboard?.youtubeMetadata || (video.storyboard as any)?.youtubeMetadata || {};
+            const result = await notifyN8nPublish(publishUrl, {
+              videoId: id,
+              status: 'COMPLETED',
+              videoUrl: finalVideoUrl,
+              title: meta.title || video.title || '',
+              description: meta.description || '',
+              tags: meta.tags || [],
+              youtubeMetadata: meta,
+              metadata: {
+                title: meta.title || video.title || '',
+                description: meta.description || '',
+                tags: meta.tags || [],
+              },
+            });
+            if (result.ok) {
+              console.log(`[Render] n8n notified successfully (status ${result.status}).`);
+            } else {
+              console.error(
+                `[Render] n8n notification failed after retries: ${result.error}. ` +
+                  `Video stays COMPLETED with publishNotifiedAt=null — retry manually via POST /api/publish.`
+              );
             }
           } else {
             console.log('[Render] N8N_PUBLISH_URL is not set. Skipping n8n notification.');

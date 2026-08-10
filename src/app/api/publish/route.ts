@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { notifyN8nPublish } from '@/lib/n8nPublish';
 
 export async function POST(request: Request) {
   try {
@@ -41,7 +42,7 @@ export async function POST(request: Request) {
 
     const payload = {
       videoId: id,
-      status: 'COMPLETED',
+      status: 'COMPLETED' as const,
       videoUrl,
       title: youtubeMetadata.title || video.title || '',
       description: youtubeMetadata.description || '',
@@ -51,15 +52,13 @@ export async function POST(request: Request) {
 
     console.log(`[Publish] Manually triggering publication to n8n at ${publishUrl}...`);
 
-    const notifyRes = await fetch(publishUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    const result = await notifyN8nPublish(publishUrl, payload);
 
-    if (!notifyRes.ok) {
-      const errorText = await notifyRes.text().catch(() => '');
-      return NextResponse.json({ error: `n8n webhook failed with status ${notifyRes.status}: ${errorText}` }, { status: notifyRes.status });
+    if (!result.ok) {
+      return NextResponse.json(
+        { error: `n8n webhook failed after retries: ${result.error}` },
+        { status: result.status || 502 }
+      );
     }
 
     return NextResponse.json({ success: true, message: 'Notification sent to n8n' });

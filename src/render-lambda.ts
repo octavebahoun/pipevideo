@@ -48,8 +48,27 @@ async function loadDotenv() {
   }
 }
 
-/** Ré-essaie une opération réseau tant que l'erreur est transitoire (backoff exponentiel). */
-async function withRetry<T>(label: string, fn: () => Promise<T>, attempts = 4): Promise<T> {
+/** Erreurs où la requête n'a jamais pu atteindre AWS (échec avant l'envoi) : sûres à rejouer
+ *  même pour un appel qui a un effet de bord non-idempotent (ex. lancer un rendu Lambda). */
+const PRE_FLIGHT_ONLY = /ECONNREFUSED|ENOTFOUND|EAI_AGAIN/i;
+
+/** Erreurs transitoires "larges" : incluent des timeouts/coupures qui peuvent survenir
+ *  APRÈS qu'AWS a bien reçu la requête — à réserver aux appels idempotents (poll, download...). */
+const TRANSIENT_ANY =
+  /ETIMEDOUT|ETIMEOUT|ECONNRESET|ECONNREFUSED|ENOTFOUND|EAI_AGAIN|EPIPE|socket hang up|timeout|network|Throttl|Rate exceeded|ProvisionedThroughput|503|500/i;
+
+/** Ré-essaie une opération réseau tant que l'erreur est transitoire (backoff exponentiel).
+ *  Par défaut, considère transitoire toute erreur réseau usuelle (adapté aux appels
+ *  idempotents : poll de progression, téléchargement...). Passer `preFlightOnly: true`
+ *  pour un appel à effet de bord non-idempotent (ex. lancer un rendu) : on ne rejoue
+ *  alors que si la requête n'a manifestement jamais atteint AWS. */
+async function withRetry<T>(
+  label: string,
+  fn: () => Promise<T>,
+  attempts = 4,
+  options: { preFlightOnly?: boolean } = {}
+): Promise<T> {
+  const transientPattern = options.preFlightOnly ? PRE_FLIGHT_ONLY : TRANSIENT_ANY;
   let lastErr: unknown;
   for (let i = 1; i <= attempts; i++) {
     try {
@@ -57,10 +76,7 @@ async function withRetry<T>(label: string, fn: () => Promise<T>, attempts = 4): 
     } catch (err) {
       lastErr = err;
       const msg = String((err as any)?.message ?? err);
-      const transient =
-        /ETIMEDOUT|ETIMEOUT|ECONNRESET|ECONNREFUSED|ENOTFOUND|EAI_AGAIN|EPIPE|socket hang up|timeout|network|Throttl|Rate exceeded|ProvisionedThroughput|503|500/i.test(
-          msg
-        );
+      const transient = transientPattern.test(msg);
       if (!transient || i === attempts) throw err;
       const delay = Math.min(20000, 2000 * 2 ** (i - 1)); // 2s, 4s, 8s, 16s (max 20s)
       console.warn(
@@ -211,8 +227,11 @@ async function main() {
     );
   }
 
-  // 3. Lancer le rendu sur Lambda. (Un retry peut, en cas de timeout APRÈS invoke
-  //    réussi, lancer un 2e rendu — surcoût négligeable, on garde le dernier renderId.)
+  // 3. Lancer le rendu sur Lambda. Cet appel n'est PAS idempotent : un retry après un
+  //    timeout survenu APRÈS qu'AWS a reçu la requête déclencherait un 2e rendu complet
+  //    (double facturation, deux renderId concurrents). On ne rejoue donc que les erreurs
+  //    où la requête n'a manifestement jamais atteint AWS (DNS, connexion refusée) —
+  //    voir `preFlightOnly` dans withRetry — jamais un simple timeout ambigu.
   console.log(
     `Lancement du rendu sur Lambda… (${estChunks} chunks de ${framesPerLambda} frames)`
   );
@@ -235,7 +254,8 @@ async function main() {
         privacy: 'no-acl',
         framesPerLambda,
       }),
-    5
+    3,
+    { preFlightOnly: true }
   );
   console.log(`Rendu lancé : ${renderId}`);
 

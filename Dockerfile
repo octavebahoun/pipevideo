@@ -24,6 +24,10 @@ ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 COPY --from=builder /app/public ./public
+# Kept as a pristine reference copy: /app/public is a mounted volume (see
+# docker-compose.yml) that persists generated assets across restarts, so it
+# starts out empty on a fresh volume. entrypoint.sh seeds it from this copy.
+COPY --from=builder /app/public ./.image-public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
@@ -31,9 +35,12 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/rmo.config.ts ./rmo.config.ts
+COPY --from=builder /app/entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["npm", "run", "start"]

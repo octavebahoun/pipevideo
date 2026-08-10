@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { getVideoMetadata } from '@remotion/renderer';
+import { parseMedia } from '@remotion/media-parser';
+import { nodeReader } from '@remotion/media-parser/node';
 import { loadStoryboard } from './storyboard';
 import { FPS, getSceneDurationInFrames, getTransitionFramesBefore } from './types';
 import { updateProgress, checkCancelled } from './lib/progressHelper';
@@ -87,7 +88,13 @@ async function main() {
 
     let actualSeconds: number | null | undefined;
     try {
-      actualSeconds = (await getVideoMetadata(mediaFullPath)).durationInSeconds;
+      const { slowDurationInSeconds } = await parseMedia({
+        src: mediaFullPath,
+        reader: nodeReader,
+        fields: { slowDurationInSeconds: true },
+        acknowledgeRemotionLicense: true,
+      });
+      actualSeconds = slowDurationInSeconds;
     } catch (err: any) {
       console.log(`⚠️  ${label} (${scene.mediaPath}) : impossible de lire le fichier (${err.message}).`);
       hasBlockingIssues = true;

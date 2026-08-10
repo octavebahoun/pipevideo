@@ -16,6 +16,7 @@ model Video {
   ratio         String    @default("9:16")
   storyboard    Json?     // Stores the full storyboard JSON structure (scenes, effects, sounds, etc.)
   videoPath     String?   // Path to the rendered MP4 file (local or S3)
+  publishNotifiedAt DateTime? // Set once the n8n publish webhook has been acknowledged (2xx). Null means it still needs to be (re)triggered via /api/publish.
   youtubeId     String?   // ID of the uploaded YouTube video
   youtubeStatus String?   // PRIVATE, UNLISTED, PUBLIC, SCHEDULED
   scheduledFor  DateTime? // Scheduled publication time

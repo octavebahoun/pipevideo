@@ -9,8 +9,13 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      - pipevideo_public:/app/public
     networks:
       - epitnet_internal
+
+volumes:
+  pipevideo_public:
 
 networks:
   epitnet_internal:
