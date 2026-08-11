@@ -20,6 +20,7 @@ import {
   CheckCheck
 } from 'lucide-react';
 import type { VideoRecord } from '@/types/video';
+import VideoPlayerModal from '@/components/VideoPlayerModal';
 
 interface VideoCardProps {
   video: VideoRecord;
@@ -72,6 +73,13 @@ export default function VideoCard({
 }: VideoCardProps) {
   const [isMarkingPublished, setIsMarkingPublished] = useState(false);
   const [manualYoutubeId, setManualYoutubeId] = useState('');
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+
+  const playableSrc = video.videoPath
+    ? video.videoPath.startsWith('http')
+      ? video.videoPath
+      : `/${video.videoPath}`
+    : null;
 
   const handleConfirmMarkPublished = () => {
     if (!manualYoutubeId.trim()) return;
@@ -106,16 +114,14 @@ export default function VideoCard({
             <Edit3 className="w-3.5 h-3.5" /> Éditer Storyboard
           </Link>
 
-          {video.status === 'COMPLETED' && video.videoPath && (
-            <a
-              href={video.videoPath.startsWith('http') ? video.videoPath : `/${video.videoPath}`}
-              target="_blank"
-              rel="noreferrer"
+          {video.status === 'COMPLETED' && playableSrc && (
+            <button
+              onClick={() => setIsPlayerOpen(true)}
               className="flex items-center justify-center p-2 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors"
               title="Visionner la vidéo"
             >
               <Play className="w-4 h-4" />
-            </a>
+            </button>
           )}
         </div>
 
@@ -239,14 +245,25 @@ export default function VideoCard({
 
         {(video.status === 'PUBLISHED' || video.youtubeId) && (
           <div className="space-y-2 w-full">
-            <a
-              href={`https://youtube.com/watch?v=${video.youtubeId}`}
-              target="_blank"
-              rel="noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-2.5 btn-glossy-white text-zinc-700 text-xs font-bold rounded-xl transition-all"
-            >
-              <Tv className="w-3.5 h-3.5 text-red-500" /> Voir sur YouTube ({video.youtubeStatus || 'PUBLIC'})
-            </a>
+            <div className="flex gap-2">
+              <a
+                href={`https://youtube.com/watch?v=${video.youtubeId}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 btn-glossy-white text-zinc-700 text-xs font-bold rounded-xl transition-all"
+              >
+                <Tv className="w-3.5 h-3.5 text-red-500" /> Voir sur YouTube ({video.youtubeStatus || 'PUBLIC'})
+              </a>
+              {playableSrc && (
+                <button
+                  onClick={() => setIsPlayerOpen(true)}
+                  className="flex items-center justify-center p-2.5 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors"
+                  title="Visionner le fichier rendu"
+                >
+                  <Play className="w-4 h-4" />
+                </button>
+              )}
+            </div>
 
             {video.youtubeId && (
               <div className="flex items-center justify-between gap-2 px-1">
@@ -278,6 +295,10 @@ export default function VideoCard({
           </div>
         )}
       </div>
+
+      {isPlayerOpen && playableSrc && (
+        <VideoPlayerModal src={playableSrc} title={video.title} onClose={() => setIsPlayerOpen(false)} />
+      )}
     </div>
   );
 }
