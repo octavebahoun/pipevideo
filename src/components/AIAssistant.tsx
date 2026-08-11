@@ -11,9 +11,16 @@ interface Message {
 interface AIAssistantProps {
   /** Optional: scopes the assistant's context to one video's storyboard. */
   videoId?: string;
+  /**
+   * When provided (editor context), lets the assistant apply a scene's
+   * rewritten visual prompt directly to the in-editor storyboard state —
+   * e.g. after a "rends ce prompt plus factuel" request — instead of just
+   * suggesting text the user would have to copy by hand.
+   */
+  onUpdateScenePrompt?: (sceneId: number, newPrompt: string) => void;
 }
 
-export default function AIAssistant({ videoId }: AIAssistantProps) {
+export default function AIAssistant({ videoId, onUpdateScenePrompt }: AIAssistantProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
@@ -37,6 +44,25 @@ export default function AIAssistant({ videoId }: AIAssistantProps) {
 
       if (res.ok) {
         setMessages((prev) => [...prev, { role: 'assistant', content: data.answer }]);
+
+        if (data.action?.type === 'update_scene_prompt') {
+          const { sceneId, newPrompt } = data.action;
+          if (onUpdateScenePrompt) {
+            onUpdateScenePrompt(sceneId, newPrompt);
+            setMessages((prev) => [
+              ...prev,
+              {
+                role: 'assistant',
+                content: `✅ Prompt visuel de la scène ${sceneId} mis à jour dans l'éditeur. Vérifie le résultat puis clique sur « Enregistrer » pour le conserver.`,
+              },
+            ]);
+          } else {
+            setMessages((prev) => [
+              ...prev,
+              { role: 'assistant', content: `Nouveau prompt suggéré pour la scène ${sceneId} :\n${newPrompt}` },
+            ]);
+          }
+        }
       } else {
         setMessages((prev) => [...prev, { role: 'assistant', content: `Erreur : ${data.error || 'inconnue'}` }]);
       }

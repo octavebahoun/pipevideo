@@ -683,7 +683,13 @@ export default function EditorClient({ video }: EditorClientProps) {
         </main>
       </div>
 
-      <AIAssistant videoId={video.id} />
+      <AIAssistant
+        videoId={video.id}
+        onUpdateScenePrompt={(sceneId, newPrompt) => {
+          updateSceneField(sceneId, 'mediaPrompt', newPrompt);
+          setActiveSceneId(sceneId);
+        }}
+      />
     </div>
   );
 }
