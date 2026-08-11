@@ -62,6 +62,28 @@ function parseStoryboard(result: any): any | null {
   return null;
 }
 
+// Auth expected by the n8n Webhook node on the outgoing call (pipevideo -> n8n).
+// Distinct from N8N_WEBHOOK_SECRET, which guards the incoming direction
+// (n8n -> pipevideo, see src/middleware.ts). Without these, an n8n webhook
+// configured with Header Auth / Basic Auth answers 403 "Authorization data is wrong!"
+// and the workflow never starts.
+function n8nAuthHeaders(): Record<string, string> {
+  const headerName = process.env.N8N_WORKFLOW_AUTH_HEADER;
+  const headerValue = process.env.N8N_WORKFLOW_AUTH_VALUE;
+  if (headerName && headerValue) {
+    return { [headerName]: headerValue };
+  }
+
+  const user = process.env.N8N_WORKFLOW_BASIC_USER;
+  const pass = process.env.N8N_WORKFLOW_BASIC_PASSWORD;
+  if (user && pass) {
+    const encoded = Buffer.from(`${user}:${pass}`).toString('base64');
+    return { Authorization: `Basic ${encoded}` };
+  }
+
+  return {};
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -85,11 +107,15 @@ export async function POST(request: Request) {
     await logToFile(`[INFO] Video created in DB: ID=${video.id}, Title="${title}", Topic="${topic}"`);
 
     if (process.env.N8N_WORKFLOW_URL) {
-      await logToFile(`[INFO] Triggering n8n workflow at ${process.env.N8N_WORKFLOW_URL}...`);
+      const authHeaders = n8nAuthHeaders();
+      await logToFile(
+        `[INFO] Triggering n8n workflow at ${process.env.N8N_WORKFLOW_URL}` +
+          ` (auth: ${Object.keys(authHeaders)[0] ?? 'none'})...`
+      );
       try {
         const response = await fetch(process.env.N8N_WORKFLOW_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', ...authHeaders },
           body: JSON.stringify({
             videoId: video.id,
             message: topic,
@@ -123,6 +149,18 @@ export async function POST(request: Request) {
         } else {
           const errorText = await response.text().catch(() => '');
           await logToFile(`[ERROR] n8n returned error status ${response.status}: ${errorText}`);
+          if (response.status === 401 || response.status === 403) {
+            await logToFile(
+              `[HINT] n8n rejected the credentials: the Webhook node has authentication enabled.` +
+                ` Set N8N_WORKFLOW_AUTH_HEADER + N8N_WORKFLOW_AUTH_VALUE (Header Auth)` +
+                ` or N8N_WORKFLOW_BASIC_USER + N8N_WORKFLOW_BASIC_PASSWORD (Basic Auth) in .env.`
+            );
+          } else if (response.status === 404) {
+            await logToFile(
+              `[HINT] n8n returned 404: the workflow is probably not activated, or the URL uses` +
+                ` /webhook-test/ (test mode, only live while "Execute workflow" is running) instead of /webhook/.`
+            );
+          }
         }
       } catch (err: any) {
         await logToFile(`[ERROR] Failed to fetch N8N_WORKFLOW_URL: ${err.message || err}`);
