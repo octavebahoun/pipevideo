@@ -60,6 +60,22 @@ export async function POST(request: Request) {
     if (renderMode === 'fresh') {
       console.log(`[Render] Fresh render requested for video ${id}. Cleaning all scene assets...`);
       await cleanupAllSceneFiles();
+    } else if (previousStoryboard === null) {
+      // First-ever render attempt for this video (no snapshot exists yet). public/
+      // is a single directory SHARED by every video in this app, and scene IDs
+      // always restart at 1 for a brand new storyboard — so any scene_N.* files
+      // sitting there right now cannot legitimately belong to this video (it has
+      // never rendered before). They're leftovers from a DIFFERENT video's scenes
+      // that happened to share the same scene numbers, and reusing them would
+      // silently mix another video's images/audio/clips into this one. Wipe the
+      // whole shared media directory before generating anything, same as a fresh
+      // render would.
+      console.log(
+        `[Render] First render attempt for video ${id}: no prior snapshot found, so any scene_N.* files ` +
+          `currently in public/ belong to a different video. Wiping the shared media directory to avoid ` +
+          `reusing another video's leftover scenes...`
+      );
+      await cleanupAllSceneFiles();
     } else {
       const cacheStatus = await computeSceneCacheStatus(video.storyboard, previousStoryboard);
       const staleCount = cacheStatus.filter((s) => !s.audioReady || !s.mediaReady).length;
