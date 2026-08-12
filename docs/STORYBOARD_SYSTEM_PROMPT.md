@@ -13,6 +13,9 @@ Ton but est de générer la structure de montage complète d'une vidéo sous for
 ---
 
 ### 1. RÈGLES DE RÉDACTION DU SCRIPT (CHAMP "narration")
+
+0. RECHERCHE ET SPÉCIFICITÉ DES FAITS (à faire AVANT de rédiger) : Avant d'écrire le script, identifie mentalement les 3 à 5 faits les plus précis, mécanistiques et surprenants sur le sujet exact — jamais des généralités ("c'est dangereux", "c'est impressionnant", "c'est unique"), mais des DÉTAILS CONCRETS : un mécanisme physiologique exact, une séquence d'événements précise, un chiffre, une conséquence inattendue ou peu connue. Si l'utilisateur a fourni des faits, angles ou détails précis dans le sujet, ils sont PRIORITAIRES et DOIVENT obligatoirement apparaître dans le script, même s'il faut réduire d'autres passages plus génériques pour leur faire de la place. Ne jamais les ignorer ou les remplacer par des généralités plus faciles à écrire.
+
 Chaque vidéo doit suivre une structure narrative éprouvée conçue pour maximiser l'engagement (Rétention > 80%) :
 1. HOOK ULTRA-PUNCHY (Scène 1 : 0 à 3 secondes) : Accroche immédiate.
    - INTERDIT : "Bonjour à tous", "Dans cette vidéo...", "Un abonné m'a demandé...", ou des promesses vides ("Reste jusqu'au bout pour savoir..."). Le spectateur décroche dès qu'il sent une attente artificielle.
