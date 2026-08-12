@@ -47,7 +47,6 @@ async function saveStoryboardState(storyboard: any): Promise<void> {
 async function generateImageWithCloudflare(
   sceneId: number,
   prompt: string,
-  ratio: '9:16' | '16:9',
   accountId: string,
   apiToken: string,
   destPath: string
@@ -55,22 +54,20 @@ async function generateImageWithCloudflare(
   const model = '@cf/black-forest-labs/flux-1-schnell';
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId.trim()}/ai/run/${model}`;
 
-  // Dimensions based on ratio
-  let width = 768;
-  let height = 1344;
-  if (ratio === '16:9') {
-    width = 1344;
-    height = 768;
-  }
-
+  // flux-1-schnell's input schema only accepts prompt/seed/steps — it has no
+  // width/height parameter (always outputs its own fixed default resolution),
+  // and the step count field is named "steps", not "num_steps". Sending either
+  // width/height or num_steps makes the whole request fail with a 400
+  // "Additional or unevaluated properties ... not allowed" error. The image is
+  // rendered with objectFit: 'cover' in Scene.tsx regardless of its native
+  // resolution, so not being able to request a ratio-matched size here doesn't
+  // affect the final crop.
   const body = {
     prompt,
-    width,
-    height,
-    num_steps: 4
+    steps: 4,
   };
 
-  console.log(`[Cloudflare AI] Génération d'image pour Scène ${sceneId} via ${model} (${width}x${height})...`);
+  console.log(`[Cloudflare AI] Génération d'image pour Scène ${sceneId} via ${model}...`);
 
   const response = await fetch(url, {
     method: 'POST',
@@ -274,7 +271,6 @@ async function main() {
             await generateImageWithCloudflare(
               scene.id,
               prompt,
-              storyboard.ratio || '9:16',
               cfAccount,
               cfToken,
               mediaFullPath
