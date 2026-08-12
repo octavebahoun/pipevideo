@@ -4,7 +4,7 @@ import { verifySession, SESSION_COOKIE_NAME } from '@/lib/session';
 
 // Routes n8n calls back into from outside (no browser session available).
 // Protected below by a shared secret instead of the session cookie.
-const EXTERNAL_WEBHOOK_PATHS = ['/api/webhook/storyboard'];
+const EXTERNAL_WEBHOOK_PATHS = ['/api/webhook/storyboard', '/api/webhook/publish-confirm'];
 
 // Only the login/logout endpoints stay fully open — every other /api/* route
 // (including /api/webhook/idea, which is triggered by the authenticated
