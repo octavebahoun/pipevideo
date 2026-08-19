@@ -1,0 +1,36 @@
+{
+  "title": "Exemple RunPod — les 3 types de plans",
+  "ratio": "16:9",
+  "subtitleStyle": "cinematic",
+  "youtubeMetadata": {
+    "title": "Exemple de pipeline RunPod",
+    "description": "Storyboard de démonstration : clip IA, image animée, carte texte.",
+    "tags": ["demo", "runpod"]
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Chaque matin, il refait le même trajet sans y penser.",
+      "mediaPath": "scene_1.mp4",
+      "mediaPrompt": "2D cartoon illustration, wide shot of a young boy with round glasses and a bright yellow hoodie standing on a stone path facing a small cozy house with a wooden front door, side three-quarter view, flat vector color style, clean bold linework, soft morning light, green grass and trees, children animated series style, full figure visible head to toe",
+      "motionPrompt": "the boy walks forward along the stone path toward the house, natural walking cycle, he reaches the wooden door, raises his hand and pushes it open, the door swings inward, smooth 2D character animation, static camera, consistent flat color style",
+      "effects": { "transition": "fade", "cameraMotion": "static" }
+    },
+    {
+      "id": 2,
+      "narration": "Mais ce jour-là, quelque chose avait changé.",
+      "mediaPath": "scene_2.png",
+      "mediaPrompt": "2D cartoon illustration, interior of a warm living room seen from the doorway, afternoon sunlight through a window, dust particles in the light beam, empty armchair, flat vector color style, clean linework, muted warm palette, children animated series style",
+      "effects": { "zoom": "in", "transition": "fade" }
+    },
+    {
+      "id": 3,
+      "narration": "",
+      "card": {
+        "text": "À suivre",
+        "subtext": "Épisode 2 la semaine prochaine"
+      },
+      "effects": { "transition": "black" }
+    }
+  ]
+}

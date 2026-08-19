@@ -9,6 +9,7 @@
     "next-build": "next build",
     "tts": "ts-node src/tts.ts",
     "novita": "ts-node src/novita.ts",
+    "runpod": "ts-node src/runpod.ts",
     "check-video": "ts-node src/check-media.ts",
     "render": "ts-node src/render.ts",
     "render:lambda": "ts-node src/render-lambda.ts",

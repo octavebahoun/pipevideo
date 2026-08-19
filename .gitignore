@@ -31,3 +31,5 @@ public/sounds/**/*.wav
 # Google OAuth / API credentials (never commit)
 client_secret_*.json
 **/*.apps.googleusercontent.com.json
+# Sorties de benchmark RunPod (medias lourds)
+bench_clips/

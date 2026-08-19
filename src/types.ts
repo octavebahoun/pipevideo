@@ -63,6 +63,18 @@ export const sceneSchema = z.object({
   mediaPath: z.union([z.string(), z.array(z.string())]).optional(),
   /** Prompt textuel décrivant le contenu visuel pour la génération d'images/vidéos par IA (ex: Novita, Kling). */
   mediaPrompt: z.string().optional(),
+  /**
+   * Prompt décrivant le MOUVEMENT de la scène, pour l'animation image-to-video
+   * (Wan 2.2 via RunPod). Complète `mediaPrompt`, qui décrit lui la composition
+   * FIXE de l'image de départ :
+   *
+   *   mediaPrompt  : "cartoon boy with round glasses standing before a wooden door"
+   *   motionPrompt : "he walks forward, reaches the door and pushes it open"
+   *
+   * Si absent, l'animation retombe sur `mediaPrompt` — ce qui donne en général
+   * un plan quasi statique, faute d'action décrite.
+   */
+  motionPrompt: z.string().optional(),
   effects: z
     .object({
       zoom: z.enum(['in', 'out', 'none']).optional(),
