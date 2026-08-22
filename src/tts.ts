@@ -56,15 +56,21 @@ function resolveVoiceId(voiceInput?: string): string {
 
 /** Voix Edge-TTS (Microsoft) françaises courantes, référencées par un nom court. */
 const EDGE_VOICE_MAP: Record<string, string> = {
+  antoine: 'fr-CA-AntoineNeural',
   henri: 'fr-FR-HenriNeural',
   denise: 'fr-FR-DeniseNeural',
   eloise: 'fr-FR-EloiseNeural',
   vivienne: 'fr-FR-VivienneMultilingualNeural',
   remy: 'fr-FR-RemyMultilingualNeural',
+  sylvie: 'fr-CA-SylvieNeural',
+  jean: 'fr-CA-JeanNeural',
 };
 
+/** Voix par défaut : Antoine (fr-CA), retenue pour le contenu de méditation. */
+const EDGE_VOICE_DEFAUT = EDGE_VOICE_MAP.antoine;
+
 function resolveEdgeVoice(voiceInput?: string): string {
-  if (!voiceInput) return EDGE_VOICE_MAP.henri;
+  if (!voiceInput) return EDGE_VOICE_DEFAUT;
   const normalized = voiceInput.toLowerCase().trim();
   if (EDGE_VOICE_MAP[normalized]) {
     return EDGE_VOICE_MAP[normalized];
@@ -73,8 +79,8 @@ function resolveEdgeVoice(voiceInput?: string): string {
   if (/^[a-z]{2}-[A-Z]{2}-[A-Za-z]+Neural$/.test(voiceInput)) {
     return voiceInput;
   }
-  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de la voix Henri par défaut.`);
-  return EDGE_VOICE_MAP.henri;
+  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation d'Antoine par défaut.`);
+  return EDGE_VOICE_DEFAUT;
 }
 
 interface ElevenLabsAlignment {

@@ -33,3 +33,6 @@ client_secret_*.json
 **/*.apps.googleusercontent.com.json
 # Sorties de benchmark RunPod (medias lourds)
 bench_clips/
+
+# Aperçus visuels de test (régénérables)
+tests-visuels/

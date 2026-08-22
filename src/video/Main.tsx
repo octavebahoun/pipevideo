@@ -71,6 +71,8 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
       <TransitionSeries.Sequence key={`scene-${scene.id}`} durationInFrames={durationInFrames}>
         <SceneComponent
           assetBaseUrl={storyboard.assetBaseUrl}
+          filmGrade={storyboard.filmGrade}
+          goldenStyle={storyboard.goldenStyle}
           scene={scene}
           durationInFrames={durationInFrames}
           subtitlesEnabled={subtitlesEnabled}

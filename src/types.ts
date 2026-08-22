@@ -82,6 +82,18 @@ export const sceneSchema = z.object({
       /** Léger tremblement de caméra (tension / effort). */
       shake: z.boolean().optional(),
       /**
+       * Patine « pellicule ancienne » sur le média : désaturation, virage sépia,
+       * grain fixe, vignettage. Volontairement statique — un grain animé fatigue
+       * l'œil sur une vidéo longue de méditation.
+       * Écrase la valeur globale `filmGrade` du storyboard pour cette scène.
+       */
+      filmGrade: z.enum(['none', 'subtle', 'medium', 'strong']).optional(),
+      /**
+       * Habillage doré : cadre arrondi sur fond sombre, étalonnage chaud,
+       * particules lumineuses. Écrase la valeur globale pour cette scène.
+       */
+      goldenStyle: z.enum(['none', 'frame', 'warm', 'full']).optional(),
+      /**
        * Contrainte pour l'étape « Pause Média » : quand vrai, le média de CETTE
        * scène doit être choisi de sorte que sa composition / posture du sujet
        * RACORDE avec la fin de la scène précédente (match cut). N'a aucun impact
@@ -221,6 +233,17 @@ export const storyboardSchema = z.object({
    * Absent => rendu local classique via staticFile().
    */
   assetBaseUrl: z.string().url().optional(),
+  /**
+   * Patine « pellicule ancienne » appliquée à TOUTES les scènes (chaque scène
+   * peut la redéfinir via `effects.filmGrade`). Défaut : aucune.
+   */
+  filmGrade: z.enum(['none', 'subtle', 'medium', 'strong']).optional(),
+  /**
+   * Habillage « chaîne de méditation » appliqué à TOUTES les scènes : cadre
+   * arrondi sur fond sombre, étalonnage doré chaud, particules lumineuses.
+   * 'frame' = cadre seul, 'warm' = étalonnage seul, 'full' = les trois.
+   */
+  goldenStyle: z.enum(['none', 'frame', 'warm', 'full']).optional(),
   subtitles: z.boolean().optional(),
   /**
    * Style des sous-titres :

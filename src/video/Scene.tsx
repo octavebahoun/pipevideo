@@ -11,6 +11,14 @@ import {
   interpolate,
 } from 'remotion';
 import { mediaUrl } from './mediaUrl';
+import { FilmGrade, filmFilter, FilmGradeLevel } from './FilmGrade';
+import {
+  GoldenBackdrop,
+  GoldenOverlay,
+  goldenFilter,
+  frameStyle,
+  GoldenStyle,
+} from './GoldenFrame';
 import { Scene, SceneSound } from '../types';
 import { Subtitles } from './Subtitles';
 import { KineticTitle } from './KineticTitle';
@@ -26,6 +34,10 @@ interface SceneComponentProps {
   sfxVolume: number;
   /** Base des URLs médias quand ils sont hébergés sur R2 (voir mediaUrl.ts). */
   assetBaseUrl?: string;
+  /** Patine pellicule globale du storyboard (la scène peut la redéfinir). */
+  filmGrade?: FilmGradeLevel;
+  /** Habillage doré global : cadre arrondi, étalonnage chaud, particules. */
+  goldenStyle?: GoldenStyle;
 }
 
 /**
@@ -104,6 +116,8 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   subtitleStyle,
   sfxVolume,
   assetBaseUrl,
+  filmGrade,
+  goldenStyle,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -111,6 +125,16 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   // Effet Ken Burns (zoom lent). Les fondus/slides entre scènes sont gérés
   // par TransitionSeries dans Main.tsx — on ne fait donc PAS de fondu ici
   // (sinon double fondu).
+  // La scène peut redéfinir la patine ; sinon on prend celle du storyboard.
+  const grade = scene.effects?.filmGrade ?? filmGrade;
+  const golden = scene.effects?.goldenStyle ?? goldenStyle;
+
+  // Les deux étalonnages se composent : filmFilter (patine) puis goldenFilter
+  // (chaleur dorée). En pratique on utilise l'un OU l'autre.
+  const mediaFilter = [filmFilter(grade), goldenFilter(golden)].filter(Boolean).join(' ') || undefined;
+  const cadre = frameStyle(golden);
+  const aCadre = Object.keys(cadre).length > 0;
+
   const zoomType = scene.effects?.zoom ?? 'none';
   let scale = 1;
   if (zoomType === 'in') {
@@ -249,6 +273,22 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
         backgroundColor: '#050505',
       }}
     >
+      {/* Fond visible autour du cadre (habillage doré) */}
+      <GoldenBackdrop style={golden} />
+
+      {/* Le cadre arrondi : le média est réduit et ses coins adoucis. Sans
+          habillage, `cadre` est vide et ce conteneur est transparent. */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          ...cadre,
+        }}
+      >
       {/* Média de fond */}
       {isImageArray ? (
         <div
@@ -292,7 +332,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
             <Loop durationInFrames={durationInFrames}>
               <OffthreadVideo
                 src={mediaUrl(mediaPath as string, assetBaseUrl)}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: mediaFilter }}
                 volume={scene.mediaVolume ?? 0.6}
                 playbackRate={scene.playbackRate ?? 1}
               />
@@ -300,7 +340,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
           ) : (
             <Img
               src={mediaUrl(mediaPath as string, assetBaseUrl)}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: mediaFilter }}
             />
           )}
         </div>
@@ -321,6 +361,14 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
           </div>
         </div>
       )}
+
+      {/* Voile doré + particules : DANS le cadre, donc arrondis avec lui. */}
+        <GoldenOverlay style={golden} seed={scene.id} />
+      </div>
+
+      {/* Patine pellicule : grain, voile chaud, vignettage. Posée SUR le média
+          mais SOUS les sous-titres et les titres, qui doivent rester nets. */}
+      <FilmGrade niveau={grade} seed={scene.id} />
 
       {/* Voix off (Edge-TTS/ElevenLabs ou fichier fourni par l'utilisateur) */}
       <Audio src={mediaUrl(voiceSrc, assetBaseUrl)} />
