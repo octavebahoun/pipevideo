@@ -229,6 +229,49 @@ async function generateStartImage(
 }
 
 /**
+ * Génère une image FIXE (scène sans animation) avec Flux, sur le pod.
+ *
+ * Distinct de `generateStartImage` sur un point essentiel : ici l'image EST le
+ * livrable, donc son rapatriement ne peut pas être « non bloquant ». Si le
+ * transfert échoue, la scène n'a pas de média et l'appelant doit le savoir.
+ *
+ * Pourquoi sur le pod et non via Cloudflare Workers AI : les neurones Cloudflare
+ * sont une ressource partagée avec les autres projets de l'utilisateur. Une vidéo
+ * d'enseignement compte ~35 images fixes — à plusieurs vidéos par semaine, cela
+ * épuiserait le quota commun. Sur un pod déjà allumé pour les clips, ces images
+ * coûtent ~2 s de GPU chacune, soit quelques centimes au total.
+ */
+async function generateStillImage(
+  pod: PodInfo,
+  job: Job,
+  ratio: '16:9' | '9:16',
+  destLocal: string
+): Promise<void> {
+  const wf = await loadWorkflow('wf-flux-txt2img.json');
+
+  // Pleine résolution, contrairement aux images de départ des clips (832x480) :
+  // une image fixe subit un zoom Ken Burns au montage, qui révélerait le flou
+  // d'une source basse résolution. Le surcoût est de ~2 s de GPU par image.
+  const { width, height } = ratio === '9:16' ? { width: 1080, height: 1920 } : { width: 1920, height: 1080 };
+
+  wf['2'].inputs.text = job.prompt;
+  wf['4'].inputs.width = width;
+  wf['4'].inputs.height = height;
+  wf['5'].inputs.seed = 1000 + job.sceneId;
+  wf['7'].inputs.filename_prefix = `s${job.sceneId}_still`;
+
+  console.log(`[Flux] Scène ${job.sceneId} : image fixe ${width}x${height}...`);
+
+  const promptId = await comfySubmit(pod, wf);
+  const outputs = await comfyWait(pod, promptId, { timeoutMs: 5 * 60_000 });
+
+  const png = outputs.find((f) => f.endsWith('.png'));
+  if (!png) throw new Error(`Scène ${job.sceneId} : Flux n'a produit aucune image`);
+
+  await comfyDownload(pod, png, destLocal);
+}
+
+/**
  * Génère un clip vidéo : Flux produit l'image de départ sur le pod, puis
  * Wan 2.2 l'anime. Ce chaînage coûte moins cher qu'un text-to-video direct et
  * donne un bien meilleur contrôle sur la composition.
@@ -341,41 +384,59 @@ async function main() {
     await updateProgress(10 + Math.round((done / jobs.length) * 20), `Médias : ${done}/${jobs.length}`);
   };
 
-  // --- Phase 1 : les images fixes, via Cloudflare Workers AI. Aucun GPU. -----
-  // Volontairement PAS sur Flux : ces scènes n'ont pas besoin du pod, autant ne
-  // pas les rendre dépendantes du GPU. En revanche un échec (429, quota) ne doit
-  // plus faire tomber le run : on note la scène ratée et on continue.
   const imagesRatees: number[] = [];
-  for (const job of imageJobs) {
-    if (await checkCancelled()) {
-      console.log('[RunPod] Annulation détectée.');
-      return;
-    }
-    if (!cloudflareCredentials()) {
-      console.warn(`[RunPod] Scène ${job.sceneId} : identifiants Cloudflare absents, image non générée.`);
-      imagesRatees.push(job.sceneId);
-      continue;
-    }
-    try {
-      await cloudflareImage(job.sceneId, job.prompt, ratio, path.join(MEDIA_DIR, job.file));
-      await markDone(job);
-      await tick();
-    } catch (err: any) {
-      console.warn(`[RunPod] Scène ${job.sceneId} : image échouée (${err.message.slice(0, 100)}) — on continue.`);
-      imagesRatees.push(job.sceneId);
-    }
-  }
-  if (imagesRatees.length > 0) {
-    console.warn(`[RunPod] ⚠️ Images non générées pour les scènes : ${imagesRatees.join(', ')}. Relancer plus tard.`);
-  }
 
-  // --- Phase 2 : les clips, sur GPU. On n'allume le pod que maintenant. ---
-  if (videoJobs.length === 0) {
+  /**
+   * Où générer les images fixes ?
+   *
+   * Sur le pod (Flux) dès qu'un pod est de toute façon nécessaire pour les clips :
+   * les neurones Cloudflare sont partagés avec les autres projets de l'utilisateur
+   * et une vidéo d'enseignement compte ~35 images fixes. Quelques secondes de GPU
+   * coûtent moins cher qu'un quota commun épuisé.
+   *
+   * Cloudflare sert de repli quand il n'y a AUCUN clip à animer : allumer un GPU
+   * juste pour des images fixes serait absurde.
+   */
+  const imagesSurPod = videoJobs.length > 0;
+
+  // --- Phase 1 : les images fixes, sans GPU, uniquement si aucun pod prévu. ---
+  if (!imagesSurPod && imageJobs.length > 0) {
+    console.log(`[RunPod] ${imageJobs.length} images fixes via Cloudflare (aucun clip à animer, pas de GPU).`);
+
+    for (const job of imageJobs) {
+      if (await checkCancelled()) {
+        console.log('[RunPod] Annulation détectée.');
+        return;
+      }
+      if (!cloudflareCredentials()) {
+        console.warn(`[RunPod] Scène ${job.sceneId} : identifiants Cloudflare absents, image non générée.`);
+        imagesRatees.push(job.sceneId);
+        continue;
+      }
+      try {
+        await cloudflareImage(job.sceneId, job.prompt, ratio, path.join(MEDIA_DIR, job.file));
+        await markDone(job);
+        await tick();
+      } catch (err: any) {
+        console.warn(`[RunPod] Scène ${job.sceneId} : image échouée (${err.message.slice(0, 100)}) — on continue.`);
+        imagesRatees.push(job.sceneId);
+      }
+    }
+
+    if (imagesRatees.length > 0) {
+      console.warn(`[RunPod] ⚠️ Images non générées pour les scènes : ${imagesRatees.join(', ')}. Relancer plus tard.`);
+    }
     console.log('[RunPod] ✅ Aucun clip à animer : aucun GPU n\'a été allumé.');
     return;
   }
 
-  await updateProgress(12, `Démarrage du GPU RunPod (${videoJobs.length} clips)...`);
+  if (videoJobs.length === 0 && imageJobs.length === 0) return;
+
+  // --- Phase 2 : tout sur le pod GPU (images fixes Flux + clips Wan). ---
+  await updateProgress(
+    12,
+    `Démarrage du GPU RunPod (${videoJobs.length} clips, ${imageJobs.length} images)...`
+  );
   let podId: string | null = null;
 
   // Déclarés HORS du try : le finally doit pouvoir les attendre. Si une erreur
@@ -393,9 +454,26 @@ async function main() {
     await updateProgress(15, 'Installation de ComfyUI sur le GPU...');
     await runSetup(pod);
 
-    // Les téléchargements partent en tâche de fond : rapatrier un clip prend
-    // ~8 s pendant lesquelles le GPU ne calcule rien. On enchaîne donc l'animation
-    // suivante immédiatement.
+    // --- Images fixes d'abord : ~2 s chacune, autant les sortir avant les clips
+    //     (si le run casse en cours, on garde le plus gros du travail).
+    for (const job of imageJobs) {
+      if (await checkCancelled()) {
+        console.log('[RunPod] Annulation détectée — arrêt et suppression du pod.');
+        break;
+      }
+      try {
+        await generateStillImage(pod, job, ratio, path.join(MEDIA_DIR, job.file));
+        await markDone(job);
+        await tick();
+      } catch (err: any) {
+        // Une image ratée ne doit pas coûter les 39 suivantes.
+        console.error(`[RunPod] Scène ${job.sceneId} : image échouée — ${err.message.slice(0, 120)}`);
+        imagesRatees.push(job.sceneId);
+      }
+    }
+
+    // --- Clips ensuite. Les téléchargements partent en tâche de fond :
+    //     rapatrier un clip prend ~8 s pendant lesquelles le GPU ne calcule rien.
     for (const job of videoJobs) {
       if (await checkCancelled()) {
         console.log('[RunPod] Annulation détectée — arrêt et suppression du pod.');
@@ -404,7 +482,18 @@ async function main() {
 
       console.log(`[RunPod] Scène ${job.sceneId} : ${job.motionPrompt.slice(0, 70)}...`);
 
-      const produced = await generateVideo(pod, job, ratio);
+      let produced: string;
+      try {
+        produced = await generateVideo(pod, job, ratio);
+      } catch (err: any) {
+        // Tolérance par scène : un incident réseau ou un job ComfyUI en échec ne
+        // doit pas emporter tout le run. On note la scène et on passe à la suite —
+        // une relance la reprendra, les autres clips sont déjà acquis.
+        console.error(`[RunPod] Scène ${job.sceneId} : génération échouée — ${err.message.slice(0, 150)}`);
+        echecs.push(job.sceneId);
+        continue;
+      }
+
       transferts.push(
         comfyDownload(pod, produced, path.join(MEDIA_DIR, job.file))
           .then(() => markDone(job))
@@ -427,7 +516,10 @@ async function main() {
     }
 
     if (echecs.length > 0) {
-      console.error(`[RunPod] ⚠️ Clips non rapatriés : ${echecs.join(', ')}. Relancer pour les récupérer.`);
+      console.error(`[RunPod] ⚠️ Clips manquants : ${echecs.join(', ')}. Relancer pour les récupérer.`);
+    }
+    if (imagesRatees.length > 0) {
+      console.error(`[RunPod] ⚠️ Images manquantes : ${imagesRatees.join(', ')}. Relancer pour les récupérer.`);
     }
 
     // Filet de sécurité : le pod part quoi qu'il arrive.
