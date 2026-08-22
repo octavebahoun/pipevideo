@@ -161,8 +161,20 @@ async function main() {
   // 2. Stager les assets référencés, puis (re)déployer le site (sans source maps).
   const { bucketName } = await withRetry('accès au bucket', () => getOrCreateBucket({ region }));
   console.log(`Bucket   : ${bucketName}`);
-  const stagingDir = await stageAssets(collectReferencedAssets(storyboard));
-  console.log('Déploiement du site (assets utiles + bundle sans source maps)…');
+
+  // Les médias vivent-ils sur R2 ? Si oui, les Lambdas les lisent directement et
+  // on n'a RIEN à envoyer sur S3 : ni copie locale, ni réupload de dizaines de
+  // mégaoctets à chaque rendu. Le bundle seul est déployé.
+  const surR2 = Boolean(storyboard.assetBaseUrl);
+  let stagingDir: string | null = null;
+
+  if (surR2) {
+    console.log(`Médias   : lus depuis R2 (${storyboard.assetBaseUrl}) — aucun upload S3.`);
+  } else {
+    stagingDir = await stageAssets(collectReferencedAssets(storyboard));
+    console.log('Déploiement du site (assets utiles + bundle sans source maps)…');
+  }
+
   let serveUrl: string;
   try {
     ({ serveUrl } = await withRetry('déploiement du site', () =>
@@ -172,7 +184,7 @@ async function main() {
         region,
         siteName: SITE_NAME,
         options: {
-          publicDir: stagingDir,
+          ...(stagingDir ? { publicDir: stagingDir } : {}),
           webpackOverride: (config) => ({ ...config, devtool: false }),
           onUploadProgress: (p: { totalSize: number; sizeUploaded: number }) => {
             const pct = Math.round((p.sizeUploaded / (p.totalSize || 1)) * 100);
@@ -186,7 +198,7 @@ async function main() {
       })
     ));
   } finally {
-    await fs.rm(stagingDir, { recursive: true, force: true });
+    if (stagingDir) await fs.rm(stagingDir, { recursive: true, force: true });
   }
   console.log(`Site     : ${serveUrl}`);
 

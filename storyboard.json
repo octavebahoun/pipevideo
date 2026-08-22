@@ -1,2132 +1,717 @@
 {
-  "title": "Contravo — du devis à l'encaissement",
+  "title": "Le silence de Dieu — quand le ciel semble se taire",
   "ratio": "16:9",
   "youtubeMetadata": {
-    "title": "Contravo — du devis à l'encaissement",
-    "description": "Contravo relie le devis, le contrat signé, la facture, le paiement Mobile Money et la relance automatique dans une seule chaîne. Pensé pour les agences et les indépendants qui facturent en francs CFA.\n\nAu sommaire :\n00:00 Le constat\n00:20 Le tableau de bord\n00:45 Devis et envoi\n01:15 Portail client et signature\n01:40 Paiement Mobile Money\n02:05 Relances automatiques\n02:20 Webhooks et API\n\nTout ce qui apparaît à l'écran est l'application réelle, filmée sur un jeu de données de démonstration. Aucun mockup.",
+    "title": "Quand Dieu se tait : ce que le ciel prépare dans ton silence",
+    "description": "Tu pries et rien ne vient. Tu jeûnes et rien ne change. Le ciel semble ferme, et le pire, c'est que tu commences a douter non pas de l'existence de Dieu, mais de son interet pour toi.\n\nCette video n'est pas la pour te dire que ton silence n'existe pas. Il existe. La Bible le nomme, et des hommes que Dieu aimait l'ont traverse avant toi : Job, David, Habacuc, et Jesus lui-meme a Gethsemane.\n\nAu sommaire :\n00:00 Le silence que personne n'ose nommer\n02:00 Priere d'ouverture\n03:30 Ce que le silence de Dieu n'est pas\n06:30 David : la plainte qui reste une priere\n09:30 Les quatre cents ans de silence\n12:30 Gethsemane : le silence que le Fils a connu\n15:00 Ce que Dieu fait pendant qu'il se tait\n18:00 Priere finale\n\nSi ce message rejoint ce que tu traverses, ecris en commentaire « Je choisis de faire confiance dans le silence ». Abonne-toi pour recevoir les prochains enseignements.\n\n#foi #priere #silencededieu #psaume22 #encouragementchretien",
     "tags": [
-      "Contravo",
-      "facturation",
-      "devis",
-      "franc CFA",
-      "XOF",
-      "Mobile Money",
-      "Wave",
-      "Orange Money",
-      "signature électronique",
-      "SaaS",
-      "Côte d'Ivoire",
-      "Afrique de l'Ouest",
-      "relance de facture"
+      "silence de Dieu",
+      "priere",
+      "foi",
+      "psaume 22",
+      "job",
+      "habacuc",
+      "gethsemane",
+      "enseignement biblique",
+      "encouragement chretien",
+      "attente",
+      "epreuve",
+      "confiance en Dieu"
     ]
   },
-  "voice": "george",
-  "subtitles": true,
   "subtitleStyle": "cinematic",
-  "music": "sounds/music/leberch-cinematic-space.mp3",
-  "musicVolume": 0.05,
-  "sfxVolume": 0.9,
   "scenes": [
     {
       "id": 1,
-      "narration": "Un devis envoyé par mail. Un contrat signé, scanné, puis perdu. Une facture relancée de mémoire, quand on y pense. À la fin du mois, personne ne sait vraiment ce qui a été encaissé.",
-      "mediaPath": "scene_01_constat.png",
-      "mediaPrompt": "Bureau d'une petite agence en Afrique de l'Ouest, fin de journée, lumière chaude rasante. Factures papier empilées, carnet annoté, téléphone éteint, tasse froide.",
-      "motionPrompt": "très léger travelling avant sur la pile de factures",
+      "narration": "Tu as prié. Tu as jeûné. Tu as veillé des nuits entières. Et le ciel est resté fermé.",
+      "mediaPath": "scene_1.mp4",
+      "mediaPrompt": "cinematic wide shot of a solitary figure kneeling in prayer in an empty stone chapel at dawn, seen from behind, a single shaft of pale light falling from a high window onto the stone floor beside them but not upon them, dust suspended in the beam, deep shadows, muted blue and grey tones with warm amber light, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "motionPrompt": "the shaft of pale light shifts very slowly across the stone floor as dawn advances, dust motes drifting through the beam, the kneeling figure remaining still with head bowed, an almost imperceptible rise and fall of the shoulders as they breathe, deeply calm continuous motion, static camera",
       "effects": {
-        "zoom": "in",
-        "transition": "none",
-        "cameraMotion": "dolly"
-      },
-      "durationInSeconds": 11.415510204081633,
-      "words": [
-        {
-          "text": "Un",
-          "start": 0,
-          "duration": 0.151
-        },
-        {
-          "text": "devis",
-          "start": 0.197,
-          "duration": 0.314
-        },
-        {
-          "text": "envoyé",
-          "start": 0.546,
-          "duration": 0.313
-        },
-        {
-          "text": "par",
-          "start": 0.906,
-          "duration": 0.139
-        },
-        {
-          "text": "mail.",
-          "start": 1.115,
-          "duration": 0.429
-        },
-        {
-          "text": "Un",
-          "start": 1.753,
-          "duration": 0.116
-        },
-        {
-          "text": "contrat",
-          "start": 1.904,
-          "duration": 0.383
-        },
-        {
-          "text": "signé,",
-          "start": 2.31,
-          "duration": 0.453
-        },
-        {
-          "text": "scanné,",
-          "start": 2.821,
-          "duration": 0.534
-        },
-        {
-          "text": "puis",
-          "start": 3.448,
-          "duration": 0.209
-        },
-        {
-          "text": "perdu.",
-          "start": 3.68,
-          "duration": 0.5
-        },
-        {
-          "text": "Une",
-          "start": 4.621,
-          "duration": 0.174
-        },
-        {
-          "text": "facture",
-          "start": 4.83,
-          "duration": 0.464
-        },
-        {
-          "text": "relancée",
-          "start": 5.329,
-          "duration": 0.418
-        },
-        {
-          "text": "de",
-          "start": 5.77,
-          "duration": 0.058
-        },
-        {
-          "text": "mémoire,",
-          "start": 5.875,
-          "duration": 0.499
-        },
-        {
-          "text": "quand",
-          "start": 6.42,
-          "duration": 0.163
-        },
-        {
-          "text": "on",
-          "start": 6.641,
-          "duration": 0.07
-        },
-        {
-          "text": "y",
-          "start": 6.769,
-          "duration": 0.034
-        },
-        {
-          "text": "pense.",
-          "start": 6.85,
-          "duration": 0.499
-        },
-        {
-          "text": "À",
-          "start": 7.953,
-          "duration": 0.058
-        },
-        {
-          "text": "la",
-          "start": 8.081,
-          "duration": 0.058
-        },
-        {
-          "text": "fin",
-          "start": 8.208,
-          "duration": 0.128
-        },
-        {
-          "text": "du",
-          "start": 8.371,
-          "duration": 0.093
-        },
-        {
-          "text": "mois,",
-          "start": 8.499,
-          "duration": 0.29
-        },
-        {
-          "text": "personne",
-          "start": 8.882,
-          "duration": 0.406
-        },
-        {
-          "text": "ne",
-          "start": 9.311,
-          "duration": 0.081
-        },
-        {
-          "text": "sait",
-          "start": 9.439,
-          "duration": 0.128
-        },
-        {
-          "text": "vraiment",
-          "start": 9.59,
-          "duration": 0.325
-        },
-        {
-          "text": "ce",
-          "start": 9.95,
-          "duration": 0.069
-        },
-        {
-          "text": "qui",
-          "start": 10.077,
-          "duration": 0.105
-        },
-        {
-          "text": "a",
-          "start": 10.217,
-          "duration": 0.023
-        },
-        {
-          "text": "été",
-          "start": 10.275,
-          "duration": 0.186
-        },
-        {
-          "text": "encaissé.",
-          "start": 10.507,
-          "duration": 0.871
-        }
-      ]
+        "transition": "fade",
+        "cameraMotion": "static"
+      }
     },
     {
       "id": 2,
-      "narration": "Contravo relie tout ça. Une seule chaîne, du devis jusqu'à l'argent sur le compte.",
-      "mediaPath": "scene_02_promesse.mp4",
+      "narration": "Ce n'est pas que tu doutes de l'existence de Dieu. Tu crois qu'il est là. C'est pire que ça. Tu commences à douter qu'il s'intéresse à toi, personnellement. Qu'il ait vu ta situation. Qu'il ait entendu le nom que tu répètes chaque nuit.",
+      "mediaPath": "scene_2.png",
+      "mediaPrompt": "cinematic close-up of two weathered hands resting open and empty on a worn wooden table, palms upward in a gesture of waiting, soft directional light from a nearby window, deep shadows behind, muted earth tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
-        "zoom": "none",
-        "transition": "black"
-      },
-      "kineticTitle": {
-        "text": "*Contravo*",
-        "startInSeconds": 0.3,
-        "highlightColor": "#F04E23",
-        "fontSize": "6.5rem",
-        "position": "center",
-        "variant": "reveal"
-      },
-      "durationInSeconds": 4.963265306122449,
-      "words": [
-        {
-          "text": "Contravo",
-          "start": 0,
-          "duration": 0.534
-        },
-        {
-          "text": "relie",
-          "start": 0.592,
-          "duration": 0.209
-        },
-        {
-          "text": "tout",
-          "start": 0.836,
-          "duration": 0.139
-        },
-        {
-          "text": "ça.",
-          "start": 1.01,
-          "duration": 0.372
-        },
-        {
-          "text": "Une",
-          "start": 1.892,
-          "duration": 0.209
-        },
-        {
-          "text": "seule",
-          "start": 2.125,
-          "duration": 0.209
-        },
-        {
-          "text": "chaîne,",
-          "start": 2.368,
-          "duration": 0.395
-        },
-        {
-          "text": "du",
-          "start": 2.879,
-          "duration": 0.116
-        },
-        {
-          "text": "devis",
-          "start": 3.042,
-          "duration": 0.267
-        },
-        {
-          "text": "jusqu'à",
-          "start": 3.332,
-          "duration": 0.279
-        },
-        {
-          "text": "l'argent",
-          "start": 3.634,
-          "duration": 0.337
-        },
-        {
-          "text": "sur",
-          "start": 4.005,
-          "duration": 0.105
-        },
-        {
-          "text": "le",
-          "start": 4.145,
-          "duration": 0.069
-        },
-        {
-          "text": "compte.",
-          "start": 4.272,
-          "duration": 0.651
-        }
-      ],
-      "mediaVolume": 0
+        "zoom": "in",
+        "transition": "fade"
+      }
     },
     {
       "id": 3,
-      "narration": "Le tableau de bord montre ce qui est signé, ce qui reste à encaisser, et ce qui est déjà en retard. Aucune estimation : ce sont les factures elles-mêmes qui parlent.",
-      "mediaPath": "scene_03_tableau-de-bord.mp4",
+      "narration": "Et personne, à l'église, n'ose vraiment parler de ça. On te dira de tenir bon. On te dira que Dieu a un plan, que son temps est parfait. Ce sont des vérités. Mais on ne te dira pas pourquoi il se taît. Et tu repars avec une réponse qui ne touche pas ta question.",
+      "mediaPath": "scene_3.png",
+      "mediaPrompt": "cinematic wide shot of empty wooden church pews seen from the side in late afternoon light, rows receding into shadow, one hymnal left open on a bench, coloured light through stained glass falling in patches on the stone floor, muted tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
-        "zoom": "none",
+        "zoom": "out",
         "transition": "fade"
-      },
-      "durationInSeconds": 10.448979591836734,
-      "words": [
-        {
-          "text": "Le",
-          "start": 0,
-          "duration": 0.163
-        },
-        {
-          "text": "tableau",
-          "start": 0.209,
-          "duration": 0.279
-        },
-        {
-          "text": "de",
-          "start": 0.534,
-          "duration": 0.07
-        },
-        {
-          "text": "bord",
-          "start": 0.662,
-          "duration": 0.325
-        },
-        {
-          "text": "montre",
-          "start": 1.103,
-          "duration": 0.348
-        },
-        {
-          "text": "ce",
-          "start": 1.486,
-          "duration": 0.081
-        },
-        {
-          "text": "qui",
-          "start": 1.614,
-          "duration": 0.104
-        },
-        {
-          "text": "est",
-          "start": 1.776,
-          "duration": 0.082
-        },
-        {
-          "text": "signé,",
-          "start": 1.881,
-          "duration": 0.627
-        },
-        {
-          "text": "ce",
-          "start": 2.891,
-          "duration": 0.093
-        },
-        {
-          "text": "qui",
-          "start": 3.03,
-          "duration": 0.105
-        },
-        {
-          "text": "reste",
-          "start": 3.193,
-          "duration": 0.267
-        },
-        {
-          "text": "à",
-          "start": 3.483,
-          "duration": 0.023
-        },
-        {
-          "text": "encaisser,",
-          "start": 3.576,
-          "duration": 0.696
-        },
-        {
-          "text": "et",
-          "start": 4.423,
-          "duration": 0.117
-        },
-        {
-          "text": "ce",
-          "start": 4.574,
-          "duration": 0.082
-        },
-        {
-          "text": "qui",
-          "start": 4.714,
-          "duration": 0.093
-        },
-        {
-          "text": "est",
-          "start": 4.853,
-          "duration": 0.07
-        },
-        {
-          "text": "déjà",
-          "start": 4.946,
-          "duration": 0.267
-        },
-        {
-          "text": "en",
-          "start": 5.259,
-          "duration": 0.07
-        },
-        {
-          "text": "retard.",
-          "start": 5.375,
-          "duration": 0.627
-        },
-        {
-          "text": "Aucune",
-          "start": 6.606,
-          "duration": 0.441
-        },
-        {
-          "text": "estimation",
-          "start": 7.07,
-          "duration": 0.639
-        },
-        {
-          "text": ":",
-          "start": 7.825,
-          "duration": 0.07
-        },
-        {
-          "text": "ce",
-          "start": 8.104,
-          "duration": 0.104
-        },
-        {
-          "text": "sont",
-          "start": 8.255,
-          "duration": 0.151
-        },
-        {
-          "text": "les",
-          "start": 8.429,
-          "duration": 0.093
-        },
-        {
-          "text": "factures",
-          "start": 8.557,
-          "duration": 0.464
-        },
-        {
-          "text": "elles-mêmes",
-          "start": 9.079,
-          "duration": 0.43
-        },
-        {
-          "text": "qui",
-          "start": 9.532,
-          "duration": 0.104
-        },
-        {
-          "text": "parlent.",
-          "start": 9.694,
-          "duration": 0.709
-        }
-      ],
-      "mediaVolume": 0
+      }
     },
     {
       "id": 4,
-      "narration": "Un client, c'est une fiche unique. Ses projets, ses devis, ses factures, ce qu'il a payé et ce qu'il doit encore.",
-      "mediaPath": "scene_04_fiche-client.mp4",
+      "narration": "Aujourd'hui, je ne vais pas te dire que ton silence n'existe pas. Il existe. La Bible le nomme. Et des hommes que Dieu aimait profondément l'ont traversé avant toi.",
+      "mediaPath": "scene_4.png",
+      "mediaPrompt": "cinematic close-up of an ancient open Bible on a dark wooden lectern, pages worn and slightly curled, a ribbon bookmark lying across the text, warm lamplight from above casting soft shadows in the gutter of the book, deep browns and golds, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
-        "zoom": "none",
+        "zoom": "in",
         "transition": "fade"
-      },
-      "durationInSeconds": 7.053061224489796,
-      "words": [
-        {
-          "text": "Un",
-          "start": 0,
-          "duration": 0.151
-        },
-        {
-          "text": "client,",
-          "start": 0.186,
-          "duration": 0.429
-        },
-        {
-          "text": "c'est",
-          "start": 0.639,
-          "duration": 0.174
-        },
-        {
-          "text": "une",
-          "start": 0.882,
-          "duration": 0.093
-        },
-        {
-          "text": "fiche",
-          "start": 1.01,
-          "duration": 0.232
-        },
-        {
-          "text": "unique.",
-          "start": 1.312,
-          "duration": 0.488
-        },
-        {
-          "text": "Ses",
-          "start": 1.974,
-          "duration": 0.174
-        },
-        {
-          "text": "projets,",
-          "start": 2.183,
-          "duration": 0.476
-        },
-        {
-          "text": "ses",
-          "start": 2.728,
-          "duration": 0.163
-        },
-        {
-          "text": "devis,",
-          "start": 2.926,
-          "duration": 0.453
-        },
-        {
-          "text": "ses",
-          "start": 3.495,
-          "duration": 0.139
-        },
-        {
-          "text": "factures,",
-          "start": 3.669,
-          "duration": 0.673
-        },
-        {
-          "text": "ce",
-          "start": 4.516,
-          "duration": 0.116
-        },
-        {
-          "text": "qu'il",
-          "start": 4.69,
-          "duration": 0.14
-        },
-        {
-          "text": "a",
-          "start": 4.876,
-          "duration": 0.023
-        },
-        {
-          "text": "payé",
-          "start": 4.957,
-          "duration": 0.395
-        },
-        {
-          "text": "et",
-          "start": 5.433,
-          "duration": 0.128
-        },
-        {
-          "text": "ce",
-          "start": 5.596,
-          "duration": 0.081
-        },
-        {
-          "text": "qu'il",
-          "start": 5.735,
-          "duration": 0.14
-        },
-        {
-          "text": "doit",
-          "start": 5.921,
-          "duration": 0.209
-        },
-        {
-          "text": "encore.",
-          "start": 6.188,
-          "duration": 0.824
-        }
-      ],
-      "mediaVolume": 0
+      }
     },
     {
       "id": 5,
-      "narration": "Le devis se construit ligne par ligne : quantité, prix unitaire, remise. La TVA s'applique au bon endroit, et les montants sont en francs CFA, sans centimes, parce que le franc n'en a pas.",
-      "mediaPath": "scene_05_devis-lignes.mp4",
+      "narration": "Job. David. Habacuc. Et Jésus lui-même, à Gethsémané. Reste jusqu'à la fin, car une prière t'attend. Une prière pour les temps où le ciel ne répond pas.",
+      "mediaPath": "scene_5.png",
+      "mediaPrompt": "cinematic wide shot of an ancient olive grove at dusk, gnarled twisted trunks in the foreground, a stone path winding between them into darkness, last light fading on the horizon, deep blues and silvered greens, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
-        "zoom": "none",
-        "transition": "wipe"
+        "zoom": "in",
+        "transition": "fade"
       },
       "kineticTitle": {
-        "text": "En francs CFA. *Sans centimes.*",
-        "highlightColor": "#F04E23",
-        "fontSize": "2.4rem",
-        "position": "bottom",
+        "text": "Le silence de *Dieu*",
+        "startInSeconds": 3.5,
+        "position": "center",
         "variant": "reveal"
-      },
-      "durationInSeconds": 12.146938775510204,
-      "words": [
-        {
-          "text": "Le",
-          "start": 0,
-          "duration": 0.163
-        },
-        {
-          "text": "devis",
-          "start": 0.209,
-          "duration": 0.279
-        },
-        {
-          "text": "se",
-          "start": 0.511,
-          "duration": 0.081
-        },
-        {
-          "text": "construit",
-          "start": 0.639,
-          "duration": 0.476
-        },
-        {
-          "text": "ligne",
-          "start": 1.161,
-          "duration": 0.244
-        },
-        {
-          "text": "par",
-          "start": 1.44,
-          "duration": 0.151
-        },
-        {
-          "text": "ligne",
-          "start": 1.649,
-          "duration": 0.301
-        },
-        {
-          "text": ":",
-          "start": 2.067,
-          "duration": 0.034
-        },
-        {
-          "text": "quantité,",
-          "start": 2.218,
-          "duration": 0.65
-        },
-        {
-          "text": "prix",
-          "start": 2.949,
-          "duration": 0.232
-        },
-        {
-          "text": "unitaire,",
-          "start": 3.228,
-          "duration": 0.65
-        },
-        {
-          "text": "remise.",
-          "start": 4.029,
-          "duration": 0.615
-        },
-        {
-          "text": "La",
-          "start": 5.341,
-          "duration": 0.127
-        },
-        {
-          "text": "TVA",
-          "start": 5.515,
-          "duration": 0.348
-        },
-        {
-          "text": "s'applique",
-          "start": 5.909,
-          "duration": 0.407
-        },
-        {
-          "text": "au",
-          "start": 6.339,
-          "duration": 0.07
-        },
-        {
-          "text": "bon",
-          "start": 6.455,
-          "duration": 0.151
-        },
-        {
-          "text": "endroit,",
-          "start": 6.664,
-          "duration": 0.511
-        },
-        {
-          "text": "et",
-          "start": 7.349,
-          "duration": 0.105
-        },
-        {
-          "text": "les",
-          "start": 7.488,
-          "duration": 0.082
-        },
-        {
-          "text": "montants",
-          "start": 7.593,
-          "duration": 0.371
-        },
-        {
-          "text": "sont",
-          "start": 7.988,
-          "duration": 0.162
-        },
-        {
-          "text": "en",
-          "start": 8.208,
-          "duration": 0.058
-        },
-        {
-          "text": "francs",
-          "start": 8.324,
-          "duration": 0.256
-        },
-        {
-          "text": "CFA,",
-          "start": 8.626,
-          "duration": 0.72
-        },
-        {
-          "text": "sans",
-          "start": 9.462,
-          "duration": 0.197
-        },
-        {
-          "text": "centimes,",
-          "start": 9.683,
-          "duration": 0.603
-        },
-        {
-          "text": "parce",
-          "start": 10.495,
-          "duration": 0.209
-        },
-        {
-          "text": "que",
-          "start": 10.728,
-          "duration": 0.069
-        },
-        {
-          "text": "le",
-          "start": 10.832,
-          "duration": 0.07
-        },
-        {
-          "text": "franc",
-          "start": 10.948,
-          "duration": 0.232
-        },
-        {
-          "text": "n'en",
-          "start": 11.25,
-          "duration": 0.139
-        },
-        {
-          "text": "a",
-          "start": 11.471,
-          "duration": 0.023
-        },
-        {
-          "text": "pas.",
-          "start": 11.564,
-          "duration": 0.557
-        }
-      ],
-      "mediaVolume": 0
+      }
     },
     {
       "id": 6,
-      "narration": "Un clic sur Envoyer. Le PDF se génère, le mail part avec la pièce jointe, et un lien privé est créé pour le client.",
-      "mediaPath": "scene_06_envoi.mp4",
+      "narration": "Si ce message rejoint ce que tu vis, abonne-toi maintenant, aime cette vidéo, et écris en commentaire : je choisis de faire confiance dans le silence.",
+      "mediaPath": "scene_6.png",
+      "mediaPrompt": "cinematic close-up of a single candle flame burning steadily in deep darkness, the flame sharp and warm, faint glow revealing the edge of a wooden surface beneath, everything else in shadow, warm amber against near black, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
-        "zoom": "none",
+        "zoom": "in",
         "transition": "fade"
-      },
-      "durationInSeconds": 7.706122448979592,
-      "words": [
-        {
-          "text": "Un",
-          "start": 0,
-          "duration": 0.139
-        },
-        {
-          "text": "clic",
-          "start": 0.197,
-          "duration": 0.279
-        },
-        {
-          "text": "sur",
-          "start": 0.534,
-          "duration": 0.163
-        },
-        {
-          "text": "Envoyer.",
-          "start": 0.731,
-          "duration": 0.697
-        },
-        {
-          "text": "Le",
-          "start": 1.811,
-          "duration": 0.128
-        },
-        {
-          "text": "PDF",
-          "start": 1.985,
-          "duration": 0.372
-        },
-        {
-          "text": "se",
-          "start": 2.45,
-          "duration": 0.081
-        },
-        {
-          "text": "génère,",
-          "start": 2.589,
-          "duration": 0.546
-        },
-        {
-          "text": "le",
-          "start": 3.309,
-          "duration": 0.104
-        },
-        {
-          "text": "mail",
-          "start": 3.46,
-          "duration": 0.186
-        },
-        {
-          "text": "part",
-          "start": 3.727,
-          "duration": 0.232
-        },
-        {
-          "text": "avec",
-          "start": 3.982,
-          "duration": 0.174
-        },
-        {
-          "text": "la",
-          "start": 4.214,
-          "duration": 0.058
-        },
-        {
-          "text": "pièce",
-          "start": 4.319,
-          "duration": 0.267
-        },
-        {
-          "text": "jointe,",
-          "start": 4.632,
-          "duration": 0.476
-        },
-        {
-          "text": "et",
-          "start": 5.259,
-          "duration": 0.128
-        },
-        {
-          "text": "un",
-          "start": 5.433,
-          "duration": 0.059
-        },
-        {
-          "text": "lien",
-          "start": 5.526,
-          "duration": 0.198
-        },
-        {
-          "text": "privé",
-          "start": 5.759,
-          "duration": 0.394
-        },
-        {
-          "text": "est",
-          "start": 6.235,
-          "duration": 0.116
-        },
-        {
-          "text": "créé",
-          "start": 6.374,
-          "duration": 0.267
-        },
-        {
-          "text": "pour",
-          "start": 6.687,
-          "duration": 0.116
-        },
-        {
-          "text": "le",
-          "start": 6.838,
-          "duration": 0.07
-        },
-        {
-          "text": "client.",
-          "start": 6.954,
-          "duration": 0.709
-        }
-      ],
-      "mediaVolume": 0,
-      "sounds": [
-        {
-          "src": "sounds/sfx/swoosh.mp3",
-          "volume": 0.3,
-          "trimEnd": 1.1
-        },
-        {
-          "src": "sounds/sfx/pop.mp3",
-          "volume": 0.45,
-          "trimEnd": 0.8
-        }
-      ]
+      }
     },
     {
       "id": 7,
-      "narration": "Le client reçoit un vrai document. Vos mentions légales, vos coordonnées bancaires, votre numéro de devis. Pas une capture d'écran envoyée à la hâte.",
-      "mediaPath": "scene_07_document-pdf.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 9.37795918367347,
-      "words": [
-        {
-          "text": "Le",
-          "start": 0,
-          "duration": 0.186
-        },
-        {
-          "text": "client",
-          "start": 0.209,
-          "duration": 0.348
-        },
-        {
-          "text": "reçoit",
-          "start": 0.592,
-          "duration": 0.383
-        },
-        {
-          "text": "un",
-          "start": 0.998,
-          "duration": 0.07
-        },
-        {
-          "text": "vrai",
-          "start": 1.115,
-          "duration": 0.185
-        },
-        {
-          "text": "document.",
-          "start": 1.335,
-          "duration": 0.627
-        },
-        {
-          "text": "Vos",
-          "start": 2.287,
-          "duration": 0.186
-        },
-        {
-          "text": "mentions",
-          "start": 2.519,
-          "duration": 0.349
-        },
-        {
-          "text": "légales,",
-          "start": 2.891,
-          "duration": 0.534
-        },
-        {
-          "text": "vos",
-          "start": 3.599,
-          "duration": 0.163
-        },
-        {
-          "text": "coordonnées",
-          "start": 3.796,
-          "duration": 0.488
-        },
-        {
-          "text": "bancaires,",
-          "start": 4.307,
-          "duration": 0.697
-        },
-        {
-          "text": "votre",
-          "start": 5.213,
-          "duration": 0.267
-        },
-        {
-          "text": "numéro",
-          "start": 5.526,
-          "duration": 0.337
-        },
-        {
-          "text": "de",
-          "start": 5.909,
-          "duration": 0.07
-        },
-        {
-          "text": "devis.",
-          "start": 6.026,
-          "duration": 0.452
-        },
-        {
-          "text": "Pas",
-          "start": 6.803,
-          "duration": 0.209
-        },
-        {
-          "text": "une",
-          "start": 7.082,
-          "duration": 0.093
-        },
-        {
-          "text": "capture",
-          "start": 7.198,
-          "duration": 0.36
-        },
-        {
-          "text": "d'écran",
-          "start": 7.581,
-          "duration": 0.349
-        },
-        {
-          "text": "envoyée",
-          "start": 7.988,
-          "duration": 0.406
-        },
-        {
-          "text": "à",
-          "start": 8.417,
-          "duration": 0.035
-        },
-        {
-          "text": "la",
-          "start": 8.51,
-          "duration": 0.093
-        },
-        {
-          "text": "hâte.",
-          "start": 8.661,
-          "duration": 0.673
-        }
-      ],
-      "mediaVolume": 0,
-      "playbackRate": 0.8
-    },
-    {
-      "id": 8,
-      "narration": "Il ouvre son lien. Aucun compte à créer, aucun mot de passe. Il lit, et il accepte.",
-      "mediaPath": "scene_08_portail-acceptation.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "wipe"
-      },
-      "kineticTitle": {
-        "text": "*Aucun compte* à créer.",
-        "highlightColor": "#F04E23",
-        "fontSize": "2.4rem",
-        "position": "bottom",
-        "variant": "reveal"
-      },
-      "durationInSeconds": 5.668571428571428,
-      "words": [
-        {
-          "text": "Il",
-          "start": 0,
-          "duration": 0.139
-        },
-        {
-          "text": "ouvre",
-          "start": 0.221,
-          "duration": 0.232
-        },
-        {
-          "text": "son",
-          "start": 0.499,
-          "duration": 0.151
-        },
-        {
-          "text": "lien.",
-          "start": 0.697,
-          "duration": 0.36
-        },
-        {
-          "text": "Aucun",
-          "start": 1.207,
-          "duration": 0.36
-        },
-        {
-          "text": "compte",
-          "start": 1.637,
-          "duration": 0.221
-        },
-        {
-          "text": "à",
-          "start": 1.892,
-          "duration": 0.024
-        },
-        {
-          "text": "créer,",
-          "start": 1.962,
-          "duration": 0.441
-        },
-        {
-          "text": "aucun",
-          "start": 2.461,
-          "duration": 0.337
-        },
-        {
-          "text": "mot",
-          "start": 2.833,
-          "duration": 0.139
-        },
-        {
-          "text": "de",
-          "start": 3.007,
-          "duration": 0.07
-        },
-        {
-          "text": "passe.",
-          "start": 3.123,
-          "duration": 0.464
-        },
-        {
-          "text": "Il",
-          "start": 3.913,
-          "duration": 0.162
-        },
-        {
-          "text": "lit,",
-          "start": 4.133,
-          "duration": 0.29
-        },
-        {
-          "text": "et",
-          "start": 4.574,
-          "duration": 0.128
-        },
-        {
-          "text": "il",
-          "start": 4.725,
-          "duration": 0.082
-        },
-        {
-          "text": "accepte.",
-          "start": 4.865,
-          "duration": 0.754
-        }
-      ],
-      "mediaVolume": 0
-    },
-    {
-      "id": 9,
-      "narration": "Le contrat suit le même chemin. Le client signe à l'écran, et Contravo scelle le document : empreinte du PDF, horodatage, adresse du signataire. La signature reste vérifiable des mois plus tard.",
-      "mediaPath": "scene_09_signature-contrat.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 12.852244897959183,
-      "words": [
-        {
-          "text": "Le",
-          "start": 0,
-          "duration": 0.151
-        },
-        {
-          "text": "contrat",
-          "start": 0.197,
-          "duration": 0.36
-        },
-        {
-          "text": "suit",
-          "start": 0.58,
-          "duration": 0.186
-        },
-        {
-          "text": "le",
-          "start": 0.789,
-          "duration": 0.059
-        },
-        {
-          "text": "même",
-          "start": 0.894,
-          "duration": 0.174
-        },
-        {
-          "text": "chemin.",
-          "start": 1.091,
-          "duration": 0.488
-        },
-        {
-          "text": "Le",
-          "start": 2.09,
-          "duration": 0.128
-        },
-        {
-          "text": "client",
-          "start": 2.252,
-          "duration": 0.314
-        },
-        {
-          "text": "signe",
-          "start": 2.601,
-          "duration": 0.255
-        },
-        {
-          "text": "à",
-          "start": 2.891,
-          "duration": 0.035
-        },
-        {
-          "text": "l'écran,",
-          "start": 2.984,
-          "duration": 0.487
-        },
-        {
-          "text": "et",
-          "start": 3.587,
-          "duration": 0.128
-        },
-        {
-          "text": "Contravo",
-          "start": 3.762,
-          "duration": 0.464
-        },
-        {
-          "text": "scelle",
-          "start": 4.296,
-          "duration": 0.244
-        },
-        {
-          "text": "le",
-          "start": 4.563,
-          "duration": 0.069
-        },
-        {
-          "text": "document",
-          "start": 4.679,
-          "duration": 0.453
-        },
-        {
-          "text": ":",
-          "start": 5.248,
-          "duration": 0.035
-        },
-        {
-          "text": "empreinte",
-          "start": 5.526,
-          "duration": 0.511
-        },
-        {
-          "text": "du",
-          "start": 6.084,
-          "duration": 0.093
-        },
-        {
-          "text": "PDF,",
-          "start": 6.223,
-          "duration": 0.615
-        },
-        {
-          "text": "horodatage,",
-          "start": 7.012,
-          "duration": 0.918
-        },
-        {
-          "text": "adresse",
-          "start": 8.139,
-          "duration": 0.383
-        },
-        {
-          "text": "du",
-          "start": 8.545,
-          "duration": 0.081
-        },
-        {
-          "text": "signataire.",
-          "start": 8.661,
-          "duration": 0.801
-        },
-        {
-          "text": "La",
-          "start": 9.973,
-          "duration": 0.139
-        },
-        {
-          "text": "signature",
-          "start": 10.159,
-          "duration": 0.534
-        },
-        {
-          "text": "reste",
-          "start": 10.716,
-          "duration": 0.244
-        },
-        {
-          "text": "vérifiable",
-          "start": 11.006,
-          "duration": 0.581
-        },
-        {
-          "text": "des",
-          "start": 11.645,
-          "duration": 0.093
-        },
-        {
-          "text": "mois",
-          "start": 11.761,
-          "duration": 0.174
-        },
-        {
-          "text": "plus",
-          "start": 11.958,
-          "duration": 0.151
-        },
-        {
-          "text": "tard.",
-          "start": 12.132,
-          "duration": 0.685
-        }
-      ],
-      "mediaVolume": 0,
-      "sounds": [
-        {
-          "src": "sounds/sfx/put-cap-on-pen.mp3",
-          "volume": 0.5
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "narration": "Vient la facture. Trois millions cent quatre-vingt-six mille francs à régler. Le client la voit, et il a un bouton pour la payer.",
-      "mediaPath": "scene_10_facture-a-payer.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "durationInSeconds": 7.6538775510204085,
-      "words": [
-        {
-          "text": "Vient",
-          "start": 0,
-          "duration": 0.279
-        },
-        {
-          "text": "la",
-          "start": 0.302,
-          "duration": 0.046
-        },
-        {
-          "text": "facture.",
-          "start": 0.406,
-          "duration": 0.709
-        },
-        {
-          "text": "Trois",
-          "start": 1.498,
-          "duration": 0.267
-        },
-        {
-          "text": "millions",
-          "start": 1.8,
-          "duration": 0.359
-        },
-        {
-          "text": "cent",
-          "start": 2.183,
-          "duration": 0.151
-        },
-        {
-          "text": "quatre-vingt-six",
-          "start": 2.38,
-          "duration": 0.569
-        },
-        {
-          "text": "mille",
-          "start": 2.972,
-          "duration": 0.174
-        },
-        {
-          "text": "francs",
-          "start": 3.181,
-          "duration": 0.244
-        },
-        {
-          "text": "à",
-          "start": 3.483,
-          "duration": 0.058
-        },
-        {
-          "text": "régler.",
-          "start": 3.611,
-          "duration": 0.592
-        },
-        {
-          "text": "Le",
-          "start": 4.714,
-          "duration": 0.127
-        },
-        {
-          "text": "client",
-          "start": 4.876,
-          "duration": 0.29
-        },
-        {
-          "text": "la",
-          "start": 5.19,
-          "duration": 0.069
-        },
-        {
-          "text": "voit,",
-          "start": 5.317,
-          "duration": 0.395
-        },
-        {
-          "text": "et",
-          "start": 5.863,
-          "duration": 0.116
-        },
-        {
-          "text": "il",
-          "start": 6.014,
-          "duration": 0.07
-        },
-        {
-          "text": "a",
-          "start": 6.142,
-          "duration": 0.023
-        },
-        {
-          "text": "un",
-          "start": 6.235,
-          "duration": 0.081
-        },
-        {
-          "text": "bouton",
-          "start": 6.362,
-          "duration": 0.291
-        },
-        {
-          "text": "pour",
-          "start": 6.699,
-          "duration": 0.104
-        },
-        {
-          "text": "la",
-          "start": 6.85,
-          "duration": 0.058
-        },
-        {
-          "text": "payer.",
-          "start": 6.954,
-          "duration": 0.662
-        }
-      ],
-      "mediaVolume": 0
-    },
-    {
-      "id": 11,
-      "narration": "Mobile Money, Wave, Orange Money, ou carte : le client choisit, il est redirigé vers la passerelle, et il paie depuis son téléphone en quelques secondes.",
-      "mediaPath": "scene_11_paiement-passerelle.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "zoomPunch"
-      },
-      "durationInSeconds": 9.430204081632652,
-      "words": [
-        {
-          "text": "Mobile",
-          "start": 0,
-          "duration": 0.441
-        },
-        {
-          "text": "Money,",
-          "start": 0.488,
-          "duration": 0.406
-        },
-        {
-          "text": "Wave,",
-          "start": 1.022,
-          "duration": 0.429
-        },
-        {
-          "text": "Orange",
-          "start": 1.579,
-          "duration": 0.418
-        },
-        {
-          "text": "Money,",
-          "start": 2.032,
-          "duration": 0.429
-        },
-        {
-          "text": "ou",
-          "start": 2.635,
-          "duration": 0.117
-        },
-        {
-          "text": "carte",
-          "start": 2.821,
-          "duration": 0.383
-        },
-        {
-          "text": ":",
-          "start": 3.239,
-          "duration": 0.047
-        },
-        {
-          "text": "le",
-          "start": 3.727,
-          "duration": 0.093
-        },
-        {
-          "text": "client",
-          "start": 3.866,
-          "duration": 0.337
-        },
-        {
-          "text": "choisit,",
-          "start": 4.226,
-          "duration": 0.453
-        },
-        {
-          "text": "il",
-          "start": 4.725,
-          "duration": 0.151
-        },
-        {
-          "text": "est",
-          "start": 4.923,
-          "duration": 0.081
-        },
-        {
-          "text": "redirigé",
-          "start": 5.039,
-          "duration": 0.499
-        },
-        {
-          "text": "vers",
-          "start": 5.584,
-          "duration": 0.14
-        },
-        {
-          "text": "la",
-          "start": 5.747,
-          "duration": 0.058
-        },
-        {
-          "text": "passerelle,",
-          "start": 5.863,
-          "duration": 0.569
-        },
-        {
-          "text": "et",
-          "start": 6.583,
-          "duration": 0.116
-        },
-        {
-          "text": "il",
-          "start": 6.722,
-          "duration": 0.081
-        },
-        {
-          "text": "paie",
-          "start": 6.885,
-          "duration": 0.139
-        },
-        {
-          "text": "depuis",
-          "start": 7.047,
-          "duration": 0.244
-        },
-        {
-          "text": "son",
-          "start": 7.314,
-          "duration": 0.105
-        },
-        {
-          "text": "téléphone",
-          "start": 7.465,
-          "duration": 0.534
-        },
-        {
-          "text": "en",
-          "start": 8.034,
-          "duration": 0.116
-        },
-        {
-          "text": "quelques",
-          "start": 8.208,
-          "duration": 0.325
-        },
-        {
-          "text": "secondes.",
-          "start": 8.557,
-          "duration": 0.824
-        }
-      ],
-      "mediaVolume": 0,
-      "sounds": [
-        {
-          "src": "sounds/sfx/swoosh.mp3",
-          "volume": 0.3,
-          "trimEnd": 1.1
-        }
-      ],
-      "playbackRate": 0.9
-    },
-    {
-      "id": 13,
-      "narration": "La passerelle confirme. Contravo enregistre le montant réellement reçu, les frais, et le net. Puis la facture passe à payée, toute seule.",
-      "mediaPath": "scene_13_facture-payee.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "kineticTitle": {
-        "text": "Le montant *réellement reçu.*",
-        "highlightColor": "#F04E23",
-        "fontSize": "2.4rem",
-        "position": "bottom",
-        "variant": "reveal"
-      },
-      "durationInSeconds": 9.560816326530611,
-      "words": [
-        {
-          "text": "La",
-          "start": 0,
-          "duration": 0.151
-        },
-        {
-          "text": "passerelle",
-          "start": 0.209,
-          "duration": 0.395
-        },
-        {
-          "text": "confirme.",
-          "start": 0.639,
-          "duration": 0.685
-        },
-        {
-          "text": "Contravo",
-          "start": 1.834,
-          "duration": 0.581
-        },
-        {
-          "text": "enregistre",
-          "start": 2.473,
-          "duration": 0.615
-        },
-        {
-          "text": "le",
-          "start": 3.123,
-          "duration": 0.058
-        },
-        {
-          "text": "montant",
-          "start": 3.228,
-          "duration": 0.371
-        },
-        {
-          "text": "réellement",
-          "start": 3.657,
-          "duration": 0.418
-        },
-        {
-          "text": "reçu,",
-          "start": 4.11,
-          "duration": 0.546
-        },
-        {
-          "text": "les",
-          "start": 4.772,
-          "duration": 0.139
-        },
-        {
-          "text": "frais,",
-          "start": 4.957,
-          "duration": 0.337
-        },
-        {
-          "text": "et",
-          "start": 5.329,
-          "duration": 0.128
-        },
-        {
-          "text": "le",
-          "start": 5.503,
-          "duration": 0.058
-        },
-        {
-          "text": "net.",
-          "start": 5.619,
-          "duration": 0.453
-        },
-        {
-          "text": "Puis",
-          "start": 6.676,
-          "duration": 0.232
-        },
-        {
-          "text": "la",
-          "start": 6.931,
-          "duration": 0.058
-        },
-        {
-          "text": "facture",
-          "start": 7.047,
-          "duration": 0.453
-        },
-        {
-          "text": "passe",
-          "start": 7.535,
-          "duration": 0.255
-        },
-        {
-          "text": "à",
-          "start": 7.814,
-          "duration": 0.023
-        },
-        {
-          "text": "payée,",
-          "start": 7.895,
-          "duration": 0.522
-        },
-        {
-          "text": "toute",
-          "start": 8.591,
-          "duration": 0.221
-        },
-        {
-          "text": "seule.",
-          "start": 8.847,
-          "duration": 0.673
-        }
-      ],
-      "mediaVolume": 0,
-      "sounds": [
-        {
-          "src": "sounds/sfx/pop.mp3",
-          "volume": 0.5,
-          "trimEnd": 0.8
-        }
-      ]
-    },
-    {
-      "id": 14,
-      "narration": "Et quand personne ne paie ? Contravo relance sans qu'on le lui demande. Le jour de l'échéance, puis à sept jours, à quatorze, à trente. Le ton monte à chaque cran.",
-      "mediaPath": "scene_14_relances-automatiques.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "wipe"
-      },
-      "kineticTitle": {
-        "text": "J+0 · J+7 · J+14 · *J+30*",
-        "highlightColor": "#F04E23",
-        "fontSize": "2.6rem",
-        "position": "bottom",
-        "variant": "reveal"
-      },
-      "mediaVolume": 0,
-      "words": [
-        {
-          "text": "Et",
-          "start": 0,
-          "duration": 0.151
-        },
-        {
-          "text": "quand",
-          "start": 0.174,
-          "duration": 0.151
-        },
-        {
-          "text": "personne",
-          "start": 0.36,
-          "duration": 0.383
-        },
-        {
-          "text": "ne",
-          "start": 0.766,
-          "duration": 0.082
-        },
-        {
-          "text": "paie",
-          "start": 0.906,
-          "duration": 0.22
-        },
-        {
-          "text": "?",
-          "start": 1.242,
-          "duration": 0.07
-        },
-        {
-          "text": "Contravo",
-          "start": 1.637,
-          "duration": 0.534
-        },
-        {
-          "text": "relance",
-          "start": 2.206,
-          "duration": 0.453
-        },
-        {
-          "text": "sans",
-          "start": 2.705,
-          "duration": 0.197
-        },
-        {
-          "text": "qu'on",
-          "start": 2.926,
-          "duration": 0.116
-        },
-        {
-          "text": "le",
-          "start": 3.088,
-          "duration": 0.07
-        },
-        {
-          "text": "lui",
-          "start": 3.193,
-          "duration": 0.139
-        },
-        {
-          "text": "demande.",
-          "start": 3.367,
-          "duration": 0.476
-        },
-        {
-          "text": "Le",
-          "start": 4.226,
-          "duration": 0.128
-        },
-        {
-          "text": "jour",
-          "start": 4.4,
-          "duration": 0.163
-        },
-        {
-          "text": "de",
-          "start": 4.609,
-          "duration": 0.058
-        },
-        {
-          "text": "l'échéance,",
-          "start": 4.714,
-          "duration": 0.743
-        },
-        {
-          "text": "puis",
-          "start": 5.573,
-          "duration": 0.197
-        },
-        {
-          "text": "à",
-          "start": 5.805,
-          "duration": 0.023
-        },
-        {
-          "text": "sept",
-          "start": 5.898,
-          "duration": 0.151
-        },
-        {
-          "text": "jours,",
-          "start": 6.107,
-          "duration": 0.476
-        },
-        {
-          "text": "à",
-          "start": 6.676,
-          "duration": 0.046
-        },
-        {
-          "text": "quatorze,",
-          "start": 6.803,
-          "duration": 0.604
-        },
-        {
-          "text": "à",
-          "start": 7.523,
-          "duration": 0.07
-        },
-        {
-          "text": "trente.",
-          "start": 7.663,
-          "duration": 0.557
-        },
-        {
-          "text": "Le",
-          "start": 8.824,
-          "duration": 0.151
-        },
-        {
-          "text": "ton",
-          "start": 9.033,
-          "duration": 0.197
-        },
-        {
-          "text": "monte",
-          "start": 9.288,
-          "duration": 0.244
-        },
-        {
-          "text": "à",
-          "start": 9.578,
-          "duration": 0.058
-        },
-        {
-          "text": "chaque",
-          "start": 9.729,
-          "duration": 0.256
-        },
-        {
-          "text": "cran.",
-          "start": 10.008,
-          "duration": 0.627
-        }
-      ],
-      "durationInSeconds": 10.684081632653061
-    },
-    {
-      "id": 15,
-      "narration": "Chaque événement de cette chaîne est diffusable. Devis accepté, contrat signé, paiement reçu : votre système reçoit un webhook signé, avec les tentatives et les réponses tracées. Quarante-huit événements, et une API documentée.",
-      "mediaPath": "scene_15_webhooks-api.mp4",
-      "effects": {
-        "zoom": "none",
-        "transition": "fade"
-      },
-      "kineticTitle": {
-        "text": "*48 événements.* Une API documentée.",
-        "highlightColor": "#F04E23",
-        "fontSize": "2.2rem",
-        "position": "bottom",
-        "variant": "reveal"
-      },
-      "mediaVolume": 0,
-      "words": [
-        {
-          "text": "Chaque",
-          "start": 0,
-          "duration": 0.325
-        },
-        {
-          "text": "événement",
-          "start": 0.348,
-          "duration": 0.372
-        },
-        {
-          "text": "de",
-          "start": 0.755,
-          "duration": 0.058
-        },
-        {
-          "text": "cette",
-          "start": 0.859,
-          "duration": 0.198
-        },
-        {
-          "text": "chaîne",
-          "start": 1.08,
-          "duration": 0.313
-        },
-        {
-          "text": "est",
-          "start": 1.463,
-          "duration": 0.116
-        },
-        {
-          "text": "diffusable.",
-          "start": 1.602,
-          "duration": 0.836
-        },
-        {
-          "text": "Devis",
-          "start": 2.879,
-          "duration": 0.36
-        },
-        {
-          "text": "accepté,",
-          "start": 3.262,
-          "duration": 0.697
-        },
-        {
-          "text": "contrat",
-          "start": 4.075,
-          "duration": 0.43
-        },
-        {
-          "text": "signé,",
-          "start": 4.54,
-          "duration": 0.615
-        },
-        {
-          "text": "paiement",
-          "start": 5.329,
-          "duration": 0.337
-        },
-        {
-          "text": "reçu",
-          "start": 5.7,
-          "duration": 0.418
-        },
-        {
-          "text": ":",
-          "start": 6.235,
-          "duration": 0.116
-        },
-        {
-          "text": "votre",
-          "start": 6.792,
-          "duration": 0.29
-        },
-        {
-          "text": "système",
-          "start": 7.129,
-          "duration": 0.406
-        },
-        {
-          "text": "reçoit",
-          "start": 7.57,
-          "duration": 0.371
-        },
-        {
-          "text": "un",
-          "start": 7.988,
-          "duration": 0.081
-        },
-        {
-          "text": "webhook",
-          "start": 8.127,
-          "duration": 0.406
-        },
-        {
-          "text": "signé,",
-          "start": 8.591,
-          "duration": 0.546
-        },
-        {
-          "text": "avec",
-          "start": 9.346,
-          "duration": 0.267
-        },
-        {
-          "text": "les",
-          "start": 9.671,
-          "duration": 0.081
-        },
-        {
-          "text": "tentatives",
-          "start": 9.787,
-          "duration": 0.604
-        },
-        {
-          "text": "et",
-          "start": 10.426,
-          "duration": 0.069
-        },
-        {
-          "text": "les",
-          "start": 10.53,
-          "duration": 0.082
-        },
-        {
-          "text": "réponses",
-          "start": 10.646,
-          "duration": 0.407
-        },
-        {
-          "text": "tracées.",
-          "start": 11.076,
-          "duration": 0.615
-        },
-        {
-          "text": "Quarante-huit",
-          "start": 12.295,
-          "duration": 0.546
-        },
-        {
-          "text": "événements,",
-          "start": 12.899,
-          "duration": 0.557
-        },
-        {
-          "text": "et",
-          "start": 13.665,
-          "duration": 0.128
-        },
-        {
-          "text": "une",
-          "start": 13.827,
-          "duration": 0.105
-        },
-        {
-          "text": "API",
-          "start": 13.955,
-          "duration": 0.302
-        },
-        {
-          "text": "documentée.",
-          "start": 14.327,
-          "duration": 0.998
-        }
-      ],
-      "durationInSeconds": 15.36
-    },
-    {
-      "id": 16,
       "narration": "",
       "effects": {
         "transition": "black"
       },
       "card": {
-        "text": "Contravo",
-        "subtext": "Du devis à l'encaissement."
+        "text": "Prière d'ouverture",
+        "subtext": "Avant d'entrer dans la Parole"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 8,
+      "narration": "Avant d'ouvrir les Écritures, prenons un instant. Ne regarde pas cette vidéo comme un contenu. Reçois-la comme une rencontre.",
+      "mediaPath": "scene_8.png",
+      "mediaPrompt": "cinematic wide shot of a simple wooden chair beside a window at dawn, soft grey light filling a bare room, a folded blanket on the seat, nobody present, muted cool tones with a hint of warmth at the window, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 9,
+      "narration": "Père éternel, je viens devant toi avec ce que j'ai. Pas avec des mots préparés, mais avec ce silence qui me pèse.",
+      "mediaPath": "scene_9.png",
+      "mediaPrompt": "cinematic close-up of hands clasped together in prayer resting on a knee, fingers interlaced tightly, warm side lighting revealing skin texture and worn knuckles, dark neutral background, muted earth tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 10,
+      "narration": "Tu connais mes questions. Tu connais aussi ma fatigue de les poser. Alors je ne demande pas d'abord des réponses. Je demande ta présence.",
+      "mediaPath": "scene_10.png",
+      "mediaPrompt": "cinematic wide shot of a vast night sky full of stars above a dark silhouetted horizon of hills, the Milky Way faintly visible, no human figure, deep indigo and silver, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 11,
+      "narration": "Ouvre mon intelligence à ta Parole. Et si ce que je dois entendre me dérange, donne-moi le courage de ne pas fermer la porte. Au nom de Jésus, amen.",
+      "mediaPath": "scene_11.png",
+      "mediaPrompt": "cinematic shot of a heavy wooden door standing slightly ajar, warm golden light spilling through the narrow opening into a dark room, ornate iron hinges, dust visible in the light, deep browns against warm amber, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 12,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Première partie",
+        "subtext": "Ce que le silence de Dieu n'est pas"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 13,
+      "narration": "Commençons par écarter trois mensonges. Parce que dans le silence, ce ne sont pas les questions qui font le plus mal. Ce sont les mauvaises réponses.",
+      "mediaPath": "scene_13.png",
+      "mediaPrompt": "cinematic wide shot of three closed wooden doors along a dim stone corridor, each door shut, cold light from an unseen source at the far end, deep shadows between them, muted greys and browns, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 14,
+      "narration": "Premier mensonge : si Dieu se taît, c'est que j'ai péché. Écoute bien. Le péché brise la communion, c'est vrai. Mais le silence de Dieu n'est pas toujours une sanction.",
+      "mediaPath": "scene_14.png",
+      "mediaPrompt": "cinematic close-up of an ancient stone wall with a narrow crack running through it, moss growing in the fissure, hard raking side light emphasising the texture, muted grey and green tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 15,
+      "narration": "Job était appelé intègre et droit par Dieu lui-même, au premier chapitre de son livre. Ce n'est pas Job qui se décrit ainsi, c'est Dieu qui parle de lui. Et pourtant le ciel s'est fermé sur cet homme-là pendant trente-sept chapitres.",
+      "mediaPath": "scene_15.png",
+      "mediaPrompt": "cinematic wide shot of a lone figure seated on the ground in a barren desert landscape at midday, harsh white light, cracked earth stretching to the horizon, simple torn garments, head lowered, bleached ochre and pale sky tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 16,
+      "narration": "Trente-sept chapitres de questions sans réponse. Ses amis parlent, l'accusent, théorisent. Job crie. Le ciel se taît. Et quand Dieu parle enfin, au chapitre trente-huit, remarque bien ceci : il ne répond pas à la question de Job. Il lui montre qui il est. Et cela suffit à Job.",
+      "mediaPath": "scene_16.png",
+      "mediaPrompt": "cinematic wide shot of an immense storm cloud towering over a vast empty plain, shafts of light breaking through its base, the tiny scale of the land beneath, dramatic contrast, deep greys and brilliant white light, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 17,
+      "narration": "Deuxième mensonge : Dieu se taît parce que ma foi est trop faible. Comme si le silence était la note que Dieu met à ta spiritualité. Mais regarde Habacuc, un prophète. Il ouvre son livre en criant : jusqu'à quand, Éternel ? Jusqu'à quand appellerai-je sans que tu écoutes ?",
+      "mediaPath": "scene_17.png",
+      "mediaPrompt": "cinematic medium shot of an ancient watchtower of pale stone rising against a heavy dawn sky, a small window near the top, empty landscape below, muted blues and stone greys, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 18,
+      "narration": "Ce cri est dans la Bible. Dieu ne l'a pas censuré. Il l'a fait inscrire. Ta plainte ne te disqualifie pas : elle a sa place dans les Écritures.",
+      "mediaPath": "scene_18.png",
+      "mediaPrompt": "cinematic close-up of an ancient scroll partially unrolled on dark cloth, faded ink script visible, edges frayed with age, warm lamplight from the side, deep browns and parchment cream, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 19,
+      "narration": "Troisième mensonge : le silence signifie l'absence. C'est le plus dangereux des trois. Parce qu'il confond ce que tu ressens avec ce qui est.",
+      "mediaPath": "scene_19.png",
+      "mediaPrompt": "cinematic wide shot of thick fog covering a mountain valley at dawn, the summits emerging clearly above the mist while the valley below is completely hidden, cool blues and soft white, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 20,
+      "narration": "Le brouillard cache la montagne. Il ne la déplace pas. Ton ressenti est réel, mais il n'est pas la mesure de la réalité de Dieu.",
+      "mediaPath": "scene_20.png",
+      "mediaPrompt": "cinematic wide shot of a mountain summit standing solid and clear above a sea of clouds, first golden sunlight striking the rock face, immense sky beyond, warm gold against cool blue, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "overlayText": {
+        "text": "Le brouillard cache la montagne. Il ne la déplace pas.",
+        "startInSeconds": 3
+      }
+    },
+    {
+      "id": 21,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Deuxième partie",
+        "subtext": "David — la plainte qui reste une prière"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 22,
+      "narration": "Ouvre le Psaume vingt-deux. David écrit : mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ?",
+      "mediaPath": "scene_22.png",
+      "mediaPrompt": "cinematic wide shot of a rocky wilderness at twilight, jagged stone outcrops, a narrow dry ravine cutting through, last violet light in the sky, deep purples and stone greys, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 23,
+      "narration": "Regarde la construction de cette phrase. Elle est extraordinaire. David dit mon Dieu, deux fois, dans la même respiration où il dit tu m'as abandonné.",
+      "mediaPath": "scene_23.png",
+      "mediaPrompt": "cinematic close-up of an open psalter with ornate lettering, one verse catching warm light while the rest of the page falls into shadow, aged parchment texture, deep amber and cream tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 24,
+      "narration": "Il ne dit pas : Dieu m'a abandonné. Cela serait une constatation, presque un adieu. Il dit : mon Dieu. Le possessif est encore là. La relation tient encore. Dans une seule phrase, il y a la plainte et l'alliance, la douleur et l'appartenance.",
+      "mediaPath": "scene_24.png",
+      "mediaPrompt": "cinematic close-up of a weathered hand gripping a thick knotted rope tightly, knuckles pale with effort, the rope descending into darkness below, hard side lighting, muted browns and deep shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 25,
+      "narration": "Voilà ce que la Bible t'autorise à faire. Tu peux te plaindre à Dieu sans cesser de l'appeler ton Dieu. Ce n'est pas de l'irrespect. C'est de l'intimité.",
+      "mediaPath": "scene_25.png",
+      "mediaPrompt": "cinematic wide shot of a small stone shelter with a lit lamp inside, seen from outside during a rainstorm at night, warm light glowing through the doorway, rain streaking the darkness, contrast of warm interior and cold exterior, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 26,
+      "narration": "Et maintenant, va jusqu'au verset vingt-cinq du même psaume. David écrit : il n'a point méprisé le cri du malheureux. Le même homme. Le même psaume.",
+      "mediaPath": "scene_26.png",
+      "mediaPrompt": "cinematic wide shot of dawn breaking over a wide calm lake, first light spreading across still water, dark hills silhouetted behind, warm gold reflecting on the surface, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 27,
+      "narration": "Le silence n'a pas duré. Mais David a écrit les deux : la plainte et la délivrance. Il n'a pas effacé sa nuit après avoir vu le jour.",
+      "mediaPath": "scene_27.png",
+      "mediaPrompt": "cinematic close-up of a quill pen resting on a written manuscript page, ink still glistening on the last line, warm candlelight from the right, deep shadows, browns and gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 28,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Troisième partie",
+        "subtext": "Les quatre cents ans de silence"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 29,
+      "narration": "Il y a dans la Bible un silence dont on parle très peu. Entre le dernier prophète de l'Ancien Testament et la naissance de Jésus, il s'écoule environ quatre cents ans.",
+      "mediaPath": "scene_29.png",
+      "mediaPrompt": "cinematic wide shot of an ancient stone road stretching into empty distance across arid hills, worn paving stones, no travellers, harsh midday light, bleached ochre and pale blue sky, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 30,
+      "narration": "Quatre cents ans sans nouvelle parole prophétique. Des générations entières sont nées, ont vécu et sont mortes dans ce silence.",
+      "mediaPath": "scene_30.png",
+      "mediaPrompt": "cinematic wide shot of an ancient hillside burial ground with weathered stone markers in rows, dry grass between them, low golden evening light casting long shadows, muted ochres and deep shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 31,
+      "narration": "Ils ont prié dans le silence. Ils ont transmis la promesse à leurs enfants sans jamais la voir accomplie. Ils sont morts en espérant.",
+      "mediaPath": "scene_31.png",
+      "mediaPrompt": "cinematic medium shot of aged hands passing a small worn scroll to younger hands, both pairs in simple robes, warm lamplight between them, dark background, deep browns and warm gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 32,
+      "narration": "Et voici ce que tu dois entendre. Pendant ces quatre cents ans où le ciel semblait muet, Dieu préparait la venue du Messie.",
+      "mediaPath": "scene_32.png",
+      "mediaPrompt": "cinematic close-up of a seed germinating underground in dark rich soil, a pale root descending and a tender shoot rising, cross-section view, faint light from above, deep browns and fresh green, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 33,
+      "narration": "Le silence n'était pas de l'inaction. C'était de la gestation. Ce qui se préparait était trop grand pour être annoncé chaque matin.",
+      "mediaPath": "scene_33.png",
+      "mediaPrompt": "cinematic wide shot of vast timber scaffolding around a partially built stone cathedral at dawn, an immense structure still incomplete, no workers present, soft grey light, muted stone and timber tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "overlayText": {
+        "text": "Le silence n'était pas de l'inaction. C'était de la gestation.",
+        "startInSeconds": 3
+      }
+    },
+    {
+      "id": 34,
+      "narration": "Et puis un ange est apparu à un vieux prêtre nommé Zacharie. Le silence a pris fin. Pas par un discours, mais par une naissance.",
+      "mediaPath": "scene_34.png",
+      "mediaPrompt": "cinematic shot of golden light breaking through incense smoke inside an ancient temple interior, stone columns rising into shadow, an oil lamp burning, brilliant gold against deep shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 35,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Quatrième partie",
+        "subtext": "Gethsémané — le silence que le Fils a connu"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 36,
+      "narration": "Il y a une chose que je veux que tu emportes de cette vidéo, si tu n'en retiens rien d'autre. Jésus a connu le silence de Dieu.",
+      "mediaPath": "scene_36.png",
+      "mediaPrompt": "cinematic wide shot of a dark olive grove at night, ancient twisted trunks lit faintly by moonlight, deep shadows between the trees, silvered leaves, deep blues and cold silver, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 37,
+      "narration": "À Gethsémané, il prie trois fois. Il demande que la coupe s'éloigne. Et la coupe ne s'éloigne pas. Le Père ne retire pas l'épreuve.",
+      "mediaPath": "scene_37.png",
+      "mediaPrompt": "cinematic close-up of a simple clay cup standing on bare rock, half filled with dark liquid, moonlight catching its rim, deep shadow all around, muted earth tones and cold silver, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 38,
+      "narration": "Et sur la croix, il crie les mots exacts du Psaume vingt-deux. Mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ?",
+      "mediaPath": "scene_38.png",
+      "mediaPrompt": "cinematic wide shot of a darkened sky over a distant hill with three crosses silhouetted on the horizon, heavy storm clouds, no visible figures, deep greys and bruised purple, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 39,
+      "narration": "Comprends bien ce que cela veut dire. Quand tu traverses le silence, tu ne traverses pas un endroit où Dieu n'est jamais allé. Son propre Fils y est passé avant toi.",
+      "mediaPath": "scene_39.png",
+      "mediaPrompt": "cinematic close-up of two sets of footprints side by side in wet sand, one pair deeper than the other, soft grey light, receding toward shallow water at the frame edge, muted sand and slate tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 40,
+      "narration": "Le samedi entre la croix et la résurrection a été le jour le plus silencieux de l'histoire. Les disciples n'avaient plus rien. Et Dieu travaillait.",
+      "mediaPath": "scene_40.png",
+      "mediaPrompt": "cinematic wide shot of a sealed stone tomb entrance at dawn, a great round stone blocking the opening, dew on the grass, first pale light on the rock face, cool greys with a hint of gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 41,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Cinquième partie",
+        "subtext": "Ce que Dieu fait pendant qu'il se taît"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 42,
+      "narration": "Alors que fait Dieu, concrètement, pendant qu'il ne parle pas ? Parce que s'il ne parle pas, cela ne veut pas dire qu'il ne fait rien. Je vois trois choses dans les Écritures, et je veux les nommer clairement.",
+      "mediaPath": "scene_42.png",
+      "mediaPrompt": "cinematic close-up of a potter's hands shaping wet clay on a spinning wheel, the clay smooth and glistening, warm workshop light from the left, dark background, rich terracotta and warm brown tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 43,
+      "narration": "Premièrement, il déplace ton attente. Tant que Dieu répond vite à chaque demande, tu peux confondre Dieu et ses cadeaux, sans même t'en rendre compte. Le silence retire les cadeaux un instant, et il te force à répondre à une question redoutable : lequel des deux cherchais-tu ?",
+      "mediaPath": "scene_43.png",
+      "mediaPrompt": "cinematic close-up of an old brass balance scale on a wooden table, one pan holding a small gold coin, the other empty, warm side lighting, deep shadows, muted brass and amber tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 44,
+      "narration": "Deuxièmement, il approfondit tes racines. Un arbre qui reçoit la pluie chaque matin ne creuse pas. Celui qui traverse la sécheresse envoie ses racines vers l'eau profonde.",
+      "mediaPath": "scene_44.png",
+      "mediaPrompt": "cinematic cross-section view of a mature tree with an extensive deep root system reaching far down through layered dry earth toward a hidden water table, roots detailed and strong, warm ochre soil layers, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "out",
+        "transition": "fade"
+      },
+      "overlayText": {
+        "text": "La sécheresse creuse les racines.",
+        "startInSeconds": 4
+      }
+    },
+    {
+      "id": 45,
+      "narration": "Troisièmement, il te rend capable de consoler. Les gens que Dieu utilise le plus pour relever les autres ne sont pas ceux qui n'ont jamais souffert.",
+      "mediaPath": "scene_45.png",
+      "mediaPrompt": "cinematic medium shot of one person's hand resting gently on another's shoulder, both figures seen from behind in soft warm evening light, simple clothing, blurred landscape beyond, muted warm tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 46,
+      "narration": "Ce sont ceux qui ont traversé le silence et qui en sont revenus avec quelque chose à dire. Ta nuit prépare peut-être la consolation de quelqu'un d'autre.",
+      "mediaPath": "scene_46.png",
+      "mediaPrompt": "cinematic wide shot of a lit oil lamp being carried along a dark path at night, the bearer's silhouette barely visible, a warm pool of light on the stones around them, darkness beyond, warm amber against deep blue-black, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 47,
+      "narration": "Alors que fais-tu, en attendant ? Tu fais ce que David a fait. Tu continues de dire mon Dieu, même quand tu dis pourquoi.",
+      "mediaPath": "scene_47.png",
+      "mediaPrompt": "cinematic close-up of a worn wooden prayer bench with visible indentations where knees have rested over many years, soft directional light, dark chapel background, muted browns, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 48,
+      "narration": "Tu ne mesures pas la présence de Dieu à l'intensité de ton ressenti. Et tu ne prends aucune décision définitive dans le noir. Attends la lumière pour lire la carte.",
+      "mediaPath": "scene_48.png",
+      "mediaPrompt": "cinematic close-up of an old folded map lying on a table beside an unlit lantern, the map's details barely discernible in near darkness, faint blue pre-dawn light through a window, deep shadow and cool tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 49,
+      "narration": "Et tu restes dans la communauté. Le silence isole, et l'isolement amplifie le silence. Ne traverse pas cette saison seul.",
+      "mediaPath": "scene_49.png",
+      "mediaPrompt": "cinematic wide shot of a small group of people seated together in a circle in a warmly lit room at evening, seen from a respectful distance, heads slightly bowed, simple wooden chairs, warm amber lamplight, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 50,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Sixième partie",
+        "subtext": "Discerner : silence de Dieu ou porte fermée ?"
+      },
+      "durationInSeconds": 3
+    },
+    {
+      "id": 51,
+      "narration": "Maintenant, une question honnête. Comment savoir si Dieu se taît, ou s'il a déjà répondu non, et que je refuse de l'entendre ?",
+      "mediaPath": "scene_51.png",
+      "mediaPrompt": "cinematic wide shot of a fork in an ancient stone path among dry hills at dusk, two ways diverging, one climbing into shadow and the other descending into faint light, weathered stone markers at the junction, muted violet and ochre tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 52,
+      "narration": "C'est une vraie question, et je ne veux pas l'esquiver. Parce qu'il arrive qu'on appelle silence de Dieu ce qui est en réalité un refus qu'on n'accepte pas.",
+      "mediaPath": "scene_52.png",
+      "mediaPrompt": "cinematic close-up of a closed wooden door with a heavy iron lock, worn paint, a key lying on the stone floor beneath it untouched, cold side light, muted greys and browns, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 53,
+      "narration": "Voici trois marques que je trouve dans les Écritures. Premièrement, le silence de Dieu ne te pousse jamais au péché. S'il y a une voix qui te dit que tu peux tricher parce que Dieu t'a laissé, ce n'est pas Dieu qui se taît. C'est un autre qui parle.",
+      "mediaPath": "scene_53.png",
+      "mediaPrompt": "cinematic close-up of a narrow winding path through tall dry grass, the way ahead clear but narrow, low golden evening light, no shortcuts visible, warm ochres and soft shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 54,
+      "narration": "Deuxièmement, le silence de Dieu ne contredit jamais sa Parole écrite. Si tu attends de Dieu une chose que l'Écriture interdit, ce n'est pas un silence que tu vis. C'est une réponse que tu as déjà reçue.",
+      "mediaPath": "scene_54.png",
+      "mediaPrompt": "cinematic close-up of an open Bible with one page held down by a stone paperweight, the wind having failed to turn it, warm lamplight, deep browns and cream, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 55,
+      "narration": "Troisièmement, le silence de Dieu conduit à la paix, jamais à la panique. La panique dit : décide maintenant, sinon tu perds tout. La paix dit : attends, je te tiens. Ces deux voix ne viennent pas du même endroit.",
+      "mediaPath": "scene_55.png",
+      "mediaPrompt": "cinematic wide shot of a small wooden boat resting still on calm water at dawn, mist on the surface, no wind, distant shore barely visible, soft blues and pale gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 56,
+      "narration": "Et si après cet examen tu ne sais toujours pas, alors voici ce que je te propose. Ne tranche pas seul. Va vers deux ou trois personnes qui craignent Dieu et qui n'ont rien à gagner de ta décision. Demande-leur de prier avec toi.",
+      "mediaPath": "scene_56.png",
+      "mediaPrompt": "cinematic medium shot of three pairs of hands joined together over an open Bible on a wooden table, warm lamplight from above, dark background, muted earth tones and gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 57,
+      "narration": "Le discernement n'est presque jamais un éclair solitaire. C'est le plus souvent une confirmation lente, à plusieurs, dans la durée.",
+      "mediaPath": "scene_57.png",
+      "mediaPrompt": "cinematic close-up of a stone slowly worn smooth by patient water in a shallow stream, ripples catching soft daylight, muted greys and clear water, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 58,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Prière finale",
+        "subtext": "Pour les temps où le ciel ne répond pas"
+      },
+      "durationInSeconds": 4
+    },
+    {
+      "id": 59,
+      "narration": "Si tu le veux bien, prions ensemble. Pose ta main sur ton cœur si tu es seul. Et reçois ces mots comme les tiens.",
+      "mediaPath": "scene_59.png",
+      "mediaPrompt": "cinematic close-up of a single hand resting flat over the heart on a simple garment, fingers relaxed, soft warm light from the side, dark background, muted earth tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 60,
+      "narration": "Père, je viens sans exiger de réponse. Tu sais ce que j'attends depuis des mois, peut-être des années. Tu connais le nom que je prononce chaque nuit.",
+      "mediaPath": "scene_60.png",
+      "mediaPrompt": "cinematic wide shot of a window at night seen from inside a dark room, faint distant lights far below, a single chair facing the glass, deep blue darkness with warm points of light, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 61,
+      "narration": "Je choisis aujourd'hui de ne pas interpréter ton silence comme un rejet. Je choisis de croire que tu travailles là où je ne vois rien.",
+      "mediaPath": "scene_61.png",
+      "mediaPrompt": "cinematic close-up of bare winter branches against a pale grey sky, tiny buds barely visible at the tips, delicate detail, muted greys and the faintest green, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 62,
+      "narration": "Garde-moi de l'amertume. Garde-moi des raccourcis. Et si tu dois te taire encore un peu, alors donne-moi la force d'attendre sans me durcir.",
+      "mediaPath": "scene_62.png",
+      "mediaPrompt": "cinematic close-up of cupped hands holding clear water, a few drops falling between the fingers, soft daylight catching the water, dark neutral background, muted tones with luminous water, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      }
+    },
+    {
+      "id": 63,
+      "narration": "Et quand tu parleras de nouveau, que tu me trouves encore à la porte. Non pas parti. Non pas amer. À la porte. Au nom de Jésus, amen.",
+      "mediaPath": "scene_63.mp4",
+      "mediaPrompt": "cinematic wide shot of dawn breaking over a vast landscape of rolling hills, brilliant golden light flooding across the valley from the horizon, morning mist lifting from the low ground, a narrow path leading toward the light, warm gold and soft blue, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "motionPrompt": "the golden dawn light spreads slowly and steadily across the valley from the horizon toward the camera, the low mist lifting and drifting gently upward as it brightens, the landscape gradually emerging from shadow into warm light, deeply calm continuous illumination, static camera",
+      "effects": {
+        "transition": "fade",
+        "cameraMotion": "static"
+      }
+    },
+    {
+      "id": 64,
+      "narration": "Si ce message t'a rejoint, écris en commentaire : je choisis de faire confiance dans le silence. Et partage cette vidéo à quelqu'un qui traverse sa propre nuit.",
+      "mediaPath": "scene_64.png",
+      "mediaPrompt": "cinematic close-up of two lit candles standing side by side, one flame leaning slightly toward the other as if kindled from it, warm glow against deep darkness, soft wax texture visible, warm amber against near black, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
+      "effects": {
+        "zoom": "in",
+        "transition": "fade"
+      },
+      "kineticTitle": {
+        "text": "Partage-la à quelqu'un dans la *nuit*",
+        "startInSeconds": 4,
+        "position": "bottom",
+        "variant": "reveal"
+      }
+    },
+    {
+      "id": 65,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Que la paix de Dieu te garde",
+        "subtext": "Prochain enseignement : entendre la voix de Dieu"
       },
       "durationInSeconds": 5
     }

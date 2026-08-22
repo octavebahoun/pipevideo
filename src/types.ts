@@ -211,6 +211,16 @@ export const storyboardSchema = z.object({
    */
   useProvidedAudio: z.boolean().optional(),
   /** Afficher les sous-titres par défaut sur toutes les scènes. Défaut : true. */
+  /**
+   * URL de base des médias, quand ils sont hébergés (Cloudflare R2) au lieu de
+   * vivre dans public/. Injectée par le pipeline de génération.
+   *
+   * Défini => les Lambdas lisent les médias directement depuis R2 : rien ne
+   * transite par le poste local et le site déployé ne réuploade pas les assets
+   * sur S3 à chaque rendu.
+   * Absent => rendu local classique via staticFile().
+   */
+  assetBaseUrl: z.string().url().optional(),
   subtitles: z.boolean().optional(),
   /**
    * Style des sous-titres :

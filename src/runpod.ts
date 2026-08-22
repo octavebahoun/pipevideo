@@ -18,9 +18,11 @@ import {
   armKillSwitch,
   renewKillSwitch,
   cleanOrphanPods,
+  configureR2,
+  uploadFromPodToR2,
+  r2Credentials,
   PodInfo,
 } from './lib/runpodClient';
-import { generateImage as cloudflareImage, cloudflareCredentials } from './lib/cloudflareImage';
 
 /**
  * Génération des médias IA sur un pod GPU RunPod éphémère.
@@ -248,7 +250,8 @@ async function generateStillImage(
   pod: PodInfo,
   job: Job,
   ratio: '16:9' | '9:16',
-  destLocal: string
+  destLocal: string,
+  versR2: boolean
 ): Promise<void> {
   const wf = await loadWorkflow('wf-flux-txt2img.json');
 
@@ -271,7 +274,14 @@ async function generateStillImage(
   const png = outputs.find((f) => f.endsWith('.png'));
   if (!png) throw new Error(`Scène ${job.sceneId} : Flux n'a produit aucune image`);
 
-  await comfyDownload(pod, png, destLocal);
+  // Vers R2 : le fichier part du pod directement, sans transiter par le poste
+  // local. C'est plus rapide (le proxy RunPod sort du chemin) et le média est
+  // durable immédiatement, même si le pod meurt juste après.
+  if (versR2) {
+    await uploadFromPodToR2(pod, png, job.file);
+  } else {
+    await comfyDownload(pod, png, destLocal);
+  }
 }
 
 /**
@@ -389,49 +399,11 @@ async function main() {
 
   const imagesRatees: number[] = [];
 
-  /**
-   * Où générer les images fixes ?
-   *
-   * Sur le pod (Flux) dès qu'un pod est de toute façon nécessaire pour les clips :
-   * les neurones Cloudflare sont partagés avec les autres projets de l'utilisateur
-   * et une vidéo d'enseignement compte ~35 images fixes. Quelques secondes de GPU
-   * coûtent moins cher qu'un quota commun épuisé.
-   *
-   * Cloudflare sert de repli quand il n'y a AUCUN clip à animer : allumer un GPU
-   * juste pour des images fixes serait absurde.
-   */
-  const imagesSurPod = videoJobs.length > 0;
-
-  // --- Phase 1 : les images fixes, sans GPU, uniquement si aucun pod prévu. ---
-  if (!imagesSurPod && imageJobs.length > 0) {
-    console.log(`[RunPod] ${imageJobs.length} images fixes via Cloudflare (aucun clip à animer, pas de GPU).`);
-
-    for (const job of imageJobs) {
-      if (await checkCancelled()) {
-        console.log('[RunPod] Annulation détectée.');
-        return;
-      }
-      if (!cloudflareCredentials()) {
-        console.warn(`[RunPod] Scène ${job.sceneId} : identifiants Cloudflare absents, image non générée.`);
-        imagesRatees.push(job.sceneId);
-        continue;
-      }
-      try {
-        await cloudflareImage(job.sceneId, job.prompt, ratio, path.join(MEDIA_DIR, job.file));
-        await markDone(job);
-        await tick();
-      } catch (err: any) {
-        console.warn(`[RunPod] Scène ${job.sceneId} : image échouée (${err.message.slice(0, 100)}) — on continue.`);
-        imagesRatees.push(job.sceneId);
-      }
-    }
-
-    if (imagesRatees.length > 0) {
-      console.warn(`[RunPod] ⚠️ Images non générées pour les scènes : ${imagesRatees.join(', ')}. Relancer plus tard.`);
-    }
-    console.log('[RunPod] ✅ Aucun clip à animer : aucun GPU n\'a été allumé.');
-    return;
-  }
+  // Tout passe par Flux sur le pod, y compris les images fixes : le fallback
+  // Cloudflare Workers AI a été retiré. Ses neurones sont partagés avec les
+  // autres projets de l'utilisateur, et une vidéo d'enseignement compte ~50
+  // images — le quota commun serait épuisé en deux vidéos. Quelques secondes de
+  // GPU par image coûtent quelques centimes et ne privent rien.
 
   if (videoJobs.length === 0 && imageJobs.length === 0) return;
 
@@ -465,6 +437,22 @@ async function main() {
     await updateProgress(15, 'Installation de ComfyUI sur le GPU...');
     await runSetup(pod);
 
+    // Les médias partent-ils directement du pod vers R2 ? Si oui, ils ne
+    // transitent plus par le poste local et les Lambdas les liront depuis R2.
+    const versR2 = await configureR2(pod);
+    if (versR2) {
+      const creds = r2Credentials();
+      if (creds?.publicDomain) {
+        storyboard.assetBaseUrl = creds.publicDomain.replace(/\/$/, '');
+        await saveStoryboardState(storyboard);
+        console.log(`[R2] assetBaseUrl = ${storyboard.assetBaseUrl}`);
+      } else {
+        console.warn(
+          '[R2] R2_PUBLIC_DOMAIN absent : les médias iront sur R2 mais le rendu ne saura pas les lire.'
+        );
+      }
+    }
+
     // --- Images fixes d'abord : ~2 s chacune, autant les sortir avant les clips
     //     (si le run casse en cours, on garde le plus gros du travail).
     for (const job of imageJobs) {
@@ -473,7 +461,7 @@ async function main() {
         break;
       }
       try {
-        await generateStillImage(pod, job, ratio, path.join(MEDIA_DIR, job.file));
+        await generateStillImage(pod, job, ratio, path.join(MEDIA_DIR, job.file), versR2);
         await markDone(job);
         await tick();
         // Tant qu'on produit, on repousse l'auto-destruction.
@@ -485,8 +473,9 @@ async function main() {
       }
     }
 
-    // --- Clips ensuite. Les téléchargements partent en tâche de fond :
-    //     rapatrier un clip prend ~8 s pendant lesquelles le GPU ne calcule rien.
+    // --- Clips ensuite. Vers R2 l'envoi est séquentiel (le pod pousse lui-même,
+    //     c'est rapide) ; en local on garde le rapatriement en tâche de fond, où
+    //     les ~8 s de transfert bloqueraient sinon le GPU.
     for (const job of videoJobs) {
       if (await checkCancelled()) {
         console.log('[RunPod] Annulation détectée — arrêt et suppression du pod.');
@@ -509,11 +498,14 @@ async function main() {
       }
 
       transferts.push(
-        comfyDownload(pod, produced, path.join(MEDIA_DIR, job.file))
+        (versR2
+          ? uploadFromPodToR2(pod, produced, job.file).then(() => undefined)
+          : comfyDownload(pod, produced, path.join(MEDIA_DIR, job.file))
+        )
           .then(() => markDone(job))
           .then(() => tick())
           .catch((err: any) => {
-            console.error(`[RunPod] Scène ${job.sceneId} : rapatriement échoué — ${err.message}`);
+            console.error(`[RunPod] Scène ${job.sceneId} : transfert échoué — ${err.message}`);
             echecs.push(job.sceneId);
           })
       );

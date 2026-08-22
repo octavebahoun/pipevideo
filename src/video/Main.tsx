@@ -1,6 +1,7 @@
 import React from 'react';
 import { z } from 'zod';
 import { Audio, staticFile, useVideoConfig } from 'remotion';
+import { mediaUrl } from './mediaUrl';
 import { TransitionSeries, linearTiming } from '@remotion/transitions';
 import type { TransitionPresentation } from '@remotion/transitions';
 import { fade } from '@remotion/transitions/fade';
@@ -69,6 +70,7 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
     children.push(
       <TransitionSeries.Sequence key={`scene-${scene.id}`} durationInFrames={durationInFrames}>
         <SceneComponent
+          assetBaseUrl={storyboard.assetBaseUrl}
           scene={scene}
           durationInFrames={durationInFrames}
           subtitlesEnabled={subtitlesEnabled}
@@ -85,7 +87,7 @@ export const Main: React.FC<MainProps> = ({ storyboard }) => {
 
       {/* Musique de fond optionnelle, en boucle et à volume réduit sur toute la vidéo. */}
       {storyboard.music && (
-        <Audio src={staticFile(storyboard.music)} volume={storyboard.musicVolume ?? 0.09} loop />
+        <Audio src={mediaUrl(storyboard.music, storyboard.assetBaseUrl)} volume={storyboard.musicVolume ?? 0.09} loop />
       )}
     </div>
   );

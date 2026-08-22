@@ -10,6 +10,7 @@ import {
   useVideoConfig,
   interpolate,
 } from 'remotion';
+import { mediaUrl } from './mediaUrl';
 import { Scene, SceneSound } from '../types';
 import { Subtitles } from './Subtitles';
 import { KineticTitle } from './KineticTitle';
@@ -23,6 +24,8 @@ interface SceneComponentProps {
   subtitleStyle: 'karaoke' | 'fondant' | 'cinematic';
   /** Multiplicateur global de volume pour les sons additionnels (storyboard.sfxVolume, défaut 1). */
   sfxVolume: number;
+  /** Base des URLs médias quand ils sont hébergés sur R2 (voir mediaUrl.ts). */
+  assetBaseUrl?: string;
 }
 
 /**
@@ -31,10 +34,16 @@ interface SceneComponentProps {
  * boucler, et avoir des fondus d'entrée/sortie (essentiel pour le sound design :
  * drones qui montent, battement de cœur, glitch, etc.).
  */
-const SceneSounds: React.FC<{ sounds: SceneSound[]; durationInFrames: number; sfxVolume: number }> = ({
+const SceneSounds: React.FC<{
+  sounds: SceneSound[];
+  durationInFrames: number;
+  sfxVolume: number;
+  assetBaseUrl?: string;
+}> = ({
   sounds,
   durationInFrames,
   sfxVolume,
+  assetBaseUrl,
 }) => {
   const { fps } = useVideoConfig();
   return (
@@ -54,7 +63,7 @@ const SceneSounds: React.FC<{ sounds: SceneSound[]; durationInFrames: number; sf
         return (
           <Sequence key={`${sound.src}-${i}`} from={from} durationInFrames={localDuration}>
             <Audio
-              src={staticFile(sound.src)}
+              src={mediaUrl(sound.src, assetBaseUrl)}
               loop={sound.loop ?? false}
               startFrom={startFrom}
               endAt={endAt}
@@ -94,6 +103,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
   subtitlesEnabled,
   subtitleStyle,
   sfxVolume,
+  assetBaseUrl,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -255,7 +265,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
             return (
               <Img
                 key={img}
-                src={staticFile(img)}
+                src={mediaUrl(img, assetBaseUrl)}
                 style={{
                   position: 'absolute',
                   inset: 0,
@@ -281,7 +291,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
           {isVideo ? (
             <Loop durationInFrames={durationInFrames}>
               <OffthreadVideo
-                src={staticFile(mediaPath as string)}
+                src={mediaUrl(mediaPath as string, assetBaseUrl)}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 volume={scene.mediaVolume ?? 0.6}
                 playbackRate={scene.playbackRate ?? 1}
@@ -289,7 +299,7 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
             </Loop>
           ) : (
             <Img
-              src={staticFile(mediaPath as string)}
+              src={mediaUrl(mediaPath as string, assetBaseUrl)}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           )}
@@ -313,11 +323,16 @@ export const SceneComponent: React.FC<SceneComponentProps> = ({
       )}
 
       {/* Voix off (Edge-TTS/ElevenLabs ou fichier fourni par l'utilisateur) */}
-      <Audio src={staticFile(voiceSrc)} />
+      <Audio src={mediaUrl(voiceSrc, assetBaseUrl)} />
 
       {/* Sons additionnels (bruitages / ambiances / musiques) */}
       {scene.sounds && scene.sounds.length > 0 && (
-        <SceneSounds sounds={scene.sounds} durationInFrames={durationInFrames} sfxVolume={sfxVolume} />
+        <SceneSounds
+          sounds={scene.sounds}
+          durationInFrames={durationInFrames}
+          sfxVolume={sfxVolume}
+          assetBaseUrl={assetBaseUrl}
+        />
       )}
 
       {/* Sous-titres (désactivables par scène ou globalement) */}
