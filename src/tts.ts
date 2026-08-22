@@ -56,6 +56,8 @@ function resolveVoiceId(voiceInput?: string): string {
 
 /** Voix Edge-TTS (Microsoft) françaises courantes, référencées par un nom court. */
 const EDGE_VOICE_MAP: Record<string, string> = {
+  gerard: 'fr-BE-GerardNeural',
+  charline: 'fr-BE-CharlineNeural',
   antoine: 'fr-CA-AntoineNeural',
   henri: 'fr-FR-HenriNeural',
   denise: 'fr-FR-DeniseNeural',
@@ -66,8 +68,8 @@ const EDGE_VOICE_MAP: Record<string, string> = {
   jean: 'fr-CA-JeanNeural',
 };
 
-/** Voix par défaut : Antoine (fr-CA), retenue pour le contenu de méditation. */
-const EDGE_VOICE_DEFAUT = EDGE_VOICE_MAP.antoine;
+/** Voix par défaut : Gérard (fr-BE), retenue pour le contenu de méditation. */
+const EDGE_VOICE_DEFAUT = EDGE_VOICE_MAP.gerard;
 
 function resolveEdgeVoice(voiceInput?: string): string {
   if (!voiceInput) return EDGE_VOICE_DEFAUT;
@@ -79,7 +81,7 @@ function resolveEdgeVoice(voiceInput?: string): string {
   if (/^[a-z]{2}-[A-Z]{2}-[A-Za-z]+Neural$/.test(voiceInput)) {
     return voiceInput;
   }
-  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation d'Antoine par défaut.`);
+  console.log(`⚠️  Voix inconnue pour Edge-TTS ("${voiceInput}"). Utilisation de Gérard par défaut.`);
   return EDGE_VOICE_DEFAUT;
 }
 
