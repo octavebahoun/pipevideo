@@ -112,11 +112,18 @@ function privateKeyPath(): string {
  */
 export async function createPod(name: string): Promise<string> {
   const gpuType = process.env.RUNPOD_GPU_TYPE || 'NVIDIA GeForce RTX 5090';
-  const dataCenter = process.env.RUNPOD_DATACENTER || 'EU-RO-1';
+  // Plusieurs datacenters : la RTX 5090 est en stock "LOW" partout, et un seul
+  // centre épuisé suffisait à faire échouer tout le run ("no instances currently
+  // available"). RunPod choisit celui qui a de la place. Séparés par des virgules
+  // dans RUNPOD_DATACENTER pour garder la main.
+  const dataCenters = (process.env.RUNPOD_DATACENTER || 'EU-RO-1,EU-CZ-1,EUR-NO-1')
+    .split(',')
+    .map((d) => d.trim())
+    .filter(Boolean);
 
   let pod: any;
   try {
-    pod = await api('POST', '/pods', buildPodBody(name, gpuType, dataCenter, await readPublicKey()));
+    pod = await api('POST', '/pods', buildPodBody(name, gpuType, dataCenters, await readPublicKey()));
   } catch (err: any) {
     // Un échec réseau peut survenir APRÈS que RunPod ait créé le pod : on
     // vérifie avant de relancer, sinon on facture deux GPU en parallèle.
@@ -128,15 +135,17 @@ export async function createPod(name: string): Promise<string> {
     throw err;
   }
 
-  console.log(`[RunPod] Pod créé : ${pod.id} (${gpuType} @ ${dataCenter}, $${pod.costPerHr ?? '?'}/h)`);
+  console.log(
+    `[RunPod] Pod créé : ${pod.id} (${gpuType} @ ${pod.dataCenterId ?? dataCenters.join('/')}, $${pod.costPerHr ?? '?'}/h)`
+  );
   return pod.id;
 }
 
-function buildPodBody(name: string, gpuType: string, dataCenter: string, publicKey: string) {
+function buildPodBody(name: string, gpuType: string, dataCenters: string[], publicKey: string) {
   return {
     name,
     gpuTypeIds: [gpuType],
-    dataCenterIds: [dataCenter],
+    dataCenterIds: dataCenters,
     cloudType: 'SECURE',
     gpuCount: 1,
     imageName: 'runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404',
@@ -299,6 +308,53 @@ function sshWithInput(pod: PodInfo, command: string, input: string): Promise<voi
 // API ComfyUI (via le proxy HTTPS du pod — pas de SSH nécessaire)
 // ---------------------------------------------------------------------------
 
+/**
+ * `fetch` vers le proxy du pod, avec reprise sur incident réseau.
+ *
+ * Le proxy `*.proxy.runpod.net` coupe ponctuellement (`fetch failed`), typiquement
+ * après une dizaine de minutes d'activité. Sans reprise, une session de génération
+ * entière meurt sur une coupure de deux secondes — constaté trois fois de suite,
+ * dont un run de 30 minutes perdu à la scène 39 sur 60.
+ *
+ * Le pod, lui, continue de tourner (et d'être facturé) pendant ces secondes :
+ * réessayer est toujours moins cher que perdre le run.
+ *
+ * On rejoue les erreurs réseau et les 5xx. Un 4xx est une vraie erreur de requête
+ * (workflow invalide, fichier absent) : la rejouer ne ferait que la répéter.
+ */
+async function comfyFetch(
+  url: string,
+  init: RequestInit = {},
+  opts: { attempts?: number; timeoutMs?: number; label?: string } = {}
+): Promise<Response> {
+  const attempts = opts.attempts ?? 4;
+  const timeoutMs = opts.timeoutMs ?? 120_000;
+  const label = opts.label ?? url.split('/').pop() ?? 'requête';
+  let lastError: Error | null = null;
+
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      const res = await fetch(url, { ...init, signal: AbortSignal.timeout(timeoutMs) });
+
+      if (res.status >= 500 && i < attempts) {
+        lastError = new Error(`${res.status}`);
+        console.warn(`[ComfyUI] ${res.status} sur ${label}, tentative ${i}/${attempts}...`);
+        await new Promise((r) => setTimeout(r, 3000 * i));
+        continue;
+      }
+      return res;
+    } catch (err: any) {
+      lastError = err;
+      if (i < attempts) {
+        console.warn(`[ComfyUI] Réseau KO sur ${label} (${err.message}), tentative ${i}/${attempts}...`);
+        await new Promise((r) => setTimeout(r, 3000 * i));
+      }
+    }
+  }
+
+  throw new Error(`ComfyUI ${label} : échec après ${attempts} tentatives — ${lastError?.message}`);
+}
+
 /** Envoie une image dans le dossier input/ de ComfyUI. Renvoie son nom côté serveur. */
 export async function comfyUploadImage(pod: PodInfo, localPath: string): Promise<string> {
   const data = await fs.readFile(localPath);
@@ -308,7 +364,11 @@ export async function comfyUploadImage(pod: PodInfo, localPath: string): Promise
   form.append('image', new Blob([new Uint8Array(data)]), name);
   form.append('overwrite', 'true');
 
-  const res = await fetch(`${pod.comfyUrl}/upload/image`, { method: 'POST', body: form });
+  const res = await comfyFetch(
+    `${pod.comfyUrl}/upload/image`,
+    { method: 'POST', body: form },
+    { label: `upload ${name}` }
+  );
   if (!res.ok) throw new Error(`Upload de ${name} échoué : ${res.status}`);
 
   const json = await res.json();
@@ -317,11 +377,15 @@ export async function comfyUploadImage(pod: PodInfo, localPath: string): Promise
 
 /** Soumet un workflow au format API. Renvoie le prompt_id. */
 export async function comfySubmit(pod: PodInfo, workflow: unknown): Promise<string> {
-  const res = await fetch(`${pod.comfyUrl}/prompt`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt: workflow, client_id: `pipevideo-${Date.now()}` }),
-  });
+  const res = await comfyFetch(
+    `${pod.comfyUrl}/prompt`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: workflow, client_id: `pipevideo-${Date.now()}` }),
+    },
+    { label: 'soumission du workflow' }
+  );
 
   const text = await res.text();
   if (!res.ok) throw new Error(`ComfyUI a refusé le workflow : ${text.slice(0, 600)}`);
@@ -341,8 +405,13 @@ export async function comfyWait(
   const started = Date.now();
 
   while (Date.now() - started < timeoutMs) {
-    const res = await fetch(`${pod.comfyUrl}/history/${promptId}`);
-    if (res.ok) {
+    // Sondage : une seule tentative par tour. La boucle elle-même EST la reprise
+    // (on repasse dans 3 s), donc une coupure ponctuelle est absorbée sans bruit.
+    const res = await fetch(`${pod.comfyUrl}/history/${promptId}`, {
+      signal: AbortSignal.timeout(30_000),
+    }).catch(() => null);
+
+    if (res?.ok) {
       const hist = await res.json();
       const entry = hist?.[promptId];
 
@@ -376,7 +445,7 @@ export async function comfyWait(
 /** Télécharge un fichier produit par ComfyUI vers le disque local. */
 export async function comfyDownload(pod: PodInfo, filename: string, destPath: string): Promise<void> {
   const url = `${pod.comfyUrl}/view?filename=${encodeURIComponent(filename)}&type=output`;
-  const res = await fetch(url);
+  const res = await comfyFetch(url, {}, { label: `téléchargement ${filename}`, timeoutMs: 180_000 });
   if (!res.ok) throw new Error(`Téléchargement de ${filename} échoué : ${res.status}`);
 
   const buf = Buffer.from(await res.arrayBuffer());

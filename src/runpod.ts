@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { spawn } from 'child_process';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { loadStoryboard } from './storyboard';
@@ -57,6 +58,55 @@ async function fileExists(p: string): Promise<boolean> {
   }
 }
 
+/**
+ * Un clip déjà présent est-il RÉELLEMENT exploitable ?
+ *
+ * L'existence du fichier ne suffit pas : un rapatriement interrompu laisse un
+ * MP4 lisible mais incomplet (constaté : 80 frames au lieu de 81 sur
+ * scene_23.mp4, pod supprimé en cours de transfert). Sans ce contrôle, la
+ * reprise considère le fichier comme bon et ne le régénère jamais.
+ *
+ * ATTENTION au piège : on ne compare PAS au nombre de frames déduit de
+ * `durationInSeconds`. Les clips sont toujours générés au plafond de
+ * `framesForDuration` (81 le plus souvent) et c'est `playbackRate` qui les étire
+ * ensuite à la durée de la narration. Comparer à la durée narrée signalait à
+ * tort tous les clips longs comme tronqués.
+ *
+ * On vérifie donc seulement qu'un clip est PLAUSIBLE : au moins `framesMin`
+ * frames décodables. Une troncature réseau produit un fichier nettement plus
+ * court, ou illisible.
+ *
+ * En cas de doute (ffprobe absent, sortie illisible) on répond `true` : mieux
+ * vaut garder un clip suspect que rallumer un GPU sur une fausse alerte.
+ */
+async function clipValide(p: string, framesMin: number): Promise<boolean> {
+  if (!(await fileExists(p))) return false;
+
+  return new Promise((resolve) => {
+    const probe = spawn('ffprobe', [
+      '-v', 'error',
+      '-select_streams', 'v:0',
+      '-count_frames',
+      '-show_entries', 'stream=nb_read_frames',
+      '-of', 'csv=p=0',
+      p,
+    ]);
+
+    let out = '';
+    probe.stdout.on('data', (d) => (out += d));
+    probe.on('error', () => resolve(true)); // ffprobe indisponible : on ne bloque pas.
+    probe.on('close', () => {
+      const n = parseInt(out.trim(), 10);
+      if (!Number.isFinite(n)) return resolve(true);
+      if (n >= framesMin) return resolve(true);
+      console.warn(
+        `[RunPod] ${path.basename(p)} : ${n} frames (minimum ${framesMin}) — fichier tronqué, à régénérer.`
+      );
+      resolve(false);
+    });
+  });
+}
+
 async function saveStoryboardState(storyboard: any): Promise<void> {
   await fs.writeFile(STORYBOARD_PATH, JSON.stringify(storyboard, null, 2), 'utf-8');
 
@@ -88,6 +138,13 @@ function framesForDuration(durationSec?: number): number {
   const raw = Math.round(target * 16);
   return Math.floor(raw / 4) * 4 + 1;
 }
+
+/**
+ * Plancher de frames pour juger un clip déjà présent comme complet.
+ * Wan produit 81 frames (5 s à 16 fps) dans la quasi-totalité des cas ; un
+ * fichier plus court signale une troncature de transfert, pas un choix.
+ */
+const FRAMES_MIN_CLIP = 81;
 
 /** Dimensions de génération selon le ratio du storyboard (480p, validé côté qualité). */
 function dimensionsFor(ratio: '16:9' | '9:16'): { width: number; height: number } {
@@ -124,31 +181,79 @@ function collectJobs(storyboard: any): Job[] {
 }
 
 /**
- * Génère un clip vidéo : Cloudflare Workers AI produit l'image de départ, puis
- * Wan 2.2 l'anime sur le GPU. Ce chaînage coûte moins cher qu'un text-to-video
- * direct et donne un bien meilleur contrôle sur la composition — une image
- * ratée se régénère sans toucher au GPU.
+ * Génère l'image de départ avec Flux schnell, sur le pod.
+ *
+ * Mesuré à ~2 s contre ~8 s via Cloudflare Workers AI, et surtout SANS rate
+ * limit : un 429 Cloudflare interrompait le run alors que le GPU tournait déjà.
+ * L'image produite reste dans le dossier output/ du pod et est réutilisée
+ * directement par Wan — aucun aller-retour réseau.
+ *
+ * Une copie est tout de même rapatriée dans public/ : elle sert de point de
+ * reprise si le run échoue plus loin, et permet de vérifier la composition.
+ *
+ * Retourne le nom du fichier tel que ComfyUI le voit en entrée.
+ */
+async function generateStartImage(
+  pod: PodInfo,
+  job: Job,
+  ratio: '16:9' | '9:16',
+  destLocal: string
+): Promise<string> {
+  const wf = await loadWorkflow('wf-flux-txt2img.json');
+  const { width, height } = dimensionsFor(ratio);
+
+  wf['2'].inputs.text = job.prompt;
+  wf['4'].inputs.width = width;
+  wf['4'].inputs.height = height;
+  wf['5'].inputs.seed = 1000 + job.sceneId;
+  wf['7'].inputs.filename_prefix = `s${job.sceneId}_start`;
+
+  console.log(`[Flux] Scène ${job.sceneId} : image de départ ${width}x${height}...`);
+
+  const promptId = await comfySubmit(pod, wf);
+  const outputs = await comfyWait(pod, promptId, { timeoutMs: 5 * 60_000 });
+
+  const png = outputs.find((f) => f.endsWith('.png'));
+  if (!png) throw new Error(`Scène ${job.sceneId} : Flux n'a produit aucune image`);
+
+  // ComfyUI écrit dans output/ mais LoadImage lit dans input/ : on copie sur le
+  // pod plutôt que de faire redescendre puis remonter l'image.
+  await ssh(pod, `cp /workspace/ComfyUI/output/${png} /workspace/ComfyUI/input/${png}`, 60_000);
+
+  // Copie locale pour la reprise (n'ajoute pas de temps GPU : le clip suit).
+  await comfyDownload(pod, png, destLocal).catch((err) => {
+    console.warn(`[Flux] Copie locale de l'image ${job.sceneId} échouée (non bloquant) : ${err.message}`);
+  });
+
+  return png;
+}
+
+/**
+ * Génère un clip vidéo : Flux produit l'image de départ sur le pod, puis
+ * Wan 2.2 l'anime. Ce chaînage coûte moins cher qu'un text-to-video direct et
+ * donne un bien meilleur contrôle sur la composition.
  */
 async function generateVideo(pod: PodInfo, job: Job, ratio: '16:9' | '9:16'): Promise<string> {
-  // 1. Image de départ via Cloudflare (pas de Flux sur le pod).
-  //    Conservée dans public/ : une relance ne la régénère pas.
+  // 1. Image de départ. Si elle existe déjà en local (reprise après crash), on
+  //    la renvoie au pod ; sinon Flux la génère directement sur le GPU.
   const startLocal = path.join(MEDIA_DIR, `start_scene_${job.sceneId}.png`);
-  if (!(await fileExists(startLocal))) {
-    await cloudflareImage(job.sceneId, job.prompt, ratio, startLocal);
-  } else {
+  let startImage: string;
+
+  if (await fileExists(startLocal)) {
     console.log(`[RunPod] Scène ${job.sceneId} : image de départ déjà présente, réutilisée.`);
+    startImage = await comfyUploadImage(pod, startLocal);
+  } else {
+    startImage = await generateStartImage(pod, job, ratio, startLocal);
   }
 
-  // 2. Envoi de l'image dans le dossier input/ de ComfyUI
-  const startImage = await comfyUploadImage(pod, startLocal);
-
-  // 3. Animation
+  // 2. Animation
   const wf = await loadWorkflow('wf-wan-i2v-4steps.json');
   const { width, height } = dimensionsFor(ratio);
   const frames = framesForDuration(job.durationSec);
 
   wf['9'].inputs.image = startImage;
-  // Cloudflare sort du 1344x768 : on redimensionne au format de génération Wan.
+  // Flux sort déjà aux bonnes dimensions, mais on garde le redimensionnement :
+  // une image de reprise peut venir d'une ancienne génération Cloudflare (carrée).
   wf['20'].inputs.width = width;
   wf['20'].inputs.height = height;
   wf['10'].inputs.width = width;
@@ -185,14 +290,6 @@ async function main() {
     process.exit(0);
   }
 
-  // Les images de départ viennent de Cloudflare : sans ces identifiants, aucun
-  // clip ne peut être animé. On échoue tout de suite plutôt qu'après avoir
-  // allumé un GPU.
-  if (!cloudflareCredentials()) {
-    console.error('❌ CLOUDFLARE_API_TOKEN ou R2_ACCOUNT_ID absent de .env — requis pour les images de départ.');
-    process.exit(1);
-  }
-
   if (await checkCancelled()) {
     console.log('[RunPod] Annulation détectée avant démarrage.');
     process.exit(0);
@@ -206,7 +303,15 @@ async function main() {
   const allJobs = collectJobs(storyboard);
   const jobs: Job[] = [];
   for (const job of allJobs) {
-    if (await fileExists(path.join(MEDIA_DIR, job.file))) {
+    // Un clip vidéo est en plus contrôlé sur son nombre de frames : un
+    // rapatriement interrompu laisse un MP4 lisible mais tronqué.
+    // Seuil = le plancher réellement produit par Wan (81 frames), et non la
+    // durée narrée : c'est `playbackRate` qui étire le clip au montage.
+    const dest = path.join(MEDIA_DIR, job.file);
+    const bon =
+      job.kind === 'video' ? await clipValide(dest, FRAMES_MIN_CLIP) : await fileExists(dest);
+
+    if (bon) {
       console.log(`[RunPod] Scène ${job.sceneId} : ${job.file} déjà présent, réutilisé.`);
       continue;
     }
@@ -236,15 +341,32 @@ async function main() {
     await updateProgress(10 + Math.round((done / jobs.length) * 20), `Médias : ${done}/${jobs.length}`);
   };
 
-  // --- Phase 1 : les images, via Cloudflare Workers AI. Aucun GPU requis. ---
+  // --- Phase 1 : les images fixes, via Cloudflare Workers AI. Aucun GPU. -----
+  // Volontairement PAS sur Flux : ces scènes n'ont pas besoin du pod, autant ne
+  // pas les rendre dépendantes du GPU. En revanche un échec (429, quota) ne doit
+  // plus faire tomber le run : on note la scène ratée et on continue.
+  const imagesRatees: number[] = [];
   for (const job of imageJobs) {
     if (await checkCancelled()) {
       console.log('[RunPod] Annulation détectée.');
       return;
     }
-    await cloudflareImage(job.sceneId, job.prompt, ratio, path.join(MEDIA_DIR, job.file));
-    await markDone(job);
-    await tick();
+    if (!cloudflareCredentials()) {
+      console.warn(`[RunPod] Scène ${job.sceneId} : identifiants Cloudflare absents, image non générée.`);
+      imagesRatees.push(job.sceneId);
+      continue;
+    }
+    try {
+      await cloudflareImage(job.sceneId, job.prompt, ratio, path.join(MEDIA_DIR, job.file));
+      await markDone(job);
+      await tick();
+    } catch (err: any) {
+      console.warn(`[RunPod] Scène ${job.sceneId} : image échouée (${err.message.slice(0, 100)}) — on continue.`);
+      imagesRatees.push(job.sceneId);
+    }
+  }
+  if (imagesRatees.length > 0) {
+    console.warn(`[RunPod] ⚠️ Images non générées pour les scènes : ${imagesRatees.join(', ')}. Relancer plus tard.`);
   }
 
   // --- Phase 2 : les clips, sur GPU. On n'allume le pod que maintenant. ---
@@ -256,6 +378,14 @@ async function main() {
   await updateProgress(12, `Démarrage du GPU RunPod (${videoJobs.length} clips)...`);
   let podId: string | null = null;
 
+  // Déclarés HORS du try : le finally doit pouvoir les attendre. Si une erreur
+  // survient en pleine génération (ex. `fetch failed`), on saute directement au
+  // finally — sans cette portée, le pod était supprimé pendant qu'un transfert
+  // courait encore et le fichier arrivait TRONQUÉ (constaté sur scene_23.mp4,
+  // 80 frames au lieu de 81).
+  const transferts: Promise<void>[] = [];
+  const echecs: number[] = [];
+
   try {
     podId = await createPod(`pipevideo-${Date.now()}`);
     const pod = await waitForPod(podId);
@@ -263,6 +393,9 @@ async function main() {
     await updateProgress(15, 'Installation de ComfyUI sur le GPU...');
     await runSetup(pod);
 
+    // Les téléchargements partent en tâche de fond : rapatrier un clip prend
+    // ~8 s pendant lesquelles le GPU ne calcule rien. On enchaîne donc l'animation
+    // suivante immédiatement.
     for (const job of videoJobs) {
       if (await checkCancelled()) {
         console.log('[RunPod] Annulation détectée — arrêt et suppression du pod.');
@@ -272,13 +405,31 @@ async function main() {
       console.log(`[RunPod] Scène ${job.sceneId} : ${job.motionPrompt.slice(0, 70)}...`);
 
       const produced = await generateVideo(pod, job, ratio);
-      await comfyDownload(pod, produced, path.join(MEDIA_DIR, job.file));
-      await markDone(job);
-      await tick();
+      transferts.push(
+        comfyDownload(pod, produced, path.join(MEDIA_DIR, job.file))
+          .then(() => markDone(job))
+          .then(() => tick())
+          .catch((err: any) => {
+            console.error(`[RunPod] Scène ${job.sceneId} : rapatriement échoué — ${err.message}`);
+            echecs.push(job.sceneId);
+          })
+      );
     }
 
     console.log(`[RunPod] ✅ ${done}/${jobs.length} médias générés.`);
   } finally {
+    // Ordre IMPÉRATIF : on attend les transferts en cours AVANT de supprimer le
+    // pod, sinon le fichier en vol arrive tronqué. Vrai aussi sur chemin
+    // d'erreur — c'est précisément là que le bug s'était produit.
+    if (transferts.length > 0) {
+      console.log(`[RunPod] Attente de ${transferts.length} transfert(s) avant suppression du pod...`);
+      await Promise.all(transferts).catch(() => {});
+    }
+
+    if (echecs.length > 0) {
+      console.error(`[RunPod] ⚠️ Clips non rapatriés : ${echecs.join(', ')}. Relancer pour les récupérer.`);
+    }
+
     // Filet de sécurité : le pod part quoi qu'il arrive.
     if (podId) await deletePod(podId);
   }

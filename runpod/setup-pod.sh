@@ -57,9 +57,17 @@ for N in high low; do
   mv /workspace/lora/$LP/${N}_noise_model.safetensors $M/loras/lightning_i2v_${N}.safetensors
 done
 
-# NOTE : pas de Flux ici. Les images de départ de l'image-to-video sont générées
-# par Cloudflare Workers AI côté serveur (src/lib/cloudflareImage.ts) puis
-# envoyées au pod. Ça économise 17 Go de téléchargement à chaque démarrage.
+# --- Flux schnell : les images de départ de l'image-to-video ----------------
+# Générées ici plutôt que via Cloudflare Workers AI : ~2 s par image au lieu de
+# ~8 s, sans appel réseau et surtout SANS rate limit — un 429 Cloudflare tuait
+# le run en pleine génération, GPU allumé. Coûte ~17 Go de téléchargement au
+# setup (~1 min), soit ~$0.02, largement compensé.
+LOG "DL_FLUX"
+FR=Comfy-Org/flux1-schnell
+[ -f $M/checkpoints/flux1_schnell_fp8.safetensors ] || {
+  hf download $FR "flux1-schnell-fp8.safetensors" --local-dir /workspace/flux > /dev/null 2>&1
+  mv /workspace/flux/flux1-schnell-fp8.safetensors $M/checkpoints/flux1_schnell_fp8.safetensors
+}
 
 # --- Conversion WEBP animé -> MP4 -------------------------------------------
 # ComfyUI sort du WEBP animé, que ffmpeg ne sait pas décoder en entrée.
