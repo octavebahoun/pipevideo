@@ -22,6 +22,14 @@ model Video {
   scheduledFor  DateTime? // Scheduled publication time
   progress      Int       @default(0)
   progressStep  String?
+  // Conversation Telegram d'où vient la demande. Indispensable pour répondre à la
+  // fin : le pipeline dure 20 à 40 min, la requête HTTP d'origine est refermée
+  // depuis longtemps quand la vidéo est prête. Null pour une vidéo créée depuis
+  // le dashboard, et la notification Telegram est alors simplement omise.
+  telegramChatId String?
+  // Identifiant du message « ✅ Lancé… » posté par le bot. Permet à un futur
+  // workflow de progression de l'éditer au lieu d'empiler les messages.
+  telegramMessageId String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }

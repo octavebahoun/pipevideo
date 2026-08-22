@@ -1,0 +1,146 @@
+{
+  "name": "Pipevideo — Rendu terminé → Telegram",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pipevideo-rendu-termine",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-entree",
+      "name": "Webhook rendu terminé",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-540, 300],
+      "webhookId": "pipevideo-rendu-termine",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REMPLACER",
+          "name": "x-webhook-secret pipevideo"
+        }
+      },
+      "notes": "L'URL de production de ce nœud est la valeur à mettre dans N8N_RENDER_DONE_URL côté pipevideo. Authentification Header Auth : nom 'x-webhook-secret', valeur = N8N_WEBHOOK_SECRET. Attention : l'URL /webhook-test/ ne vit que pendant une exécution manuelle — utiliser /webhook/ et activer le workflow."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a-un-chat",
+              "operator": { "type": "string", "operation": "notEmpty" },
+              "leftValue": "={{ $json.body.telegramChatId }}",
+              "rightValue": ""
+            },
+            {
+              "id": "est-reussi",
+              "operator": { "type": "string", "operation": "equals" },
+              "leftValue": "={{ $json.body.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "reussi",
+      "name": "Réussi et Telegram connu ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-320, 300],
+      "notes": "Une vidéo créée depuis le dashboard n'a pas de telegramChatId : rien à envoyer, on sort par la branche fausse."
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.body.telegramChatId }}",
+        "text": "✅ *{{ $json.body.title }}*\n\nLa vidéo est prête, rendue en {{ Math.floor($json.body.durationSeconds / 60) }} min {{ $json.body.durationSeconds % 60 }} s.\n\n{{ $json.body.videoUrl }}\n\nRegarde-la, puis réponds *publier* si elle te convient.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "envoyer-lien",
+      "name": "Envoyer le lien",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [-100, 200],
+      "credentials": {
+        "telegramApi": {
+          "id": "REMPLACER",
+          "name": "Bot Telegram Pipevideo"
+        }
+      },
+      "notes": "L'URL R2 est publique et directement lisible. Le mot « publier » n'est pas encore branché : la publication YouTube fera l'objet d'un second workflow, une fois cette chaîne validée."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a-un-chat-echec",
+              "operator": { "type": "string", "operation": "notEmpty" },
+              "leftValue": "={{ $json.body.telegramChatId }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "echec-a-un-chat",
+      "name": "Échec : Telegram connu ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-100, 420]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.body.telegramChatId }}",
+        "text": "❌ *{{ $json.body.title }}*\n\nLe rendu a échoué après {{ Math.floor($json.body.durationSeconds / 60) }} min.\n\n`{{ $json.body.error }}`\n\nLa vidéo reste dans le dashboard : le storyboard est conservé, un nouvel essai ne refait pas le script.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "envoyer-echec",
+      "name": "Signaler l'échec",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [120, 420],
+      "credentials": {
+        "telegramApi": {
+          "id": "REMPLACER",
+          "name": "Bot Telegram Pipevideo"
+        }
+      },
+      "notes": "Notifier l'échec compte autant que le succès : après 30 min d'attente, le silence est indiscernable d'un plantage du workflow."
+    }
+  ],
+  "connections": {
+    "Webhook rendu terminé": {
+      "main": [[{ "node": "Réussi et Telegram connu ?", "type": "main", "index": 0 }]]
+    },
+    "Réussi et Telegram connu ?": {
+      "main": [
+        [{ "node": "Envoyer le lien", "type": "main", "index": 0 }],
+        [{ "node": "Échec : Telegram connu ?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Échec : Telegram connu ?": {
+      "main": [[{ "node": "Signaler l'échec", "type": "main", "index": 0 }], []]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

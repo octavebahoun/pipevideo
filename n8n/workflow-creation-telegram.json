@@ -1,0 +1,351 @@
+{
+  "name": "Pipevideo — Création depuis Telegram",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "telegram-trigger",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -620,
+        300
+      ],
+      "webhookId": "pipevideo-telegram-creation",
+      "credentials": {
+        "telegramApi": {
+          "id": "REMPLACER",
+          "name": "Bot Telegram Pipevideo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "chat-autorise",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.message.chat.id.toString() }}",
+              "rightValue": "={{ $env.TELEGRAM_CHAT_AUTORISE }}"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "filtre-chat",
+      "name": "Chat autorisé ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -400,
+        300
+      ],
+      "notes": "Sans ce filtre, n'importe qui trouvant le bot peut déclencher un rendu — donc dépenser du GPU. Mettre son propre chat id dans la variable d'environnement TELEGRAM_CHAT_AUTORISE."
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "🎬 C'est lancé.\n\n*{{ $json.message.text }}*\n\nRédaction du script, puis génération des images et du montage. Compte 20 à 40 minutes — je te renvoie le lien ici quand c'est prêt.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "accuse-reception",
+      "name": "Accusé de réception",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -180,
+        220
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REMPLACER",
+          "name": "Bot Telegram Pipevideo"
+        }
+      },
+      "notes": "Répondre TOUT DE SUITE : le pipeline dure bien plus longtemps que le timeout de Telegram."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.PIPEVIDEO_URL }}/api/webhook/telegram",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-webhook-secret",
+              "value": "={{ $env.N8N_WEBHOOK_SECRET }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ topic: $('Telegram Trigger').item.json.message.text, chatId: $('Telegram Trigger').item.json.message.chat.id, telegramMessageId: $json.result.message_id }) }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "creer-video",
+      "name": "Créer la vidéo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        220
+      ],
+      "notes": "Retourne videoId. Ne lance pas le rendu : sans storyboard il n'y a rien à rendre.",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "deepseek-chat",
+          "mode": "list"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "COLLER ICI le System Message de n8n/prompt-deepseek.md",
+              "role": "system"
+            },
+            {
+              "content": "={{ $('Telegram Trigger').item.json.message.text }}",
+              "role": "user"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {
+          "maxTokens": 16000,
+          "temperature": 0.8
+        }
+      },
+      "id": "deepseek",
+      "name": "DeepSeek — rédige le storyboard",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        260,
+        220
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "REMPLACER",
+          "name": "DeepSeek (base https://api.deepseek.com)"
+        }
+      },
+      "notes": "Credential OpenAI avec l'URL de base https://api.deepseek.com. temperature 0.8 : plus bas, les textes se ressemblent d'une vidéo à l'autre. maxTokens élevé : 65 scènes avec leurs prompts, c'est long.",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.PIPEVIDEO_URL }}/api/webhook/storyboard",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-webhook-secret",
+              "value": "={{ $env.N8N_WEBHOOK_SECRET }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ id: $('Créer la vidéo').item.json.videoId, storyboard: $json.message.content }) }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "deposer-storyboard",
+      "name": "Déposer le storyboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        220
+      ],
+      "notes": "Validé par Zod côté pipevideo. Une erreur ici = une énumération inventée par DeepSeek, ou des id en double.",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.PIPEVIDEO_URL }}/api/render",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-webhook-secret",
+              "value": "={{ $env.N8N_WEBHOOK_SECRET }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ id: $('Créer la vidéo').item.json.videoId, mode: 'fresh' }) }}",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "lancer-rendu",
+      "name": "Lancer le rendu",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        220
+      ],
+      "notes": "Rend la main tout de suite : le pipeline tourne en arrière-plan côté serveur. La suite arrive par le workflow « Rendu terminé ».",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "⚠️ La préparation a échoué avant le rendu.\n\nSujet : *{{ $('Telegram Trigger').item.json.message.text }}*\n\nRegarde les logs n8n : soit DeepSeek a produit un JSON invalide, soit le serveur n'a pas répondu.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "erreur-telegram",
+      "name": "Prévenir de l'échec",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        700,
+        420
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REMPLACER",
+          "name": "Bot Telegram Pipevideo"
+        }
+      },
+      "notes": "Branché sur la sortie d'erreur des nœuds HTTP et DeepSeek. Sans ça, un échec avant le rendu laisse l'utilisateur attendre une vidéo qui ne viendra jamais."
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Chat autorisé ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat autorisé ?": {
+      "main": [
+        [
+          {
+            "node": "Accusé de réception",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Accusé de réception": {
+      "main": [
+        [
+          {
+            "node": "Créer la vidéo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer la vidéo": {
+      "main": [
+        [
+          {
+            "node": "DeepSeek — rédige le storyboard",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prévenir de l'échec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek — rédige le storyboard": {
+      "main": [
+        [
+          {
+            "node": "Déposer le storyboard",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prévenir de l'échec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Déposer le storyboard": {
+      "main": [
+        [
+          {
+            "node": "Lancer le rendu",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prévenir de l'échec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lancer le rendu": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Prévenir de l'échec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

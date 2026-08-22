@@ -6,6 +6,7 @@ import * as path from 'path';
 import { activeRenders } from '@/lib/renderRegistry';
 import { uploadToR2 } from '@/lib/r2';
 import { notifyN8nPublish } from '@/lib/n8nPublish';
+import { notifyN8nRender } from '@/lib/n8nNotify';
 import { computeSceneCacheStatus, cleanupStaleSceneFiles, cleanupAllSceneFiles } from '@/lib/renderCache';
 
 export async function POST(request: Request) {
@@ -79,11 +80,36 @@ export async function POST(request: Request) {
     const finalDestPath = path.join(publicOutDir, `video-${id}.mp4`);
 
     const isLambda = process.env.RENDER_ON_LAMBDA === 'true';
-    const renderCmd = isLambda
-      ? 'npm run tts && npm run novita && npm run check-video && npm run render:lambda'
-      : 'npm run tts && npm run novita && npm run check-video && npm run render';
+
+    // Deux générateurs de médias possibles. `runpod` (défaut sur cette branche)
+    // produit les images Flux et les clips Wan sur un GPU loué, et les dépose
+    // directement sur R2 ; `novita` appelle une API externe et écrit en local.
+    const generateur = process.env.MEDIA_PROVIDER === 'novita' ? 'npm run novita' : 'npm run runpod';
+
+    // L'ORDRE EST CONTRAINT, ne pas réarranger :
+    //   voice:fx AVANT check-video — la réverbération allonge chaque piste
+    //     (~45 ms), et check-video calcule les ralentis sur les durées finales.
+    //   sync:r2 AVANT render:lambda — Lambda lit les médias par URL ; un fichier
+    //     absent de R2 fait échouer le rendu après plusieurs minutes.
+    const etapes = [
+      generateur,
+      'npm run tts',
+      'npm run voice:fx',
+      'npm run check-video',
+      ...(isLambda ? ['npm run sync:r2', 'npm run render:lambda'] : ['npm run render']),
+    ];
+    const renderCmd = etapes.join(' && ');
 
     console.log(`[Render] Starting background process for video ${id} with command: ${renderCmd}...`);
+
+    // Chronomètre affiché dans le message Telegram final : sur un pipeline de
+    // 20 à 40 min, c'est la première chose qu'on regarde pour juger d'une dérive.
+    const debutPipeline = Date.now();
+
+    // `id` est garanti non nul par le garde en tête de fonction, mais ce
+    // narrowing ne survit pas dans le callback `on('close')` ci-dessous — d'où
+    // cette constante, plutôt qu'un `!` à chaque usage.
+    const videoId: string = id;
 
     // Run the pipeline chain
     const renderProcess = exec(renderCmd, {
@@ -233,25 +259,72 @@ export async function POST(request: Request) {
             console.log('[Render] N8N_PUBLISH_URL is not set. Skipping n8n notification.');
           }
 
-        } catch (copyErr) {
-          console.error('[Render] Error copying final video output:', copyErr);
-          const checkVideo = await prisma.video.findUnique({ where: { id } });
-          if (checkVideo?.status !== 'DRAFT') {
-            await prisma.video.update({
-              where: { id },
-              data: { status: 'FAILED' },
+          // 5. Prévenir n8n que la vidéo est prête, pour qu'il poste l'URL dans
+          // Telegram. Séparé de la notification de publication ci-dessus : ici on
+          // annonce seulement qu'il y a quelque chose à valider.
+          const doneUrl = process.env.N8N_RENDER_DONE_URL;
+          if (doneUrl) {
+            const meta = updatedStoryboard?.youtubeMetadata || (video.storyboard as any)?.youtubeMetadata || {};
+            const res = await notifyN8nRender(doneUrl, {
+              videoId,
+              status: 'COMPLETED',
+              telegramChatId: currentVideo?.telegramChatId ?? video.telegramChatId,
+              telegramMessageId: currentVideo?.telegramMessageId ?? video.telegramMessageId,
+              videoUrl: finalVideoUrl,
+              title: meta.title || video.title || '',
+              durationSeconds: Math.round((Date.now() - debutPipeline) / 1000),
+              youtubeMetadata: meta,
             });
+            console.log(
+              res.ok
+                ? `[Render] n8n prévenu : vidéo ${id} prête (${finalVideoUrl}).`
+                : `[Render] Notification n8n échouée pour ${id} — la vidéo reste accessible dans le dashboard.`
+            );
           }
+
+        } catch (copyErr: any) {
+          console.error('[Render] Error copying final video output:', copyErr);
+          await marquerEchec(`Rendu terminé mais récupération du fichier impossible : ${copyErr?.message || copyErr}`);
         }
       } else {
         console.error(`[Render] Rendering pipeline failed for video ${id}`);
+        await marquerEchec(`Le pipeline a échoué (code ${code}). Voir les logs du serveur.`);
+      }
+
+      /**
+       * Passe la vidéo en FAILED et prévient Telegram.
+       *
+       * Notifier l'échec compte autant que le succès : le pipeline dure 20 à
+       * 40 min, et sans message l'utilisateur attend indéfiniment une vidéo qui
+       * ne viendra pas. Un statut DRAFT signale une annulation manuelle — dans
+       * ce cas on ne touche à rien et on n'envoie aucun message.
+       */
+      async function marquerEchec(raison: string) {
         const checkVideo = await prisma.video.findUnique({ where: { id } });
-        if (checkVideo?.status !== 'DRAFT') {
-          await prisma.video.update({
-            where: { id },
-            data: { status: 'FAILED' },
-          });
+        if (checkVideo?.status === 'DRAFT') {
+          console.log(`[Render] Vidéo ${id} annulée — pas de notification d'échec.`);
+          return;
         }
+
+        await prisma.video.update({
+          where: { id },
+          data: { status: 'FAILED', progressStep: 'Échec' },
+        });
+
+        const doneUrl = process.env.N8N_RENDER_DONE_URL;
+        if (!doneUrl) return;
+
+        await notifyN8nRender(doneUrl, {
+          videoId,
+          status: 'FAILED',
+          // `checkVideo` vient d'être relu : il porte le chatId même s'il a été
+          // renseigné après le début du rendu.
+          telegramChatId: checkVideo?.telegramChatId ?? null,
+          telegramMessageId: checkVideo?.telegramMessageId ?? null,
+          title: checkVideo?.title ?? '',
+          durationSeconds: Math.round((Date.now() - debutPipeline) / 1000),
+          error: raison,
+        });
       }
     });
 

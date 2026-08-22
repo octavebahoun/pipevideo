@@ -4,7 +4,14 @@ import { verifySession, SESSION_COOKIE_NAME } from '@/lib/session';
 
 // Routes n8n calls back into from outside (no browser session available).
 // Protected below by a shared secret instead of the session cookie.
-const EXTERNAL_WEBHOOK_PATHS = ['/api/webhook/storyboard'];
+// Appelées par n8n depuis l'extérieur, sans cookie : le secret partagé fait foi.
+const EXTERNAL_WEBHOOK_PATHS = ['/api/webhook/storyboard', '/api/webhook/telegram'];
+
+// Routes ouvertes AUX DEUX : le dashboard les appelle avec un cookie de session,
+// n8n avec le secret partagé. Les lister dans EXTERNAL_WEBHOOK_PATHS aurait
+// rejeté le dashboard (pas de secret côté navigateur) et cassé le bouton
+// « Rendre » ; les laisser en session seule aurait rejeté n8n.
+const DUAL_AUTH_PATHS = ['/api/render'];
 
 // Only the login/logout endpoints stay fully open — every other /api/* route
 // (including /api/webhook/idea, which is triggered by the authenticated
@@ -31,6 +38,12 @@ export async function middleware(request: NextRequest) {
         return NextResponse.next();
       }
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Secret partagé accepté ici EN PLUS de la session, dont la vérification
+    // suit juste en dessous si le secret est absent.
+    if (DUAL_AUTH_PATHS.some((p) => pathname === p) && isAuthorizedWebhook(request)) {
+      return NextResponse.next();
     }
 
     const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
