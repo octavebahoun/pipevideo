@@ -27,6 +27,17 @@ import { updateProgress, checkCancelled } from './lib/progressHelper';
 const STORYBOARD_PATH = path.join(process.cwd(), 'storyboard.json');
 const MEDIA_DIR = path.join(process.cwd(), 'public');
 
+/**
+ * Où lire un média : sur R2 si le storyboard porte `assetBaseUrl`, sinon dans
+ * public/. Depuis que le pod pousse directement sur R2, les fichiers ne sont
+ * plus sur le disque local — les chercher là échouait systématiquement.
+ * `parseMedia` de Remotion sait lire une URL comme un fichier.
+ */
+function sourceMedia(relPath: string, assetBaseUrl?: string): string {
+  if (assetBaseUrl) return `${assetBaseUrl.replace(/\/$/, '')}/${relPath.replace(/^\//, '')}`;
+  return path.join(MEDIA_DIR, relPath);
+}
+
 async function fileExists(filePath: string): Promise<boolean> {
   try {
     await fs.access(filePath);
@@ -65,9 +76,13 @@ async function main() {
     }
     if (Array.isArray(scene.mediaPath)) {
       console.log(`${label} : diaporama d'images (${scene.mediaPath.join(', ')}) — durées non contraintes par un clip, ignorée.`);
-      for (const p of scene.mediaPath) {
-        if (!(await fileExists(path.join(MEDIA_DIR, p)))) {
-          console.log(`   ⚠️ Image manquante dans public/ : ${p}`);
+      // Sur R2, l'absence se verra au rendu : on ne fait pas une requête HTTP
+      // par image ici.
+      if (!storyboard.assetBaseUrl) {
+        for (const p of scene.mediaPath) {
+          if (!(await fileExists(path.join(MEDIA_DIR, p)))) {
+            console.log(`   ⚠️ Image manquante dans public/ : ${p}`);
+          }
         }
       }
       continue;
@@ -78,9 +93,13 @@ async function main() {
     }
 
     const requiredSeconds = getSceneDurationInFrames(scene, FPS) / FPS;
-    const mediaFullPath = path.join(MEDIA_DIR, scene.mediaPath);
+    const surR2 = Boolean(storyboard.assetBaseUrl);
+    const mediaFullPath = sourceMedia(scene.mediaPath, storyboard.assetBaseUrl);
 
-    if (!(await fileExists(mediaFullPath))) {
+    // Sur R2 on ne teste pas l'existence séparément : parseMedia échouera de
+    // toute façon si l'URL ne répond pas, et une requête HTTP de plus par média
+    // n'apporte rien.
+    if (!surR2 && !(await fileExists(mediaFullPath))) {
       console.log(`⚠️  ${label} (${scene.mediaPath}) : fichier introuvable dans public/ — dépose-le puis relance.`);
       hasBlockingIssues = true;
       continue;
@@ -90,7 +109,10 @@ async function main() {
     try {
       const { slowDurationInSeconds } = await parseMedia({
         src: mediaFullPath,
-        reader: nodeReader,
+        // `nodeReader` lit le système de fichiers : il ferait échouer une URL R2
+        // avec « File does not exist ». Sur R2 on laisse parseMedia utiliser son
+        // reader HTTP par défaut.
+        ...(surR2 ? {} : { reader: nodeReader }),
         fields: { slowDurationInSeconds: true },
         acknowledgeRemotionLicense: true,
       });

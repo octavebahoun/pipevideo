@@ -1,719 +1,363 @@
 {
-  "title": "Le silence de Dieu — quand le ciel semble se taire",
+  "title": "Test chaîne R2 → Lambda",
   "ratio": "16:9",
   "youtubeMetadata": {
-    "title": "Quand Dieu se tait : ce que le ciel prépare dans ton silence",
-    "description": "Tu pries et rien ne vient. Tu jeûnes et rien ne change. Le ciel semble ferme, et le pire, c'est que tu commences a douter non pas de l'existence de Dieu, mais de son interet pour toi.\n\nCette video n'est pas la pour te dire que ton silence n'existe pas. Il existe. La Bible le nomme, et des hommes que Dieu aimait l'ont traverse avant toi : Job, David, Habacuc, et Jesus lui-meme a Gethsemane.\n\nAu sommaire :\n00:00 Le silence que personne n'ose nommer\n02:00 Priere d'ouverture\n03:30 Ce que le silence de Dieu n'est pas\n06:30 David : la plainte qui reste une priere\n09:30 Les quatre cents ans de silence\n12:30 Gethsemane : le silence que le Fils a connu\n15:00 Ce que Dieu fait pendant qu'il se tait\n18:00 Priere finale\n\nSi ce message rejoint ce que tu traverses, ecris en commentaire « Je choisis de faire confiance dans le silence ». Abonne-toi pour recevoir les prochains enseignements.\n\n#foi #priere #silencededieu #psaume22 #encouragementchretien",
+    "title": "Test R2",
+    "description": "Validation de la chaîne.",
     "tags": [
-      "silence de Dieu",
-      "priere",
-      "foi",
-      "psaume 22",
-      "job",
-      "habacuc",
-      "gethsemane",
-      "enseignement biblique",
-      "encouragement chretien",
-      "attente",
-      "epreuve",
-      "confiance en Dieu"
+      "test"
     ]
   },
+  "assetBaseUrl": "https://pub-1eca6b2ab02942f2bac243b62b903d49.r2.dev",
   "subtitleStyle": "cinematic",
   "scenes": [
     {
       "id": 1,
-      "narration": "Tu as prié. Tu as jeûné. Tu as veillé des nuits entières. Et le ciel est resté fermé.",
+      "narration": "Tu as prié. Tu as veillé des nuits entières. Et le ciel est resté fermé.",
       "mediaPath": "scene_1.mp4",
       "mediaPrompt": "cinematic wide shot of a solitary figure kneeling in prayer in an empty stone chapel at dawn, seen from behind, a single shaft of pale light falling from a high window onto the stone floor beside them but not upon them, dust suspended in the beam, deep shadows, muted blue and grey tones with warm amber light, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "motionPrompt": "the shaft of pale light shifts very slowly across the stone floor as dawn advances, dust motes drifting through the beam, the kneeling figure remaining still with head bowed, an almost imperceptible rise and fall of the shoulders as they breathe, deeply calm continuous motion, static camera",
       "effects": {
         "transition": "fade",
         "cameraMotion": "static"
-      }
+      },
+      "durationInSeconds": 6.192,
+      "words": [
+        {
+          "text": "Tu",
+          "start": 0.1,
+          "duration": 0.1875
+        },
+        {
+          "text": "as",
+          "start": 0.3,
+          "duration": 0.0625
+        },
+        {
+          "text": "prié",
+          "start": 0.375,
+          "duration": 0.425
+        },
+        {
+          "text": "Tu",
+          "start": 1.6625,
+          "duration": 0.1875
+        },
+        {
+          "text": "as",
+          "start": 1.8625,
+          "duration": 0.0625
+        },
+        {
+          "text": "veillé",
+          "start": 1.9375,
+          "duration": 0.25
+        },
+        {
+          "text": "des",
+          "start": 2.2,
+          "duration": 0.1
+        },
+        {
+          "text": "nuits",
+          "start": 2.3125,
+          "duration": 0.15
+        },
+        {
+          "text": "entières",
+          "start": 2.475,
+          "duration": 0.625
+        },
+        {
+          "text": "Et",
+          "start": 3.975,
+          "duration": 0.125
+        },
+        {
+          "text": "le",
+          "start": 4.1125,
+          "duration": 0.125
+        },
+        {
+          "text": "ciel",
+          "start": 4.25,
+          "duration": 0.2125
+        },
+        {
+          "text": "est",
+          "start": 4.475,
+          "duration": 0.0375
+        },
+        {
+          "text": "resté",
+          "start": 4.525,
+          "duration": 0.3125
+        },
+        {
+          "text": "fermé",
+          "start": 4.85,
+          "duration": 0.475
+        }
+      ],
+      "playbackRate": 0.703
     },
     {
       "id": 2,
-      "narration": "Ce n'est pas que tu doutes de l'existence de Dieu. Tu crois qu'il est là. C'est pire que ça. Tu commences à douter qu'il s'intéresse à toi, personnellement. Qu'il ait vu ta situation. Qu'il ait entendu le nom que tu répètes chaque nuit.",
+      "narration": "Ce n'est pas que tu doutes de Dieu. Tu doutes qu'il s'intéresse à toi.",
       "mediaPath": "scene_2.png",
       "mediaPrompt": "cinematic close-up of two weathered hands resting open and empty on a worn wooden table, palms upward in a gesture of waiting, soft directional light from a nearby window, deep shadows behind, muted earth tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
         "zoom": "in",
         "transition": "fade"
-      }
+      },
+      "durationInSeconds": 4.752,
+      "words": [
+        {
+          "text": "Ce",
+          "start": 0.1,
+          "duration": 0.2
+        },
+        {
+          "text": "n'est",
+          "start": 0.3125,
+          "duration": 0.1125
+        },
+        {
+          "text": "pas",
+          "start": 0.4375,
+          "duration": 0.15
+        },
+        {
+          "text": "que",
+          "start": 0.6,
+          "duration": 0.1375
+        },
+        {
+          "text": "tu",
+          "start": 0.75,
+          "duration": 0.125
+        },
+        {
+          "text": "doutes",
+          "start": 0.8875,
+          "duration": 0.175
+        },
+        {
+          "text": "de",
+          "start": 1.075,
+          "duration": 0.1125
+        },
+        {
+          "text": "Dieu",
+          "start": 1.2,
+          "duration": 0.3
+        },
+        {
+          "text": "Tu",
+          "start": 2.3625,
+          "duration": 0.1625
+        },
+        {
+          "text": "doutes",
+          "start": 2.5375,
+          "duration": 0.2
+        },
+        {
+          "text": "qu'il",
+          "start": 2.75,
+          "duration": 0.1875
+        },
+        {
+          "text": "s'intéresse",
+          "start": 2.95,
+          "duration": 0.5
+        },
+        {
+          "text": "à",
+          "start": 3.4625,
+          "duration": 0.0625
+        },
+        {
+          "text": "toi",
+          "start": 3.5375,
+          "duration": 0.35
+        }
+      ]
     },
     {
       "id": 3,
-      "narration": "Et personne, à l'église, n'ose vraiment parler de ça. On te dira de tenir bon. On te dira que Dieu a un plan, que son temps est parfait. Ce sont des vérités. Mais on ne te dira pas pourquoi il se taît. Et tu repars avec une réponse qui ne touche pas ta question.",
+      "narration": "La Bible nomme ce silence. Des hommes que Dieu aimait l'ont traversé.",
       "mediaPath": "scene_3.png",
-      "mediaPrompt": "cinematic wide shot of empty wooden church pews seen from the side in late afternoon light, rows receding into shadow, one hymnal left open on a bench, coloured light through stained glass falling in patches on the stone floor, muted tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 4,
-      "narration": "Aujourd'hui, je ne vais pas te dire que ton silence n'existe pas. Il existe. La Bible le nomme. Et des hommes que Dieu aimait profondément l'ont traversé avant toi.",
-      "mediaPath": "scene_4.png",
       "mediaPrompt": "cinematic close-up of an ancient open Bible on a dark wooden lectern, pages worn and slightly curled, a ribbon bookmark lying across the text, warm lamplight from above casting soft shadows in the gutter of the book, deep browns and golds, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "effects": {
         "zoom": "in",
         "transition": "fade"
-      }
+      },
+      "durationInSeconds": 5.208,
+      "words": [
+        {
+          "text": "La",
+          "start": 0.1,
+          "duration": 0.2
+        },
+        {
+          "text": "Bible",
+          "start": 0.3125,
+          "duration": 0.275
+        },
+        {
+          "text": "nomme",
+          "start": 0.6,
+          "duration": 0.2125
+        },
+        {
+          "text": "ce",
+          "start": 0.825,
+          "duration": 0.1375
+        },
+        {
+          "text": "silence",
+          "start": 0.975,
+          "duration": 0.675
+        },
+        {
+          "text": "Des",
+          "start": 2.525,
+          "duration": 0.225
+        },
+        {
+          "text": "hommes",
+          "start": 2.7625,
+          "duration": 0.225
+        },
+        {
+          "text": "que",
+          "start": 3,
+          "duration": 0.1375
+        },
+        {
+          "text": "Dieu",
+          "start": 3.15,
+          "duration": 0.1625
+        },
+        {
+          "text": "aimait",
+          "start": 3.325,
+          "duration": 0.1875
+        },
+        {
+          "text": "l'ont",
+          "start": 3.525,
+          "duration": 0.1
+        },
+        {
+          "text": "traversé",
+          "start": 3.6375,
+          "duration": 0.675
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "narration": "",
+      "effects": {
+        "transition": "black"
+      },
+      "card": {
+        "text": "Test R2",
+        "subtext": "Chaîne complète"
+      },
+      "durationInSeconds": 3
     },
     {
       "id": 5,
-      "narration": "Job. David. Habacuc. Et Jésus lui-même, à Gethsémané. Reste jusqu'à la fin, car une prière t'attend. Une prière pour les temps où le ciel ne répond pas.",
-      "mediaPath": "scene_5.png",
-      "mediaPrompt": "cinematic wide shot of an ancient olive grove at dusk, gnarled twisted trunks in the foreground, a stone path winding between them into darkness, last light fading on the horizon, deep blues and silvered greens, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "kineticTitle": {
-        "text": "Le silence de *Dieu*",
-        "startInSeconds": 3.5,
-        "position": "center",
-        "variant": "reveal"
-      }
-    },
-    {
-      "id": 6,
-      "narration": "Si ce message rejoint ce que tu vis, abonne-toi maintenant, aime cette vidéo, et écris en commentaire : je choisis de faire confiance dans le silence.",
-      "mediaPath": "scene_6.png",
-      "mediaPrompt": "cinematic close-up of a single candle flame burning steadily in deep darkness, the flame sharp and warm, faint glow revealing the edge of a wooden surface beneath, everything else in shadow, warm amber against near black, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 7,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Prière d'ouverture",
-        "subtext": "Avant d'entrer dans la Parole"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 8,
-      "narration": "Avant d'ouvrir les Écritures, prenons un instant. Ne regarde pas cette vidéo comme un contenu. Reçois-la comme une rencontre.",
-      "mediaPath": "scene_8.png",
-      "mediaPrompt": "cinematic wide shot of a simple wooden chair beside a window at dawn, soft grey light filling a bare room, a folded blanket on the seat, nobody present, muted cool tones with a hint of warmth at the window, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 9,
-      "narration": "Père éternel, je viens devant toi avec ce que j'ai. Pas avec des mots préparés, mais avec ce silence qui me pèse.",
-      "mediaPath": "scene_9.png",
-      "mediaPrompt": "cinematic close-up of hands clasped together in prayer resting on a knee, fingers interlaced tightly, warm side lighting revealing skin texture and worn knuckles, dark neutral background, muted earth tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 10,
-      "narration": "Tu connais mes questions. Tu connais aussi ma fatigue de les poser. Alors je ne demande pas d'abord des réponses. Je demande ta présence.",
-      "mediaPath": "scene_10.png",
-      "mediaPrompt": "cinematic wide shot of a vast night sky full of stars above a dark silhouetted horizon of hills, the Milky Way faintly visible, no human figure, deep indigo and silver, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 11,
-      "narration": "Ouvre mon intelligence à ta Parole. Et si ce que je dois entendre me dérange, donne-moi le courage de ne pas fermer la porte. Au nom de Jésus, amen.",
-      "mediaPath": "scene_11.png",
-      "mediaPrompt": "cinematic shot of a heavy wooden door standing slightly ajar, warm golden light spilling through the narrow opening into a dark room, ornate iron hinges, dust visible in the light, deep browns against warm amber, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 12,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Première partie",
-        "subtext": "Ce que le silence de Dieu n'est pas"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 13,
-      "narration": "Commençons par écarter trois mensonges. Parce que dans le silence, ce ne sont pas les questions qui font le plus mal. Ce sont les mauvaises réponses.",
-      "mediaPath": "scene_13.png",
-      "mediaPrompt": "cinematic wide shot of three closed wooden doors along a dim stone corridor, each door shut, cold light from an unseen source at the far end, deep shadows between them, muted greys and browns, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 14,
-      "narration": "Premier mensonge : si Dieu se taît, c'est que j'ai péché. Écoute bien. Le péché brise la communion, c'est vrai. Mais le silence de Dieu n'est pas toujours une sanction.",
-      "mediaPath": "scene_14.png",
-      "mediaPrompt": "cinematic close-up of an ancient stone wall with a narrow crack running through it, moss growing in the fissure, hard raking side light emphasising the texture, muted grey and green tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 15,
-      "narration": "Job était appelé intègre et droit par Dieu lui-même, au premier chapitre de son livre. Ce n'est pas Job qui se décrit ainsi, c'est Dieu qui parle de lui. Et pourtant le ciel s'est fermé sur cet homme-là pendant trente-sept chapitres.",
-      "mediaPath": "scene_15.png",
-      "mediaPrompt": "cinematic wide shot of a lone figure seated on the ground in a barren desert landscape at midday, harsh white light, cracked earth stretching to the horizon, simple torn garments, head lowered, bleached ochre and pale sky tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 16,
-      "narration": "Trente-sept chapitres de questions sans réponse. Ses amis parlent, l'accusent, théorisent. Job crie. Le ciel se taît. Et quand Dieu parle enfin, au chapitre trente-huit, remarque bien ceci : il ne répond pas à la question de Job. Il lui montre qui il est. Et cela suffit à Job.",
-      "mediaPath": "scene_16.png",
-      "mediaPrompt": "cinematic wide shot of an immense storm cloud towering over a vast empty plain, shafts of light breaking through its base, the tiny scale of the land beneath, dramatic contrast, deep greys and brilliant white light, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 17,
-      "narration": "Deuxième mensonge : Dieu se taît parce que ma foi est trop faible. Comme si le silence était la note que Dieu met à ta spiritualité. Mais regarde Habacuc, un prophète. Il ouvre son livre en criant : jusqu'à quand, Éternel ? Jusqu'à quand appellerai-je sans que tu écoutes ?",
-      "mediaPath": "scene_17.png",
-      "mediaPrompt": "cinematic medium shot of an ancient watchtower of pale stone rising against a heavy dawn sky, a small window near the top, empty landscape below, muted blues and stone greys, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 18,
-      "narration": "Ce cri est dans la Bible. Dieu ne l'a pas censuré. Il l'a fait inscrire. Ta plainte ne te disqualifie pas : elle a sa place dans les Écritures.",
-      "mediaPath": "scene_18.png",
-      "mediaPrompt": "cinematic close-up of an ancient scroll partially unrolled on dark cloth, faded ink script visible, edges frayed with age, warm lamplight from the side, deep browns and parchment cream, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 19,
-      "narration": "Troisième mensonge : le silence signifie l'absence. C'est le plus dangereux des trois. Parce qu'il confond ce que tu ressens avec ce qui est.",
-      "mediaPath": "scene_19.png",
-      "mediaPrompt": "cinematic wide shot of thick fog covering a mountain valley at dawn, the summits emerging clearly above the mist while the valley below is completely hidden, cool blues and soft white, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 20,
-      "narration": "Le brouillard cache la montagne. Il ne la déplace pas. Ton ressenti est réel, mais il n'est pas la mesure de la réalité de Dieu.",
-      "mediaPath": "scene_20.png",
-      "mediaPrompt": "cinematic wide shot of a mountain summit standing solid and clear above a sea of clouds, first golden sunlight striking the rock face, immense sky beyond, warm gold against cool blue, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      },
-      "overlayText": {
-        "text": "Le brouillard cache la montagne. Il ne la déplace pas.",
-        "startInSeconds": 3
-      }
-    },
-    {
-      "id": 21,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Deuxième partie",
-        "subtext": "David — la plainte qui reste une prière"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 22,
-      "narration": "Ouvre le Psaume vingt-deux. David écrit : mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ?",
-      "mediaPath": "scene_22.png",
-      "mediaPrompt": "cinematic wide shot of a rocky wilderness at twilight, jagged stone outcrops, a narrow dry ravine cutting through, last violet light in the sky, deep purples and stone greys, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 23,
-      "narration": "Regarde la construction de cette phrase. Elle est extraordinaire. David dit mon Dieu, deux fois, dans la même respiration où il dit tu m'as abandonné.",
-      "mediaPath": "scene_23.png",
-      "mediaPrompt": "cinematic close-up of an open psalter with ornate lettering, one verse catching warm light while the rest of the page falls into shadow, aged parchment texture, deep amber and cream tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 24,
-      "narration": "Il ne dit pas : Dieu m'a abandonné. Cela serait une constatation, presque un adieu. Il dit : mon Dieu. Le possessif est encore là. La relation tient encore. Dans une seule phrase, il y a la plainte et l'alliance, la douleur et l'appartenance.",
-      "mediaPath": "scene_24.png",
-      "mediaPrompt": "cinematic close-up of a weathered hand gripping a thick knotted rope tightly, knuckles pale with effort, the rope descending into darkness below, hard side lighting, muted browns and deep shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 25,
-      "narration": "Voilà ce que la Bible t'autorise à faire. Tu peux te plaindre à Dieu sans cesser de l'appeler ton Dieu. Ce n'est pas de l'irrespect. C'est de l'intimité.",
-      "mediaPath": "scene_25.png",
-      "mediaPrompt": "cinematic wide shot of a small stone shelter with a lit lamp inside, seen from outside during a rainstorm at night, warm light glowing through the doorway, rain streaking the darkness, contrast of warm interior and cold exterior, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 26,
-      "narration": "Et maintenant, va jusqu'au verset vingt-cinq du même psaume. David écrit : il n'a point méprisé le cri du malheureux. Le même homme. Le même psaume.",
-      "mediaPath": "scene_26.png",
-      "mediaPrompt": "cinematic wide shot of dawn breaking over a wide calm lake, first light spreading across still water, dark hills silhouetted behind, warm gold reflecting on the surface, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 27,
-      "narration": "Le silence n'a pas duré. Mais David a écrit les deux : la plainte et la délivrance. Il n'a pas effacé sa nuit après avoir vu le jour.",
-      "mediaPath": "scene_27.png",
-      "mediaPrompt": "cinematic close-up of a quill pen resting on a written manuscript page, ink still glistening on the last line, warm candlelight from the right, deep shadows, browns and gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 28,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Troisième partie",
-        "subtext": "Les quatre cents ans de silence"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 29,
-      "narration": "Il y a dans la Bible un silence dont on parle très peu. Entre le dernier prophète de l'Ancien Testament et la naissance de Jésus, il s'écoule environ quatre cents ans.",
-      "mediaPath": "scene_29.png",
-      "mediaPrompt": "cinematic wide shot of an ancient stone road stretching into empty distance across arid hills, worn paving stones, no travellers, harsh midday light, bleached ochre and pale blue sky, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 30,
-      "narration": "Quatre cents ans sans nouvelle parole prophétique. Des générations entières sont nées, ont vécu et sont mortes dans ce silence.",
-      "mediaPath": "scene_30.png",
-      "mediaPrompt": "cinematic wide shot of an ancient hillside burial ground with weathered stone markers in rows, dry grass between them, low golden evening light casting long shadows, muted ochres and deep shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 31,
-      "narration": "Ils ont prié dans le silence. Ils ont transmis la promesse à leurs enfants sans jamais la voir accomplie. Ils sont morts en espérant.",
-      "mediaPath": "scene_31.png",
-      "mediaPrompt": "cinematic medium shot of aged hands passing a small worn scroll to younger hands, both pairs in simple robes, warm lamplight between them, dark background, deep browns and warm gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 32,
-      "narration": "Et voici ce que tu dois entendre. Pendant ces quatre cents ans où le ciel semblait muet, Dieu préparait la venue du Messie.",
-      "mediaPath": "scene_32.png",
-      "mediaPrompt": "cinematic close-up of a seed germinating underground in dark rich soil, a pale root descending and a tender shoot rising, cross-section view, faint light from above, deep browns and fresh green, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 33,
-      "narration": "Le silence n'était pas de l'inaction. C'était de la gestation. Ce qui se préparait était trop grand pour être annoncé chaque matin.",
-      "mediaPath": "scene_33.png",
-      "mediaPrompt": "cinematic wide shot of vast timber scaffolding around a partially built stone cathedral at dawn, an immense structure still incomplete, no workers present, soft grey light, muted stone and timber tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      },
-      "overlayText": {
-        "text": "Le silence n'était pas de l'inaction. C'était de la gestation.",
-        "startInSeconds": 3
-      }
-    },
-    {
-      "id": 34,
-      "narration": "Et puis un ange est apparu à un vieux prêtre nommé Zacharie. Le silence a pris fin. Pas par un discours, mais par une naissance.",
-      "mediaPath": "scene_34.png",
-      "mediaPrompt": "cinematic shot of golden light breaking through incense smoke inside an ancient temple interior, stone columns rising into shadow, an oil lamp burning, brilliant gold against deep shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 35,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Quatrième partie",
-        "subtext": "Gethsémané — le silence que le Fils a connu"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 36,
-      "narration": "Il y a une chose que je veux que tu emportes de cette vidéo, si tu n'en retiens rien d'autre. Jésus a connu le silence de Dieu.",
-      "mediaPath": "scene_36.png",
-      "mediaPrompt": "cinematic wide shot of a dark olive grove at night, ancient twisted trunks lit faintly by moonlight, deep shadows between the trees, silvered leaves, deep blues and cold silver, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 37,
-      "narration": "À Gethsémané, il prie trois fois. Il demande que la coupe s'éloigne. Et la coupe ne s'éloigne pas. Le Père ne retire pas l'épreuve.",
-      "mediaPath": "scene_37.png",
-      "mediaPrompt": "cinematic close-up of a simple clay cup standing on bare rock, half filled with dark liquid, moonlight catching its rim, deep shadow all around, muted earth tones and cold silver, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 38,
-      "narration": "Et sur la croix, il crie les mots exacts du Psaume vingt-deux. Mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ?",
-      "mediaPath": "scene_38.png",
-      "mediaPrompt": "cinematic wide shot of a darkened sky over a distant hill with three crosses silhouetted on the horizon, heavy storm clouds, no visible figures, deep greys and bruised purple, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 39,
-      "narration": "Comprends bien ce que cela veut dire. Quand tu traverses le silence, tu ne traverses pas un endroit où Dieu n'est jamais allé. Son propre Fils y est passé avant toi.",
-      "mediaPath": "scene_39.png",
-      "mediaPrompt": "cinematic close-up of two sets of footprints side by side in wet sand, one pair deeper than the other, soft grey light, receding toward shallow water at the frame edge, muted sand and slate tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 40,
-      "narration": "Le samedi entre la croix et la résurrection a été le jour le plus silencieux de l'histoire. Les disciples n'avaient plus rien. Et Dieu travaillait.",
-      "mediaPath": "scene_40.png",
-      "mediaPrompt": "cinematic wide shot of a sealed stone tomb entrance at dawn, a great round stone blocking the opening, dew on the grass, first pale light on the rock face, cool greys with a hint of gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 41,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Cinquième partie",
-        "subtext": "Ce que Dieu fait pendant qu'il se taît"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 42,
-      "narration": "Alors que fait Dieu, concrètement, pendant qu'il ne parle pas ? Parce que s'il ne parle pas, cela ne veut pas dire qu'il ne fait rien. Je vois trois choses dans les Écritures, et je veux les nommer clairement.",
-      "mediaPath": "scene_42.png",
-      "mediaPrompt": "cinematic close-up of a potter's hands shaping wet clay on a spinning wheel, the clay smooth and glistening, warm workshop light from the left, dark background, rich terracotta and warm brown tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 43,
-      "narration": "Premièrement, il déplace ton attente. Tant que Dieu répond vite à chaque demande, tu peux confondre Dieu et ses cadeaux, sans même t'en rendre compte. Le silence retire les cadeaux un instant, et il te force à répondre à une question redoutable : lequel des deux cherchais-tu ?",
-      "mediaPath": "scene_43.png",
-      "mediaPrompt": "cinematic close-up of an old brass balance scale on a wooden table, one pan holding a small gold coin, the other empty, warm side lighting, deep shadows, muted brass and amber tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 44,
-      "narration": "Deuxièmement, il approfondit tes racines. Un arbre qui reçoit la pluie chaque matin ne creuse pas. Celui qui traverse la sécheresse envoie ses racines vers l'eau profonde.",
-      "mediaPath": "scene_44.png",
-      "mediaPrompt": "cinematic cross-section view of a mature tree with an extensive deep root system reaching far down through layered dry earth toward a hidden water table, roots detailed and strong, warm ochre soil layers, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "out",
-        "transition": "fade"
-      },
-      "overlayText": {
-        "text": "La sécheresse creuse les racines.",
-        "startInSeconds": 4
-      }
-    },
-    {
-      "id": 45,
-      "narration": "Troisièmement, il te rend capable de consoler. Les gens que Dieu utilise le plus pour relever les autres ne sont pas ceux qui n'ont jamais souffert.",
-      "mediaPath": "scene_45.png",
-      "mediaPrompt": "cinematic medium shot of one person's hand resting gently on another's shoulder, both figures seen from behind in soft warm evening light, simple clothing, blurred landscape beyond, muted warm tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 46,
-      "narration": "Ce sont ceux qui ont traversé le silence et qui en sont revenus avec quelque chose à dire. Ta nuit prépare peut-être la consolation de quelqu'un d'autre.",
-      "mediaPath": "scene_46.png",
-      "mediaPrompt": "cinematic wide shot of a lit oil lamp being carried along a dark path at night, the bearer's silhouette barely visible, a warm pool of light on the stones around them, darkness beyond, warm amber against deep blue-black, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 47,
-      "narration": "Alors que fais-tu, en attendant ? Tu fais ce que David a fait. Tu continues de dire mon Dieu, même quand tu dis pourquoi.",
-      "mediaPath": "scene_47.png",
-      "mediaPrompt": "cinematic close-up of a worn wooden prayer bench with visible indentations where knees have rested over many years, soft directional light, dark chapel background, muted browns, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 48,
-      "narration": "Tu ne mesures pas la présence de Dieu à l'intensité de ton ressenti. Et tu ne prends aucune décision définitive dans le noir. Attends la lumière pour lire la carte.",
-      "mediaPath": "scene_48.png",
-      "mediaPrompt": "cinematic close-up of an old folded map lying on a table beside an unlit lantern, the map's details barely discernible in near darkness, faint blue pre-dawn light through a window, deep shadow and cool tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 49,
-      "narration": "Et tu restes dans la communauté. Le silence isole, et l'isolement amplifie le silence. Ne traverse pas cette saison seul.",
-      "mediaPath": "scene_49.png",
-      "mediaPrompt": "cinematic wide shot of a small group of people seated together in a circle in a warmly lit room at evening, seen from a respectful distance, heads slightly bowed, simple wooden chairs, warm amber lamplight, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 50,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Sixième partie",
-        "subtext": "Discerner : silence de Dieu ou porte fermée ?"
-      },
-      "durationInSeconds": 3
-    },
-    {
-      "id": 51,
-      "narration": "Maintenant, une question honnête. Comment savoir si Dieu se taît, ou s'il a déjà répondu non, et que je refuse de l'entendre ?",
-      "mediaPath": "scene_51.png",
-      "mediaPrompt": "cinematic wide shot of a fork in an ancient stone path among dry hills at dusk, two ways diverging, one climbing into shadow and the other descending into faint light, weathered stone markers at the junction, muted violet and ochre tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 52,
-      "narration": "C'est une vraie question, et je ne veux pas l'esquiver. Parce qu'il arrive qu'on appelle silence de Dieu ce qui est en réalité un refus qu'on n'accepte pas.",
-      "mediaPath": "scene_52.png",
-      "mediaPrompt": "cinematic close-up of a closed wooden door with a heavy iron lock, worn paint, a key lying on the stone floor beneath it untouched, cold side light, muted greys and browns, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 53,
-      "narration": "Voici trois marques que je trouve dans les Écritures. Premièrement, le silence de Dieu ne te pousse jamais au péché. S'il y a une voix qui te dit que tu peux tricher parce que Dieu t'a laissé, ce n'est pas Dieu qui se taît. C'est un autre qui parle.",
-      "mediaPath": "scene_53.png",
-      "mediaPrompt": "cinematic close-up of a narrow winding path through tall dry grass, the way ahead clear but narrow, low golden evening light, no shortcuts visible, warm ochres and soft shadow, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 54,
-      "narration": "Deuxièmement, le silence de Dieu ne contredit jamais sa Parole écrite. Si tu attends de Dieu une chose que l'Écriture interdit, ce n'est pas un silence que tu vis. C'est une réponse que tu as déjà reçue.",
-      "mediaPath": "scene_54.png",
-      "mediaPrompt": "cinematic close-up of an open Bible with one page held down by a stone paperweight, the wind having failed to turn it, warm lamplight, deep browns and cream, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 55,
-      "narration": "Troisièmement, le silence de Dieu conduit à la paix, jamais à la panique. La panique dit : décide maintenant, sinon tu perds tout. La paix dit : attends, je te tiens. Ces deux voix ne viennent pas du même endroit.",
-      "mediaPath": "scene_55.png",
-      "mediaPrompt": "cinematic wide shot of a small wooden boat resting still on calm water at dawn, mist on the surface, no wind, distant shore barely visible, soft blues and pale gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 56,
-      "narration": "Et si après cet examen tu ne sais toujours pas, alors voici ce que je te propose. Ne tranche pas seul. Va vers deux ou trois personnes qui craignent Dieu et qui n'ont rien à gagner de ta décision. Demande-leur de prier avec toi.",
-      "mediaPath": "scene_56.png",
-      "mediaPrompt": "cinematic medium shot of three pairs of hands joined together over an open Bible on a wooden table, warm lamplight from above, dark background, muted earth tones and gold, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 57,
-      "narration": "Le discernement n'est presque jamais un éclair solitaire. C'est le plus souvent une confirmation lente, à plusieurs, dans la durée.",
-      "mediaPath": "scene_57.png",
-      "mediaPrompt": "cinematic close-up of a stone slowly worn smooth by patient water in a shallow stream, ripples catching soft daylight, muted greys and clear water, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 58,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Prière finale",
-        "subtext": "Pour les temps où le ciel ne répond pas"
-      },
-      "durationInSeconds": 4
-    },
-    {
-      "id": 59,
-      "narration": "Si tu le veux bien, prions ensemble. Pose ta main sur ton cœur si tu es seul. Et reçois ces mots comme les tiens.",
-      "mediaPath": "scene_59.png",
-      "mediaPrompt": "cinematic close-up of a single hand resting flat over the heart on a simple garment, fingers relaxed, soft warm light from the side, dark background, muted earth tones, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 60,
-      "narration": "Père, je viens sans exiger de réponse. Tu sais ce que j'attends depuis des mois, peut-être des années. Tu connais le nom que je prononce chaque nuit.",
-      "mediaPath": "scene_60.png",
-      "mediaPrompt": "cinematic wide shot of a window at night seen from inside a dark room, faint distant lights far below, a single chair facing the glass, deep blue darkness with warm points of light, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 61,
-      "narration": "Je choisis aujourd'hui de ne pas interpréter ton silence comme un rejet. Je choisis de croire que tu travailles là où je ne vois rien.",
-      "mediaPath": "scene_61.png",
-      "mediaPrompt": "cinematic close-up of bare winter branches against a pale grey sky, tiny buds barely visible at the tips, delicate detail, muted greys and the faintest green, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 62,
-      "narration": "Garde-moi de l'amertume. Garde-moi des raccourcis. Et si tu dois te taire encore un peu, alors donne-moi la force d'attendre sans me durcir.",
-      "mediaPath": "scene_62.png",
-      "mediaPrompt": "cinematic close-up of cupped hands holding clear water, a few drops falling between the fingers, soft daylight catching the water, dark neutral background, muted tones with luminous water, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
-      }
-    },
-    {
-      "id": 63,
-      "narration": "Et quand tu parleras de nouveau, que tu me trouves encore à la porte. Non pas parti. Non pas amer. À la porte. Au nom de Jésus, amen.",
-      "mediaPath": "scene_63.mp4",
+      "narration": "Et quand tu parleras de nouveau, que tu me trouves encore à la porte. Amen.",
+      "mediaPath": "scene_5.mp4",
       "mediaPrompt": "cinematic wide shot of dawn breaking over a vast landscape of rolling hills, brilliant golden light flooding across the valley from the horizon, morning mist lifting from the low ground, a narrow path leading toward the light, warm gold and soft blue, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
       "motionPrompt": "the golden dawn light spreads slowly and steadily across the valley from the horizon toward the camera, the low mist lifting and drifting gently upward as it brightens, the landscape gradually emerging from shadow into warm light, deeply calm continuous illumination, static camera",
       "effects": {
         "transition": "fade",
         "cameraMotion": "static"
-      }
-    },
-    {
-      "id": 64,
-      "narration": "Si ce message t'a rejoint, écris en commentaire : je choisis de faire confiance dans le silence. Et partage cette vidéo à quelqu'un qui traverse sa propre nuit.",
-      "mediaPath": "scene_64.png",
-      "mediaPrompt": "cinematic close-up of two lit candles standing side by side, one flame leaning slightly toward the other as if kindled from it, warm glow against deep darkness, soft wax texture visible, warm amber against near black, painterly realism, cinematic lighting, reverent atmosphere, wide horizontal composition",
-      "effects": {
-        "zoom": "in",
-        "transition": "fade"
       },
-      "kineticTitle": {
-        "text": "Partage-la à quelqu'un dans la *nuit*",
-        "startInSeconds": 4,
-        "position": "bottom",
-        "variant": "reveal"
-      }
-    },
-    {
-      "id": 65,
-      "narration": "",
-      "effects": {
-        "transition": "black"
-      },
-      "card": {
-        "text": "Que la paix de Dieu te garde",
-        "subtext": "Prochain enseignement : entendre la voix de Dieu"
-      },
-      "durationInSeconds": 5
+      "durationInSeconds": 5.616,
+      "words": [
+        {
+          "text": "Et",
+          "start": 0.1,
+          "duration": 0.15
+        },
+        {
+          "text": "quand",
+          "start": 0.2625,
+          "duration": 0.15
+        },
+        {
+          "text": "tu",
+          "start": 0.425,
+          "duration": 0.15
+        },
+        {
+          "text": "parleras",
+          "start": 0.5875,
+          "duration": 0.3625
+        },
+        {
+          "text": "de",
+          "start": 0.9625,
+          "duration": 0.1
+        },
+        {
+          "text": "nouveau",
+          "start": 1.075,
+          "duration": 0.4125
+        },
+        {
+          "text": "que",
+          "start": 1.75,
+          "duration": 0.125
+        },
+        {
+          "text": "tu",
+          "start": 1.8875,
+          "duration": 0.1125
+        },
+        {
+          "text": "me",
+          "start": 2.0125,
+          "duration": 0.1125
+        },
+        {
+          "text": "trouves",
+          "start": 2.1375,
+          "duration": 0.225
+        },
+        {
+          "text": "encore",
+          "start": 2.375,
+          "duration": 0.3125
+        },
+        {
+          "text": "à",
+          "start": 2.7,
+          "duration": 0.025
+        },
+        {
+          "text": "la",
+          "start": 2.7375,
+          "duration": 0.0875
+        },
+        {
+          "text": "porte",
+          "start": 2.8375,
+          "duration": 0.475
+        },
+        {
+          "text": "Amen",
+          "start": 4.1875,
+          "duration": 0.55
+        }
+      ],
+      "playbackRate": 0.763
     }
   ]
 }
