@@ -8,13 +8,22 @@ effacée** par l'archivage (`npm run new-video`), contrairement aux médias de s
 
 ```
 public/sounds/
-├── README.md        ← ce fichier
-├── _TEMPLATE.md     ← modèle à copier pour décrire un nouveau son
-├── CATALOG.md       ← index généré par `npm run sounds` (NE PAS éditer à la main)
-├── music/           ← musiques (nappes, piano, lofi, drones longs…)
-├── sfx/             ← bruitages courts (glitch, boum, whoosh, clic, notif…)
-└── ambient/         ← ambiances/textures longues et bouclables (pluie, ville, vent…)
+├── README.md               ← ce fichier
+├── _TEMPLATE.md            ← modèle à copier pour décrire un nouveau son
+├── CATALOG.md              ← index généré par `npm run sounds` (NE PAS éditer à la main)
+├── SOURCING-RELIGIEUX.md   ← critères de sélection pour le contenu chrétien
+├── music/                  ← musiques (nappes, piano, lofi, drones longs…)
+│   └── sacred/             ← nappes longues pour la méditation
+├── sfx/                    ← bruitages courts (glitch, boum, whoosh, clic, notif…)
+│   └── sacred/             ← ponctuations discrètes (harpe, cloche, page)
+└── ambient/                ← ambiances/textures longues et bouclables (pluie, ville, vent…)
+    └── sacred/             ← textures de lieu (église, vent, cloches lointaines)
 ```
+
+Le parcours est **récursif** : un son déposé dans un sous-dossier est catalogué
+sans configuration. Avant d'ajouter un audio destiné à une vidéo de méditation,
+lire **`SOURCING-RELIGIEUX.md`** — la contrainte de durée (> 4 min) y est
+détaillée, ainsi que les pièges de dynamique.
 
 ## 📝 Convention : 1 son = 1 audio + 1 `.md` du MÊME nom
 
@@ -87,8 +96,13 @@ présents dans `public/sounds/`. Ne pas renommer/supprimer un son encore référ
 La bibliothèque est déjà fournie — parcourir `CATALOG.md` (régénéré par `npm run sounds`),
 qui liste chaque son avec `type`, `mood`, `usage`, `key`/`bpm` et `peaks` :
 - **music/** : nappes cinématiques, vaporwave/planant, acoustique mélancolique…
-- **sfx/** : pas, chocs, swoosh/transitions, jumpscare, actions du quotidien…
-- **ambient/** : pluie, usine, campagne, arcade, tempête, souterrain…
+- **sfx/** : pas, perles de bois, swoosh/transitions…
+- **ambient/** : pluie, vent, souterrain…
+
+> Sur cette branche, la bibliothèque a été **réduite au sous-ensemble compatible**
+> avec la méditation chrétienne (56 → 15 sons) : les bruitages d'action et les
+> ambiances domestiques ont été retirés. Les `sacred/` sont vides, à remplir en
+> suivant `SOURCING-RELIGIEUX.md`.
 
 Filtrer par `type` + `mood` + `usage`, et se servir des `peaks` d'un son pour
 synchroniser un effet visuel (cut, flash, zoom) sur un impact précis.

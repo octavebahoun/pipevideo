@@ -14,7 +14,7 @@ import * as path from 'path';
 
 const SOUNDS_DIR = path.join(process.cwd(), 'public', 'sounds');
 const CATALOG_PATH = path.join(SOUNDS_DIR, 'CATALOG.md');
-const IGNORED_MD = new Set(['README.md', '_TEMPLATE.md', 'CATALOG.md']);
+const IGNORED_MD = new Set(['README.md', '_TEMPLATE.md', 'CATALOG.md', 'SOURCING-RELIGIEUX.md']);
 
 interface SoundDescriptor {
   /** Chemin du .md relatif à public/sounds (ex: "sfx/heartbeat.md"). */
@@ -74,6 +74,12 @@ async function main() {
     const content = await fs.readFile(file, 'utf-8');
     const frontmatter = parseFrontmatter(content);
     const relPath = path.relative(SOUNDS_DIR, file);
+
+    // Un .md sans `type` n'est pas une fiche de son : c'est un document de la
+    // bibliothèque (guide, note). Sans ce garde-fou, tout Markdown déposé ici
+    // se retrouve catalogué comme un son inexistant, et l'agent le proposerait.
+    if (!frontmatter.type) continue;
+
     const dir = path.dirname(relPath);
     const audioFile = frontmatter.file || `${path.basename(relPath, '.md')}.mp3`;
     const src = `sounds/${dir === '.' ? '' : dir + '/'}${audioFile}`;
