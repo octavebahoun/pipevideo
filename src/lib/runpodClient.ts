@@ -111,11 +111,25 @@ function privateKeyPath(): string {
  * suppression (try/finally).
  */
 export async function createPod(name: string): Promise<string> {
-  const gpuType = process.env.RUNPOD_GPU_TYPE || 'NVIDIA GeForce RTX 5090';
-  // Plusieurs datacenters : la RTX 5090 est en stock "LOW" partout, et un seul
-  // centre épuisé suffisait à faire échouer tout le run ("no instances currently
-  // available"). RunPod choisit celui qui a de la place. Séparés par des virgules
-  // dans RUNPOD_DATACENTER pour garder la main.
+  /**
+   * Plusieurs modèles de GPU, par ordre de préférence.
+   *
+   * Ne dépendre que de la RTX 5090 rendait le run tributaire d'un stock souvent
+   * classé "LOW" : "no instances currently available" a fait échouer deux runs,
+   * dont un où EU-RO-1 avait purement disparu de la liste des centres.
+   *
+   * La L40S (48 Go, même prix) et l'A40 (48 Go, moins chère mais ~2,4× plus lente
+   * sur Wan) font parfaitement l'affaire. Tous tiennent Wan 2.2 fp8 + Flux.
+   */
+  const gpuTypes = (
+    process.env.RUNPOD_GPU_TYPE || 'NVIDIA GeForce RTX 5090,NVIDIA L40S,NVIDIA A40'
+  )
+    .split(',')
+    .map((g) => g.trim())
+    .filter(Boolean);
+
+  // Idem pour les datacenters : un seul centre épuisé suffisait à tout faire
+  // échouer. RunPod choisit celui qui a de la place.
   const dataCenters = (process.env.RUNPOD_DATACENTER || 'EU-RO-1,EU-CZ-1,EUR-NO-1')
     .split(',')
     .map((d) => d.trim())
@@ -123,7 +137,7 @@ export async function createPod(name: string): Promise<string> {
 
   let pod: any;
   try {
-    pod = await api('POST', '/pods', buildPodBody(name, gpuType, dataCenters, await readPublicKey()));
+    pod = await api('POST', '/pods', buildPodBody(name, gpuTypes, dataCenters, await readPublicKey()));
   } catch (err: any) {
     // Un échec réseau peut survenir APRÈS que RunPod ait créé le pod : on
     // vérifie avant de relancer, sinon on facture deux GPU en parallèle.
@@ -136,15 +150,16 @@ export async function createPod(name: string): Promise<string> {
   }
 
   console.log(
-    `[RunPod] Pod créé : ${pod.id} (${gpuType} @ ${pod.dataCenterId ?? dataCenters.join('/')}, $${pod.costPerHr ?? '?'}/h)`
+    `[RunPod] Pod créé : ${pod.id} (${pod.machine?.gpuTypeId ?? pod.gpu?.id ?? gpuTypes[0]} @ ` +
+      `${pod.dataCenterId ?? dataCenters.join('/')}, $${pod.costPerHr ?? '?'}/h)`
   );
   return pod.id;
 }
 
-function buildPodBody(name: string, gpuType: string, dataCenters: string[], publicKey: string) {
+function buildPodBody(name: string, gpuTypes: string[], dataCenters: string[], publicKey: string) {
   return {
     name,
-    gpuTypeIds: [gpuType],
+    gpuTypeIds: gpuTypes,
     dataCenterIds: dataCenters,
     cloudType: 'SECURE',
     gpuCount: 1,
@@ -157,6 +172,100 @@ function buildPodBody(name: string, gpuType: string, dataCenters: string[], publ
     // runpod/* installent la clé trouvée dans PUBLIC_KEY au démarrage de sshd.
     env: { PUBLIC_KEY: publicKey },
   };
+}
+
+/**
+ * Arme un compte à rebours d'auto-destruction SUR le pod.
+ *
+ * C'est le garde-fou le plus important de ce fichier. Le `finally` de
+ * src/runpod.ts ne protège que si le processus Node meurt proprement : si la
+ * session est fermée, le terminal tué ou la machine éteinte, le pod continue de
+ * facturer indéfiniment. C'est arrivé — un pod a tourné 2 h 56 à vide, soit
+ * ~$2.90, l'équivalent de dix-neuf vidéos.
+ *
+ * RunPod n'offre aucun champ d'expiration à la création (vérifié dans l'OpenAPI
+ * v2). La seule protection qui survive à la mort du client est donc un timer
+ * lancé sur le pod, qui appelle l'API RunPod pour se supprimer lui-même.
+ *
+ * `setsid` détache le timer : il survit à la fermeture de la session SSH.
+ * L'orchestrateur peut le repousser (`renewKillSwitch`) tant qu'il travaille.
+ */
+export async function armKillSwitch(pod: PodInfo, minutes = 90): Promise<void> {
+  const script = [
+    '#!/bin/bash',
+    '# Auto-destruction : filet de sécurité si le client disparaît.',
+    'SECONDS_LEFT=$1',
+    'while [ "$SECONDS_LEFT" -gt 0 ]; do',
+    '  sleep 30',
+    '  SECONDS_LEFT=$((SECONDS_LEFT - 30))',
+    '  # Le client repousse l\'échéance en réécrivant ce fichier.',
+    '  if [ -f /workspace/.killswitch_renew ]; then',
+    '    SECONDS_LEFT=$(cat /workspace/.killswitch_renew)',
+    '    rm -f /workspace/.killswitch_renew',
+    '  fi',
+    'done',
+    'echo "AUTO-DESTRUCTION $(date -u)"',
+    'curl -s -X DELETE "https://rest.runpod.io/v1/pods/$RUNPOD_POD_ID" \\',
+    '  -H "Authorization: Bearer $RUNPOD_KILL_KEY"',
+  ].join('\n');
+
+  try {
+    // Deux commandes SSH distinctes. Lancer le timer dans la même commande que
+    // l'écriture du script faisait attendre le SSH indéfiniment : le processus
+    // détaché hérite du tuyau de sortie et OpenSSH ne rend la main qu'une fois
+    // TOUS les descripteurs fermés (même piège que le démarrage de ComfyUI).
+    await ssh(
+      pod,
+      `cat > /workspace/killswitch.sh << 'KS_EOF'\n${script}\nKS_EOF\nchmod +x /workspace/killswitch.sh && echo KS_WRITTEN`,
+      60_000
+    );
+
+    await ssh(
+      pod,
+      `RUNPOD_POD_ID=${pod.id} RUNPOD_KILL_KEY=${apiKey()} ` +
+        `setsid nohup /workspace/killswitch.sh ${minutes * 60} ` +
+        `> /workspace/killswitch.log 2>&1 < /dev/null & ` +
+        `disown; echo KS_ARMED`,
+      60_000
+    );
+    console.log(`[RunPod] 🛡️ Auto-destruction armée : le pod se supprimera seul dans ${minutes} min.`);
+  } catch (err: any) {
+    // Non bloquant, mais l'utilisateur doit le savoir : sans ce filet, un plantage
+    // du client laisse le GPU facturer.
+    console.warn(
+      `[RunPod] ⚠️ Auto-destruction NON armée (${err.message.slice(0, 80)}).\n` +
+        `   Surveille https://console.runpod.io/pods : en cas de plantage, le pod facturera.`
+    );
+  }
+}
+
+/** Repousse l'échéance de l'auto-destruction. Appelé pendant la génération. */
+export async function renewKillSwitch(pod: PodInfo, minutes = 90): Promise<void> {
+  await ssh(pod, `echo ${minutes * 60} > /workspace/.killswitch_renew`, 30_000).catch(() => {});
+}
+
+/**
+ * Supprime les pods `pipevideo-*` oubliés d'un run précédent.
+ *
+ * Deuxième filet : si le kill switch a échoué ET que le client est mort, ce
+ * ménage au démarrage du run suivant rattrape le pod orphelin.
+ */
+export async function cleanOrphanPods(exceptId?: string): Promise<void> {
+  try {
+    const res = await api('GET', '/pods');
+    const pods = Array.isArray(res) ? res : res?.items ?? res?.data ?? [];
+    const orphelins = pods.filter(
+      (p: any) => p.name?.startsWith('pipevideo-') && p.id !== exceptId
+    );
+
+    for (const p of orphelins) {
+      const minutes = Math.round((p.runtime?.uptime ?? 0) / 60);
+      console.warn(`[RunPod] 🧹 Pod orphelin détecté : ${p.id} (${minutes} min d'uptime) — suppression.`);
+      await deletePod(p.id);
+    }
+  } catch (err: any) {
+    console.warn(`[RunPod] Ménage des pods orphelins impossible : ${err.message.slice(0, 80)}`);
+  }
 }
 
 /** Attend que le pod expose son SSH et renvoie ses coordonnées. */
@@ -443,6 +552,110 @@ export async function comfyWait(
 }
 
 /** Télécharge un fichier produit par ComfyUI vers le disque local. */
+// ---------------------------------------------------------------------------
+// Envoi direct pod -> Cloudflare R2
+// ---------------------------------------------------------------------------
+
+/** Identifiants R2, ou null si la configuration est incomplète. */
+export function r2Credentials(): {
+  accountId: string;
+  accessKeyId: string;
+  secretAccessKey: string;
+  bucket: string;
+  publicDomain?: string;
+} | null {
+  const accountId = process.env.R2_ACCOUNT_ID;
+  const accessKeyId = process.env.R2_ACCESS_KEY_ID || process.env.CLOUDFLARE_R2_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY || process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY;
+  const bucket = process.env.R2_BUCKET_NAME || process.env.CLOUDFLARE_R2_BUCKET_NAME;
+  if (!accountId || !accessKeyId || !secretAccessKey || !bucket) return null;
+  return {
+    accountId: accountId.trim(),
+    accessKeyId,
+    secretAccessKey,
+    bucket,
+    publicDomain: process.env.R2_PUBLIC_DOMAIN || process.env.CLOUDFLARE_R2_PUBLIC_URL,
+  };
+}
+
+/**
+ * Écrit la configuration rclone sur le pod. À appeler une fois, après le setup.
+ *
+ * Renvoie `false` si R2 n'est pas configuré ou si rclone est absent : l'appelant
+ * retombe alors sur le rapatriement classique via le proxy.
+ */
+export async function configureR2(pod: PodInfo): Promise<boolean> {
+  const creds = r2Credentials();
+  if (!creds) {
+    console.log('[R2] Identifiants absents — rapatriement classique via le proxy.');
+    return false;
+  }
+
+  const dispo = await ssh(pod, 'command -v rclone > /dev/null 2>&1 && echo OUI || echo NON', 60_000);
+  if (!dispo.includes('OUI')) {
+    console.warn('[R2] rclone absent du pod — rapatriement classique via le proxy.');
+    return false;
+  }
+
+  // Le heredoc évite d'exposer les secrets dans la ligne de commande (donc dans
+  // la liste des processus du pod).
+  const conf = [
+    '[r2]',
+    'type = s3',
+    'provider = Cloudflare',
+    `access_key_id = ${creds.accessKeyId}`,
+    `secret_access_key = ${creds.secretAccessKey}`,
+    `endpoint = https://${creds.accountId}.r2.cloudflarestorage.com`,
+    'acl = private',
+    'no_check_bucket = true',
+  ].join('\n');
+
+  await ssh(
+    pod,
+    `mkdir -p ~/.config/rclone && cat > ~/.config/rclone/rclone.conf << 'RCLONE_EOF'\n${conf}\nRCLONE_EOF\necho CONF_OK`,
+    60_000
+  );
+
+  console.log(`[R2] rclone configuré sur le pod (bucket "${creds.bucket}").`);
+  return true;
+}
+
+/**
+ * Pousse un fichier produit par ComfyUI directement du pod vers R2.
+ *
+ * C'est la voie rapide : le fichier ne traverse plus le poste local, donc le
+ * proxy RunPod — maillon le plus fragile de la chaîne — sort du chemin critique.
+ * Un média poussé est immédiatement durable, même si le pod meurt juste après.
+ *
+ * Renvoie l'URL publique si un domaine est configuré, sinon la clé R2.
+ */
+export async function uploadFromPodToR2(
+  pod: PodInfo,
+  filename: string,
+  key: string
+): Promise<string> {
+  const creds = r2Credentials();
+  if (!creds) throw new Error('R2 non configuré');
+
+  const src = `/workspace/ComfyUI/output/${filename}`;
+  const out = await ssh(
+    pod,
+    `rclone copyto --s3-no-check-bucket -q "${src}" "r2:${creds.bucket}/${key}" && echo R2_OK || echo R2_KO`,
+    5 * 60_000
+  );
+
+  if (!out.includes('R2_OK')) {
+    throw new Error(`Envoi R2 de ${filename} échoué : ${out.slice(-300)}`);
+  }
+
+  const url = creds.publicDomain
+    ? `${creds.publicDomain.replace(/\/$/, '')}/${key}`
+    : `r2://${creds.bucket}/${key}`;
+
+  console.log(`[R2] ${filename} → ${key}`);
+  return url;
+}
+
 export async function comfyDownload(pod: PodInfo, filename: string, destPath: string): Promise<void> {
   const url = `${pod.comfyUrl}/view?filename=${encodeURIComponent(filename)}&type=output`;
   const res = await comfyFetch(url, {}, { label: `téléchargement ${filename}`, timeoutMs: 180_000 });

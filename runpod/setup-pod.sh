@@ -72,6 +72,19 @@ FR=Comfy-Org/flux1-schnell
 # --- Conversion WEBP animé -> MP4 -------------------------------------------
 # ComfyUI sort du WEBP animé, que ffmpeg ne sait pas décoder en entrée.
 # PIL extrait les frames, ffmpeg les réencode en H.264.
+# --- rclone : envoi direct pod -> Cloudflare R2 ------------------------------
+# Sans ça, chaque média redescend par le proxy RunPod jusqu'au poste local
+# (~15 s par fichier, GPU allumé pendant ce temps) et le run meurt sur le
+# moindre `fetch failed` du proxy. En poussant vers R2 depuis le pod, le proxy
+# sort du chemin critique et un fichier produit est immédiatement à l'abri.
+# La config est écrite par l'orchestrateur (voir configureR2 dans runpodClient).
+LOG "RCLONE"
+if ! command -v rclone > /dev/null 2>&1; then
+  curl -fsSL https://rclone.org/install.sh | bash > /dev/null 2>&1 || \
+    pip install --break-system-packages -q rclone-python > /dev/null 2>&1
+fi
+command -v rclone > /dev/null 2>&1 && rclone version | head -1 || echo "rclone ABSENT"
+
 LOG "SCRIPT_MP4"
 cat > /workspace/to_mp4.py << 'PYEOF'
 import sys, os, subprocess, shutil

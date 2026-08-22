@@ -15,6 +15,9 @@ import {
   comfySubmit,
   comfyWait,
   comfyDownload,
+  armKillSwitch,
+  renewKillSwitch,
+  cleanOrphanPods,
   PodInfo,
 } from './lib/runpodClient';
 import { generateImage as cloudflareImage, cloudflareCredentials } from './lib/cloudflareImage';
@@ -447,9 +450,17 @@ async function main() {
   const transferts: Promise<void>[] = [];
   const echecs: number[] = [];
 
+  // Filet n°2 : un pod d'un run précédent a pu survivre (client tué, machine
+  // éteinte). On le supprime AVANT d'en allumer un nouveau.
+  await cleanOrphanPods();
+
   try {
     podId = await createPod(`pipevideo-${Date.now()}`);
     const pod = await waitForPod(podId);
+
+    // Filet n°1, le plus important : le pod se supprimera TOUT SEUL si ce
+    // processus disparaît. Armé avant le setup, donc dès que le GPU facture.
+    await armKillSwitch(pod, 90);
 
     await updateProgress(15, 'Installation de ComfyUI sur le GPU...');
     await runSetup(pod);
@@ -465,6 +476,8 @@ async function main() {
         await generateStillImage(pod, job, ratio, path.join(MEDIA_DIR, job.file));
         await markDone(job);
         await tick();
+        // Tant qu'on produit, on repousse l'auto-destruction.
+        await renewKillSwitch(pod, 90);
       } catch (err: any) {
         // Une image ratée ne doit pas coûter les 39 suivantes.
         console.error(`[RunPod] Scène ${job.sceneId} : image échouée — ${err.message.slice(0, 120)}`);
@@ -484,6 +497,7 @@ async function main() {
 
       let produced: string;
       try {
+        await renewKillSwitch(pod, 90);
         produced = await generateVideo(pod, job, ratio);
       } catch (err: any) {
         // Tolérance par scène : un incident réseau ou un job ComfyUI en échec ne
