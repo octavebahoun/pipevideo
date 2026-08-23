@@ -38,7 +38,11 @@ const STYLES: Record<Exclude<GoldenStyle, 'none'>, Reglage> = {
   // Étalonnage seul, plein écran.
   warm: { marge: 0, rayon: 0, liseré: 0, saturation: 1.18, chaleur: 0.14, particules: 0 },
   // Les trois : ce que fait la chaîne de référence.
-  full: { marge: 5.5, rayon: 28, liseré: 2, saturation: 1.18, chaleur: 0.14, particules: 26 },
+  // 10 particules et non 26 : chacune portait un boxShadow, donc un flou gaussien
+  // recalculé à chaque frame. Sur un chunk Lambda de ~1200 frames, ce seul poste
+  // faisait dépasser le timeout de 600 s. À 10, l'effet reste lisible — elles
+  // dérivent lentement et pulsent, l'œil n'en compte pas le nombre.
+  full: { marge: 5.5, rayon: 28, liseré: 2, saturation: 1.18, chaleur: 0.14, particules: 10 },
 };
 
 /** Filtre CSS d'étalonnage, à appliquer AU MÉDIA. */
@@ -129,13 +133,20 @@ export const GoldenOverlay: React.FC<{ style: GoldenStyle | undefined; seed: num
               key={i}
               style={{
                 position: 'absolute',
-                left: `calc(${x}% + ${dx}px)`,
-                top: `${y}%`,
-                width: taille,
-                height: taille,
+                // Décalé de la moitié de la taille : le halo fait maintenant 4×
+                // le diamètre du point, son centre doit rester sur la position
+                // calculée plutôt que son coin haut-gauche.
+                left: `calc(${x}% + ${dx}px - ${taille * 2}px)`,
+                top: `calc(${y}% - ${taille * 2}px)`,
+                // Le halo est un dégradé radial, pas un boxShadow : un flou
+                // gaussien est recalculé à chaque frame par le moteur de rendu,
+                // un dégradé non. Rendu visuellement équivalent à cette échelle,
+                // pour une fraction du temps de calcul — c'est ce poste qui
+                // faisait dépasser le timeout Lambda.
+                width: taille * 4,
+                height: taille * 4,
                 borderRadius: '50%',
-                background: 'rgba(255, 236, 190, 0.95)',
-                boxShadow: `0 0 ${taille * 3}px rgba(255, 213, 130, 0.9)`,
+                background: `radial-gradient(circle, rgba(255,240,205,0.95) 0%, rgba(255,213,130,0.55) 22%, rgba(255,213,130,0) 70%)`,
                 opacity: Math.max(0, pulse),
                 pointerEvents: 'none',
               }}

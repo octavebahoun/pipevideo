@@ -2,6 +2,7 @@ import 'dotenv/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { loadStoryboard } from './storyboard';
+import { getTotalDurationInFrames, FPS } from './types';
 
 /**
  * Contrôle avant vol : vérifie ce qui NE PEUT PAS être généré automatiquement.
@@ -71,6 +72,67 @@ async function main() {
   }
 
   console.log(`[Preflight] ✅ ${attendus.size} audio de fond présent(s).`);
+
+  await verifierCapaciteLambda(storyboard);
+}
+
+/**
+ * Refuse une vidéo trop longue pour la capacité Lambda, AVANT la génération GPU.
+ *
+ * render-lambda.ts fait déjà ce contrôle, mais il intervient en dernier : un
+ * rendu de 15 min a été refusé après huit minutes de génération payée. Ici, le
+ * même calcul coûte un appel d'API.
+ *
+ * Volontairement NON bloquant sur les erreurs d'API : si AWS est injoignable, on
+ * laisse passer plutôt que d'interdire un rendu pour un souci réseau. Le contrôle
+ * en aval reste là comme filet.
+ */
+async function verifierCapaciteLambda(storyboard: any) {
+  if (process.env.RENDER_ON_LAMBDA !== 'true') return;
+
+  const totalFrames = getTotalDurationInFrames(storyboard);
+  const minutes = totalFrames / (FPS * 60);
+
+  let timeout = 900;
+  try {
+    const { getFunctions } = await import('@remotion/lambda');
+    const region = (process.env.REMOTION_AWS_REGION || 'eu-west-3') as any;
+    const fns = await getFunctions({ region, compatibleOnly: true });
+    if (fns.length === 0) {
+      console.warn('[Preflight] ⚠️ Aucune fonction Lambda déployée — lance npm run deploy:lambda.');
+      return;
+    }
+    timeout = Math.max(...fns.map((f) => f.timeoutInSeconds));
+  } catch (err: any) {
+    console.warn(`[Preflight] ⚠️ Capacité Lambda non vérifiée (${err.message}).`);
+    return;
+  }
+
+  // Mêmes constantes que render-lambda.ts.
+  const quota = Number(process.env.RENDER_MAX_LAMBDAS || 10);
+  const renderers = Math.max(1, quota - 2);
+  const maxFramesParChunk = Math.floor((timeout * 0.85) / 0.55);
+  const capaciteFrames = maxFramesParChunk * renderers;
+
+  if (totalFrames > capaciteFrames) {
+    const capaciteMin = (capaciteFrames / (FPS * 60)).toFixed(1);
+    console.error(
+      `\n❌ Vidéo trop longue pour la capacité Lambda actuelle.\n` +
+        `   Demandé : ${minutes.toFixed(1)} min (${totalFrames} frames)\n` +
+        `   Capacité : ${capaciteMin} min (${renderers} renderers × ${maxFramesParChunk} frames, timeout ${timeout}s)\n\n` +
+        (timeout < 900
+          ? `   → npm run deploy:lambda  (timeout ${timeout}s → 900s, gain immédiat)\n`
+          : `   → Faire relever le quota AWS « Concurrent executions », puis RENDER_MAX_LAMBDAS.\n`) +
+        `   → Ou demander une vidéo plus courte (moins de scènes).\n\n` +
+        `   Arrêt AVANT la génération GPU : rien n'a été dépensé.\n`
+    );
+    process.exit(1);
+  }
+
+  console.log(
+    `[Preflight] ✅ ${minutes.toFixed(1)} min tiennent dans la capacité Lambda ` +
+      `(${(capaciteFrames / (FPS * 60)).toFixed(1)} min, timeout ${timeout}s).`
+  );
 }
 
 main().catch((err: any) => {

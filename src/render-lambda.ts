@@ -152,11 +152,20 @@ async function main() {
   if (functions.length === 0) {
     throw new Error(
       `Aucune fonction Lambda compatible dans ${region}.\n` +
-      `Déploie-la d'abord : npx remotion lambda functions deploy`
+      `Déploie-la d'abord : npm run deploy:lambda`
     );
   }
-  const functionName = functions[0].functionName;
-  console.log(`Fonction : ${functionName}`);
+
+  // Choisir la fonction au PLUS GRAND timeout, et non la première de la liste :
+  // plusieurs fonctions coexistent souvent (une ancienne à 600 s, une nouvelle à
+  // 900 s), et tomber sur la plus courte fait échouer les vidéos longues sans
+  // raison visible. Le timeout dicte la taille de chunk supportable.
+  const fonction = functions.reduce((meilleure, f) =>
+    f.timeoutInSeconds > meilleure.timeoutInSeconds ? f : meilleure
+  );
+  const functionName = fonction.functionName;
+  const timeoutLambda = fonction.timeoutInSeconds;
+  console.log(`Fonction : ${functionName} (timeout ${timeoutLambda}s, ${fonction.memorySizeInMb} Mo)`);
 
   // 2. Stager les assets référencés, puis (re)déployer le site (sans source maps).
   const { bucketName } = await withRetry('accès au bucket', () => getOrCreateBucket({ region }));
@@ -226,16 +235,35 @@ async function main() {
   const framesPerLambda = Math.max(60, Math.ceil(totalFrames / maxRenderers));
   const estChunks = Math.ceil(totalFrames / framesPerLambda);
 
-  // Garde-fou timeout : un chunk de ~1586 frames frôlait déjà les 600 s au 1er essai.
-  // Au-delà de ce seuil, la vidéo est trop longue pour ce quota → relever le quota AWS.
-  const SAFE_MAX_FRAMES = 1500;
+  // Garde-fou timeout, recalibré sur un échec réel : un chunk de 1229 frames a
+  // dépassé les 600 s sur une vidéo `goldenStyle: "full"` (26 particules floutées
+  // par frame). Le seuil précédent de 1500 avait été estimé sur des scènes bien
+  // plus simples et laissait donc passer des rendus voués à l'échec — après la
+  // génération GPU, donc en pure perte.
+  // Le seuil est DÉRIVÉ du timeout réel de la fonction, et non figé : redéployer
+  // à 900 s (npm run deploy:lambda) doit augmenter la capacité sans qu'on ait à
+  // retoucher ce fichier.
+  //
+  // 0,55 s par frame est mesuré, pas estimé : un chunk de 1229 frames a dépassé
+  // 600 s sur une vidéo `goldenStyle: "full"`. On garde 15 % de marge pour
+  // l'amorçage de la Lambda et l'assemblage final du chunk.
+  const SECONDES_PAR_FRAME = 0.55;
+  const SAFE_MAX_FRAMES = Math.floor((timeoutLambda * 0.85) / SECONDES_PAR_FRAME);
   if (framesPerLambda > SAFE_MAX_FRAMES) {
+    const minutes = (totalFrames / (FPS * 60)).toFixed(1);
+    const capaciteMin = ((SAFE_MAX_FRAMES * maxRenderers) / (FPS * 60)).toFixed(1);
     throw new Error(
-      `Vidéo trop longue (${totalFrames} frames ≈ ${(totalFrames / (FPS * 60)).toFixed(1)} min) ` +
-        `pour un quota de ${awsConcurrencyQuota} Lambdas : ${framesPerLambda} frames/chunk ` +
-        `dépasseraient le timeout de 600 s.\n` +
-        `→ Fais relever le quota de concurrence Lambda AWS (Service Quotas > Lambda > ` +
-        `« Concurrent executions »), puis augmente RENDER_MAX_LAMBDAS.`
+      `Vidéo trop longue pour cette configuration : ${totalFrames} frames (${minutes} min).\n` +
+        `  ${framesPerLambda} frames/chunk sur ${maxRenderers} renderers, or le timeout de ` +
+        `${timeoutLambda}s n'en permet que ${SAFE_MAX_FRAMES}.\n` +
+        `  Capacité actuelle : ${capaciteMin} min de vidéo.\n\n` +
+        `Deux leviers, dans cet ordre :\n` +
+        (timeoutLambda < 900
+          ? `  1. IMMÉDIAT — la fonction est à ${timeoutLambda}s alors qu'AWS autorise 900 :\n` +
+            `     npm run deploy:lambda    (+${Math.round((900 / timeoutLambda - 1) * 100)}% de capacité)\n`
+          : `  1. Le timeout est déjà au maximum autorisé par AWS (900s).\n`) +
+        `  2. Faire relever le quota « Concurrent executions » (Service Quotas > Lambda),\n` +
+        `     gratuit mais compte 24 à 48 h, puis augmenter RENDER_MAX_LAMBDAS.`
     );
   }
 
