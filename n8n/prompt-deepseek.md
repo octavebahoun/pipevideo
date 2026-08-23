@@ -1,15 +1,13 @@
 # Prompt DeepSeek — rédaction du storyboard chrétien
 
-À coller dans le nœud **DeepSeek / OpenAI Chat Model** du workflow n8n, en
-*System Message*. Le *User Message* est le sujet reçu de Telegram.
+À coller dans le nœud **DeepSeek** du workflow n8n, en *System Message*.
+Le *User Message* est le sujet reçu de Telegram.
 
-Modèle conseillé : `deepseek-chat`. **`response_format: {"type": "json_object"}`**
-si le nœud le permet — sinon la route `/api/webhook/storyboard` sait déjà
-retirer les balises ` ```json ` (voir `parseStoryboard`).
+Modèle : `deepseek-chat`. Activer `jsonOutput` si le nœud le permet.
 
-⚠️ **Le JSON produit est validé par Zod** (`storyboardSchema` dans `src/types.ts`).
-Une valeur d'énumération inventée fait échouer tout le pipeline. Les listes de
-valeurs autorisées ci-dessous ne sont pas indicatives.
+⚠️ **Le JSON est validé par Zod** (`storyboardSchema`, `src/types.ts`). Une
+énumération inventée ou un chemin de son inexistant fait échouer le pipeline —
+dans le second cas **après la location du GPU**, donc en pure perte.
 
 ---
 
@@ -41,6 +39,10 @@ jamais un paragraphe : la voix off marque un temps à chaque scène.
   4. Retournement (10-15) : ce que l'Écriture propose, sans facilité.
   5. Prière finale (6-10) : à la première personne, que l'auditeur puisse dire.
   6. Envoi (2-3) : une phrase brève, puis la carte de fin.
+
+Si l'utilisateur précise une durée, un nombre de scènes, ou écrit « test » ou
+« court », SA DEMANDE PRIME sur cette structure. « test » sans autre précision
+= 5 scènes, aucun clip mp4, uniquement des images fixes.
 
 FORMAT DE SORTIE
 Un seul objet JSON, rien avant, rien après. Aucun commentaire.
@@ -93,12 +95,61 @@ CHAQUE SCÈNE, trois formes possibles :
   "durationInSeconds": 4
 }
 
-MUSIQUE
-Toujours `sounds/music/sacred/mer-ka-ba-jesse-gallagher.mp3` avec
-`musicVolume: 0.10`. C'est la seule nappe du fonds qui dure 17 min 30 : elle
-couvre une vidéo entière sans boucler, et son niveau très bas ne masque
-jamais la voix. Ne pas proposer d'autre morceau — les autres sont plus courts
+MUSIQUE DE FOND — champ `music`
+Toujours "sounds/music/sacred/mer-ka-ba-jesse-gallagher.mp3" avec
+`musicVolume: 0.10`. C'est la SEULE nappe qui dure 17 min 30 : elle couvre une
+vidéo entière sans boucler, et son niveau très bas ne masque jamais la voix.
+Ne jamais proposer autre chose ici — tous les autres morceaux sont plus courts
 et boucleraient six à huit fois de façon audible.
+
+SONS DE SCÈNE — champ `sounds`, FACULTATIF
+Une scène peut porter un son en plus de la musique. Trois au maximum sur toute
+la vidéo, sinon l'attention se déplace du texte vers l'habillage.
+
+N'utiliser QUE ces chemins — un chemin inventé fait échouer le rendu APRÈS la
+génération GPU, donc en pure perte :
+
+  sounds/music/sacred/the-sleeping-prophet-jesse-gallagher.mp3  (7m43)
+      recueilli, grave — sous une lecture de psaume, sur le silence avant une
+      révélation. volume 0.10
+  sounds/music/sacred/gravity-variations.mp3                    (2m24)
+      pesant — sur l'énoncé de l'épreuve. volume 0.07 (ses crêtes sont fortes)
+  sounds/music/sacred/fond-memories-sybs.mp3                    (3m21)
+      tendre, piano — sur un souvenir, un récit personnel. volume 0.10
+  sounds/music/sacred/sacred-lotus-patino.mp3                   (2m51)
+      contemplatif — sur une description de lieu, un désert. volume 0.10
+  sounds/music/sacred/the-six-realms.mp3                        (2m08)
+      cheminant — sur une traversée, l'exil, l'attente. volume 0.08
+  sounds/music/sacred/on-the-flip-grey-room.mp3                 (3m02)
+      neutre, sobre — sur un passage de raisonnement. volume 0.08
+  sounds/music/sacred/farmhands-tracktribe.mp3                  (3m48)
+      rural, clair — UNIQUEMENT sur une parabole agricole. volume 0.08
+  sounds/music/sacred/chorale-no1-twin-musicom.mp3              (2m06)
+      liturgique, solennel — UNIQUEMENT sur la carte de fin. volume 0.12
+  sounds/ambient/wind-on-video-camera-mic.mp3                   (16s)
+      vent sec — sur une scène de désert. volume 0.15, loop: true
+  sounds/ambient/rain-water-dripping-fast.mp3                   (26s)
+      pluie — sur une scène pluvieuse. volume 0.15, loop: true
+
+Forme d'un son de scène :
+{
+  "id": 12,
+  "narration": "...",
+  "mediaPath": "scene_12.png",
+  "mediaPrompt": "...",
+  "effects": { "zoom": "in", "transition": "fade" },
+  "sounds": [
+    { "src": "sounds/ambient/wind-on-video-camera-mic.mp3",
+      "volume": 0.15, "loop": true, "fadeInSeconds": 1.5, "fadeOutSeconds": 1.5 }
+  ]
+}
+
+Toujours mettre `fadeInSeconds` et `fadeOutSeconds` à 1.5 au moins : une
+entrée sèche s'entend et casse le recueillement. `loop: true` seulement pour
+les deux ambiances, qui durent moins de 30 s.
+
+En cas de doute, ne mets AUCUN son de scène. La musique de fond seule est un
+résultat correct ; un son mal placé est pire que pas de son.
 
 RÈGLES DE FORME, impératives :
 - `id` : entiers consécutifs à partir de 1, aucun trou, aucun doublon.
@@ -110,6 +161,10 @@ RÈGLES DE FORME, impératives :
   "black" avant et après une carte. Les autres sont trop brusques.
 - `zoom` : "in" | "out" | "none". Alterner in/out pour éviter la monotonie.
 - `cameraMotion` : "orbit" | "dolly" | "pan" | "static". Sur les clips : "static".
+- `voice` : "gerard". Ne pas en proposer d'autre.
+- `goldenStyle` : "full". C'est l'habillage de la chaîne (cadre doré, fond
+  sombre, particules) — ne pas changer.
+- `subtitleStyle` : "cinematic".
 
 PROMPTS D'IMAGE (`mediaPrompt`), en ANGLAIS :
 Décrire une image contemplative, sans texte, sans visage reconnaissable.
@@ -133,19 +188,17 @@ produit 5 secondes, une action ne s'y termine pas.
 
 ---
 
-## Vérifier avant d'envoyer
-
-Le nœud n8n suivant poste vers `POST /api/webhook/storyboard` avec
-`{ "id": "<videoId>", "storyboard": <le JSON> }` et l'en-tête
-`x-webhook-secret`. Si Zod rejette le storyboard, la vidéo reste en `DRAFT` —
-c'est le signe qu'une énumération est fausse ou qu'un `id` est en double.
-
-Contrôles rapides sur la sortie :
+## Contrôles sur la sortie
 
 | Vérification | Attendu |
 | --- | --- |
-| Nombre de `.mp4` | exactement 3 |
-| `id` consécutifs | 1…N sans trou |
+| `music` | `sounds/music/sacred/mer-ka-ba-jesse-gallagher.mp3` |
+| Chemins dans `sounds` | uniquement ceux de la liste ci-dessus |
+| Nombre de `.mp4` | 3 (ou 0 sur un test) |
+| `id` | consécutifs, sans trou |
 | `durationInSeconds` | seulement sur les cartes |
-| `ratio` | `"16:9"` |
 | Références bibliques | livre + chapitre + verset |
+
+Un chemin de son inventé n'est PAS rattrapé par Zod (le schéma accepte toute
+chaîne) : `npm run preflight` l'attrape en tête de pipeline, avant la location
+du GPU. Si le rendu échoue là, c'est ça.
