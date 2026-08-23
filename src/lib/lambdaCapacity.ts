@@ -66,7 +66,14 @@ export function capaciteLambda(
   // En dessous du nombre de vCPU disponibles : chaque onglet Chromium consomme de
   // la mémoire, et un dépassement fait tomber la Lambda en OOM — bien plus
   // coûteux qu'un rendu un peu plus lent.
-  const vcpu = Math.max(1, Math.floor(memoryMb / MO_PAR_VCPU));
+  // ARRONDI AU PLUS PROCHE, et non vers le bas : AWS accorde le second vCPU dès
+  // ~1769 Mo, donc une fonction à 3008 Mo dispose de 2 cœurs. Un `floor` donnait
+  // 1 et annulait tout le bénéfice de la mémoire — c'est ce qui plafonnait un
+  // compte limité à 3008 Mo au même débit qu'à 2048.
+  const vcpu = Math.max(1, Math.round(memoryMb / MO_PAR_VCPU));
+
+  // Plancher de 1400 Mo par onglet Chromium : au-delà, la Lambda tombe en OOM,
+  // ce qui coûte plus cher qu'un rendu un peu plus lent.
   const concurrencyPerLambda = Math.max(1, Math.min(vcpu, Math.floor(memoryMb / 1400)));
 
   const secondesParFrame =
