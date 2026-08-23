@@ -22,8 +22,20 @@ import type { AwsRegion } from '@remotion/lambda';
  */
 
 const TIMEOUT_SECONDS = 900; // MAX_TIMEOUT de Remotion, plafond AWS
-const MEMORY_MB = 3072;
-const DISK_MB = 4096; // pour les vidéos longues : frames intermédiaires + audio
+
+/**
+ * 5312 Mo = 3 vCPU pleins (AWS alloue ~1 vCPU par 1769 Mo).
+ *
+ * C'est le poste qui décide de la longueur maximale d'une vidéo : render-lambda.ts
+ * en déduit `concurrencyPerLambda`, donc le nombre de frames qu'un chunk peut
+ * rendre avant le timeout. Passer de 2048 à 5312 Mo triple la capacité.
+ *
+ * La facture ne triple pas pour autant : Lambda facture à la Go-seconde, et le
+ * rendu dure d'autant moins longtemps. Le surcoût réel est celui de la contention
+ * (~20 %), pas celui de la mémoire.
+ */
+const MEMORY_MB = 5312;
+const DISK_MB = 4096; // vidéos longues : frames intermédiaires + audio
 
 async function main() {
   const region = (process.env.REMOTION_AWS_REGION || 'eu-west-3') as AwsRegion;

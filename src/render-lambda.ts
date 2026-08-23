@@ -13,6 +13,7 @@ import {
 import type { AwsRegion } from '@remotion/lambda';
 import { loadStoryboard } from './storyboard';
 import { Storyboard, getTotalDurationInFrames, FPS } from './types';
+import { capaciteLambda } from './lib/lambdaCapacity';
 
 /**
  * Rendu CLOUD (miroir de src/render.ts, mais sur AWS Lambda).
@@ -247,8 +248,21 @@ async function main() {
   // 0,55 s par frame est mesuré, pas estimé : un chunk de 1229 frames a dépassé
   // 600 s sur une vidéo `goldenStyle: "full"`. On garde 15 % de marge pour
   // l'amorçage de la Lambda et l'assemblage final du chunk.
-  const SECONDES_PAR_FRAME = 0.55;
-  const SAFE_MAX_FRAMES = Math.floor((timeoutLambda * 0.85) / SECONDES_PAR_FRAME);
+  // Formule partagée avec `preflight` (src/lib/lambdaCapacity.ts) : une
+  // divergence ferait passer le contrôle amont pour échouer ici, après la
+  // génération GPU.
+  const capacite = capaciteLambda(
+    timeoutLambda,
+    fonction.memorySizeInMb,
+    awsConcurrencyQuota,
+    FPS
+  );
+  const concurrencyPerLambda = capacite.concurrencyPerLambda;
+  const SAFE_MAX_FRAMES = capacite.maxFramesParChunk;
+  console.log(
+    `Capacité : ${concurrencyPerLambda} frame(s) en parallèle par Lambda, ` +
+      `${SAFE_MAX_FRAMES} frames/chunk max, ${capacite.capaciteMinutes.toFixed(1)} min au total.`
+  );
   if (framesPerLambda > SAFE_MAX_FRAMES) {
     const minutes = (totalFrames / (FPS * 60)).toFixed(1);
     const capaciteMin = ((SAFE_MAX_FRAMES * maxRenderers) / (FPS * 60)).toFixed(1);
@@ -293,6 +307,7 @@ async function main() {
         codec: 'h264',
         privacy: 'no-acl',
         framesPerLambda,
+        concurrencyPerLambda,
       }),
     3,
     { preFlightOnly: true }

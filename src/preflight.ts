@@ -3,6 +3,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { loadStoryboard } from './storyboard';
 import { getTotalDurationInFrames, FPS } from './types';
+import { capaciteLambda } from './lib/lambdaCapacity';
 
 /**
  * Contrôle avant vol : vérifie ce qui NE PEUT PAS être généré automatiquement.
@@ -48,8 +49,7 @@ async function main() {
   }
 
   if (attendus.size === 0) {
-    console.log('[Preflight] Aucun audio de fond référencé — rien à vérifier.');
-    return;
+    console.log('[Preflight] Aucun audio de fond référencé.');
   }
 
   const absents: string[] = [];
@@ -71,7 +71,9 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`[Preflight] ✅ ${attendus.size} audio de fond présent(s).`);
+  if (attendus.size > 0) {
+    console.log(`[Preflight] ✅ ${attendus.size} audio de fond présent(s).`);
+  }
 
   await verifierCapaciteLambda(storyboard);
 }
@@ -94,6 +96,7 @@ async function verifierCapaciteLambda(storyboard: any) {
   const minutes = totalFrames / (FPS * 60);
 
   let timeout = 900;
+  let memoire = 2048;
   try {
     const { getFunctions } = await import('@remotion/lambda');
     const region = (process.env.REMOTION_AWS_REGION || 'eu-west-3') as any;
@@ -102,17 +105,22 @@ async function verifierCapaciteLambda(storyboard: any) {
       console.warn('[Preflight] ⚠️ Aucune fonction Lambda déployée — lance npm run deploy:lambda.');
       return;
     }
-    timeout = Math.max(...fns.map((f) => f.timeoutInSeconds));
+    // Même sélection que render-lambda.ts : la fonction au plus grand timeout.
+    const fn = fns.reduce((m, f) => (f.timeoutInSeconds > m.timeoutInSeconds ? f : m));
+    timeout = fn.timeoutInSeconds;
+    memoire = fn.memorySizeInMb;
   } catch (err: any) {
     console.warn(`[Preflight] ⚠️ Capacité Lambda non vérifiée (${err.message}).`);
     return;
   }
 
-  // Mêmes constantes que render-lambda.ts.
   const quota = Number(process.env.RENDER_MAX_LAMBDAS || 10);
-  const renderers = Math.max(1, quota - 2);
-  const maxFramesParChunk = Math.floor((timeout * 0.85) / 0.55);
-  const capaciteFrames = maxFramesParChunk * renderers;
+  const { capaciteFrames, maxFramesParChunk, renderers, concurrencyPerLambda } = capaciteLambda(
+    timeout,
+    memoire,
+    quota,
+    FPS
+  );
 
   if (totalFrames > capaciteFrames) {
     const capaciteMin = (capaciteFrames / (FPS * 60)).toFixed(1);
