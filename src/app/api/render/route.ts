@@ -92,6 +92,11 @@ export async function POST(request: Request) {
     //   sync:r2 AVANT render:lambda — Lambda lit les médias par URL ; un fichier
     //     absent de R2 fait échouer le rendu après plusieurs minutes.
     const etapes = [
+      // EN PREMIER, avant toute dépense : vérifie la musique et les sons de
+      // scène, que le pipeline ne sait pas générer. sync:r2 refait ce contrôle,
+      // mais lui n'intervient qu'après la location du GPU — un fichier absent
+      // faisait payer toute la génération avant d'échouer.
+      'npm run preflight',
       generateur,
       'npm run tts',
       'npm run voice:fx',
