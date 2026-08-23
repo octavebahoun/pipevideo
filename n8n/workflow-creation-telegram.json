@@ -61,7 +61,7 @@
     {
       "parameters": {
         "chatId": "={{ $json.message.chat.id }}",
-        "text": "🎬 C'est lancé.\n\n*{{ $json.message.text }}*\n\nRédaction du script, puis génération des images et du montage. Compte 20 à 40 minutes — je te renvoie le lien ici quand c'est prêt.",
+        "text": "=🎬 C'est lancé.\n\n*{{ $json.message.text }}*\n\nRédaction du script, puis génération des images et du montage. Compte 20 à 40 minutes — je te renvoie le lien ici quand c'est prêt.",
         "additionalFields": {
           "parse_mode": "Markdown"
         }
@@ -220,7 +220,7 @@
     {
       "parameters": {
         "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
-        "text": "⚠️ La préparation a échoué avant le rendu.\n\nSujet : *{{ $('Telegram Trigger').item.json.message.text }}*\n\nRegarde les logs n8n : soit DeepSeek a produit un JSON invalide, soit le serveur n'a pas répondu.",
+        "text": "=⚠️ La préparation a échoué avant le rendu.\n\nSujet : *{{ $('Telegram Trigger').item.json.message.text }}*\n\nRegarde les logs n8n : soit DeepSeek a produit un JSON invalide, soit le serveur n'a pas répondu.",
         "additionalFields": {
           "parse_mode": "Markdown"
         }

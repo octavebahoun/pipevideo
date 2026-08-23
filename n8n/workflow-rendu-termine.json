@@ -13,7 +13,10 @@
       "name": "Webhook rendu terminé",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [-540, 300],
+      "position": [
+        -540,
+        300
+      ],
       "webhookId": "pipevideo-rendu-termine",
       "credentials": {
         "httpHeaderAuth": {
@@ -34,13 +37,19 @@
           "conditions": [
             {
               "id": "a-un-chat",
-              "operator": { "type": "string", "operation": "notEmpty" },
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              },
               "leftValue": "={{ $json.body.telegramChatId }}",
               "rightValue": ""
             },
             {
               "id": "est-reussi",
-              "operator": { "type": "string", "operation": "equals" },
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
               "leftValue": "={{ $json.body.status }}",
               "rightValue": "COMPLETED"
             }
@@ -53,13 +62,16 @@
       "name": "Réussi et Telegram connu ?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [-320, 300],
-      "notes": "Une vidéo créée depuis le dashboard n'a pas de telegramChatId : rien à envoyer, on sort par la branche fausse."
+      "position": [
+        -320,
+        300
+      ],
+      "notes": "Un appel sans telegramChatId (déclenché hors Telegram) n'a personne à prévenir : il sort par la branche fausse."
     },
     {
       "parameters": {
         "chatId": "={{ $json.body.telegramChatId }}",
-        "text": "✅ *{{ $json.body.title }}*\n\nLa vidéo est prête, rendue en {{ Math.floor($json.body.durationSeconds / 60) }} min {{ $json.body.durationSeconds % 60 }} s.\n\n{{ $json.body.videoUrl }}\n\nRegarde-la, puis réponds *publier* si elle te convient.",
+        "text": "=✅ *{{ $json.body.title }}*\n\nLa vidéo est prête, rendue en {{ Math.floor($json.body.durationSeconds / 60) }} min {{ $json.body.durationSeconds % 60 }} s.\n\n{{ $json.body.videoUrl }}\n\nRegarde-la, puis réponds *publier* si elle te convient.",
         "additionalFields": {
           "parse_mode": "Markdown"
         }
@@ -68,7 +80,10 @@
       "name": "Envoyer le lien",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [-100, 200],
+      "position": [
+        -100,
+        200
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REMPLACER",
@@ -88,7 +103,10 @@
           "conditions": [
             {
               "id": "a-un-chat-echec",
-              "operator": { "type": "string", "operation": "notEmpty" },
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              },
               "leftValue": "={{ $json.body.telegramChatId }}",
               "rightValue": ""
             }
@@ -101,12 +119,15 @@
       "name": "Échec : Telegram connu ?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [-100, 420]
+      "position": [
+        -100,
+        420
+      ]
     },
     {
       "parameters": {
         "chatId": "={{ $json.body.telegramChatId }}",
-        "text": "❌ *{{ $json.body.title }}*\n\nLe rendu a échoué après {{ Math.floor($json.body.durationSeconds / 60) }} min.\n\n`{{ $json.body.error }}`\n\nLa vidéo reste dans le dashboard : le storyboard est conservé, un nouvel essai ne refait pas le script.",
+        "text": "=❌ *{{ $json.body.title }}*\n\nLe rendu a échoué après {{ Math.floor($json.body.durationSeconds / 60) }} min.\n\n`{{ $json.body.error }}`\n\nLe storyboard est conservé : relancer ne repasse pas par DeepSeek.",
         "additionalFields": {
           "parse_mode": "Markdown"
         }
@@ -115,7 +136,10 @@
       "name": "Signaler l'échec",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [120, 420],
+      "position": [
+        120,
+        420
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REMPLACER",
@@ -127,16 +151,45 @@
   ],
   "connections": {
     "Webhook rendu terminé": {
-      "main": [[{ "node": "Réussi et Telegram connu ?", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Réussi et Telegram connu ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Réussi et Telegram connu ?": {
       "main": [
-        [{ "node": "Envoyer le lien", "type": "main", "index": 0 }],
-        [{ "node": "Échec : Telegram connu ?", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Envoyer le lien",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Échec : Telegram connu ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Échec : Telegram connu ?": {
-      "main": [[{ "node": "Signaler l'échec", "type": "main", "index": 0 }], []]
+      "main": [
+        [
+          {
+            "node": "Signaler l'échec",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
     }
   },
   "settings": {

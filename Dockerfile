@@ -44,6 +44,10 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/rmo.config.ts ./rmo.config.ts
+# Script d'installation du pod et workflows ComfyUI (Flux, Wan). Lus à
+# l'exécution par src/runpod.ts, qui les téléverse sur le GPU loué — sans eux
+# le pod est créé, facturé, puis détruit sur un ENOENT.
+COPY --from=builder /app/runpod ./runpod
 COPY --from=builder /app/entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
