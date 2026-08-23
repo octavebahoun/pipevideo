@@ -34,6 +34,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Video does not have a storyboard yet' }, { status: 400 });
     }
 
+    // Refuser un second rendu de la même vidéo. Les deux pipelines écriraient les
+    // mêmes scene_*.png et le même storyboard.json : le premier verrait ses
+    // fichiers remplacés en cours de route, et deux pods GPU seraient facturés.
+    // Devenu nécessaire avec la commande /relance du bot, qui rend le double
+    // déclenchement trivial.
+    if (activeRenders.has(id)) {
+      return NextResponse.json(
+        {
+          error: 'Un rendu de cette vidéo est déjà en cours.',
+          hint: "Attends la fin, ou annule-le d'abord via /api/render/cancel.",
+        },
+        { status: 409 }
+      );
+    }
+
     // 1. Update status to RENDERING in DB
     const updatedVideo = await prisma.video.update({
       where: { id },
