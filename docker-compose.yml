@@ -1,28 +1,29 @@
 version: '3.8'
 
 services:
-  pipevideo:
+  pipevideo-religieux:
     build:
       context: .
       dockerfile: Dockerfile
-    # Nom distinct de la branche de production (`pipevideo`) : les deux peuvent
-    # tourner côte à côte sur la même machine, chacune avec sa base et son
-    # domaine. Caddy route vers ce nom.
+    # Nom distinct de l'instance de production (`pipevideo`) : les deux tournent
+    # côte à côte sur la même machine. C'est ce nom que Caddy cible.
     container_name: pipevideo-religieux
     restart: always
     env_file:
       - .env
     volumes:
-      # Les médias générés (scene_*.png/mp4/mp3) survivent aux redémarrages :
-      # sans ce volume, chaque déploiement relancerait la génération GPU.
+      # Médias générés (scene_*.png/mp4/mp3). Sans ce volume, chaque
+      # redéploiement relancerait la génération GPU — donc des dollars.
       - pipevideo_religieux_public:/app/public
-      # Clé SSH utilisée pour piloter le pod RunPod (kill switch, rclone vers
-      # R2). En lecture seule, et le chemin doit correspondre à
-      # RUNPOD_SSH_KEY_PATH dans le .env — soit /root/.ssh/id_ed25519 ici.
+      # Clé SSH pour piloter le pod RunPod (kill switch, rclone vers R2).
+      # Le chemin dans le conteneur doit correspondre à RUNPOD_SSH_KEY_PATH.
       - ${HOME}/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro
       - ${HOME}/.ssh/id_ed25519.pub:/root/.ssh/id_ed25519.pub:ro
     networks:
       - epitnet_internal
+    # Un rendu peut occuper le conteneur 30 min ; sans plafond, une fuite
+    # mémoire de ffmpeg peut emporter les autres services de la machine.
+    mem_limit: 4g
 
 volumes:
   pipevideo_religieux_public:

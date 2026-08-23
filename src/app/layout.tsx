@@ -1,21 +1,18 @@
 import type { Metadata } from 'next';
-import './globals.css';
+
+/**
+ * Layout minimal, conservé uniquement parce que Next.js l'exige à la racine.
+ * Cette instance ne sert que des routes API — il n'y a aucune page à afficher.
+ */
 
 export const metadata: Metadata = {
-  title: 'Content Factory — Automatisez votre chaîne YouTube',
-  description: 'De l\'idée à la publication : générez, montez et publiez des vidéos courtes automatiquement, propulsé par l\'IA.',
+  title: 'Pipevideo — API',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body className="antialiased min-h-screen bg-[var(--background)]">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

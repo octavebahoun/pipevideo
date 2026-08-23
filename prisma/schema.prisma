@@ -34,6 +34,11 @@ model Video {
   updatedAt     DateTime  @updatedAt
 }
 
+/// INUTILISÉ sur cette branche : il n'y a plus d'interface, donc plus de login —
+/// l'authentification se fait par secret partagé (voir src/middleware.ts).
+/// Conservé volontairement : le supprimer du schéma ferait exécuter un
+/// DROP TABLE au prochain `prisma db push`, et cette base peut être partagée
+/// avec l'instance de production, qui a toujours son dashboard.
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
