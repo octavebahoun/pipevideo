@@ -5,17 +5,27 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: pipevideo
+    # Nom distinct de la branche de production (`pipevideo`) : les deux peuvent
+    # tourner côte à côte sur la même machine, chacune avec sa base et son
+    # domaine. Caddy route vers ce nom.
+    container_name: pipevideo-religieux
     restart: always
     env_file:
       - .env
     volumes:
-      - pipevideo_public:/app/public
+      # Les médias générés (scene_*.png/mp4/mp3) survivent aux redémarrages :
+      # sans ce volume, chaque déploiement relancerait la génération GPU.
+      - pipevideo_religieux_public:/app/public
+      # Clé SSH utilisée pour piloter le pod RunPod (kill switch, rclone vers
+      # R2). En lecture seule, et le chemin doit correspondre à
+      # RUNPOD_SSH_KEY_PATH dans le .env — soit /root/.ssh/id_ed25519 ici.
+      - ${HOME}/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro
+      - ${HOME}/.ssh/id_ed25519.pub:/root/.ssh/id_ed25519.pub:ro
     networks:
       - epitnet_internal
 
 volumes:
-  pipevideo_public:
+  pipevideo_religieux_public:
 
 networks:
   epitnet_internal:

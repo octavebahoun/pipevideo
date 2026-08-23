@@ -23,6 +23,15 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Outils appelés par le pipeline depuis le conteneur, pas seulement au build :
+#   ffmpeg/ffprobe — voice:fx applique la réverbération, runpod.ts compte les
+#     frames des clips pour valider qu'ils ne sont pas tronqués
+#   openssh-client — runpodClient.ts pilote le pod GPU en SSH (kill switch,
+#     rclone vers R2). Sans lui, `npm run runpod` échoue au premier appel
+# Les oublier ne casse pas le démarrage : ça casse le rendu, plusieurs minutes
+# après le lancement.
+RUN apk add --no-cache ffmpeg openssh-client
+
 COPY --from=builder /app/public ./public
 # Kept as a pristine reference copy: /app/public is a mounted volume (see
 # docker-compose.yml) that persists generated assets across restarts, so it
