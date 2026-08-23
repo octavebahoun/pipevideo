@@ -223,7 +223,10 @@ async function main() {
   // de 10 ⇒ « Rate Exceeded » immédiat). Et la fonction "launch" attend TOUS les
   // chunks : au-delà d'une vague, elle dépasse son propre timeout de 600 s.
   // Stratégie : tout rendre en UNE SEULE vague qui tient dans le quota.
-  //  - RENDER_MAX_LAMBDAS = quota de concurrence Lambda du compte (ici 10).
+  //  - RENDER_MAX_LAMBDAS = ce qu'on s'autorise à engager, PAS le quota du compte
+  //    (1000 depuis le 2026-08-23). En réclamer une fraction laisse de la marge
+  //    aux autres services, et AWS peut throttler la montée en charge bien avant
+  //    le quota total.
   //  - On réserve 1 slot pour la fonction "launch" + 1 slot de marge (invocations
   //    transitoires de Remotion) ⇒ renderers = quota - 2.
   //  - chunks = renderers (1 vague), donc les plus petits chunks possibles sans
@@ -369,6 +372,23 @@ async function main() {
 }
 
 main().catch((err: any) => {
-  console.error('\n❌ Erreur render:lambda :', err.message);
+  const msg = err?.message || String(err);
+  console.error('\n❌ Erreur render:lambda :', msg);
+
+  // Un throttling de concurrence ressemble à n'importe quelle autre erreur dans
+  // le message brut d'AWS. Le nommer évite de chercher un bug là où il n'y a
+  // qu'un réglage trop ambitieux : RENDER_MAX_LAMBDAS peut être sous le quota du
+  // compte et provoquer malgré tout un « Rate Exceeded » pendant la montée en
+  // charge, AWS limitant la VITESSE d'allocation autant que le nombre total.
+  if (/Rate exceeded|Throttl|ConcurrentInvocationLimit|TooManyRequests/i.test(msg)) {
+    const actuel = process.env.RENDER_MAX_LAMBDAS || '10';
+    const conseil = Math.max(10, Math.floor(Number(actuel) / 2));
+    console.error(
+      `\n⚠️ AWS a limité la concurrence. RENDER_MAX_LAMBDAS vaut ${actuel}.\n` +
+        `   → Redescendre à ${conseil} dans le .env, puis relancer.\n` +
+        `   Les médias déjà produits seront réutilisés (mode resume) : la relance\n` +
+        `   ne recoûte pas de GPU.`
+    );
+  }
   process.exit(1);
 });
