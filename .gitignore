@@ -1,7 +1,11 @@
 **/node_modules/
 **/vendor/
 **/__pycache__/
-**/.env
+.env
+.env.*
+# Les fichiers d'exemple ne contiennent que des marqueurs, jamais de secrets.
+!.env.example
+!.env.serveur.example
 **/*.log
 **/venv/
 **history/**
