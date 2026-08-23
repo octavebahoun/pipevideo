@@ -130,10 +130,20 @@ async function main() {
     console.log(`   ${cap.concurrencyPerLambda} frame(s) en parallèle par Lambda`);
     console.log(`   ${cap.maxFramesParChunk} frames/chunk · ${cap.renderers} renderers`);
     console.log(`   → ${cap.capaciteMinutes.toFixed(1)} min de vidéo au maximum`);
-    console.log(
-      `\n   Pour aller au-delà : faire relever le quota AWS « Concurrent executions »\n` +
-        `   (gratuit, 24-48 h), puis augmenter RENDER_MAX_LAMBDAS.`
-    );
+    // Nommer le facteur limitant réel : conseiller de relever un quota déjà
+    // relevé enverrait sur une fausse piste.
+    if (cap.concurrencyPerLambda < 3) {
+      console.log(
+        `\n   Facteur limitant : la mémoire (${deployee.memorySizeInMb} Mo = ` +
+          `${cap.concurrencyPerLambda} vCPU). Les comptes de base plafonnent à 3008 Mo ;\n` +
+          `   une hausse de « Function memory » auprès du support AWS donnerait un cœur\n` +
+          `   de plus, donc des chunks plus gros.`
+      );
+    } else {
+      console.log(
+        `\n   Pour aller au-delà : augmenter RENDER_MAX_LAMBDAS (quota du compte permettant).`
+      );
+    }
   }
 }
 
