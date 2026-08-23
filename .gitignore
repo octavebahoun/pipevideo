@@ -40,3 +40,6 @@ bench_clips/
 
 # Aperçus visuels de test (régénérables)
 tests-visuels/
+
+# Dépôt temporaire des audio à trier (voir public/sounds/SOURCING-RELIGIEUX.md).
+new/

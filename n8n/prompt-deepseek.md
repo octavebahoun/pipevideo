@@ -51,7 +51,7 @@ Un seul objet JSON, rien avant, rien après. Aucun commentaire.
   "voice": "gerard",
   "goldenStyle": "full",
   "subtitleStyle": "cinematic",
-  "music": "sounds/music/leberch-cinematic-space.mp3",
+  "music": "sounds/music/sacred/mer-ka-ba-jesse-gallagher.mp3",
   "musicVolume": 0.10,
   "youtubeMetadata": {
     "title": "titre YouTube, accrocheur mais sans sensationnalisme",
@@ -92,6 +92,13 @@ CHAQUE SCÈNE, trois formes possibles :
   "effects": { "transition": "black" },
   "durationInSeconds": 4
 }
+
+MUSIQUE
+Toujours `sounds/music/sacred/mer-ka-ba-jesse-gallagher.mp3` avec
+`musicVolume: 0.10`. C'est la seule nappe du fonds qui dure 17 min 30 : elle
+couvre une vidéo entière sans boucler, et son niveau très bas ne masque
+jamais la voix. Ne pas proposer d'autre morceau — les autres sont plus courts
+et boucleraient six à huit fois de façon audible.
 
 RÈGLES DE FORME, impératives :
 - `id` : entiers consécutifs à partir de 1, aucun trou, aucun doublon.
