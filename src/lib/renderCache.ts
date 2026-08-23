@@ -32,6 +32,19 @@ export type SceneCacheStatus = {
  * own previous state means switching between videos never silently wipes a
  * video's progress just because another one rendered in between.
  */
+/**
+ * Fichiers médias d'une scène, relatifs à public/.
+ *
+ * `mediaPath` accepte une chaîne ou un tableau (plusieurs plans sur une scène).
+ * Sans valeur, on retombe sur les deux extensions possibles pour retrouver un
+ * fichier déjà produit dont le storyboard aurait perdu la trace.
+ */
+function mediaPathsDe(scene: any): string[] {
+  if (Array.isArray(scene.mediaPath)) return scene.mediaPath;
+  if (typeof scene.mediaPath === 'string' && scene.mediaPath) return [scene.mediaPath];
+  return [];
+}
+
 export async function computeSceneCacheStatus(
   storyboard: any,
   previousStoryboard: any | null
@@ -50,16 +63,29 @@ export async function computeSceneCacheStatus(
 
     const prevScene = prevScenes.find((s: any) => s.id === scene.id);
     const audioFullPath = path.join(PUBLIC_DIR, `scene_${scene.id}.mp3`);
-    const videoFullPath = path.join(PUBLIC_DIR, `scene_${scene.id}.mp4`);
 
     const narrationChanged = !prevScene || prevScene.narration !== scene.narration;
     const audioStale = narrationChanged || voiceChanged;
     const audioReady = !audioStale && (await fileExists(audioFullPath));
 
+    // Suivre le `mediaPath` du storyboard plutôt que de supposer un .mp4 : sur du
+    // contenu de méditation, ~95 % des scènes sont des .png. Supposer l'extension
+    // faisait déclarer chaque image « absente » et la régénérait sur le GPU, même
+    // quand elle était là — le cache ne servait donc à rien pour ce format.
+    const mediaFiles = mediaPathsDe(scene);
+
     const promptChanged = !prevScene || prevScene.mediaPrompt !== scene.mediaPrompt;
+    // Le mouvement compte autant que l'image pour un clip : changer le seul
+    // motionPrompt doit régénérer la vidéo.
+    const motionChanged = !prevScene || prevScene.motionPrompt !== scene.motionPrompt;
     const noTaskId = !scene.novitaTaskId && !scene.mediaPath;
-    const mediaStale = promptChanged || narrationChanged || noTaskId;
-    const mediaReady = !mediaStale && (await fileExists(videoFullPath));
+    const mediaStale = promptChanged || motionChanged || narrationChanged || noTaskId;
+
+    let mediaReady = !mediaStale && mediaFiles.length > 0;
+    for (const rel of mediaFiles) {
+      if (!mediaReady) break;
+      mediaReady = await fileExists(path.join(PUBLIC_DIR, rel));
+    }
 
     results.push({ sceneId: scene.id, audioReady, mediaReady });
   }
@@ -72,9 +98,17 @@ export async function cleanupStaleSceneFiles(cacheStatus: SceneCacheStatus[]): P
   for (const { sceneId, audioReady, mediaReady } of cacheStatus) {
     if (!audioReady) {
       await fs.unlink(path.join(PUBLIC_DIR, `scene_${sceneId}.mp3`)).catch(() => {});
+      // La voix off traitée à la réverbération est dérivée du .brut : la laisser
+      // ferait repartir voice:fx d'un original qui ne correspond plus au texte.
+      await fs.unlink(path.join(PUBLIC_DIR, `scene_${sceneId}.brut.mp3`)).catch(() => {});
     }
     if (!mediaReady) {
-      await fs.unlink(path.join(PUBLIC_DIR, `scene_${sceneId}.mp4`)).catch(() => {});
+      // Toutes les extensions possibles : le storyboard peut avoir changé de .png
+      // à .mp4 pour une même scène, et l'ancien fichier ferait alors croire le
+      // média présent.
+      for (const ext of ['mp4', 'png', 'jpg', 'jpeg', 'webm']) {
+        await fs.unlink(path.join(PUBLIC_DIR, `scene_${sceneId}.${ext}`)).catch(() => {});
+      }
     }
   }
 }
